@@ -13,3 +13,5 @@ export function matchesServiceCredential(
 export * from './jwt';
 export * from './guards';
 export * from './rate-limit';
+
+export * from './session.guard';

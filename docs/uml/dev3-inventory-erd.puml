@@ -1,0 +1,18 @@
+@startuml
+entity suppliers
+entity purchase_receipts
+entity purchase_receipt_items
+entity inventories
+entity stock_movements
+entity stock_adjustments
+entity stock_reservations
+entity stock_reservation_items
+suppliers ||--o{ purchase_receipts
+purchase_receipts ||--o{ purchase_receipt_items
+stock_reservations ||--o{ stock_reservation_items
+note right of inventories
+productId is external UUID
+onHand >= reserved >= 0
+version, threshold
+end note
+@enduml

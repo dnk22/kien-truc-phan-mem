@@ -159,3 +159,8 @@ docker compose down
 ### DEV-2 catalog
 
 See [catalog API contract](docs/dev2-api.md). Run product migrations and seed in the configured development environment; with DEMO_SEED_ENABLED=true in a non-production environment, seed creates six categories and 30 example products, preserving existing records. Manager manages categories/products; cashier and warehouse can read products. No stock quantities are seeded here. DEV-2 verification is pending; see docs/testing.md.
+
+
+### DEV-3 inventory
+
+See [inventory API contract](docs/dev3-api.md). With DEMO_SEED_ENABLED=true in development, inventory seed adds three suppliers. Use Manager or Warehouse to create a receipt and Manager to confirm it to establish stock. The inventory service never reads product_db; it validates items through Product internal API. Runtime verification pending.

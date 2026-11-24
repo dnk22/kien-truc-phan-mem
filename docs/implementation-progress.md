@@ -7,7 +7,7 @@ Master Specification: `Prompt_Codex_MiniMart.md`. Báo cáo DOCX là thiết k�
 | DEV-0     | Đã có foundation; Docker runtime vẫn BLOCKED | 7 apps, 4 shared packages, 5 DB, Docker/Compose, health/logging/env                |
 | DEV-1     | Hoàn thành native; chờ review                | Identity, sessions, JWT/RBAC, Gateway auth/users, application shell, auth/users UI |
 | DEV-2     | Code submitted; verification pending | Product/category                                                                   |
-| DEV-3     | Chưa bắt đầu                                 | Inventory/supplier/receipt/reservation/adjustment                                  |
+| DEV-3     | Code submitted; verification pending | Inventory/supplier/receipt/reservation/adjustment                                  |
 | DEV-4     | Chưa bắt đầu                                 | Checkout/POS/Saga/GoF                                                              |
 | DEV-5     | Chưa bắt đầu                                 | Outbox/RabbitMQ/Report                                                             |
 | DEV-6     | Chưa bắt đầu                                 | Nghiệm thu toàn bộ nghiệp vụ, fault/concurrency/performance                        |
@@ -36,3 +36,8 @@ Install frozen lockfile, build, lint, typecheck, 27 Jest tests trong 11 suites v
 ## DEV-2 implementation candidate
 
 Catalog layered repositories and application services; categories/products migration, development seed, public and private batch API, JWT/live-session RBAC, Gateway routing, React catalog features, shared UI reuse, validation tests and UML. See dev2-api.md. Runtime and quality gates have not been executed on this branch. DEV-3 not started.
+
+
+## DEV-3 implementation candidate
+
+Inventory schema, transactional repositories, supplier/receipt/stock/adjustment and reservation APIs, shared live session guard, Gateway, frontend screens, demo supplier seed, unit test sources and UML. See dev3-api.md. Runtime verification pending; DEV-4 not started.

@@ -121,8 +121,14 @@ services:
       context: .
       dockerfile: apps/inventory-service/Dockerfile
     environment:
-      NODE_ENV: production
+      NODE_ENV: ${APP_NODE_ENV:-development}
       PORT: 3003
+      DEMO_SEED_ENABLED: ${DEMO_SEED_ENABLED:-false}
+      JWT_SECRET: ${JWT_SECRET:?required}
+      JWT_ISSUER: ${JWT_ISSUER:-minimart-identity}
+      JWT_AUDIENCE: ${JWT_AUDIENCE:-minimart-api}
+      JWT_ACCESS_TTL_SECONDS: ${JWT_ACCESS_TTL_SECONDS:-300}
+      IDENTITY_SERVICE_URL: http://identity-service:3001
       LOG_LEVEL: ${LOG_LEVEL:-info}
       SERVICE_CREDENTIAL: ${SERVICE_CREDENTIAL:?required}
       DATABASE_URL: postgresql://inventory_user:${INVENTORY_DB_PASSWORD:?required}@postgres:5432/inventory_db?schema=public&connect_timeout=3&pool_timeout=3
