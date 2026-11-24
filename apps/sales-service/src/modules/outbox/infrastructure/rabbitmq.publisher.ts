@@ -12,7 +12,9 @@ export class RabbitMqPublisher implements EventPublisher, OnModuleDestroy {
   private async open(): Promise<ConfirmChannel> {
     if (this.stopped) throw new Error('Publisher stopped');
     if (this.channel) return this.channel;
+    await this.disconnect();
     const connection = await connect(process.env.RABBITMQ_URL ?? '', { timeout: 5000 });
+    if (this.stopped) { await connection.close(); throw new Error('Publisher stopped'); }
     connection.on('error', () => undefined);
     this.connection = connection;
     connection.on('close', () => { if (this.connection === connection) { this.connection = undefined; this.channel = undefined; } });
