@@ -1,0 +1,36 @@
+@startuml
+hide circle
+skinparam linetype ortho
+entity "foundation_metadata" as FoundationMetadata {
+ * key : String <<PK>>
+ * value : String
+ * updated_at : DateTime
+}
+entity "categories" as Category {
+ * id : UUID <<PK>>
+ * code : String <<UQ>>
+ * name : String
+ description : String?
+ * status : CatalogStatus
+ * created_at : DateTime
+ * updated_at : DateTime
+}
+entity "products" as Product {
+ * id : UUID <<PK>>
+ * category_id : UUID <<FK>>
+ * code : String <<UQ>>
+ barcode : String? <<UQ>>
+ * name : String
+ * unit : String
+ * selling_price : Int
+ image_url : String?
+ description : String?
+ * status : CatalogStatus
+ * created_at : DateTime
+ * updated_at : DateTime
+}
+Category ||--o{ Product
+note bottom of Product
+product_db: external UUID references are not cross-database foreign keys.
+end note
+@enduml

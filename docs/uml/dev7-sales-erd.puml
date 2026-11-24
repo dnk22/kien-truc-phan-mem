@@ -1,0 +1,65 @@
+@startuml
+hide circle
+skinparam linetype ortho
+entity "foundation_metadata" as FoundationMetadata {
+ * key : String <<PK>>
+ * value : String
+ * updated_at : DateTime
+}
+entity "invoices" as Invoice {
+ * id : UUID <<PK>>
+ * code : String <<UQ>>
+ * cashier_id : UUID
+ * status : InvoiceStatus
+ * saga_intent : SagaIntent
+ * total_amount : BigInt
+ reservation_id : UUID? <<UQ>>
+ * prepare_key : String
+ * prepare_hash : String
+ confirm_key : String?
+ confirm_hash : String?
+ * attempts : Int
+ * next_attempt_at : DateTime
+ last_error : String?
+ * created_at : DateTime
+ * updated_at : DateTime
+ completed_at : DateTime?
+ unique([cashierId,prepareKey])
+ unique([cashierId,confirmKey])
+}
+entity "invoice_items" as InvoiceItem {
+ * id : UUID <<PK>>
+ * invoice_id : UUID <<FK>>
+ * product_id : UUID
+ * product_code : String
+ * product_name : String
+ * unit : String
+ * quantity : Int
+ * unit_price : BigInt
+ * subtotal : BigInt
+ unique([invoiceId,productId])
+}
+entity "payments" as Payment {
+ * id : UUID <<PK>>
+ * invoice_id : UUID <<UQ, FK>>
+ * method : PaymentMethod
+ * amount_received : BigInt
+ * change_amount : BigInt
+ * created_at : DateTime
+}
+entity "outbox_events" as OutboxEvent {
+ * id : UUID <<PK>>
+ * event_type : String
+ * payload : Json
+ * status : OutboxStatus
+ * attempts : Int
+ * next_attempt_at : DateTime
+ * created_at : DateTime
+ sent_at : DateTime?
+}
+Invoice ||--o{ InvoiceItem
+Invoice ||--o| Payment
+note bottom of OutboxEvent
+sales_db: external UUID references are not cross-database foreign keys.
+end note
+@enduml
