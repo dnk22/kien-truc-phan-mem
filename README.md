@@ -183,3 +183,5 @@ After synchronizing the lockfile and building a disposable local demo stack, run
 ## DEV-7 release candidate
 
 Read [release runbook](docs/release.md), [demo script](docs/demo.md), [architecture](docs/architecture-current.md), [API index](docs/api-index.md), [evidence matrix](docs/report-evidence.md) and [Codex handoff](docs/codex-final-review.md). No release tag or runtime PASS is claimed. Historical DEV-0/1 evidence is not DEV-7 evidence.
+
+See [UML index](docs/uml/README.md), [release checklist](docs/release-checklist.md), and [final evidence template](docs/evidence/final/manifest.md).

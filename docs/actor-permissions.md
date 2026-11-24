@@ -1,13 +1,19 @@
-# Actor Permission Matrix — DEV-1
+# Actor permission matrix – DEV-7 candidate
 
-| Chức năng đang có               | ADMIN                      | MANAGER    | CASHIER | WAREHOUSE  |
-| ------------------------------- | -------------------------- | ---------- | ------- | ---------- |
-| Login/refresh/logout            | Có                         | Có         | Có      | Có         |
-| Profile/đổi mật khẩu chính mình | Có                         | Có         | Có      | Có         |
-| List/detail/create/update user  | Có                         | 403        | 403     | 403        |
-| Khóa/mở khóa/đổi role user      | Có, bảo vệ Admin cuối cùng | 403        | 403     | 403        |
-| Route mặc định                  | /users                     | /dashboard | /pos    | /inventory |
+| Capability | ADMIN | MANAGER | CASHIER | WAREHOUSE |
+|---|---|---|---|---|
+| Login, logout, profile, password | Yes | Yes | Yes | Yes |
+| User and role management | Yes | No | No | No |
+| Category/product API read | No | Yes | Yes | Yes |
+| Category/product write | No | Yes | No | No |
+| Suppliers | No | Read/write | No | Active read API |
+| Receipt draft create/edit/cancel | No | Yes | No | Yes |
+| Receipt confirmation | No | Yes | No | No |
+| Stock read | No | Yes | Yes | Yes |
+| Movement read, adjustment draft | No | Yes | No | Yes |
+| Adjustment confirm | No | Yes | No | No |
+| Checkout | No | No | Yes | No |
+| Invoice read | No | All | Own only | No |
+| Reports/dashboard | No | Yes | No | No |
 
-Menu/route được khai báo tập trung tại `apps/web/src/app/config/navigation.ts`. Tất cả role có profile. Các mục không thuộc DEV-1 có nhãn Sắp có và trang Chưa khả dụng; không có dữ liệu nghiệp vụ giả. RoleGuard ở FE chỉ là trải nghiệm UI; bảo vệ thực nằm ở Gateway JWT/RolesGuard và IdentityGuard/RolesGuard, với revalidation DB cho admin mutation.
-
-Quyền nghiệp vụ mục tiêu vẫn theo Master Specification; chưa hiện thực CRUD Product, Inventory, checkout hoặc Report. ADMIN không tự được thêm quyền nghiệp vụ của Manager/Cashier.
+Source: gateway and service guards, ownership rules, web navigation. Category and supplier standalone web screens are Manager-only; read access for other roles is used by relevant workflows. UI guards do not replace backend checks. Runtime RBAC verification pending.
