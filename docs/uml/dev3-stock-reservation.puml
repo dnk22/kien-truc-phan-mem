@@ -1,0 +1,7 @@
+@startuml
+[*] --> RESERVED
+RESERVED --> COMMITTED : commit / decrement onHand and reserved
+RESERVED --> RELEASED : release / decrement reserved
+COMMITTED --> COMMITTED : repeated commit
+RELEASED --> RELEASED : repeated release
+@enduml

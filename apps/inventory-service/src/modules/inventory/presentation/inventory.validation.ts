@@ -26,7 +26,9 @@ function unique<T extends {productId:string}>(items:T[]){if(new Set(items.map(i=
 function array(value:unknown){if(!Array.isArray(value)||value.length<1||value.length>100)return invalid();return value as unknown[];}
 export function receiptInput(value:unknown):ReceiptInput{
  const v=object(value,['supplierId','items']);
- return {supplierId:uuid(v.supplierId),items:unique(array(v.items).map(raw=>{const i=object(raw,['productId','quantity','unitCost']);return {productId:uuid(i.productId),quantity:int(i.quantity,1),unitCost:int(i.unitCost,1)};}))};
+ const items=unique(array(v.items).map(raw=>{const i=object(raw,['productId','quantity','unitCost']);return {productId:uuid(i.productId),quantity:int(i.quantity,1),unitCost:int(i.unitCost,1)};}));
+ if(!Number.isSafeInteger(items.reduce((sum,item)=>sum+item.quantity*item.unitCost,0)))return invalid();
+ return {supplierId:uuid(v.supplierId),items};
 }
 export function reservationInput(value:unknown):ReservationInput{
  const v=object(value,['invoiceId','items']);

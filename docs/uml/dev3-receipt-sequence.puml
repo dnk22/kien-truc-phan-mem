@@ -1,0 +1,24 @@
+@startuml
+actor Manager
+participant Gateway
+participant ReceiptController
+participant ReceiptService
+participant ReceiptRepository
+database inventory_db
+Manager -> Gateway : confirm receipt
+Gateway -> ReceiptController : JWT + request
+ReceiptController -> ReceiptService : confirm(id, actor)
+ReceiptService -> ReceiptRepository : confirm
+ReceiptRepository -> inventory_db : transaction + advisory lock
+alt DRAFT
+ReceiptRepository -> inventory_db : increase stock + movement + CONFIRMED
+else CONFIRMED
+ReceiptRepository -> inventory_db : read existing result
+else CANCELLED
+ReceiptRepository -> inventory_db : rollback / conflict
+end
+ReceiptRepository --> ReceiptService : receipt
+ReceiptService --> ReceiptController : result
+ReceiptController --> Gateway : envelope
+Gateway --> Manager : response
+@enduml

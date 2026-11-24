@@ -11,10 +11,13 @@ export class PrismaStockRepository implements StockRepository {
  constructor(private readonly db:PrismaService){}
  async list(q:ListQuery){
   const where:Prisma.InventoryWhereInput={productId:q.productId,OR:q.search?[{productName:{contains:q.search,mode:'insensitive'}},{productCode:{contains:q.search,mode:'insensitive'}}]:undefined};
-  // The single-store demo uses bounded DB result pages; low-stock requires comparing columns.
-  const rows=await this.db.inventory.findMany({where,orderBy:[{productName:'asc'},{productId:'asc'}]});
-  const filtered=rows.filter(row=>!q.lowStock||available(row)<=row.threshold);
-  return {items:filtered.slice((q.page-1)*q.pageSize,q.page*q.pageSize).map(row=>({...row,available:available(row)})),total:filtered.length};
+  // Compare available quantity with threshold using parameterized SQL for the low-stock case.
+  if(q.lowStock){
+   const ids=await this.db.$queryRaw<{product_id:string}[]>`SELECT product_id FROM inventories WHERE on_hand-reserved<=threshold`;
+   where.AND=[{productId:{in:ids.map(i=>i.product_id)}}];
+  }
+  const [rows,total]=await this.db.$transaction([this.db.inventory.findMany({where,skip:(q.page-1)*q.pageSize,take:q.pageSize,orderBy:[{productName:'asc'},{productId:'asc'}]}),this.db.inventory.count({where})]);
+  return {items:rows.map(row=>({...row,available:available(row)})),total};
  }
  async get(productId:string){
   const row=await this.db.inventory.findUnique({where:{productId}});

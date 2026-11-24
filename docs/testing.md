@@ -69,3 +69,8 @@ Docker/RabbitMQ/Nginx runtime và HTTPS deployment chưa chạy. Vite còn chunk
 Added catalog validation and batch lookup unit tests. Build, lint, typecheck, formatting, Jest, migration/seed, PostgreSQL concurrency, Gateway/Identity integration, browser E2E and Docker runtime: **NOT RUN** for DEV-2. Prior DEV-1 evidence is historical, not evidence for this branch.
 
 Local review: run root quality gate, check 30 demo products, category activation/deactivation races, unique code/barcode constraints, all role permissions, internal credential rejection, session revocation, UI CRUD/filter/pagination and DEV-1 regressions. Run migration and seed against disposable product_db, not production data.
+
+
+## DEV-3 verification pending
+
+Added stock rule, input validation and receipt snapshot test sources. No build/lint/format/typecheck/Jest/DB/browser/Docker commands executed for this branch. Required local tests: repeat confirm, cancelled receipt rejection, atomic failure across multiple products, concurrent last-stock reservations, same invoice payload retry/conflict, repeat commit/release and opposite transition rejection, stale adjustment and reserved floor, supplier/receipt RBAC, internal credential and gateway route isolation. Test with real PostgreSQL; no runtime PASS claimed.
