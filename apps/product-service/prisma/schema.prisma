@@ -15,3 +15,40 @@ model FoundationMetadata {
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
   @@map("foundation_metadata")
 }
+
+enum CatalogStatus {
+  ACTIVE
+  INACTIVE
+}
+
+model Category {
+  id String @id @default(uuid()) @db.Uuid
+  code String @unique @db.VarChar(64)
+  name String @db.VarChar(200)
+  description String?
+  status CatalogStatus @default(ACTIVE)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+  products Product[]
+  @@index([status])
+  @@map("categories")
+}
+
+model Product {
+  id String @id @default(uuid()) @db.Uuid
+  categoryId String @map("category_id") @db.Uuid
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  code String @unique @db.VarChar(64)
+  barcode String? @unique @db.VarChar(64)
+  name String @db.VarChar(200)
+  unit String @db.VarChar(50)
+  sellingPrice Int @map("selling_price")
+  imageUrl String? @map("image_url")
+  description String?
+  status CatalogStatus @default(ACTIVE)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+  @@index([categoryId, status])
+  @@index([status])
+  @@map("products")
+}
