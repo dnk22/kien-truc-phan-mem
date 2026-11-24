@@ -9,7 +9,7 @@ export class CheckoutOrchestrator {
   constructor(@Inject(INVOICES) private readonly invoices: InvoiceRepository, @Inject(STOCK_PORT) private readonly stock: StockPort) {}
   advance(id: string, correlationId?: string): Promise<InvoiceRecord> {
     const current = this.running.get(id);
-    if (current) return current;
+    if (current) return current.then(result => result.sagaIntent === 'NONE' ? this.run(id, correlationId) : result);
     const task = this.run(id, correlationId).finally(() => this.running.delete(id));
     this.running.set(id, task);
     return task;

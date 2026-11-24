@@ -13,3 +13,18 @@ export function writePendingPrepare(actor: string, pending: PendingPrepare | nul
     else sessionStorage.removeItem(storageKey(actor));
   } catch { /* UI remains usable if storage is disabled. */ }
 }
+
+export interface PendingConfirm { key: string; input: import('@minimart/contracts').SalePaymentInput }
+export function readCheckoutState(actor: string): { id?: string; pendingConfirm?: PendingConfirm } {
+  try {
+    const raw = sessionStorage.getItem('minimart:pos:checkout:' + actor);
+    return raw ? JSON.parse(raw) : {};
+  } catch { return {}; }
+}
+export function writeCheckoutState(actor: string, id?: string, pendingConfirm?: PendingConfirm | null) {
+  try {
+    const key = 'minimart:pos:checkout:' + actor;
+    if (id) sessionStorage.setItem(key, JSON.stringify({ id, pendingConfirm }));
+    else sessionStorage.removeItem(key);
+  } catch { /* The invoice history remains available. */ }
+}

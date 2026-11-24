@@ -7,19 +7,18 @@ import { salesApi } from '../../sales/api/sales.api';
 import { isTerminal } from '../../sales/utils/sale-status';
 import { useCartStore } from '../stores/cart.store';
 import { errorMessage } from '../../../shared/utils/errorMessage';
-import { readPendingPrepare, writePendingPrepare, type PendingPrepare } from '../utils/pending-prepare';
+import { readPendingPrepare, writePendingPrepare, type PendingPrepare, type PendingConfirm, readCheckoutState, writeCheckoutState } from '../utils/pending-prepare';
 import { useAuthStore } from '../../auth/stores/auth.store';
-interface PendingConfirm { key:string; input:SalePaymentInput }
 export function useCheckout(initialId?:string){
  const cache=useQueryClient();
  const actor=useAuthStore(s=>s.user?.id??'');
- const [id,setId]=useState<string|undefined>(initialId);
+ const [id,setId]=useState<string|undefined>(()=>initialId??readCheckoutState(actor).id);
  const [pendingPrepare,setPendingPrepare]=useState<PendingPrepare|null>(()=>readPendingPrepare(actor));
- const [pendingConfirm,setPendingConfirm]=useState<PendingConfirm|null>(null);
+ const [pendingConfirm,setPendingConfirm]=useState<PendingConfirm|null>(()=>{const saved=readCheckoutState(actor);return initialId&&initialId!==saved.id?null:saved.pendingConfirm??null;});
  const [last,setLast]=useState<SaleInvoice|null>(null);
  const query=useQuery({queryKey:['sales','invoice',id],queryFn:()=>salesApi.get(id!),enabled:!!id,refetchInterval:q=>q.state.data&&!isTerminal(q.state.data.status)?2000:false});
  const accept=(invoice:SaleInvoice)=>{
-  setId(invoice.id);setLast(invoice);setPendingPrepare(null);writePendingPrepare(actor,null);
+  setId(invoice.id);setLast(invoice);setPendingPrepare(null);writePendingPrepare(actor,null);writeCheckoutState(actor,invoice.id);
   cache.setQueryData(['sales','invoice',invoice.id],invoice);
   void cache.invalidateQueries({queryKey:['sales','list']});
  };
@@ -29,7 +28,7 @@ export function useCheckout(initialId?:string){
   void message.error(errorMessage(error));
  }});
  const confirm=useMutation({mutationFn:(request:PendingConfirm)=>salesApi.confirm(id!,request.input,request.key),onSuccess:invoice=>{accept(invoice);setPendingConfirm(null);},onError:(error:unknown)=>{
-  if(axios.isAxiosError(error)&&error.response&&[400,403].includes(error.response.status))setPendingConfirm(null);
+  if(axios.isAxiosError(error)&&error.response&&[400,403].includes(error.response.status)){setPendingConfirm(null);writeCheckoutState(actor,id);}
   void message.error(errorMessage(error));
   void query.refetch();
  }});
@@ -42,11 +41,11 @@ export function useCheckout(initialId?:string){
  function pay(input?:SalePaymentInput){
   if(!pendingConfirm&&!input)return;
   const request=pendingConfirm??{key:crypto.randomUUID(),input:input!};
-  setPendingConfirm(request);confirm.mutate(request);
+  setPendingConfirm(request);writeCheckoutState(actor,id,request);confirm.mutate(request);
  }
  function reset(){
   if(!invoice||!isTerminal(invoice.status))return;
-  setId(undefined);setLast(null);setPendingPrepare(null);writePendingPrepare(actor,null);setPendingConfirm(null);
+  setId(undefined);setLast(null);setPendingPrepare(null);writePendingPrepare(actor,null);setPendingConfirm(null);writeCheckoutState(actor);
   if(invoice.status==='COMPLETED')useCartStore.getState().clear();
  }
  return {invoice,query,prepare,confirm,cancel,pendingPrepare,pendingConfirm,start,pay,reset,locked:!!id||!!pendingPrepare};
