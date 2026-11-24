@@ -158,4 +158,4 @@ docker compose down
 
 ### DEV-2 catalog
 
-See [catalog API contract](docs/dev2-api.md). Run product migrations and seed in the configured development environment; seed creates six categories and 30 example products, preserving existing records. Manager manages categories/products; cashier and warehouse can read products. No stock quantities are seeded here. DEV-2 verification is pending; see docs/testing.md.
+See [catalog API contract](docs/dev2-api.md). Run product migrations and seed in the configured development environment; with DEMO_SEED_ENABLED=true in a non-production environment, seed creates six categories and 30 example products, preserving existing records. Manager manages categories/products; cashier and warehouse can read products. No stock quantities are seeded here. DEV-2 verification is pending; see docs/testing.md.

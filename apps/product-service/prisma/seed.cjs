@@ -10,7 +10,7 @@ const groups = [
 ];
 async function seed() {
  await prisma.foundationMetadata.upsert({where:{key:'milestone'},create:{key:'milestone',value:'DEV-2'},update:{value:'DEV-2'}});
- if(process.env.NODE_ENV==='production') return;
+ if(process.env.NODE_ENV==='production' || process.env.DEMO_SEED_ENABLED!=='true') return;
  for(const [code,name,products] of groups){
   const category=await prisma.category.upsert({where:{code},create:{code,name},update:{}});
   if(category.status!=='ACTIVE')continue;

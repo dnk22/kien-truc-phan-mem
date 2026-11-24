@@ -4,7 +4,7 @@ import type { ProductValues } from '../../catalog/types';
 export function ProductForm({item,categories,pending,onSave,onCancel}:{item?:ProductSummary;categories:CategorySummary[];pending:boolean;onSave:(v:ProductValues)=>void;onCancel:()=>void}){
  const [form]=Form.useForm<ProductValues>();
  return <Modal open title={item?'Sửa sản phẩm':'Thêm sản phẩm'} okText="Lưu" cancelText="Hủy" confirmLoading={pending} onOk={()=>form.submit()} onCancel={onCancel} maskClosable={!pending} closable={!pending}>
- <Form form={form} layout="vertical" initialValues={item} onFinish={onSave}>
+ <Form form={form} layout="vertical" initialValues={item ? {...item, barcode:item.barcode??'',imageUrl:item.imageUrl??'',description:item.description??''} : undefined} onFinish={onSave}>
  <Form.Item name="code" label="Mã sản phẩm" rules={[{required:true,whitespace:true,max:64}]}><Input/></Form.Item>
  <Form.Item name="barcode" label="Mã vạch" rules={[{max:64}]}><Input/></Form.Item>
  <Form.Item name="name" label="Tên sản phẩm" rules={[{required:true,whitespace:true,max:200}]}><Input/></Form.Item>
