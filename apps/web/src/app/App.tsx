@@ -15,6 +15,11 @@ const ProfilePage = lazy(() => import('../features/auth/pages/ProfilePage'));
 const UsersPage = lazy(() => import('../features/users/pages/UsersPage'));
 const CategoriesPage = lazy(() => import('../features/categories/pages/CategoriesPage'));
 const ProductsPage = lazy(() => import('../features/products/pages/ProductsPage'));
+const SuppliersPage = lazy(() => import('../features/suppliers/pages/SuppliersPage'));
+const ReceiptsPage = lazy(() => import('../features/purchase-receipts/pages/ReceiptsPage'));
+const InventoryPage = lazy(() => import('../features/inventory/pages/InventoryPage'));
+const MovementsPage = lazy(() => import('../features/inventory/pages/MovementsPage'));
+const AdjustmentsPage = lazy(() => import('../features/inventory/pages/AdjustmentsPage'));
 const UnavailablePage = lazy(() => import('./pages/UnavailablePage'));
 const UnauthorizedPage = lazy(() => import('./pages/UnauthorizedPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
@@ -44,6 +49,18 @@ export function App() {
             </Route>
             <Route element={<RoleGuard roles={['MANAGER','CASHIER','WAREHOUSE']} />}>
               <Route path="/products" element={<ProductsPage />} />
+            </Route>
+            <Route element={<RoleGuard roles={['MANAGER']} />}>
+              <Route path="/suppliers" element={<SuppliersPage />} />
+            </Route>
+            <Route element={<RoleGuard roles={['MANAGER','WAREHOUSE']} />}>
+              <Route path="/purchase-receipts" element={<ReceiptsPage />} />
+              <Route path="/purchase-receipts/create" element={<ReceiptsPage />} />
+              <Route path="/inventory/movements" element={<MovementsPage />} />
+              <Route path="/inventory/adjustments" element={<AdjustmentsPage />} />
+            </Route>
+            <Route element={<RoleGuard roles={['MANAGER','WAREHOUSE','CASHIER']} />}>
+              <Route path="/inventory" element={<InventoryPage />} />
             </Route>
             {navigation
               .filter((item) => !item.available)
