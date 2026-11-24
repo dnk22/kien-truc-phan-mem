@@ -84,3 +84,8 @@ Added Builder, Factory Method, Strategy, Facade and saga reconciliation unit tes
 ## DEV-5 verification pending
 
 Added event validation, Vietnam report period and outbox worker test sources. NOT RUN: install, build, lint, format, typecheck, Jest, PostgreSQL, RabbitMQ, browser, Docker. Lockfile must be regenerated before frozen install. Acceptance: broker down checkout succeeds and outbox remains pending; broker up publisher resumes; Report down durable backlog; restart and consume; duplicate event/invoice no double-count; invalid payload DLQ; transient retry; GMT+7 date boundary; report RBAC; stock summary failure isolated from revenue. Verify topology and broker confirm behavior with real RabbitMQ. No runtime PASS claimed.
+
+
+## DEV-6
+
+See [DEV-6 verification runbook](dev6-verification.md). Source-only acceptance harness and regression fixes; all new checks NOT RUN. DEV-5 frozen lockfile remains blocked until local regeneration.

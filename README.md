@@ -174,3 +174,8 @@ Create confirmed purchase receipts first, then log in as cashier, search product
 ### DEV-5 reporting
 
 Before building DEV-5, regenerate the lockfile locally with `pnpm install --no-frozen-lockfile`, then run `pnpm install --frozen-lockfile` and quality gates. Sales completion records outbox; publisher delivers to RabbitMQ and Report projects it. Manager dashboard and reports show real projected revenue and live stock summary. See [DEV-5 contract](docs/dev5-api.md). Runtime verification pending.
+
+
+### DEV-6 verification
+
+After synchronizing the lockfile and building a disposable local demo stack, run `VERIFY_DISPOSABLE=true pnpm verify:dev6` and optionally `VERIFY_DISPOSABLE=true VERIFY_FAULTS=true pnpm verify:dev6`. The latter stops and restarts Report and RabbitMQ; never run against a shared or production environment. See [verification runbook](docs/dev6-verification.md).

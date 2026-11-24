@@ -48,7 +48,7 @@ export class RabbitMqConsumer implements OnModuleInit, OnModuleDestroy {
     } catch (error) {
       try {
         const retries = Number(msg.properties.headers?.['x-retry-count'] ?? 0);
-        if (error instanceof InvalidSaleEvent || !Number.isInteger(retries) || retries >= 5) { channel.nack(msg, false, false); return; }
+        if (error instanceof InvalidSaleEvent || !Number.isInteger(retries) || retries < 0 || retries >= 5) { channel.nack(msg, false, false); return; }
         // Confirm retry enqueue before acknowledging original. Crash between these operations may duplicate, not lose.
         let timer: ReturnType<typeof setTimeout> | undefined;
         try {
