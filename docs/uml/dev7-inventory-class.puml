@@ -1,0 +1,35 @@
+@startuml
+class ReceiptController
+class SupplierController
+class StockController
+class InternalStockController
+class ReceiptService
+class SupplierService
+class StockService
+class ReservationService
+interface ReceiptRepository
+interface SupplierRepository
+interface StockRepository
+interface ReservationRepository
+interface ProductDirectory
+class PrismaReceiptRepository
+class PrismaSupplierRepository
+class PrismaStockRepository
+class PrismaReservationRepository
+class ProductDirectoryClient
+ReceiptController --> ReceiptService
+SupplierController --> SupplierService
+StockController --> StockService
+InternalStockController --> StockService
+InternalStockController --> ReservationService
+ReceiptService --> ReceiptRepository
+ReceiptService --> ProductDirectory
+SupplierService --> SupplierRepository
+StockService --> StockRepository
+ReservationService --> ReservationRepository
+PrismaReceiptRepository ..|> ReceiptRepository
+PrismaSupplierRepository ..|> SupplierRepository
+PrismaStockRepository ..|> StockRepository
+PrismaReservationRepository ..|> ReservationRepository
+ProductDirectoryClient ..|> ProductDirectory
+@enduml

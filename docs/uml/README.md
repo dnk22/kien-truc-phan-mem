@@ -1,0 +1,3 @@
+# UML index – DEV-7
+
+Use PlantUML locally (Java/Graphviz as required): `plantuml -tsvg docs/uml/*.puml`. Rendering has not been executed here. Prefer current component.puml, deployment.puml, use-case-overview.puml and dev7-{identity,product,inventory,sales,report}-erd.puml for the report. The five ERDs derive from current Prisma schemas; technical marker tables included; external UUIDs are not FKs. Existing DEV-2–5 class, sequence, state and pattern diagrams retained; DEV-0 erd-foundation is historical. dev7-inventory-class and dev7-sales-recovery supplement them. Compare with final code after Codex fixes. No rendered images or runtime evidence claimed.

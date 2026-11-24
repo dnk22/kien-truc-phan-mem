@@ -56,3 +56,8 @@ Report DB projection, RabbitMQ publisher/consumer, retries/DLQ, revenue and stoc
 ## DEV-6 implementation candidate
 
 Added disposable-stack HTTP acceptance harness and optional Compose outage checks, targeted source fixes and verification matrix. Runtime execution remains pending. DEV-7 not started.
+
+
+## DEV-7 source handoff
+
+Release/demo runbooks, current architecture/API/RBAC documentation, grouped requirement traceability, UML overview and five schema-derived ERDs, release checklist and final evidence template added. Rendering and all runtime acceptance gates remain pending. No release tag; no source DOCX changes.

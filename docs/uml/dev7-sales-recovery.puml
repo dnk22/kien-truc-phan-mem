@@ -1,0 +1,19 @@
+@startuml
+participant RecoveryWorker
+participant CheckoutOrchestrator
+participant Inventory
+database sales_db
+RecoveryWorker -> sales_db : query due intents
+RecoveryWorker -> CheckoutOrchestrator : advance(invoiceId)
+CheckoutOrchestrator -> Inventory : lookup by invoice
+alt COMMIT intent and RESERVED
+ CheckoutOrchestrator -> Inventory : idempotent commit
+else already COMMITTED
+ Inventory --> CheckoutOrchestrator : COMMITTED
+end
+alt confirmed COMMITTED
+ CheckoutOrchestrator -> sales_db : complete + outbox atomically
+else uncertain or conflict
+ CheckoutOrchestrator -> sales_db : RECOVERY + retry backoff
+end
+@enduml

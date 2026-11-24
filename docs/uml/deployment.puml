@@ -1,35 +1,37 @@
 @startuml
-node "Host (Compose target; container runtime pending)" {
-  cloud "public network" {
-    node "web :3000\nNginx + static React" as web
-    node "api-gateway :8080" as gateway
-  }
-  cloud "private network (internal=true)" {
-    node "identity-service :3001" as identity
-    node "product-service :3002" as product
-    node "inventory-service :3003" as inventory
-    node "sales-service :3004" as sales
-    node "report-service :3005" as report
-    node "postgres :5432\n5 databases / 5 owners" as postgres
-    node "rabbitmq :5672\nmanagement :15672 private" as rabbit
-  }
-  gateway -- identity : same private network
-  gateway -- product
-  gateway -- inventory
-  gateway -- sales
-  gateway -- report
-  identity --> postgres
-  product --> postgres
-  inventory --> postgres
-  sales --> postgres
-  report --> postgres
+actor Browser
+node "Docker Compose host" {
+ cloud "public network" {
+ node "web :3000" as web
+ }
+ node "api-gateway :8080\npublic + private networks" as gw
+ cloud "private network (internal=true)" {
+ node "identity :3001" as i
+ node "product :3002" as p
+ node "inventory :3003" as v
+ node "sales :3004" as s
+ node "report :3005" as r
+ database "PostgreSQL :5432\n5 databases / 5 users" as db
+ queue "RabbitMQ :5672\nmanagement :15672" as mq
+ }
 }
-actor "Browser" as browser
-browser --> web : host :3000
-browser --> gateway : host :8080
-web --> gateway : /health proxy
-note bottom of rabbit
-No published host ports.
-AMQP business integration: DEV-5.
+Browser --> web : published 3000
+Browser --> gw : published 8080
+web --> gw : health proxy
+gw --> i
+gw --> p
+gw --> v
+gw --> s
+gw --> r
+i --> db
+p --> db
+v --> db
+s --> db
+r --> db
+s --> mq
+mq --> r
+note bottom of db
+No published DB or broker ports.
+Compose target; runtime not verified for DEV-7.
 end note
 @enduml
