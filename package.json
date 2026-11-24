@@ -18,7 +18,8 @@
     "smoke": "node scripts/smoke.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "verify:dev1": "node scripts/verify-dev1.mjs"
+    "verify:dev1": "node scripts/verify-dev1.mjs",
+    "verify:dev6": "node --env-file-if-exists=.env scripts/verify-dev6.mjs"
   },
   "devDependencies": {
     "@eslint/js": "9.39.1",
