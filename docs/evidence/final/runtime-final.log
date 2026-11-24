@@ -1,0 +1,23 @@
+ Container minimart-final-rabbitmq-1 Running 
+ Container minimart-final-inventory-service-1 Running 
+ Container minimart-final-product-service-1 Running 
+ Container minimart-final-report-service-1 Running 
+ Container minimart-final-web-1 Running 
+ Container minimart-final-postgres-1 Running 
+ Container minimart-final-identity-service-1 Running 
+ Container minimart-final-api-gateway-1 Running 
+ Container minimart-final-sales-service-1 Running 
+ Container minimart-final-api-gateway-1 Waiting 
+ Container minimart-final-postgres-1 Waiting 
+ Container minimart-final-api-gateway-1 Healthy 
+ Container minimart-final-postgres-1 Healthy 
+NAME                                 IMAGE                              COMMAND                  SERVICE             CREATED          STATUS                    PORTS
+minimart-final-api-gateway-1         minimart-final-api-gateway         "docker-entrypoint.s…"   api-gateway         22 minutes ago   Up 16 minutes (healthy)   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+minimart-final-identity-service-1    minimart-final-identity-service    "docker-entrypoint.s…"   identity-service    22 minutes ago   Up 16 minutes (healthy)   3001/tcp
+minimart-final-inventory-service-1   minimart-final-inventory-service   "docker-entrypoint.s…"   inventory-service   22 minutes ago   Up 16 minutes (healthy)   3003/tcp
+minimart-final-postgres-1            postgres:17.7-bookworm             "docker-entrypoint.s…"   postgres            22 minutes ago   Up 16 minutes (healthy)   5432/tcp
+minimart-final-product-service-1     minimart-final-product-service     "docker-entrypoint.s…"   product-service     22 minutes ago   Up 16 minutes (healthy)   3002/tcp
+minimart-final-rabbitmq-1            rabbitmq:4.2.1-management-alpine   "docker-entrypoint.s…"   rabbitmq            22 minutes ago   Up 8 minutes (healthy)    4369/tcp, 5671-5672/tcp, 15671-15672/tcp, 15691-15692/tcp, 25672/tcp
+minimart-final-report-service-1      minimart-final-report-service      "docker-entrypoint.s…"   report-service      22 minutes ago   Up 9 minutes (healthy)    3005/tcp
+minimart-final-sales-service-1       minimart-final-sales-service       "docker-entrypoint.s…"   sales-service       8 minutes ago    Up 8 minutes (healthy)    3004/tcp
+minimart-final-web-1                 minimart-final-web                 "/docker-entrypoint.…"   web                 6 minutes ago    Up 6 minutes (healthy)    0.0.0.0:3300->3000/tcp, [::]:3300->3000/tcp

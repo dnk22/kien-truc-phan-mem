@@ -8,8 +8,20 @@ export class SalesProductDirectory implements ProductDirectory {
   constructor(private readonly http: InternalHttpClient) {}
   async batch(ids: string[], correlationId?: string) {
     try {
-      const result = await this.http.request<ProductBatchResult>(process.env.PRODUCT_SERVICE_URL ?? 'http://127.0.0.1:3002', '/internal/v1/products/batch', 'POST', { productIds: ids }, correlationId);
+      const result = await this.http.request<ProductBatchResult>(
+        process.env.PRODUCT_SERVICE_URL ?? 'http://127.0.0.1:3002',
+        '/internal/v1/products/batch',
+        'POST',
+        { productIds: ids },
+        correlationId,
+      );
       return result.items;
-    } catch { throw new SalesError('PRODUCT_UNAVAILABLE', 'Không thể lấy giá sản phẩm.', 503); }
+    } catch {
+      throw new SalesError(
+        'PRODUCT_UNAVAILABLE',
+        'Không thể lấy giá sản phẩm.',
+        503,
+      );
+    }
   }
 }

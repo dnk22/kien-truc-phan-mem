@@ -75,29 +75,107 @@ export interface ProductBatchResult {
 }
 
 export type InventoryDocumentStatus = 'DRAFT' | 'CONFIRMED' | 'CANCELLED';
-export interface SupplierSummary { id:string;code:string;name:string;phone:string|null;address:string|null;status:CatalogStatus }
-export interface StockSummary { productId:string;productCode?:string;productName?:string;onHand:number;reserved:number;available:number;version:number;threshold:number }
-export interface PurchaseItem { productId:string;quantity:number;unitCost:number }
-export interface PurchaseReceiptSummary {id:string;supplierId:string;supplier:SupplierSummary;status:InventoryDocumentStatus;createdAt:string;items:(PurchaseItem&{productCode:string;productName:string})[]}
-export interface StockAdjustmentSummary {id:string;productId:string;expectedVersion:number;counted:number;reason:string;status:InventoryDocumentStatus;createdAt:string}
-export interface StockMovementSummary {id:string;productId:string;referenceId:string;type:'PURCHASE'|'SALE'|'ADJUSTMENT_IN'|'ADJUSTMENT_OUT';quantity:number;actorId:string|null;createdAt:string}
-export interface ReserveStockInput {invoiceId:string;items:{productId:string;quantity:number}[]}
-export interface StockReservationSummary extends ReserveStockInput {id:string;status:'RESERVED'|'COMMITTED'|'RELEASED'}
-
-export type SaleStatus = 'PENDING' | 'READY' | 'PROCESSING' | 'RECOVERY' | 'COMPLETED' | 'FAILED' | 'CANCELLED';
-export type SalePaymentMethod = 'CASH' | 'BANK_TRANSFER';
-export interface SaleCartItem { productId: string; quantity: number }
-export interface SaleInvoiceItem extends SaleCartItem {
-  productCode: string; productName: string; unit: string; unitPrice: number; subtotal: number;
+export interface SupplierSummary {
+  id: string;
+  code: string;
+  name: string;
+  phone: string | null;
+  address: string | null;
+  status: CatalogStatus;
 }
-export type SalePaymentInput = { method: 'CASH'; amountReceived: number } | { method: 'BANK_TRANSFER'; confirmed: true };
-export interface SalePayment { method: SalePaymentMethod; amountReceived: number; changeAmount: number }
+export interface StockSummary {
+  productId: string;
+  productCode?: string;
+  productName?: string;
+  onHand: number;
+  reserved: number;
+  available: number;
+  version: number;
+  threshold: number;
+}
+export interface PurchaseItem {
+  productId: string;
+  quantity: number;
+  unitCost: number;
+}
+export interface PurchaseReceiptSummary {
+  id: string;
+  supplierId: string;
+  supplier: SupplierSummary;
+  status: InventoryDocumentStatus;
+  createdAt: string;
+  items: (PurchaseItem & { productCode: string; productName: string })[];
+}
+export interface StockAdjustmentSummary {
+  id: string;
+  productId: string;
+  expectedVersion: number;
+  counted: number;
+  reason: string;
+  status: InventoryDocumentStatus;
+  createdAt: string;
+}
+export interface StockMovementSummary {
+  id: string;
+  productId: string;
+  referenceId: string;
+  type: 'PURCHASE' | 'SALE' | 'ADJUSTMENT_IN' | 'ADJUSTMENT_OUT';
+  quantity: number;
+  actorId: string | null;
+  createdAt: string;
+}
+export interface ReserveStockInput {
+  invoiceId: string;
+  items: { productId: string; quantity: number }[];
+}
+export interface StockReservationSummary extends ReserveStockInput {
+  id: string;
+  status: 'RESERVED' | 'COMMITTED' | 'RELEASED';
+}
+
+export type SaleStatus =
+  | 'PENDING'
+  | 'READY'
+  | 'PROCESSING'
+  | 'RECOVERY'
+  | 'COMPLETED'
+  | 'FAILED'
+  | 'CANCELLED';
+export type SalePaymentMethod = 'CASH' | 'BANK_TRANSFER';
+export interface SaleCartItem {
+  productId: string;
+  quantity: number;
+}
+export interface SaleInvoiceItem extends SaleCartItem {
+  productCode: string;
+  productName: string;
+  unit: string;
+  unitPrice: number;
+  subtotal: number;
+}
+export type SalePaymentInput =
+  | { method: 'CASH'; amountReceived: number }
+  | { method: 'BANK_TRANSFER'; confirmed: true };
+export interface SalePayment {
+  method: SalePaymentMethod;
+  amountReceived: number;
+  changeAmount: number;
+}
 export interface SaleInvoice {
-  id: string; code: string; cashierId: string; status: SaleStatus;
+  id: string;
+  code: string;
+  cashierId: string;
+  status: SaleStatus;
   sagaIntent: 'RESERVE' | 'COMMIT' | 'RELEASE' | 'NONE';
-  totalAmount: number; reservationId: string | null; items: SaleInvoiceItem[];
-  payment: SalePayment | null; attempts: number; lastError: string | null;
-  createdAt: string; updatedAt: string; completedAt: string | null;
+  totalAmount: number;
+  reservationId: string | null;
+  items: SaleInvoiceItem[];
+  payment: SalePayment | null;
+  attempts: number;
+  lastError: string | null;
+  createdAt: string;
+  updatedAt: string;
+  completedAt: string | null;
 }
 
 export interface SaleCompletedEvent {
@@ -105,19 +183,45 @@ export interface SaleCompletedEvent {
   eventType: 'sale.completed.v1';
   occurredAt: string;
   payload: {
-    invoiceId: string; invoiceCode: string; cashierId: string; totalAmount: number;
-    paymentMethod: SalePaymentMethod; completedAt: string;
-    items: { productId: string; productName: string; quantity: number; unitPrice: number; subtotal: number }[];
+    invoiceId: string;
+    invoiceCode: string;
+    cashierId: string;
+    totalAmount: number;
+    paymentMethod: SalePaymentMethod;
+    completedAt: string;
+    items: {
+      productId: string;
+      productName: string;
+      quantity: number;
+      unitPrice: number;
+      subtotal: number;
+    }[];
   };
 }
 export interface RevenueReport {
-  from: string; to: string;
-  revenue: number; invoiceCount: number; quantitySold: number;
+  from: string;
+  to: string;
+  revenue: number;
+  invoiceCount: number;
+  quantitySold: number;
   days: { date: string; revenue: number; invoiceCount: number }[];
-  paymentMethods: { method: SalePaymentMethod; revenue: number; invoiceCount: number }[];
-  topProducts: { productId: string; productName: string; quantity: number; revenue: number }[];
+  paymentMethods: {
+    method: SalePaymentMethod;
+    revenue: number;
+    invoiceCount: number;
+  }[];
+  topProducts: {
+    productId: string;
+    productName: string;
+    quantity: number;
+    revenue: number;
+  }[];
   updatedAt: string | null;
 }
 export interface InventoryReportSummary {
-  productCount: number; onHand: number; reserved: number; available: number; lowStockCount: number;
+  productCount: number;
+  onHand: number;
+  reserved: number;
+  available: number;
+  lowStockCount: number;
 }

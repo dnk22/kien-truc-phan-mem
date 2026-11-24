@@ -1,0 +1,121 @@
+PASS U01 Manager creates category, product, supplier through production UI
+FAIL U02 Warehouse drafts receipt; Manager confirms; real inventory increases: locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('.ant-select-dropdown:visible .ant-select-item-option-content').filter({ hasText: 'UI Product 42ac6683' }).first()[22m
+[2m    - locator resolved to <div class="ant-select-item-option-content">UIP42ac6683 – UI Product 42ac6683</div>[22m
+[2m  - attempting click action[22m
+[2m    - waiting for element to be visible, enabled and stable[22m
+[2m    - element is visible, enabled and stable[22m
+[2m    - scrolling into view if needed[22m
+[2m    - done scrolling[22m
+[2m    - <div class="ant-space-item">…</div> from <div>…</div> subtree intercepts pointer events[22m
+[2m  - retrying click action[22m
+[2m    - waiting for element to be visible, enabled and stable[22m
+[2m    - element is not stable[22m
+[2m  - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is not stable[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    58 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is not visible[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+M
+MiniMart
+QUẢN LÝ CỬA HÀNG
+Tra cứu sản phẩm
+Nhập hàng
+Tồn kho
+Lịch sử biến động
+Kiểm kê
+Thông tin cá nhân
+☰
+MiniMart
+/
+MiniMart
+N
+Nhân viên kho
+Nhân viên kho
+⌄
+Phiếu nhập hàng
++ Lập phiếu
+Trạng thái
+Mã phiếu	Nhà cung cấp	Ngày lập	Tổng tiền	Trạng thái	Thao tác
+
+Mã phiếu
+	
+Nhà cung cấp
+	
+Ngày lập
+	
+Tổng tiền
+	
+Trạng thái
+	
+Thao tác
+
+29a941b5	UI Supplier 4950f931	22:16:51 24/11/2026	100.000 ₫	Đã xác nhận	
+Chi tiết
+
+5dbf13cb	Edited supplier 4950f931	22:14:36 24/11/2026	600 ₫	Đã hủy	
+Chi tiết
+
+2f87e299	Edited supplier 4950f931	22:14:36 24/11/2026	755.000 ₫	Đã xác nhận	
+Chi tiết
+
+6e708b9e	Edited supplier 4950f931	22:14:36 24/11/2026	400 ₫	Đã hủy	
+Chi tiết
+
+050893bf	UI Supplier 43901bc0	22:13:29 24/11/2026	100.000 ₫	Đã xác nhận	
+Chi tiết
+
+7b1cc8ce	Edited supplier 84b84f0d	22:09:42 24/11/2026	600 ₫	Đã hủy	
+Chi tiết
+
+0bdab3b0	Edited supplier 84b84f0d	22:09:42 24/11/2026	755.000 ₫	Đã xác nhận	
+Chi tiết
+
+5a006e6d	Edited supplier 84b84f0d	22:09:42 24/11/2026	400 ₫	Đã hủy	
+Chi tiết
+
+a13740b5	Verification supplier 00429743	22:08:55 24/11/2026	40.000 ₫	Đã xác nhận	
+Chi tiết
+1
+10 / trang
+MiniMart Management · Nhóm 06 PTIT
+Lập phiếu nhập
+Nhà cung cấp
+UI Supplier 42ac6683
+UI Supplier 42ac6683
+Sản phẩm
+Xóa
++ Thêm dòng
+Hủy
+Lưu nháp
+FAIL locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('.ant-select-dropdown:visible .ant-select-item-option-content').filter({ hasText: 'UI Product 42ac6683' }).first()[22m
+[2m    - locator resolved to <div class="ant-select-item-option-content">UIP42ac6683 – UI Product 42ac6683</div>[22m
+[2m  - attempting click action[22m
+[2m    - waiting for element to be visible, enabled and stable[22m
+[2m    - element is visible, enabled and stable[22m
+[2m    - scrolling into view if needed[22m
+[2m    - done scrolling[22m
+[2m    - <div class="ant-space-item">…</div> from <div>…</div> subtree intercepts pointer events[22m
+[2m  - retrying click action[22m
+[2m    - waiting for element to be visible, enabled and stable[22m
+[2m    - element is not stable[22m
+[2m  - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is not stable[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    58 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is not visible[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+

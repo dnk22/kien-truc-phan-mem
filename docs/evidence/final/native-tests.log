@@ -1,0 +1,99 @@
+
+> minimart-management@0.0.0 test /Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL
+> pnpm -r run test
+
+Scope: 11 of 12 workspace projects
+packages/logger test$ jest --config ../../jest.config.cjs --runInBand --passWithNoTests
+packages/contracts test$ jest --config ../../jest.config.cjs --runInBand --passWithNoTests
+packages/logger test: No tests found, exiting with code 0
+packages/contracts test: No tests found, exiting with code 0
+packages/logger test: Done
+packages/contracts test: Done
+apps/web test$ tsc --noEmit
+packages/auth test$ jest --config ../../jest.config.cjs --runInBand --passWithNoTests
+packages/config test$ jest --config ../../jest.config.cjs --runInBand --passWithNoTests
+packages/config test: PASS src/env.spec.ts
+packages/config test:   environment validation
+packages/config test:     ✓ rejects missing service credentials and wrong owning database (8 ms)
+packages/config test:     ✓ validates port without leaking input values (2 ms)
+packages/config test: Test Suites: 1 passed, 1 total
+packages/config test: Tests:       2 passed, 2 total
+packages/config test: Snapshots:   0 total
+packages/config test: Time:        1.058 s
+packages/config test: Ran all test suites.
+packages/config test: Done
+packages/auth test: PASS src/jwt.spec.ts
+packages/auth test: PASS src/credential.spec.ts
+packages/auth test: Test Suites: 2 passed, 2 total
+packages/auth test: Tests:       10 passed, 10 total
+packages/auth test: Snapshots:   0 total
+packages/auth test: Time:        1.355 s, estimated 2 s
+packages/auth test: Ran all test suites.
+packages/auth test: Done
+apps/web test: Done
+apps/inventory-service test$ jest --config ../../jest.config.cjs --runInBand
+apps/product-service test$ jest --config ../../jest.config.cjs --runInBand
+apps/api-gateway test$ jest --config ../../jest.config.cjs --runInBand
+apps/identity-service test$ jest --config ../../jest.config.cjs --runInBand
+apps/identity-service test: PASS src/modules/auth/presentation/csrf.guard.spec.ts
+apps/inventory-service test: PASS src/modules/inventory/application/stock.service.spec.ts
+apps/inventory-service test: PASS src/modules/inventory/application/receipt.service.spec.ts
+apps/api-gateway test: PASS src/health.spec.ts
+apps/api-gateway test:   foundation HTTP contract
+apps/api-gateway test:     ✓ returns liveness, readiness errors and correlation ID (275 ms)
+apps/api-gateway test: Test Suites: 1 passed, 1 total
+apps/api-gateway test: Tests:       1 passed, 1 total
+apps/api-gateway test: Snapshots:   0 total
+apps/api-gateway test: Time:        2.397 s
+apps/api-gateway test: Ran all test suites.
+apps/api-gateway test: Done
+apps/report-service test$ jest --config ../../jest.config.cjs --runInBand
+apps/product-service test: PASS src/health.spec.ts
+apps/product-service test: PASS src/modules/catalog/presentation/catalog.validation.spec.ts
+apps/product-service test: PASS src/modules/catalog/application/product.service.spec.ts
+apps/product-service test: Test Suites: 3 passed, 3 total
+apps/product-service test: Tests:       11 passed, 11 total
+apps/product-service test: Snapshots:   0 total
+apps/product-service test: Time:        2.605 s, estimated 3 s
+apps/product-service test: Ran all test suites.
+apps/product-service test: Done
+apps/sales-service test$ jest --config ../../jest.config.cjs --runInBand
+apps/identity-service test: PASS src/health.spec.ts
+apps/inventory-service test: PASS src/health.spec.ts
+apps/inventory-service test: PASS src/modules/inventory/presentation/inventory.validation.spec.ts
+apps/inventory-service test: PASS src/modules/inventory/domain/stock.rules.spec.ts
+apps/inventory-service test: Test Suites: 5 passed, 5 total
+apps/inventory-service test: Tests:       12 passed, 12 total
+apps/inventory-service test: Snapshots:   0 total
+apps/inventory-service test: Time:        3.206 s
+apps/inventory-service test: Ran all test suites.
+apps/inventory-service test: Done
+apps/identity-service test: PASS src/modules/auth/application/auth.service.spec.ts
+apps/identity-service test: Test Suites: 3 passed, 3 total
+apps/identity-service test: Tests:       10 passed, 10 total
+apps/identity-service test: Snapshots:   0 total
+apps/identity-service test: Time:        3.622 s
+apps/identity-service test: Ran all test suites.
+apps/identity-service test: Done
+apps/report-service test: PASS src/modules/report/domain/sale-event.spec.ts
+apps/sales-service test: PASS src/modules/sales/application/checkout-orchestrator.spec.ts
+apps/report-service test: PASS src/health.spec.ts
+apps/report-service test: PASS src/modules/report/domain/report-period.spec.ts
+apps/report-service test: Test Suites: 3 passed, 3 total
+apps/report-service test: Tests:       6 passed, 6 total
+apps/report-service test: Snapshots:   0 total
+apps/report-service test: Time:        2.083 s
+apps/report-service test: Ran all test suites.
+apps/report-service test: Done
+apps/sales-service test: PASS src/health.spec.ts
+apps/sales-service test: PASS src/modules/sales/application/checkout.facade.spec.ts
+apps/sales-service test: PASS src/modules/outbox/application/outbox.worker.spec.ts
+apps/sales-service test: PASS src/modules/sales/domain/payment/payment.spec.ts
+apps/sales-service test: [Nest] 20783  - 11/24/2026, 9:48:43 PM    WARN [OutboxWorker] Outbox deferred: event
+apps/sales-service test: PASS src/modules/sales/domain/invoice.builder.spec.ts
+apps/sales-service test: Test Suites: 6 passed, 6 total
+apps/sales-service test: Tests:       13 passed, 13 total
+apps/sales-service test: Snapshots:   0 total
+apps/sales-service test: Time:        2.552 s, estimated 3 s
+apps/sales-service test: Ran all test suites.
+apps/sales-service test: Done

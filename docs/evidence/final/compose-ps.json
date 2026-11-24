@@ -1,0 +1,326 @@
+[
+  {
+    "Command": "\"docker-entrypoint.s…\"",
+    "CreatedAt": "2026-11-24 22:02:12 +0700 +07",
+    "Engine": "",
+    "ExitCode": 0,
+    "Health": "healthy",
+    "ID": "3a9aa8dcf94c",
+    "Image": "minimart-final-api-gateway",
+    "Labels": "com.docker.compose.oneoff=False,com.docker.compose.project=minimart-final,com.docker.compose.project.environment_file=/tmp/minimart-final.env,com.docker.compose.service=api-gateway,desktop.docker.io/ports.scheme=v2,com.docker.compose.config-hash=23233a603468e080e5cb1a34495d0295a113dd6337754a3c8aba7bcd1f50bfa3,com.docker.compose.project.config_files=/Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/compose.yaml,com.docker.compose.project.working_dir=/Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL,com.docker.compose.version=5.7.0,desktop.docker.io/ports/8080/tcp=:8080,com.docker.compose.container-number=1,com.docker.compose.depends_on=,com.docker.compose.image=sha256:06aa25c67cc2772f944a514a1f72fa9810092bb3ac21fbd15e4d4918a93b368a",
+    "LocalVolumes": "0",
+    "Mounts": "",
+    "Name": "minimart-final-api-gateway-1",
+    "Names": "minimart-final-api-gateway-1",
+    "Networks": "minimart-final_public,minimart-final_private",
+    "Ports": "0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp",
+    "Project": "minimart-final",
+    "Publishers": [
+      {
+        "URL": "0.0.0.0",
+        "TargetPort": 8080,
+        "PublishedPort": 8080,
+        "Protocol": "tcp"
+      },
+      {
+        "URL": "::",
+        "TargetPort": 8080,
+        "PublishedPort": 8080,
+        "Protocol": "tcp"
+      }
+    ],
+    "RunningFor": "18 minutes ago",
+    "Service": "api-gateway",
+    "Size": "0B",
+    "State": "running",
+    "Status": "Up 12 minutes (healthy)"
+  },
+  {
+    "Command": "\"docker-entrypoint.s…\"",
+    "CreatedAt": "2026-11-24 22:02:13 +0700 +07",
+    "Engine": "",
+    "ExitCode": 0,
+    "Health": "healthy",
+    "ID": "0c19de74f3b1",
+    "Image": "minimart-final-identity-service",
+    "Labels": "com.docker.compose.container-number=1,com.docker.compose.oneoff=False,com.docker.compose.project.config_files=/Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/compose.yaml,com.docker.compose.project.working_dir=/Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL,com.docker.compose.service=identity-service,com.docker.compose.version=5.7.0,com.docker.compose.config-hash=d70287c1fb2bde03dac117b594132f12868328a1b96c118c447fcb703c30c5fc,com.docker.compose.depends_on=postgres:service_healthy:false,com.docker.compose.image=sha256:11fcda2643609019f8660baa5e8f1d05f8c50a43cec4d39e99cb5e2f879b272c,com.docker.compose.project=minimart-final,com.docker.compose.project.environment_file=/tmp/minimart-final.env,desktop.docker.io/ports.scheme=v2",
+    "LocalVolumes": "0",
+    "Mounts": "",
+    "Name": "minimart-final-identity-service-1",
+    "Names": "minimart-final-identity-service-1",
+    "Networks": "minimart-final_private",
+    "Ports": "3001/tcp",
+    "Project": "minimart-final",
+    "Publishers": [
+      {
+        "URL": "",
+        "TargetPort": 3001,
+        "PublishedPort": 0,
+        "Protocol": "tcp"
+      }
+    ],
+    "RunningFor": "18 minutes ago",
+    "Service": "identity-service",
+    "Size": "0B",
+    "State": "running",
+    "Status": "Up 12 minutes (healthy)"
+  },
+  {
+    "Command": "\"docker-entrypoint.s…\"",
+    "CreatedAt": "2026-11-24 22:02:13 +0700 +07",
+    "Engine": "",
+    "ExitCode": 0,
+    "Health": "healthy",
+    "ID": "d411c06ed8d5",
+    "Image": "minimart-final-inventory-service",
+    "Labels": "com.docker.compose.project=minimart-final,com.docker.compose.version=5.7.0,desktop.docker.io/ports.scheme=v2,com.docker.compose.container-number=1,com.docker.compose.depends_on=postgres:service_healthy:false,com.docker.compose.image=sha256:360b140d08e3b04d8406f72b1c9f48b4105ba56113f271571e7367feba988731,com.docker.compose.oneoff=False,com.docker.compose.project.config_files=/Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/compose.yaml,com.docker.compose.project.environment_file=/tmp/minimart-final.env,com.docker.compose.project.working_dir=/Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL,com.docker.compose.service=inventory-service,com.docker.compose.config-hash=529a4497ae24ff75955b4285a0d5235a0ec42b3ca35da32c101c09f539d2bdda",
+    "LocalVolumes": "0",
+    "Mounts": "",
+    "Name": "minimart-final-inventory-service-1",
+    "Names": "minimart-final-inventory-service-1",
+    "Networks": "minimart-final_private",
+    "Ports": "3003/tcp",
+    "Project": "minimart-final",
+    "Publishers": [
+      {
+        "URL": "",
+        "TargetPort": 3003,
+        "PublishedPort": 0,
+        "Protocol": "tcp"
+      }
+    ],
+    "RunningFor": "18 minutes ago",
+    "Service": "inventory-service",
+    "Size": "0B",
+    "State": "running",
+    "Status": "Up 12 minutes (healthy)"
+  },
+  {
+    "Command": "\"docker-entrypoint.s…\"",
+    "CreatedAt": "2026-11-24 22:02:12 +0700 +07",
+    "Engine": "",
+    "ExitCode": 0,
+    "Health": "healthy",
+    "ID": "672bb2598cbe",
+    "Image": "postgres:17.7-bookworm",
+    "Labels": "com.docker.compose.project=minimart-final,desktop.docker.io/binds/1/SourceKind=hostFile,desktop.docker.io/binds/2/Target=/healthcheck.sh,desktop.docker.io/ports.scheme=v2,com.docker.compose.image=sha256:7f64658eac6a7cbdad5ee9d52799b8fe137e2dd60e76368401924ab670495073,com.docker.compose.project.working_dir=/Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL,com.docker.compose.config-hash=70e2e467473a42eaae063f77e84854597d787764e31f983f61942d8904292c59,com.docker.compose.container-number=1,com.docker.compose.depends_on=,com.docker.compose.project.config_files=/Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/compose.yaml,com.docker.compose.service=postgres,desktop.docker.io/binds/1/Source=/Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/infrastructure/postgres/init-databases.sh,desktop.docker.io/binds/2/SourceKind=hostFile,com.docker.compose.oneoff=False,com.docker.compose.project.environment_file=/tmp/minimart-final.env,com.docker.compose.version=5.7.0,desktop.docker.io/binds/2/Source=/Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/infrastructure/postgres/healthcheck.sh,desktop.docker.io/binds/1/Target=/docker-entrypoint-initdb.d/01-databases.sh",
+    "LocalVolumes": "1",
+    "Mounts": "/host_mnt/User…,/host_mnt/User…,minimart-final…",
+    "Name": "minimart-final-postgres-1",
+    "Names": "minimart-final-postgres-1",
+    "Networks": "minimart-final_private",
+    "Ports": "5432/tcp",
+    "Project": "minimart-final",
+    "Publishers": [
+      {
+        "URL": "",
+        "TargetPort": 5432,
+        "PublishedPort": 0,
+        "Protocol": "tcp"
+      }
+    ],
+    "RunningFor": "18 minutes ago",
+    "Service": "postgres",
+    "Size": "0B",
+    "State": "running",
+    "Status": "Up 12 minutes (healthy)"
+  },
+  {
+    "Command": "\"docker-entrypoint.s…\"",
+    "CreatedAt": "2026-11-24 22:02:13 +0700 +07",
+    "Engine": "",
+    "ExitCode": 0,
+    "Health": "healthy",
+    "ID": "1ce5f12e14fa",
+    "Image": "minimart-final-product-service",
+    "Labels": "com.docker.compose.image=sha256:ae7afb783d0e10a101964578a807365066611d31b47e3ec2ed5f6fc52a08e9de,com.docker.compose.oneoff=False,com.docker.compose.project.environment_file=/tmp/minimart-final.env,desktop.docker.io/ports.scheme=v2,com.docker.compose.container-number=1,com.docker.compose.depends_on=postgres:service_healthy:false,com.docker.compose.project=minimart-final,com.docker.compose.project.config_files=/Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/compose.yaml,com.docker.compose.project.working_dir=/Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL,com.docker.compose.service=product-service,com.docker.compose.version=5.7.0,com.docker.compose.config-hash=95b2ad4dcb09158e15f98ce3a37b8d445919e9e87ddb4722e2fb7a600ddb9a45",
+    "LocalVolumes": "0",
+    "Mounts": "",
+    "Name": "minimart-final-product-service-1",
+    "Names": "minimart-final-product-service-1",
+    "Networks": "minimart-final_private",
+    "Ports": "3002/tcp",
+    "Project": "minimart-final",
+    "Publishers": [
+      {
+        "URL": "",
+        "TargetPort": 3002,
+        "PublishedPort": 0,
+        "Protocol": "tcp"
+      }
+    ],
+    "RunningFor": "18 minutes ago",
+    "Service": "product-service",
+    "Size": "0B",
+    "State": "running",
+    "Status": "Up 12 minutes (healthy)"
+  },
+  {
+    "Command": "\"docker-entrypoint.s…\"",
+    "CreatedAt": "2026-11-24 22:02:12 +0700 +07",
+    "Engine": "",
+    "ExitCode": 0,
+    "Health": "healthy",
+    "ID": "357a6204d85e",
+    "Image": "rabbitmq:4.2.1-management-alpine",
+    "Labels": "desktop.docker.io/ports.scheme=v2,com.docker.compose.image=sha256:178f77faf2e7d96b79afc3fcc5e4cb57eb8079c7b7598dacff90f985077c7a72,com.docker.compose.oneoff=False,com.docker.compose.project.config_files=/Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/compose.yaml,com.docker.compose.service=rabbitmq,desktop.docker.io/binds/1/Source=/Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/infrastructure/rabbitmq/rabbitmq.conf,com.docker.compose.container-number=1,com.docker.compose.project=minimart-final,com.docker.compose.project.working_dir=/Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL,desktop.docker.io/binds/1/SourceKind=hostFile,desktop.docker.io/binds/1/Target=/etc/rabbitmq/rabbitmq.conf,com.docker.compose.config-hash=59056b51861d729cd85d18bbf0943e7ad21a5cefb0a551038815c624064aa23e,com.docker.compose.depends_on=,com.docker.compose.project.environment_file=/tmp/minimart-final.env,com.docker.compose.version=5.7.0",
+    "LocalVolumes": "1",
+    "Mounts": "/host_mnt/User…,minimart-final…",
+    "Name": "minimart-final-rabbitmq-1",
+    "Names": "minimart-final-rabbitmq-1",
+    "Networks": "minimart-final_private",
+    "Ports": "4369/tcp, 5671-5672/tcp, 15671-15672/tcp, 15691-15692/tcp, 25672/tcp",
+    "Project": "minimart-final",
+    "Publishers": [
+      {
+        "URL": "",
+        "TargetPort": 4369,
+        "PublishedPort": 0,
+        "Protocol": "tcp"
+      },
+      {
+        "URL": "",
+        "TargetPort": 5671,
+        "PublishedPort": 0,
+        "Protocol": "tcp"
+      },
+      {
+        "URL": "",
+        "TargetPort": 5672,
+        "PublishedPort": 0,
+        "Protocol": "tcp"
+      },
+      {
+        "URL": "",
+        "TargetPort": 15671,
+        "PublishedPort": 0,
+        "Protocol": "tcp"
+      },
+      {
+        "URL": "",
+        "TargetPort": 15672,
+        "PublishedPort": 0,
+        "Protocol": "tcp"
+      },
+      {
+        "URL": "",
+        "TargetPort": 15691,
+        "PublishedPort": 0,
+        "Protocol": "tcp"
+      },
+      {
+        "URL": "",
+        "TargetPort": 15692,
+        "PublishedPort": 0,
+        "Protocol": "tcp"
+      },
+      {
+        "URL": "",
+        "TargetPort": 25672,
+        "PublishedPort": 0,
+        "Protocol": "tcp"
+      }
+    ],
+    "RunningFor": "18 minutes ago",
+    "Service": "rabbitmq",
+    "Size": "0B",
+    "State": "running",
+    "Status": "Up 4 minutes (healthy)"
+  },
+  {
+    "Command": "\"docker-entrypoint.s…\"",
+    "CreatedAt": "2026-11-24 22:02:13 +0700 +07",
+    "Engine": "",
+    "ExitCode": 0,
+    "Health": "healthy",
+    "ID": "7107e7325ba9",
+    "Image": "minimart-final-report-service",
+    "Labels": "com.docker.compose.oneoff=False,com.docker.compose.project.config_files=/Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/compose.yaml,com.docker.compose.project.environment_file=/tmp/minimart-final.env,com.docker.compose.project.working_dir=/Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL,com.docker.compose.container-number=1,com.docker.compose.depends_on=postgres:service_healthy:false,com.docker.compose.image=sha256:234f603dd3a21bbe14bfc603748f4977ebee8df1bcc1697264f8b3ed51fc717c,com.docker.compose.project=minimart-final,com.docker.compose.service=report-service,com.docker.compose.version=5.7.0,desktop.docker.io/ports.scheme=v2,com.docker.compose.config-hash=e0e6e0fd8fc722e161c01b128539cc98013fedc4555b97218e65b20d0f4e6f01",
+    "LocalVolumes": "0",
+    "Mounts": "",
+    "Name": "minimart-final-report-service-1",
+    "Names": "minimart-final-report-service-1",
+    "Networks": "minimart-final_private",
+    "Ports": "3005/tcp",
+    "Project": "minimart-final",
+    "Publishers": [
+      {
+        "URL": "",
+        "TargetPort": 3005,
+        "PublishedPort": 0,
+        "Protocol": "tcp"
+      }
+    ],
+    "RunningFor": "18 minutes ago",
+    "Service": "report-service",
+    "Size": "0B",
+    "State": "running",
+    "Status": "Up 5 minutes (healthy)"
+  },
+  {
+    "Command": "\"docker-entrypoint.s…\"",
+    "CreatedAt": "2026-11-24 22:16:26 +0700 +07",
+    "Engine": "",
+    "ExitCode": 0,
+    "Health": "healthy",
+    "ID": "59fe8d24a487",
+    "Image": "minimart-final-sales-service",
+    "Labels": "com.docker.compose.container-number=1,com.docker.compose.image=sha256:f370fdb9e43a7c321829a8fabd15d0aa3cba1306033b46b1e71a0a980304c0a9,com.docker.compose.project.config_files=/Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/compose.yaml,com.docker.compose.project.environment_file=/tmp/minimart-final.env,com.docker.compose.replace=sales-service-1,com.docker.compose.service=sales-service,desktop.docker.io/ports.scheme=v2,com.docker.compose.config-hash=dd6b4b5ca0f0780aa7f967044f9c0c3858d5ea82e24e67b5002d8f537f6340fb,com.docker.compose.depends_on=,com.docker.compose.oneoff=False,com.docker.compose.project=minimart-final,com.docker.compose.project.working_dir=/Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL,com.docker.compose.version=5.7.0",
+    "LocalVolumes": "0",
+    "Mounts": "",
+    "Name": "minimart-final-sales-service-1",
+    "Names": "minimart-final-sales-service-1",
+    "Networks": "minimart-final_private",
+    "Ports": "3004/tcp",
+    "Project": "minimart-final",
+    "Publishers": [
+      {
+        "URL": "",
+        "TargetPort": 3004,
+        "PublishedPort": 0,
+        "Protocol": "tcp"
+      }
+    ],
+    "RunningFor": "4 minutes ago",
+    "Service": "sales-service",
+    "Size": "0B",
+    "State": "running",
+    "Status": "Up 4 minutes (healthy)"
+  },
+  {
+    "Command": "\"/docker-entrypoint.…\"",
+    "CreatedAt": "2026-11-24 22:17:56 +0700 +07",
+    "Engine": "",
+    "ExitCode": 0,
+    "Health": "healthy",
+    "ID": "8feacb66e688",
+    "Image": "minimart-final-web",
+    "Labels": "com.docker.compose.depends_on=,com.docker.compose.image=sha256:62436290276c18c3c0fbddf183eaf17af80aeb1d4b9c2892e9a51d5d33f7767b,com.docker.compose.project.environment_file=/tmp/minimart-final.env,com.docker.compose.project.working_dir=/Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL,com.docker.compose.config-hash=1e4fb82339e11fb64eeafd81745c65b75814359beaf2beb11d686d829fd41186,com.docker.compose.container-number=1,com.docker.compose.oneoff=False,com.docker.compose.project=minimart-final,com.docker.compose.service=web,com.docker.compose.version=5.7.0,maintainer=NGINX Docker Maintainers <docker-maint@nginx.com>,com.docker.compose.project.config_files=/Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/compose.yaml,com.docker.compose.replace=web-1,desktop.docker.io/ports.scheme=v2,desktop.docker.io/ports/3000/tcp=:3300",
+    "LocalVolumes": "0",
+    "Mounts": "",
+    "Name": "minimart-final-web-1",
+    "Names": "minimart-final-web-1",
+    "Networks": "minimart-final_public",
+    "Ports": "0.0.0.0:3300->3000/tcp, [::]:3300->3000/tcp",
+    "Project": "minimart-final",
+    "Publishers": [
+      {
+        "URL": "0.0.0.0",
+        "TargetPort": 3000,
+        "PublishedPort": 3300,
+        "Protocol": "tcp"
+      },
+      {
+        "URL": "::",
+        "TargetPort": 3000,
+        "PublishedPort": 3300,
+        "Protocol": "tcp"
+      }
+    ],
+    "RunningFor": "3 minutes ago",
+    "Service": "web",
+    "Size": "0B",
+    "State": "running",
+    "Status": "Up 3 minutes (healthy)"
+  }
+]

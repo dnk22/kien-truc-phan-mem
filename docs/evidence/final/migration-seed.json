@@ -1,0 +1,36 @@
+{
+  "identity": {
+    "foundation_metadata": 1,
+    "refresh_sessions": 48,
+    "users": 9
+  },
+  "product": {
+    "categories": 10,
+    "foundation_metadata": 1,
+    "products": 39
+  },
+  "inventory": {
+    "foundation_metadata": 1,
+    "inventories": 5,
+    "purchase_receipt_items": 7,
+    "purchase_receipts": 5,
+    "stock_adjustments": 2,
+    "stock_movements": 23,
+    "stock_reservation_items": 24,
+    "stock_reservations": 24,
+    "suppliers": 8
+  },
+  "sales": {
+    "foundation_metadata": 1,
+    "invoice_items": 29,
+    "invoices": 28,
+    "outbox_events": 17,
+    "payments": 17
+  },
+  "report": {
+    "foundation_metadata": 1,
+    "processed_events": 18,
+    "sales_facts": 17,
+    "sales_item_facts": 17
+  }
+}

@@ -1,8 +1,16 @@
 import { Module } from '@nestjs/common';
 import { LiveSessionGuard, RolesGuard } from '@minimart/auth';
 import { DatabaseModule } from '../../infrastructure/database/database.module';
-import { INVOICES, PRODUCT_DIRECTORY, STOCK_PORT, PAYMENT_CREATORS } from './domain/sales.repository';
-import { CashPaymentCreator, BankTransferPaymentCreator } from './domain/payment/payment.creator';
+import {
+  INVOICES,
+  PRODUCT_DIRECTORY,
+  STOCK_PORT,
+  PAYMENT_CREATORS,
+} from './domain/sales.repository';
+import {
+  CashPaymentCreator,
+  BankTransferPaymentCreator,
+} from './domain/payment/payment.creator';
 import { PrismaInvoiceRepository } from './infrastructure/prisma-invoice.repository';
 import { SalesProductDirectory } from './infrastructure/product-directory.client';
 import { InventoryStockClient } from './infrastructure/stock.client';
@@ -17,11 +25,25 @@ import { InvoiceController } from './presentation/invoice.controller';
 @Module({
   imports: [DatabaseModule],
   controllers: [CheckoutController, InvoiceController],
-  providers: [LiveSessionGuard, RolesGuard, InternalHttpClient, InvoiceService, PaymentService, CheckoutOrchestrator, CheckoutFacade, RecoveryWorker,
+  providers: [
+    LiveSessionGuard,
+    RolesGuard,
+    InternalHttpClient,
+    InvoiceService,
+    PaymentService,
+    CheckoutOrchestrator,
+    CheckoutFacade,
+    RecoveryWorker,
     { provide: INVOICES, useClass: PrismaInvoiceRepository },
     { provide: PRODUCT_DIRECTORY, useClass: SalesProductDirectory },
     { provide: STOCK_PORT, useClass: InventoryStockClient },
-    { provide: PAYMENT_CREATORS, useFactory: () => ({ CASH: new CashPaymentCreator(), BANK_TRANSFER: new BankTransferPaymentCreator() }) },
+    {
+      provide: PAYMENT_CREATORS,
+      useFactory: () => ({
+        CASH: new CashPaymentCreator(),
+        BANK_TRANSFER: new BankTransferPaymentCreator(),
+      }),
+    },
   ],
 })
 export class SalesModule {}

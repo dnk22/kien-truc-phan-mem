@@ -10,7 +10,20 @@ export async function assertTopology(ch: Channel) {
   await ch.assertExchange(DEAD_EXCHANGE, 'direct', { durable: true });
   await ch.assertQueue(DEAD_QUEUE, { durable: true });
   await ch.bindQueue(DEAD_QUEUE, DEAD_EXCHANGE, ROUTING_KEY);
-  await ch.assertQueue(QUEUE, { durable: true, arguments: { 'x-dead-letter-exchange': DEAD_EXCHANGE, 'x-dead-letter-routing-key': ROUTING_KEY } });
+  await ch.assertQueue(QUEUE, {
+    durable: true,
+    arguments: {
+      'x-dead-letter-exchange': DEAD_EXCHANGE,
+      'x-dead-letter-routing-key': ROUTING_KEY,
+    },
+  });
   await ch.bindQueue(QUEUE, EXCHANGE, ROUTING_KEY);
-  await ch.assertQueue(RETRY_QUEUE, { durable: true, arguments: { 'x-message-ttl': 10000, 'x-dead-letter-exchange': EXCHANGE, 'x-dead-letter-routing-key': ROUTING_KEY } });
+  await ch.assertQueue(RETRY_QUEUE, {
+    durable: true,
+    arguments: {
+      'x-message-ttl': 10000,
+      'x-dead-letter-exchange': EXCHANGE,
+      'x-dead-letter-routing-key': ROUTING_KEY,
+    },
+  });
 }

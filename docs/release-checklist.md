@@ -1,25 +1,21 @@
-# DEV-7 release checklist
+# FINAL local acceptance checklist
 
-## Source preparation
-- [x] Release and demo runbooks
-- [x] Current component, deployment and overview use-case PlantUML
-- [x] Five schema-derived ERDs
-- [x] Class, state, sequence and GoF diagram index
-- [x] Current RBAC matrix and API index
-- [x] Grouped FR/BR/NFR traceability and evidence manifest template
-- [x] Codex handoff
+- [x] Active main includes DEV-0–7; start 5274c90, initial clean tree
+- [x] Original Master/DOCX preserved (SHA256 evidence)
+- [x] AMQP lockfile synchronized; frozen install
+- [x] Generate, format, build, lint, typecheck, Jest and format check
+- [x] Seven application images built; Web rebuilt with OpenSSL
+- [x] Nine containers healthy; only Web/Gateway host ports
+- [x] Five DB fresh startup migrations; replay + Prisma diff, seed twice preserving edits, production seed guard
+- [x] Four roles, direct API permissions/revocation/ownership; twenty cross-DB denials
+- [x] DEV-6 business and outage regression
+- [x] FINAL real PostgreSQL/RabbitMQ concurrency, timeout, restart, retry/DLQ/recovery/timezone tests
+- [x] SQL/API data invariants and report quantity/top/payment/low-stock reconciliation
+- [x] Browser happy path, Admin UI, roles/session/single-flight, forms/loading/empty/error, responsive and print/PDF
+- [x] Interrupted prepare and payment preserve original keys across refresh; actor cart isolation
+- [x] 20-client representative READ benchmark with actual timings
+- [x] 88 requirement rows, docs and actual evidence manifest
+- [ ] FINAL-3: synchronize/render/inspect UML and approve requirement numbering
+- [ ] FINAL-3: update DOCX only after review/authorization
 
-## Mandatory local gates (not executed)
-- [ ] Synchronize AMQP lockfile and verify frozen install
-- [ ] Format, build, lint, typecheck, unit tests
-- [ ] Render PlantUML, inspect diagrams and reconcile against final source
-- [ ] Compose config, fresh migration/seed, service health, database isolation
-- [ ] DEV-1 regressions and DEV-6 business/fault checks
-- [ ] Manual cases in dev6-verification.md
-- [ ] Browser role flows, responsive UI, print, screenshots
-- [ ] Measure latency or explicitly disclose NOT RUN
-- [ ] Demo rehearsal, update actual evidence and final architecture
-- [ ] Report DOCX update after verification
-- [ ] Release tag only after acceptance and authorization
-
-No release readiness claim. Known blockers and remaining gaps: see release.md and codex-final-review.md. No fabricated evidence.
+Local demo acceptance passes with scope limits: one store/replica, no external banking, at-least-once delivery, no production HTTPS/HA/backup-restore/physical printer test. No tag/deploy/PR/commit created. Results and rerun provenance: evidence/final/manifest.md. Historical failed harness attempts remain in logs; latest results are 44 unique acceptance cases PASS plus 24 Jest suites / 65 tests PASS.

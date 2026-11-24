@@ -2,36 +2,37 @@
 
 Nguồn chuẩn: [Prompt_Codex_MiniMart.md](Prompt_Codex_MiniMart.md), đối chiếu `Bao_cao_Nhom_06_Sieu_thi_mini.docx`. Hai tài liệu nguồn được giữ nguyên.
 
-**Milestone: DEV-7 — release candidate (source only).** All five business services have implementation candidates; DEV-2–7 runtime acceptance remains pending. See [release runbook](docs/release.md).
-
+**Milestone: FINAL-1 / FINAL-2 đã nghiệm thu local trên `main`, HEAD `5274c90` giữ nguyên. 9 container healthy, 44 ca acceptance PASS và 65 Jest tests PASS.** Trạng thái và giới hạn hiện hành ở [final-review-progress](docs/final-review-progress.md); kết quả lịch sử DEV-0/1 không thay thế lần nghiệm thu này.
 
 ## Khởi động bằng Docker Compose
 
-Cần Docker daemon đang chạy và Compose V2. Trong phiên kiểm chứng hiện tại có Docker CLI nhưng daemon vẫn không khả dụng, nên runtime Docker/RabbitMQ còn BLOCKED.
+Cần Node 22.22.2, pnpm 10.32.1, Docker daemon và Compose V2 trở lên. Giữ file `.env` hiện có; chỉ sao chép mẫu khi chưa có.
 
 ```sh
-cp .env.example .env
+test -f .env || cp .env.example .env
+pnpm install --frozen-lockfile
 docker compose config --quiet
 docker compose up --build -d
 docker compose ps
-# Chờ identity-service healthy rồi tạo demo accounts (chỉ development/demo):
+# Chờ 9 container healthy; explicit seed chỉ dành cho demo development:
 docker compose exec -e DEMO_SEED_ENABLED=true identity-service pnpm db:seed
+docker compose exec -e DEMO_SEED_ENABLED=true product-service pnpm db:seed
+docker compose exec -e DEMO_SEED_ENABLED=true inventory-service pnpm db:seed
 ```
 
-Compose mặc định `APP_NODE_ENV=development` cho Identity/Gateway để demo HTTP localhost và cookie Secure=false. Các business service dùng APP_NODE_ENV để phù hợp JWT demo. Startup luôn chạy migration và foundation seed; **demo user seed tắt mặc định trong container**, phải chạy lệnh explicit trên. Password lấy từ DEMO_PASSWORD trong `.env`. Seed chỉ thêm username chưa có, không ghi đè mật khẩu, role, status hoặc profile đã sửa.
+Web mặc định `http://localhost:3000/login`, Gateway `http://localhost:8080`, Swagger `/docs`, OpenAPI `/docs-json`. `WEB_PORT`/`GATEWAY_PORT` có thể đổi; khi đổi web port phải đồng bộ `CORS_ORIGIN` và `CSRF_ALLOWED_ORIGINS`. Lần nghiệm thu dùng Web `http://localhost:3300`, Gateway `8080`, project riêng `minimart-final`; không dừng app khác trên cổng 3000.
 
-| URL                                | Nội dung                                                |
-| ---------------------------------- | ------------------------------------------------------- |
-| http://localhost:3000/login        | Đăng nhập                                               |
-| http://localhost:3000/users        | Quản lý nhân viên (ADMIN)                               |
-| http://localhost:3000/profile      | Hồ sơ, đổi mật khẩu                                     |
-| http://localhost:3000/foundation   | Trang kiểm tra kết nối DEV-0                            |
-| http://localhost:8080/docs         | Swagger API public                                      |
-| http://localhost:8080/docs-json    | OpenAPI JSON                                            |
-| http://localhost:8080/health/live  | Gateway process                                         |
-| http://localhost:8080/health/ready | Gateway process readiness; không đại diện toàn hệ thống |
+Chỉ web và Gateway publish host ports. Năm business services, PostgreSQL với năm database/user riêng và RabbitMQ nằm trong network riêng. Gateway readiness chỉ xác minh process của Gateway; xem health từng container. Startup chạy migration và foundation seed; seed demo không ghi đè dữ liệu đã sửa. Không seed stock hoặc hóa đơn giả: lập phiếu nhập và Manager xác nhận, sau đó checkout thật.
 
-Chỉ web:3000 và gateway:8080 publish ra host. 5 service, 5 DB trong một PostgreSQL instance và RabbitMQ nằm trên private network; không public `/internal/v1/*` hoặc RabbitMQ Management. Mỗi backend có health và Swagger riêng, kiểm tra từ container.
+Nếu Compose/Bake báo đường dẫn không được phép trên macOS với tên thư mục tiếng Việt, dùng script [build-compose.mjs](scripts/build-compose.mjs) để cấp quyền đọc đúng workspace với hai dạng Unicode; sau đó up bằng image đã build:
+
+```sh
+node scripts/build-compose.mjs --env-file .env --project-name minimart
+# Hoặc bỏ hai tùy chọn để dùng .env/project mặc định.
+docker compose -p minimart up -d --no-build
+```
+
+Script build tuần tự để tránh nhiều tiến trình pnpm tranh RAM. Không thay Dockerfile bằng cài dependency thiếu lockfile.
 
 ## Tài khoản demo
 
@@ -65,7 +66,7 @@ Node **22.22.2**, pnpm **10.32.1**, TypeScript **5.9.3**. Giữ nguyên dependen
 | Jest / ts-jest / Supertest            | 29.7.0 / 29.4.5 / 7.1.4                 |
 | ESLint / typescript-eslint / Prettier | 9.39.1 / 8.48.1 / 3.7.4                 |
 
-Shared contracts có CJS + ESM output để dùng runtime role constants ở Nest và Vite. Không thay toàn bộ build config để né bundle warning. AMQP client/Outbox đã được thêm ở DEV-5; lockfile cần đồng bộ trước build.
+Shared contracts có CJS + ESM output để dùng runtime role constants ở Nest và Vite. Không thay toàn bộ build config để né bundle warning. AMQP client 0.10.9 và types 0.10.7 đã được đồng bộ trong frozen lockfile.
 
 ## Phát triển native
 
@@ -150,38 +151,48 @@ docker compose down
 - Chi tiết bảo mật/rotation, CSRF, thời điểm thu hồi và HTTP codes: [API Contract](docs/api-contracts.md).
 - Kết quả thực tế, lỗi đã sửa và cách tái lập: [Testing](docs/testing.md).
 - [Tiến độ](docs/implementation-progress.md), [kiến trúc](docs/architecture.md), [permission matrix](docs/actor-permissions.md), [file DEV-1](docs/dev1-files.md), [demo](docs/demo.md), [minh chứng báo cáo](docs/report-evidence.md).
-- Docker/RabbitMQ runtime chưa kiểm chứng vì thiếu daemon; native PASS không thay thế Docker PASS.
+- Trạng thái Docker/RabbitMQ hiện hành: xem progress và evidence FINAL; không dùng kết quả native lịch sử làm Docker PASS.
 - Refresh replay thu hồi family, có thể yêu cầu login lại khi nhiều tab refresh đồng thời hoặc mất response. Rate limit in-memory theo process; chưa distributed. Session history chưa có job dọn retention.
 - Web vẫn có warning chunk >500 kB dù đã lazy load các route; chưa tối ưu sâu UI bundle. Tooling cũ có deprecation; chưa có security audit toàn cây dependencies.
 
-
 ### DEV-2 catalog
 
-See [catalog API contract](docs/dev2-api.md). Run product migrations and seed in the configured development environment; with DEMO_SEED_ENABLED=true in a non-production environment, seed creates six categories and 30 example products, preserving existing records. Manager manages categories/products; cashier and warehouse can read products. No stock quantities are seeded here. DEV-2 verification is pending; see docs/testing.md.
-
+See [catalog API contract](docs/dev2-api.md). Run product migrations and seed in the configured development environment; with DEMO_SEED_ENABLED=true in a non-production environment, seed creates six categories and 30 example products, preserving existing records. Manager manages categories/products; cashier and warehouse can read products. No stock quantities are seeded here. See current acceptance results in docs/testing.md.
 
 ### DEV-3 inventory
 
-See [inventory API contract](docs/dev3-api.md). With DEMO_SEED_ENABLED=true in development, inventory seed adds three suppliers. Use Manager or Warehouse to create a receipt and Manager to confirm it to establish stock. The inventory service never reads product_db; it validates items through Product internal API. Runtime verification pending.
-
+See [inventory API contract](docs/dev3-api.md). With DEMO_SEED_ENABLED=true in development, inventory seed adds three suppliers. Use Manager or Warehouse to create a receipt and Manager to confirm it to establish stock. The inventory service never reads product_db; it validates items through Product internal API. Kết quả nghiệm thu hiện hành ở docs/testing.md.
 
 ### DEV-4 sales
 
-Create confirmed purchase receipts first, then log in as cashier, search products at /pos, prepare checkout to see official total, record cash or manually verified bank transfer, and view/print completed invoices. See [Sales API](docs/dev4-api.md) and [GoF patterns](docs/design-patterns.md). Recovery worker retries pending intents; no broker dependency in checkout. Runtime verification pending.
-
+Create confirmed purchase receipts first, then log in as cashier, search products at /pos, prepare checkout to see official total, record cash or manually verified bank transfer, and view/print completed invoices. See [Sales API](docs/dev4-api.md) and [GoF patterns](docs/design-patterns.md). Recovery worker retries pending intents; no broker dependency in checkout. Kết quả nghiệm thu hiện hành ở docs/testing.md.
 
 ### DEV-5 reporting
 
-Before building DEV-5, regenerate the lockfile locally with `pnpm install --no-frozen-lockfile`, then run `pnpm install --frozen-lockfile` and quality gates. Sales completion records outbox; publisher delivers to RabbitMQ and Report projects it. Manager dashboard and reports show real projected revenue and live stock summary. See [DEV-5 contract](docs/dev5-api.md). Runtime verification pending.
-
+Lockfile đã đồng bộ; dùng `pnpm install --frozen-lockfile` và quality gates. Sales completion records outbox; publisher delivers to RabbitMQ and Report projects it. Manager dashboard and reports show real projected revenue and live stock summary. See [DEV-5 contract](docs/dev5-api.md). Kết quả nghiệm thu hiện hành ở docs/testing.md.
 
 ### DEV-6 verification
 
 After synchronizing the lockfile and building a disposable local demo stack, run `VERIFY_DISPOSABLE=true pnpm verify:dev6` and optionally `VERIFY_DISPOSABLE=true VERIFY_FAULTS=true pnpm verify:dev6`. The latter stops and restarts Report and RabbitMQ; never run against a shared or production environment. See [verification runbook](docs/dev6-verification.md).
 
+## FINAL local demo review
 
-## DEV-7 release candidate
-
-Read [release runbook](docs/release.md), [demo script](docs/demo.md), [architecture](docs/architecture-current.md), [API index](docs/api-index.md), [evidence matrix](docs/report-evidence.md) and [Codex handoff](docs/codex-final-review.md). No release tag or runtime PASS is claimed. Historical DEV-0/1 evidence is not DEV-7 evidence.
+Read [release runbook](docs/release.md), [demo script](docs/demo.md), [architecture](docs/architecture-current.md), [API index](docs/api-index.md), [evidence matrix](docs/report-evidence.md) and [Codex handoff](docs/codex-final-review.md). Không tạo release tag. Kết quả mới ở docs/evidence/final; evidence DEV-0/1 được giữ làm lịch sử.
 
 See [UML index](docs/uml/README.md), [release checklist](docs/release-checklist.md), and [final evidence template](docs/evidence/final/manifest.md).
+
+## Nghiệm thu FINAL trên stack disposable
+
+```sh
+npm install --prefix /tmp/minimart-verification playwright@1.57.0
+# Chrome đã cài; CHROME_PATH tùy chọn. File env cần đủ 4 tài khoản demo.
+VERIFY_DISPOSABLE=true VERIFY_FAULTS=true \
+VERIFY_COMPOSE_PROJECT=minimart-final VERIFY_ENV_FILE=/tmp/minimart-final.env \
+VERIFY_WEB_URL=http://localhost:3300 \
+node --env-file=/tmp/minimart-final.env scripts/verify-dev6.mjs
+VERIFY_DISPOSABLE=true VERIFY_FAULTS=true \
+VERIFY_COMPOSE_PROJECT=minimart-final VERIFY_ENV_FILE=/tmp/minimart-final.env \
+VERIFY_WEB_URL=http://localhost:3300 pnpm verify:final
+```
+
+Với DEV-6, cách portable để nạp password: `node --env-file=/tmp/minimart-final.env scripts/verify-dev6.mjs` với các biến VERIFY ở trên. FINAL tự đọc file env được chỉ định; `VERIFY_TOOLS_PACKAGE` có thể trỏ package.json chứa Playwright. Test fault chỉ được chạy trên stack riêng: dừng/restart service, tạo trigger gây lỗi, đổi timestamp có kiểm soát và dùng proxy tạm. Không chạy trên dữ liệu dùng chung. Script luôn khôi phục lỗi đã gây trước khi thoát; nếu agent/process bị kill, dùng hướng dẫn cleanup trong release.md.

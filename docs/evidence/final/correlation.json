@@ -1,0 +1,132 @@
+{
+  "api-gateway": [
+    {
+      "name": "api-gateway",
+      "method": "POST",
+      "status": 409,
+      "correlationId": "final-4950f931",
+      "durationMs": 9,
+      "msg": "request completed"
+    },
+    {
+      "name": "api-gateway",
+      "method": "PATCH",
+      "status": 200,
+      "correlationId": "final-4950f931",
+      "durationMs": 8,
+      "msg": "request completed"
+    },
+    {
+      "name": "api-gateway",
+      "method": "GET",
+      "status": 200,
+      "correlationId": "final-4950f931",
+      "durationMs": 20,
+      "msg": "request completed"
+    }
+  ],
+  "identity-service": [
+    {
+      "name": "identity-service",
+      "method": "GET",
+      "status": 200,
+      "correlationId": "final-4950f931",
+      "durationMs": 2,
+      "msg": "request completed"
+    },
+    {
+      "name": "identity-service",
+      "method": "GET",
+      "status": 200,
+      "correlationId": "final-4950f931",
+      "durationMs": 2,
+      "msg": "request completed"
+    },
+    {
+      "name": "identity-service",
+      "method": "GET",
+      "status": 200,
+      "correlationId": "final-4950f931",
+      "durationMs": 2,
+      "msg": "request completed"
+    }
+  ],
+  "product-service": [
+    {
+      "name": "product-service",
+      "method": "POST",
+      "status": 201,
+      "correlationId": "final-4950f931",
+      "durationMs": 1,
+      "msg": "request completed"
+    },
+    {
+      "name": "product-service",
+      "method": "PATCH",
+      "status": 200,
+      "correlationId": "final-4950f931",
+      "durationMs": 6,
+      "msg": "request completed"
+    },
+    {
+      "name": "product-service",
+      "method": "POST",
+      "status": 201,
+      "correlationId": "final-4950f931",
+      "durationMs": 6,
+      "msg": "request completed"
+    }
+  ],
+  "inventory-service": [
+    {
+      "name": "inventory-service",
+      "method": "PATCH",
+      "status": 200,
+      "correlationId": "final-4950f931",
+      "durationMs": 6,
+      "msg": "request completed"
+    },
+    {
+      "name": "inventory-service",
+      "method": "GET",
+      "status": 200,
+      "correlationId": "final-4950f931",
+      "durationMs": 5,
+      "msg": "request completed"
+    },
+    {
+      "name": "inventory-service",
+      "method": "GET",
+      "status": 200,
+      "correlationId": "final-4950f931",
+      "durationMs": 18,
+      "msg": "request completed"
+    }
+  ],
+  "sales-service": [
+    {
+      "name": "sales-service",
+      "method": "GET",
+      "status": 200,
+      "correlationId": "final-4950f931",
+      "durationMs": 4,
+      "msg": "request completed"
+    },
+    {
+      "name": "sales-service",
+      "method": "POST",
+      "status": 200,
+      "correlationId": "final-4950f931",
+      "durationMs": 17,
+      "msg": "request completed"
+    },
+    {
+      "name": "sales-service",
+      "method": "POST",
+      "status": 409,
+      "correlationId": "final-4950f931",
+      "durationMs": 7,
+      "msg": "request completed"
+    }
+  ]
+}

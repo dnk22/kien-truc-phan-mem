@@ -244,7 +244,7 @@ services:
       INVENTORY_SERVICE_URL: http://inventory-service:3003
       SALES_SERVICE_URL: http://sales-service:3004
       REPORT_SERVICE_URL: http://report-service:3005
-    ports: ['8080:8080']
+    ports: ['${GATEWAY_PORT:-8080}:8080']
     healthcheck:
       test:
         [
@@ -262,7 +262,7 @@ services:
     build:
       context: .
       dockerfile: apps/web/Dockerfile
-    ports: ['3000:3000']
+    ports: ['${WEB_PORT:-3000}:3000']
     depends_on:
       api-gateway:
         condition: service_healthy

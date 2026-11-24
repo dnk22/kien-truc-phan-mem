@@ -1,0 +1,41 @@
+{
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "cpus": 10,
+    "cpu": "Apple M1 Pro",
+    "memoryBytes": 34359738368,
+    "node": "v22.22.2"
+  },
+  "docker": "cpus=10 memory=8319438848",
+  "dataset": {
+    "products": 46,
+    "categories": 12
+  },
+  "environment": "9 Docker containers; protected Gateway requests include Identity live-session check",
+  "unit": "milliseconds",
+  "measurements": [
+    {
+      "endpoint": "/products?page=1&pageSize=20",
+      "concurrency": 20,
+      "requests": 400,
+      "durationSeconds": 0.58,
+      "errorRate": 0,
+      "p50": 26.13,
+      "p95": 43.94,
+      "max": 87.22,
+      "result": "PASS"
+    },
+    {
+      "endpoint": "/categories?page=1&pageSize=20",
+      "concurrency": 20,
+      "requests": 400,
+      "durationSeconds": 0.47,
+      "errorRate": 0,
+      "p50": 22.45,
+      "p95": 31.79,
+      "max": 53.72,
+      "result": "PASS"
+    }
+  ]
+}

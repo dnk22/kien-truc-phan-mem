@@ -7,9 +7,13 @@ import { SalesProxyService } from './sales-proxy.service';
 @ApiBearerAuth()
 @Controller('api/v1/invoices')
 @UseGuards(JwtGuard, RolesGuard)
-@Roles('MANAGER','CASHIER')
+@Roles('MANAGER', 'CASHIER')
 export class InvoiceProxyController {
   constructor(private readonly proxy: SalesProxyService) {}
-  @Get() list(@Req() req: Request, @Res() res: Response) { return this.proxy.forward(req, res); }
-  @Get(':id') get(@Req() req: Request, @Res() res: Response) { return this.proxy.forward(req, res); }
+  @Get() list(@Req() req: Request, @Res() res: Response) {
+    return this.proxy.forward(req, res);
+  }
+  @Get(':id') get(@Req() req: Request, @Res() res: Response) {
+    return this.proxy.forward(req, res);
+  }
 }

@@ -1,7 +1,11 @@
 import 'reflect-metadata';
 import { BadRequestException, Type, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import {
+  DocumentBuilder,
+  SwaggerModule,
+  type OpenAPIObject,
+} from '@nestjs/swagger';
 import { createLogger } from '@minimart/logger';
 import { readEnvironment } from './env';
 import { correlationMiddleware, HttpErrorFilter } from './http';
@@ -10,6 +14,7 @@ export async function bootstrap(
   name: string,
   port: number,
   databaseName?: string,
+  configureDocument?: (document: OpenAPIObject) => void,
 ) {
   const env = readEnvironment(port, databaseName);
   process.env.SERVICE_NAME = name;
@@ -81,7 +86,9 @@ export async function bootstrap(
     )
     .addBearerAuth()
     .build();
-  SwaggerModule.setup('docs', app, SwaggerModule.createDocument(app, config));
+  const document = SwaggerModule.createDocument(app, config);
+  configureDocument?.(document);
+  SwaggerModule.setup('docs', app, document);
   await app.listen(env.PORT, '0.0.0.0');
   logger.info({ port: env.PORT }, 'service started');
   return app;

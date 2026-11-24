@@ -1,0 +1,2 @@
+PASS A18 Direct service JWT/RBAC plus CORS custom headers and CSRF rejection
+44 unique cases, all PASS=true

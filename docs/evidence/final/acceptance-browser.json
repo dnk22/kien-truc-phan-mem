@@ -1,0 +1,50 @@
+[
+  {
+    "id": "U01",
+    "label": "Manager creates category, product, supplier through production UI",
+    "result": "PASS",
+    "durationMs": 5151
+  },
+  {
+    "id": "U02",
+    "label": "Warehouse drafts receipt; Manager confirms; real inventory increases",
+    "result": "PASS",
+    "durationMs": 3706
+  },
+  {
+    "id": "U03",
+    "label": "Cashier cart, READY refresh, cash/change, invoice print and stock decrease",
+    "result": "PASS",
+    "durationMs": 3986
+  },
+  {
+    "id": "U04",
+    "label": "Manual bank transfer, interrupted prepare reuses original key and cancels safely",
+    "result": "PASS",
+    "durationMs": 3284
+  },
+  {
+    "id": "U05",
+    "label": "Dashboard/report, role guards, empty/error/retry, mobile and session refresh",
+    "result": "PASS",
+    "durationMs": 10007
+  },
+  {
+    "id": "U06",
+    "label": "Admin user create/edit/lock/unlock/role via UI",
+    "result": "PASS",
+    "durationMs": 4880
+  },
+  {
+    "id": "U07",
+    "label": "Logout and second cashier cannot reuse previous actor cart/checkout",
+    "result": "PASS",
+    "durationMs": 3097
+  },
+  {
+    "id": "U08",
+    "label": "Interrupted payment preserves confirm key across refresh and retries once",
+    "result": "PASS",
+    "durationMs": 2138
+  }
+]

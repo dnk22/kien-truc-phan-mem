@@ -1,0 +1,706 @@
+[
+  {
+    "id": "FR01",
+    "description": "Đăng nhập",
+    "implementation": "apps/identity-service/src/modules; apps/web/src/features/auth,users",
+    "test": "A01",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR02",
+    "description": "Đăng xuất",
+    "implementation": "apps/identity-service/src/modules; apps/web/src/features/auth,users",
+    "test": "A15",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR03",
+    "description": "Xem hồ sơ",
+    "implementation": "apps/identity-service/src/modules; apps/web/src/features/auth,users",
+    "test": "R03",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR04",
+    "description": "Đổi mật khẩu và thu hồi session",
+    "implementation": "apps/identity-service/src/modules; apps/web/src/features/auth,users",
+    "test": "A15",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR05",
+    "description": "Danh sách tài khoản",
+    "implementation": "apps/identity-service/src/modules; apps/web/src/features/auth,users",
+    "test": "A03",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR06",
+    "description": "Thêm tài khoản",
+    "implementation": "apps/identity-service/src/modules; apps/web/src/features/auth,users",
+    "test": "A02,A11",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR07",
+    "description": "Sửa tài khoản",
+    "implementation": "apps/identity-service/src/modules; apps/web/src/features/auth,users",
+    "test": "A15",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR08",
+    "description": "Khóa/mở khóa",
+    "implementation": "apps/identity-service/src/modules; apps/web/src/features/auth,users",
+    "test": "A02",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR09",
+    "description": "Gán vai trò",
+    "implementation": "apps/identity-service/src/modules; apps/web/src/features/auth,users",
+    "test": "A15,U06",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR10",
+    "description": "Danh sách danh mục",
+    "implementation": "apps/product-service/src/modules/catalog; apps/web/src/features/categories,products",
+    "test": "U01",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR11",
+    "description": "Thêm/sửa danh mục",
+    "implementation": "apps/product-service/src/modules/catalog; apps/web/src/features/categories,products",
+    "test": "U01,A16",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR12",
+    "description": "Danh sách sản phẩm",
+    "implementation": "apps/product-service/src/modules/catalog; apps/web/src/features/categories,products",
+    "test": "A05,U01",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR13",
+    "description": "Thêm sản phẩm",
+    "implementation": "apps/product-service/src/modules/catalog; apps/web/src/features/categories,products",
+    "test": "A04,U01",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR14",
+    "description": "Sửa sản phẩm",
+    "implementation": "apps/product-service/src/modules/catalog; apps/web/src/features/categories,products",
+    "test": "A16",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR15",
+    "description": "Ngừng kinh doanh sản phẩm",
+    "implementation": "apps/product-service/src/modules/catalog; apps/web/src/features/categories,products",
+    "test": "DEV6",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR16",
+    "description": "Tìm theo tên/mã/barcode",
+    "implementation": "apps/product-service/src/modules/catalog; apps/web/src/features/categories,products",
+    "test": "U03,U05",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR17",
+    "description": "Lọc và phân trang",
+    "implementation": "apps/product-service/src/modules/catalog; apps/web/src/features/categories,products",
+    "test": "A16",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR18",
+    "description": "Cập nhật giá bán",
+    "implementation": "apps/product-service/src/modules/catalog; apps/web/src/features/categories,products",
+    "test": "A10",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR19",
+    "description": "Chi tiết và snapshot sản phẩm",
+    "implementation": "apps/product-service/src/modules/catalog; apps/web/src/features/categories,products",
+    "test": "A16",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR20",
+    "description": "Danh sách nhà cung cấp",
+    "implementation": "apps/inventory-service/src/modules/inventory; apps/web/src/features/suppliers",
+    "test": "A07",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR21",
+    "description": "Thêm nhà cung cấp",
+    "implementation": "apps/inventory-service/src/modules/inventory; apps/web/src/features/suppliers",
+    "test": "U01",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR22",
+    "description": "Sửa nhà cung cấp",
+    "implementation": "apps/inventory-service/src/modules/inventory; apps/web/src/features/suppliers",
+    "test": "A16",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR23",
+    "description": "Ngừng hợp tác/tra cứu active",
+    "implementation": "apps/inventory-service/src/modules/inventory; apps/web/src/features/suppliers",
+    "test": "A07",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR24",
+    "description": "Tìm kiếm nhà cung cấp",
+    "implementation": "apps/inventory-service/src/modules/inventory; apps/web/src/features/suppliers",
+    "test": "A16",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR25",
+    "description": "Lịch sử nhập theo nhà cung cấp",
+    "implementation": "apps/inventory-service/src/modules/inventory; apps/web/src/features/suppliers",
+    "test": "A07",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR26",
+    "description": "Xem tồn gồm sản phẩm chưa nhập",
+    "implementation": "apps/inventory-service/src/modules/inventory; apps/web/src/features/purchase-receipts",
+    "test": "A05",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR27",
+    "description": "Lập phiếu nháp",
+    "implementation": "apps/inventory-service/src/modules/inventory; apps/web/src/features/purchase-receipts",
+    "test": "A06,U02",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR28",
+    "description": "Thêm dòng hàng/snapshot",
+    "implementation": "apps/inventory-service/src/modules/inventory; apps/web/src/features/purchase-receipts",
+    "test": "A06,U02",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR29",
+    "description": "Sửa phiếu nháp",
+    "implementation": "apps/inventory-service/src/modules/inventory; apps/web/src/features/purchase-receipts",
+    "test": "A07",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR30",
+    "description": "Manager xác nhận phiếu nhập",
+    "implementation": "apps/inventory-service/src/modules/inventory; apps/web/src/features/purchase-receipts",
+    "test": "A06,U02",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR31",
+    "description": "Hủy nháp không tăng tồn",
+    "implementation": "apps/inventory-service/src/modules/inventory; apps/web/src/features/purchase-receipts",
+    "test": "A06",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR32",
+    "description": "Tăng tồn và ghi biến động một transaction",
+    "implementation": "apps/inventory-service/src/modules/inventory; apps/web/src/features/purchase-receipts",
+    "test": "A06,D01",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR33",
+    "description": "Giảm tồn khi bán",
+    "implementation": "apps/inventory-service/src/modules/inventory; apps/web/src/features/inventory",
+    "test": "A10,F09,D01",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR34",
+    "description": "Lịch sử biến động",
+    "implementation": "apps/inventory-service/src/modules/inventory; apps/web/src/features/inventory",
+    "test": "A06,D01",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR35",
+    "description": "Cảnh báo tồn thấp kể cả tồn 0",
+    "implementation": "apps/inventory-service/src/modules/inventory; apps/web/src/features/inventory",
+    "test": "A05",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR36",
+    "description": "Kiểm kê/điều chỉnh có version và reserved floor",
+    "implementation": "apps/inventory-service/src/modules/inventory; apps/web/src/features/inventory",
+    "test": "A13",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR37",
+    "description": "Tạo giao dịch tại POS",
+    "implementation": "apps/sales-service/src/modules/sales; apps/web/src/features/pos",
+    "test": "U03",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR38",
+    "description": "Tra cứu sản phẩm/barcode",
+    "implementation": "apps/sales-service/src/modules/sales; apps/web/src/features/pos",
+    "test": "U03",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR39",
+    "description": "Thêm dòng giỏ",
+    "implementation": "apps/sales-service/src/modules/sales; apps/web/src/features/pos",
+    "test": "U03",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR40",
+    "description": "Sửa số lượng",
+    "implementation": "apps/sales-service/src/modules/sales; apps/web/src/features/pos",
+    "test": "U03",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR41",
+    "description": "Xóa dòng giỏ",
+    "implementation": "apps/sales-service/src/modules/sales; apps/web/src/features/pos",
+    "test": "U03",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR42",
+    "description": "Tính tổng tiền",
+    "implementation": "apps/sales-service/src/modules/sales; apps/web/src/features/pos",
+    "test": "A10,U03",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR43",
+    "description": "Kiểm tra tồn khả dụng và giữ hàng",
+    "implementation": "apps/sales-service/src/modules/sales; apps/web/src/features/pos",
+    "test": "A08,A09",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR44",
+    "description": "Chọn tiền mặt/chuyển khoản thủ công",
+    "implementation": "apps/sales-service/src/modules/sales; apps/web/src/features/pos,sales",
+    "test": "U03,U04",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR45",
+    "description": "Xác nhận sau nhận đủ tiền",
+    "implementation": "apps/sales-service/src/modules/sales; apps/web/src/features/pos,sales",
+    "test": "A10,U03,U04,U08",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR46",
+    "description": "Tính tiền thừa",
+    "implementation": "apps/sales-service/src/modules/sales; apps/web/src/features/pos,sales",
+    "test": "A10",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR47",
+    "description": "Hoàn tất hóa đơn qua Saga",
+    "implementation": "apps/sales-service/src/modules/sales; apps/web/src/features/pos,sales",
+    "test": "F09,F10,D01",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR48",
+    "description": "Tra cứu hóa đơn/snapshot giá",
+    "implementation": "apps/sales-service/src/modules/sales; apps/web/src/features/pos,sales",
+    "test": "A10,A11",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR49",
+    "description": "In hóa đơn",
+    "implementation": "apps/sales-service/src/modules/sales; apps/web/src/features/pos,sales",
+    "test": "U03",
+    "result": "VERIFIED",
+    "limitation": "window.print/PDF đã đo; chưa thử máy in vật lý."
+  },
+  {
+    "id": "FR50",
+    "description": "Dashboard",
+    "implementation": "apps/report-service/src/modules; apps/web/src/features/reports",
+    "test": "U01,U05",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR51",
+    "description": "Doanh thu theo kỳ GMT+7",
+    "implementation": "apps/report-service/src/modules; apps/web/src/features/reports",
+    "test": "F12,D01",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR52",
+    "description": "Số hóa đơn hoàn tất",
+    "implementation": "apps/report-service/src/modules; apps/web/src/features/reports",
+    "test": "F01,F02,D01",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR53",
+    "description": "Số lượng sản phẩm bán",
+    "implementation": "apps/report-service/src/modules; apps/web/src/features/reports",
+    "test": "D02",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR54",
+    "description": "Top sản phẩm bán chạy",
+    "implementation": "apps/report-service/src/modules; apps/web/src/features/reports",
+    "test": "D02",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR55",
+    "description": "Tổng hợp tồn kho",
+    "implementation": "apps/report-service/src/modules; apps/web/src/features/reports",
+    "test": "A05",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR56",
+    "description": "Số sản phẩm tồn thấp",
+    "implementation": "apps/report-service/src/modules; apps/web/src/features/reports",
+    "test": "D02",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "FR57",
+    "description": "Thống kê phương thức thanh toán",
+    "implementation": "apps/report-service/src/modules; apps/web/src/features/reports",
+    "test": "D02",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "BR01",
+    "description": "Tên đăng nhập duy nhất",
+    "implementation": "service validators + domain rules + Prisma repositories/migrations + route allowlists",
+    "test": "A15",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "BR02",
+    "description": "Tài khoản khóa không truy cập",
+    "implementation": "service validators + domain rules + Prisma repositories/migrations + route allowlists",
+    "test": "A02",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "BR03",
+    "description": "RBAC backend",
+    "implementation": "service validators + domain rules + Prisma repositories/migrations + route allowlists",
+    "test": "A03",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "BR04",
+    "description": "Mã sản phẩm duy nhất",
+    "implementation": "service validators + domain rules + Prisma repositories/migrations + route allowlists",
+    "test": "A04",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "BR05",
+    "description": "Barcode có giá trị phải duy nhất",
+    "implementation": "service validators + domain rules + Prisma repositories/migrations + route allowlists",
+    "test": "A04",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "BR06",
+    "description": "Giá bán > 0",
+    "implementation": "service validators + domain rules + Prisma repositories/migrations + route allowlists",
+    "test": "A04",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "BR07",
+    "description": "Số lượng nguyên dương",
+    "implementation": "service validators + domain rules + Prisma repositories/migrations + route allowlists",
+    "test": "unit",
+    "result": "VERIFIED (unit)",
+    "limitation": "—"
+  },
+  {
+    "id": "BR08",
+    "description": "Không âm kho",
+    "implementation": "service validators + domain rules + Prisma repositories/migrations + route allowlists",
+    "test": "A08,A14,D01",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "BR09",
+    "description": "Nháp không tăng tồn",
+    "implementation": "service validators + domain rules + Prisma repositories/migrations + route allowlists",
+    "test": "A06",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "BR10",
+    "description": "Xác nhận phiếu tối đa một lần",
+    "implementation": "service validators + domain rules + Prisma repositories/migrations + route allowlists",
+    "test": "A06",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "BR11",
+    "description": "Không bán sản phẩm inactive",
+    "implementation": "service validators + domain rules + Prisma repositories/migrations + route allowlists",
+    "test": "DEV6",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "BR12",
+    "description": "Không bán vượt available",
+    "implementation": "service validators + domain rules + Prisma repositories/migrations + route allowlists",
+    "test": "A08,A09",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "BR13",
+    "description": "Tổng = tổng các dòng",
+    "implementation": "service validators + domain rules + Prisma repositories/migrations + route allowlists",
+    "test": "D01",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "BR14",
+    "description": "Tiền khách đưa đủ",
+    "implementation": "service validators + domain rules + Prisma repositories/migrations + route allowlists",
+    "test": "A10",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "BR15",
+    "description": "Giữ snapshot giá tại thời điểm bán",
+    "implementation": "service validators + domain rules + Prisma repositories/migrations + route allowlists",
+    "test": "A10",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "BR16",
+    "description": "Không xóa cứng hóa đơn hoàn tất",
+    "implementation": "service validators + domain rules + Prisma repositories/migrations + route allowlists",
+    "test": "D02",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "BR17",
+    "description": "Mọi biến động kho có lịch sử",
+    "implementation": "service validators + domain rules + Prisma repositories/migrations + route allowlists",
+    "test": "D01",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "BR18",
+    "description": "Cảnh báo tồn <= ngưỡng",
+    "implementation": "service validators + domain rules + Prisma repositories/migrations + route allowlists",
+    "test": "A05",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "BR19",
+    "description": "Chỉ COMPLETED tính doanh thu",
+    "implementation": "service validators + domain rules + Prisma repositories/migrations + route allowlists",
+    "test": "D01,D02",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "BR20",
+    "description": "Bảo toàn dữ liệu lịch sử",
+    "implementation": "service validators + domain rules + Prisma repositories/migrations + route allowlists",
+    "test": "A10,R02",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "BR21",
+    "description": "Request replay không trùng hóa đơn/trừ kho",
+    "implementation": "service validators + domain rules + Prisma repositories/migrations + route allowlists",
+    "test": "A10,F03,F09,D01",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "NFR01",
+    "description": "P95 CRUD <=500ms với 20 concurrent users",
+    "implementation": "apps; packages; compose.yaml; scripts/verification/final",
+    "test": "P01",
+    "result": "VERIFIED (2 READ endpoints)",
+    "limitation": "Đo 2 READ endpoints đại diện, dataset nhỏ; chưa benchmark toàn bộ writes/SLA production."
+  },
+  {
+    "id": "NFR02",
+    "description": "JWT, bcrypt, RBAC backend",
+    "implementation": "apps; packages; compose.yaml; scripts/verification/final",
+    "test": "A01,A02,A03,A18,unit",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "NFR03",
+    "description": "Dịch vụ triển khai riêng",
+    "implementation": "apps; packages; compose.yaml; scripts/verification/final",
+    "test": "R01",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "NFR04",
+    "description": "Phân lớp, SOLID, DI/repository",
+    "implementation": "apps; packages; compose.yaml; scripts/verification/final",
+    "test": "source review only",
+    "result": "VERIFIED (source review)",
+    "limitation": "Đánh giá source/layers/DI cộng build/lint; SOLID không phải chỉ số runtime định lượng."
+  },
+  {
+    "id": "NFR05",
+    "description": "Không trùng hóa đơn và không âm kho",
+    "implementation": "apps; packages; compose.yaml; scripts/verification/final",
+    "test": "A09,A10,D01",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "NFR06",
+    "description": "Giao dịch hoàn tất nhất quán/phục hồi",
+    "implementation": "apps; packages; compose.yaml; scripts/verification/final",
+    "test": "F01,F02,F05,F09,F10,F11,D01",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "NFR07",
+    "description": "Tìm kiếm/lọc/phân trang",
+    "implementation": "apps; packages; compose.yaml; scripts/verification/final",
+    "test": "A16,U05",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "NFR08",
+    "description": "Kiểm thử độc lập và tích hợp",
+    "implementation": "apps; packages; compose.yaml; scripts/verification/final",
+    "test": "unit,D01",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "NFR09",
+    "description": "Docker Compose và health",
+    "implementation": "apps; packages; compose.yaml; scripts/verification/final",
+    "test": "R01,R02",
+    "result": "VERIFIED",
+    "limitation": "—"
+  },
+  {
+    "id": "NFR10",
+    "description": "Logging và correlation ID",
+    "implementation": "apps; packages; compose.yaml; scripts/verification/final",
+    "test": "A17",
+    "result": "VERIFIED",
+    "limitation": "—"
+  }
+]

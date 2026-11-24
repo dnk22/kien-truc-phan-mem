@@ -6,8 +6,12 @@ export abstract class PaymentCreator {
   abstract create(): PaymentStrategy;
 }
 export class CashPaymentCreator extends PaymentCreator {
-  create(): PaymentStrategy { return new CashPaymentStrategy(); }
+  create(): PaymentStrategy {
+    return new CashPaymentStrategy();
+  }
 }
 export class BankTransferPaymentCreator extends PaymentCreator {
-  create(): PaymentStrategy { return new BankTransferStrategy(); }
+  create(): PaymentStrategy {
+    return new BankTransferStrategy();
+  }
 }

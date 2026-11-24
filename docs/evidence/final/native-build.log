@@ -1,0 +1,116 @@
+
+> minimart-management@0.0.0 build /Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL
+> pnpm -r --sort run build
+
+Scope: 11 of 12 workspace projects
+packages/contracts build$ tsc -p tsconfig.json && tsc -p tsconfig.esm.json && node ../../scripts/esm-marker.mjs
+packages/logger build$ tsc -p tsconfig.json
+packages/logger build: Done
+packages/contracts build: Done
+apps/web build$ tsc --noEmit && vite build
+packages/auth build$ tsc -p tsconfig.json
+packages/config build$ tsc -p tsconfig.json
+packages/auth build: Done
+packages/config build: Done
+apps/web build: vite v7.3.1 building client environment for production...
+apps/web build: transforming...
+apps/web build: ✓ 1676 modules transformed.
+apps/web build: rendering chunks...
+apps/web build: computing gzip size...
+apps/web build: dist/index.html                                 0.40 kB │ gzip:   0.27 kB
+apps/web build: dist/assets/index-DGGgxUw6.css                  3.47 kB │ gzip:   1.26 kB
+apps/web build: dist/assets/format-spYpnhwg.js                  0.18 kB │ gzip:   0.17 kB
+apps/web build: dist/assets/useDebounce-RccvI_8C.js             0.19 kB │ gzip:   0.16 kB
+apps/web build: dist/assets/useInventoryMutation-CeY_JuMx.js    0.25 kB │ gzip:   0.23 kB
+apps/web build: dist/assets/NotFoundPage-BCp7Qu0-.js            0.28 kB │ gzip:   0.24 kB
+apps/web build: dist/assets/PageHeader-CUdukitT.js              0.29 kB │ gzip:   0.22 kB
+apps/web build: dist/assets/SearchInput-CYEIEe0z.js             0.30 kB │ gzip:   0.24 kB
+apps/web build: dist/assets/UnauthorizedPage-D3WK_d_V.js        0.37 kB │ gzip:   0.30 kB
+apps/web build: dist/assets/ErrorState-COWo5v-1.js              0.37 kB │ gzip:   0.30 kB
+apps/web build: dist/assets/DashboardPage-BCc1XgnZ.js           0.45 kB │ gzip:   0.28 kB
+apps/web build: dist/assets/DataTable-DYZ9mSuC.js               0.45 kB │ gzip:   0.32 kB
+apps/web build: dist/assets/CatalogActions-CjB5Z7OX.js          0.56 kB │ gzip:   0.34 kB
+apps/web build: dist/assets/UnavailablePage-B40zbwei.js         0.60 kB │ gzip:   0.43 kB
+apps/web build: dist/assets/DocumentStatusTag-BVQkm4bj.js       0.61 kB │ gzip:   0.38 kB
+apps/web build: dist/assets/InventoryTable-hjJHBLov.js          0.73 kB │ gzip:   0.46 kB
+apps/web build: dist/assets/inventory.api-Csb259i7.js           0.92 kB │ gzip:   0.38 kB
+apps/web build: dist/assets/SaleStatusTag-BiqDt85U.js           1.02 kB │ gzip:   0.57 kB
+apps/web build: dist/assets/InvoiceDetailPage-DDZQ251U.js       1.21 kB │ gzip:   0.72 kB
+apps/web build: dist/assets/FoundationPage-fa9e8xwj.js          1.25 kB │ gzip:   0.77 kB
+apps/web build: dist/assets/MovementsPage-1ixpvJgD.js           1.51 kB │ gzip:   0.90 kB
+apps/web build: dist/assets/InventoryPage-Bpodt49i.js           1.63 kB │ gzip:   0.88 kB
+apps/web build: dist/assets/InvoiceSummary-Bm53-jSs.js          1.75 kB │ gzip:   0.96 kB
+apps/web build: dist/assets/LoginPage-7FAw2HDT.js               1.80 kB │ gzip:   0.92 kB
+apps/web build: dist/assets/InvoicesPage-DeTnjl2G.js            1.95 kB │ gzip:   1.04 kB
+apps/web build: dist/assets/CatalogToolbar-CLcrU6Vx.js          2.15 kB │ gzip:   1.05 kB
+apps/web build: dist/assets/CategoriesPage-BcaQ_61x.js          2.83 kB │ gzip:   1.38 kB
+apps/web build: dist/assets/ProfilePage-DcsTXLh3.js             2.84 kB │ gzip:   1.27 kB
+apps/web build: dist/assets/SuppliersPage-Ci-btIA5.js           3.16 kB │ gzip:   1.49 kB
+apps/web build: dist/assets/AdjustmentsPage-DAw5s64n.js         4.30 kB │ gzip:   2.12 kB
+apps/web build: dist/assets/ProductsPage-NryWqxxW.js            5.28 kB │ gzip:   2.27 kB
+apps/web build: dist/assets/row-DemFOns5.js                     5.42 kB │ gzip:   2.21 kB
+apps/web build: dist/assets/index-vByyKZ4E.js                   5.91 kB │ gzip:   2.57 kB
+apps/web build: dist/assets/ReceiptsPage-BY-Hqf53.js            6.17 kB │ gzip:   2.74 kB
+apps/web build: dist/assets/index-CiQG9E76.js                   6.34 kB │ gzip:   2.66 kB
+apps/web build: dist/assets/UsersPage-DRwqCv4u.js               7.41 kB │ gzip:   3.14 kB
+apps/web build: dist/assets/index-B0uVWCOd.js                   9.55 kB │ gzip:   2.97 kB
+apps/web build: dist/assets/ReportsPage-C-zjBXCO.js            10.11 kB │ gzip:   4.10 kB
+apps/web build: dist/assets/index-DGl8rnKT.js                  11.38 kB │ gzip:   4.63 kB
+apps/web build: dist/assets/Input-_-1Fy7Gs.js                  12.64 kB │ gzip:   5.25 kB
+apps/web build: dist/assets/StatusBadge-Cf3y_wxW.js            12.97 kB │ gzip:   4.41 kB
+apps/web build: dist/assets/PosPage-SR-utC9u.js                19.68 kB │ gzip:   7.40 kB
+apps/web build: dist/assets/index-CwTrgAkB.js                  24.35 kB │ gzip:   8.73 kB
+apps/web build: dist/assets/index-kApmFe8A.js                  24.47 kB │ gzip:   8.38 kB
+apps/web build: dist/assets/ConfirmDialog-5wrBwdCc.js          28.36 kB │ gzip:   9.56 kB
+apps/web build: dist/assets/index-C5FotLMP.js                  33.79 kB │ gzip:  10.26 kB
+apps/web build: dist/assets/index-BLFQeslL.js                  46.99 kB │ gzip:  14.52 kB
+apps/web build: dist/assets/Table-DEpwlsvp.js                 267.90 kB │ gzip:  84.43 kB
+apps/web build: dist/assets/index-ontnreqU.js                 781.09 kB │ gzip: 252.51 kB
+apps/web build: ✓ built in 3.24s
+apps/web build: (!) Some chunks are larger than 500 kB after minification. Consider:
+apps/web build: - Using dynamic import() to code-split the application
+apps/web build: - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+apps/web build: - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+apps/web build: Done
+apps/inventory-service build$ pnpm db:generate && tsc -p tsconfig.json && node ../../scripts/copy-client.mjs
+apps/identity-service build$ pnpm db:generate && tsc -p tsconfig.json && node ../../scripts/copy-client.mjs
+apps/api-gateway build$ tsc -p tsconfig.json
+apps/product-service build$ pnpm db:generate && tsc -p tsconfig.json && node ../../scripts/copy-client.mjs
+apps/product-service build: > @minimart/product-service@0.0.0 db:generate /Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/apps/product-service
+apps/product-service build: > prisma generate
+apps/identity-service build: > @minimart/identity-service@0.0.0 db:generate /Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/apps/identity-service
+apps/identity-service build: > prisma generate
+apps/inventory-service build: > @minimart/inventory-service@0.0.0 db:generate /Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/apps/inventory-service
+apps/inventory-service build: > prisma generate
+apps/api-gateway build: Done
+apps/report-service build$ pnpm db:generate && tsc -p tsconfig.json && node ../../scripts/copy-client.mjs
+apps/inventory-service build: Prisma schema loaded from prisma/schema.prisma
+apps/identity-service build: Prisma schema loaded from prisma/schema.prisma
+apps/product-service build: Prisma schema loaded from prisma/schema.prisma
+apps/report-service build: > @minimart/report-service@0.0.0 db:generate /Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/apps/report-service
+apps/report-service build: > prisma generate
+apps/identity-service build: ✔ Generated Prisma Client (v6.19.3) to ./src/generated/client in 118ms
+apps/identity-service build: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+apps/identity-service build: Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+apps/inventory-service build: ✔ Generated Prisma Client (v6.19.3) to ./src/generated/client in 118ms
+apps/inventory-service build: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+apps/inventory-service build: Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+apps/product-service build: ✔ Generated Prisma Client (v6.19.3) to ./src/generated/client in 119ms
+apps/product-service build: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+apps/product-service build: Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+apps/report-service build: Prisma schema loaded from prisma/schema.prisma
+apps/report-service build: ✔ Generated Prisma Client (v6.19.3) to ./src/generated/client in 134ms
+apps/report-service build: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+apps/report-service build: Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
+apps/product-service build: Done
+apps/sales-service build$ pnpm db:generate && tsc -p tsconfig.json && node ../../scripts/copy-client.mjs
+apps/identity-service build: Done
+apps/inventory-service build: Done
+apps/sales-service build: > @minimart/sales-service@0.0.0 db:generate /Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/apps/sales-service
+apps/sales-service build: > prisma generate
+apps/report-service build: Done
+apps/sales-service build: Prisma schema loaded from prisma/schema.prisma
+apps/sales-service build: ✔ Generated Prisma Client (v6.19.3) to ./src/generated/client in 59ms
+apps/sales-service build: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+apps/sales-service build: Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
+apps/sales-service build: Done

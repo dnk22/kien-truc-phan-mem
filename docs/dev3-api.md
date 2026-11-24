@@ -14,16 +14,16 @@ All public endpoints use the existing envelope and live JWT session verification
 
 Require x-service-credential. Not exposed through Gateway.
 
-| Method | Path |
-| --- | --- |
-| POST | /internal/v1/stock/reservations |
-| GET | /internal/v1/stock/reservations/:id |
-| GET | /internal/v1/stock/reservations/by-invoice/:invoiceId |
-| POST | /internal/v1/stock/reservations/:id/commit |
-| POST | /internal/v1/stock/reservations/:id/release |
-| GET | /internal/v1/stock/summary |
+| Method | Path                                                  |
+| ------ | ----------------------------------------------------- |
+| POST   | /internal/v1/stock/reservations                       |
+| GET    | /internal/v1/stock/reservations/:id                   |
+| GET    | /internal/v1/stock/reservations/by-invoice/:invoiceId |
+| POST   | /internal/v1/stock/reservations/:id/commit            |
+| POST   | /internal/v1/stock/reservations/:id/release           |
+| GET    | /internal/v1/stock/summary                            |
 
-Reserve body: { "invoiceId": "UUID", "items": [{ "productId": "UUID", "quantity": 1 }] }. Reject duplicate products; 1–100 items. Same invoice and same items returns existing reservation and current state, including terminal states. Different payload returns 409. Sales must inspect state before proceeding. Commit/release are idempotent for the same terminal state; opposite transition returns 409. No automatic expiration. Stock summary counts initialized stock rows; individual lookup of a missing row returns zero. No cross-database access.
+Reserve body: { "invoiceId": "UUID", "items": [{ "productId": "UUID", "quantity": 1 }] }. Reject duplicate products; 1–100 items. Same invoice and same items returns existing reservation and current state, including terminal states. Different payload returns 409. Sales must inspect state before proceeding. Commit/release are idempotent for the same terminal state; opposite transition returns 409. No automatic expiration. Stock list/summary merges all catalog products via Product internal REST, including never-received products with zero quantities and current product metadata. Commit body optionally carries actorId UUID for SALE history. No cross-database access.
 
 ## Concurrency design
 
@@ -31,4 +31,4 @@ All inventory writes take one transaction-scoped PostgreSQL advisory lock (singl
 
 ## Remaining verification
 
-Runtime not executed. Verify advisory lock behavior, real DB concurrency, exact schema/migration parity, JWT and role enforcement, all frontend flows, and zero-stock list/summary semantics. Catalog products never received are not materialized in the stock list; individual lookup returns zero. Demo seed creates suppliers only; establish stock via confirmed receipts.
+Current actual results in final-review-progress.md and acceptance.json (R02, A05–A14, D01). Products never received appear as zero without materializing a DB row; adjustment creation can initialize zero row transactionally. Demo seed creates suppliers only; establish stock via confirmed receipts.

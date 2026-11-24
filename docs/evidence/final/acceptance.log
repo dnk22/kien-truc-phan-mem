@@ -1,0 +1,49 @@
+PASS R01 nine healthy containers; only Web/Gateway host ports; internal health endpoints
+PASS R02 five migrations replay and Prisma schema diff; seed preserves edits and identities
+PASS R03 durable broker topology and Gateway OpenAPI public schemas
+PASS A01 wrong password and login for four roles
+PASS A02 locked account and revoked sessions rejected by business services
+PASS A03 backend role matrix and internal API isolation
+PASS A04 product/category unique constraints, nullable barcode and category state
+PASS A05 zero-stock catalog is included in stock listing and low-stock report
+PASS A06 receipt draft/cancel/replay and role restrictions
+PASS A07 suppliers active-only lookup, history and receipt draft update
+PASS A08 insufficient stock and multi-product reservation rollback
+PASS A09 concurrent purchase of last unit, idempotent release and transition rules
+PASS A10 prepare/confirm replay, payload conflict, cash change and price snapshot
+PASS A11 invoice ownership across two cashiers
+PASS A12 confirm/cancel race cannot leave paid stock released
+PASS A13 stale stock adjustment and counted below reservation are rejected
+PASS A14 database constraints and five database credential isolation
+PASS A15 Identity regression: CRUD/roles/password, refresh rotation/replay, logout, unique username
+PASS A16 Supplier edit/search and catalog inactive product cannot sell
+PASS A17 Correlation and structured logging propagate through Gateway and business calls
+PASS F01 Report down does not block checkout and backlog catches up
+PASS F02 broker outage preserves pending outbox and publisher reconnects
+PASS F03 duplicate event/invoice remain idempotent through real RabbitMQ
+PASS F04 poison event is dead-lettered without creating report facts
+Operation failed: QueueDeclare; 404 (NOT-FOUND) with message "NOT_FOUND - no queue 'minimart.report.sale-completed.v1.retry' in vhost 'minimart'"
+Operation failed: QueueDeclare; 404 (NOT-FOUND) with message "NOT_FOUND - no queue 'minimart.report.sale-completed.v1.retry' in vhost 'minimart'"
+Operation failed: QueueDeclare; 404 (NOT-FOUND) with message "NOT_FOUND - no queue 'minimart.report.sale-completed.v1.retry' in vhost 'minimart'"
+Operation failed: QueueDeclare; 404 (NOT-FOUND) with message "NOT_FOUND - no queue 'minimart.report.sale-completed.v1.retry' in vhost 'minimart'"
+Operation failed: QueueDeclare; 404 (NOT-FOUND) with message "NOT_FOUND - no queue 'minimart.report.sale-completed.v1.retry' in vhost 'minimart'"
+Operation failed: QueueDeclare; 404 (NOT-FOUND) with message "NOT_FOUND - no queue 'minimart.report.sale-completed.v1.retry' in vhost 'minimart'"
+Operation failed: QueueDeclare; 404 (NOT-FOUND) with message "NOT_FOUND - no queue 'minimart.report.sale-completed.v1.retry' in vhost 'minimart'"
+PASS F05 transient DB failure retries; missing retry queue cannot lose a sale
+PASS F06 retry budget sends failed delivery to DLQ, retained original later projects
+PASS F07 timeout before-reserve reconciles reservation safely
+PASS F08 timeout after-reserve reconciles reservation safely
+PASS F09 Sales restart after remote commit completes once after reconciliation
+PASS F10 failed local completion after remote commit preserves payment and recovers
+PASS F11 exhausted recovery retains payment/reservation; same-key operator retry is safe
+PASS F12 GMT+7 day boundaries reflect real checkout source transactions
+PASS U01 Manager creates category, product, supplier through production UI
+PASS U02 Warehouse drafts receipt; Manager confirms; real inventory increases
+PASS U03 Cashier cart, READY refresh, cash/change, invoice print and stock decrease
+PASS U04 Manual bank transfer, interrupted prepare reuses original key and cancels safely
+PASS U05 Dashboard/report, role guards, empty/error/retry, mobile and session refresh
+PASS U06 Admin user create/edit/lock/unlock/role via UI
+PASS U07 Logout and second cashier cannot reuse previous actor cart/checkout
+PASS D01 SQL invariants: stock, payments, reservations, invoice totals and projection
+PASS P01 representative protected CRUD reads, 20 concurrent clients, p95 <= 500ms
+FINAL acceptance completed: 41 executed cases.

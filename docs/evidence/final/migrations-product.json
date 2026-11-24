@@ -1,0 +1,14 @@
+[
+  {
+    "migration_name": "20261124000000_foundation",
+    "finished_at": "2026-11-24T15:08:38.102747+00:00",
+    "rolled_back_at": null,
+    "applied_steps_count": 1
+  },
+  {
+    "migration_name": "20261124020000_catalog",
+    "finished_at": "2026-11-24T15:08:38.108428+00:00",
+    "rolled_back_at": null,
+    "applied_steps_count": 1
+  }
+]

@@ -1,3 +1,25 @@
+# Kiểm thử FINAL — 24/11/2026 GMT+7
+
+Nghiệm thu local: 9 container healthy, DEV-6 exit0, 44 unique acceptance cases PASS; không còn P0/P1 quan sát trong luồng demo. Trạng thái hiện hành: [final-review-progress](final-review-progress.md). Full quality gate hiện PASS (exit 0 cho cả 8 lệnh) theo [quality-gates.json](evidence/final/quality-gates.json) và [log](evidence/final/quality-gates.log). Jest: **24 suites / 65 tests**, không skipped; web test là typecheck, không tính là browser E2E.
+
+| Nhóm                                                           | Bằng chứng hiện hành                          | Quy tắc ghi nhận                                                                            |
+| -------------------------------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Install/generate/format/build/lint/typecheck/test/format check | evidence/final/quality-gates.log              | exact exit codes                                                                            |
+| Compose/image startup/migration/seed                           | compose-ps.json, migration-seed.json khi chạy | 9 container health riêng; migration từ volume rỗng và replay/schema diff                    |
+| DEV-6 integration/outages                                      | evidence/final/dev6.log                       | PASS chỉ khi script exit 0, không đếm dòng fixture thành test độc lập                       |
+| FINAL API/SQL/fault/browser                                    | evidence/final/acceptance.json                | case ID + actual outcome; source chưa chạy không phải PASS                                  |
+| Data consistency                                               | evidence/final/data-invariants.json           | kiểm tra SQL và API sau projection catch-up                                                 |
+| Browser                                                        | screenshots/PDF evidence/final                | production Nginx build, Chrome headless, API/DB thật                                        |
+| Performance                                                    | evidence/final/performance.json               | hai protected CRUD read endpoints, 20 concurrent, 400 requests/endpoint; target p95 <=500ms |
+
+Commands và setup: [release runbook](release.md), [DEV-6/FINAL harness](dev6-verification.md). Không dùng benchmark nhỏ thành SLA production. Single machine, no HA/multi-replica leases; HTTPS production, physical printer, backup/restore và multi-tab refresh vẫn chưa nghiệm thu.
+
+Lần build Docker đầu gặp auth/network và quyền filesystem NFC/NFD của Bake; build tuần tự đã compile đủ 7 application images. Docker Desktop sau đó treo ở container start; kết quả phục hồi/startup phải đọc ở progress, không suy diễn image build PASS thành runtime PASS.
+
+## Lịch sử DEV-0–7 (không phải trạng thái nghiệm thu hiện hành)
+
+Các mục bên dưới là snapshot trước FINAL; dòng “pending/blocked” được giữ làm lịch sử. Kết quả hiện hành ở phần trên và manifest FINAL.
+
 # Kiểm thử DEV-1 — 24/11/2026 GMT+7
 
 Lệnh chuẩn: install frozen lockfile → build → lint → typecheck → test → format:check. Chi tiết DEV-0 lịch sử ở [testing-dev0.md](testing-dev0.md); script foundation đã được cập nhật JWT env và URL `/foundation` để chạy lại trên DEV-1.
@@ -63,28 +85,23 @@ Live revocation được kiểm tra tại Identity, không tuyên bố Gateway t
 
 Docker/RabbitMQ/Nginx runtime và HTTPS deployment chưa chạy. Vite còn chunk >500 kB dù route-level lazy loading; chưa tối ưu sâu bundle hoặc audit toàn bộ transitive dependencies. P95 CRUD 20 concurrent chưa đo; request duration logs không được coi là benchmark.
 
-
 ## DEV-2 – verification pending
 
 Added catalog validation and batch lookup unit tests. Build, lint, typecheck, formatting, Jest, migration/seed, PostgreSQL concurrency, Gateway/Identity integration, browser E2E and Docker runtime: **NOT RUN** for DEV-2. Prior DEV-1 evidence is historical, not evidence for this branch.
 
 Local review: run root quality gate, check 30 demo products, category activation/deactivation races, unique code/barcode constraints, all role permissions, internal credential rejection, session revocation, UI CRUD/filter/pagination and DEV-1 regressions. Run migration and seed against disposable product_db, not production data.
 
-
 ## DEV-3 verification pending
 
 Added stock rule, input validation and receipt snapshot test sources. No build/lint/format/typecheck/Jest/DB/browser/Docker commands executed for this branch. Required local tests: repeat confirm, cancelled receipt rejection, atomic failure across multiple products, concurrent last-stock reservations, same invoice payload retry/conflict, repeat commit/release and opposite transition rejection, stale adjustment and reserved floor, supplier/receipt RBAC, internal credential and gateway route isolation. Test with real PostgreSQL; no runtime PASS claimed.
-
 
 ## DEV-4 verification pending
 
 Added Builder, Factory Method, Strategy, Facade and saga reconciliation unit test sources. Build/lint/format/typecheck/Jest/PostgreSQL/browser/Docker NOT RUN. Required tests: prepare same key replay and payload conflict, competing checkout for last item, invalid price/qty/payment, confirm/cancel race, timeout after remote commit, restart recovery, duplicate payment/outbox prevention, invoice owner isolation, price snapshot, print and POS retry. Verify 20-attempt exhaustion and manual reconciliation procedure. No runtime PASS claimed.
 
-
 ## DEV-5 verification pending
 
 Added event validation, Vietnam report period and outbox worker test sources. NOT RUN: install, build, lint, format, typecheck, Jest, PostgreSQL, RabbitMQ, browser, Docker. Lockfile must be regenerated before frozen install. Acceptance: broker down checkout succeeds and outbox remains pending; broker up publisher resumes; Report down durable backlog; restart and consume; duplicate event/invoice no double-count; invalid payload DLQ; transient retry; GMT+7 date boundary; report RBAC; stock summary failure isolated from revenue. Verify topology and broker confirm behavior with real RabbitMQ. No runtime PASS claimed.
-
 
 ## DEV-6
 

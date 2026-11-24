@@ -1,0 +1,32 @@
+{
+  "full": {
+    "command": "VERIFY_DISPOSABLE=true VERIFY_FAULTS=true pnpm verify:final (project/env/web overrides)",
+    "exitCode": 0,
+    "cases": 41
+  },
+  "browserFinal": {
+    "command": "VERIFY_DISPOSABLE=true VERIFY_STAGE=browser pnpm verify:final (project/env/web overrides)",
+    "cases": 8,
+    "result": "PASS",
+    "exitCode": 0
+  },
+  "postData": {
+    "command": "data-checks.log: consistency + reporting; latest Web image",
+    "cases": [
+      "D01",
+      "D02"
+    ],
+    "result": "PASS",
+    "exitCode": 0
+  },
+  "aggregation": "Keep latest executed result per case ID; repeated runs not double-counted.",
+  "boundarySupplement": {
+    "command": "boundaries.log: direct service guards plus CORS/CSRF",
+    "exitCode": 0,
+    "cases": [
+      "A18"
+    ],
+    "result": "PASS"
+  },
+  "uniqueLatestCases": 44
+}

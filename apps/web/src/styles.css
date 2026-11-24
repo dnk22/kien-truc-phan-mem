@@ -241,7 +241,36 @@ body {
 }
 
 @media print {
-  body * { visibility: hidden; }
-  .invoice-print-area, .invoice-print-area * { visibility: visible; }
-  .invoice-print-area { position: absolute; left: 0; top: 0; width: 100%; }
+  body * {
+    visibility: hidden;
+  }
+  .invoice-print-area,
+  .invoice-print-area * {
+    visibility: visible;
+  }
+  .invoice-print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+
+.pos-picker .ant-card-head-wrapper {
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-block: 10px;
+}
+.pos-picker .ant-card-extra {
+  max-width: 100%;
+  margin-inline-start: 0;
+}
+
+@media (max-width: 767px) {
+  .pos-picker .ant-card-head-title {
+    flex: 0 0 100%;
+  }
+  .pos-picker .ant-card-extra {
+    width: 100%;
+  }
 }

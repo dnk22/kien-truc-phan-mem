@@ -1,3 +1,7 @@
+# Architecture: historical baseline and current index
+
+Current FINAL implementation: [architecture-current.md](architecture-current.md). Sections below preserve DEV-0/1 design history; statements such as “not implemented” apply to that historical milestone. Current app/database ownership, Saga/Outbox/report and zero-stock semantics are documented in the current file and API index.
+
 # Kiến trúc DEV-1 và baseline DEV-0
 
 Hiện đã triển khai Identity/Gateway/Application Shell. Phần cuối tài liệu mô tả DEV-1 thực tế; các phần DEV-0 bên dưới giữ để đối chiếu baseline.

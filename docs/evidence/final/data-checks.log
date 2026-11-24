@@ -1,0 +1,3 @@
+PASS D01 SQL invariants: stock, payments, reservations, invoice totals and projection
+PASS D02 SQL reconciles report quantities/top/payment/low-stock; completed invoice cannot be deleted
+Latest-case acceptance: 43 unique cases; 43 PASS.

@@ -7,10 +7,13 @@ import {
   HttpErrorFilter,
 } from '@minimart/config';
 import { AppModule } from './app.module';
+import { PrismaService } from './infrastructure/database/prisma.service';
 describe('foundation HTTP contract', () => {
   it('returns liveness, readiness errors and correlation ID', async () => {
     const probe = { check: jest.fn().mockResolvedValue(undefined) };
     const module = await Test.createTestingModule({ imports: [AppModule] })
+      .overrideProvider(PrismaService)
+      .useValue({})
       .overrideProvider(HEALTH_PROBE)
       .useValue(probe)
       .compile();

@@ -1,0 +1,266 @@
+[
+  {
+    "id": "R01",
+    "label": "nine healthy containers; only Web/Gateway host ports; internal health endpoints",
+    "result": "PASS",
+    "durationMs": 1155
+  },
+  {
+    "id": "R02",
+    "label": "five migrations replay and Prisma schema diff; seed preserves edits and identities",
+    "result": "PASS",
+    "durationMs": 20529
+  },
+  {
+    "id": "R03",
+    "label": "durable broker topology and Gateway OpenAPI public schemas",
+    "result": "PASS",
+    "durationMs": 483
+  },
+  {
+    "id": "A01",
+    "label": "wrong password and login for four roles",
+    "result": "PASS",
+    "durationMs": 240
+  },
+  {
+    "id": "A02",
+    "label": "locked account and revoked sessions rejected by business services",
+    "result": "PASS",
+    "durationMs": 758
+  },
+  {
+    "id": "A03",
+    "label": "backend role matrix and internal API isolation",
+    "result": "PASS",
+    "durationMs": 148
+  },
+  {
+    "id": "A04",
+    "label": "product/category unique constraints, nullable barcode and category state",
+    "result": "PASS",
+    "durationMs": 49
+  },
+  {
+    "id": "A05",
+    "label": "zero-stock catalog is included in stock listing and low-stock report",
+    "result": "PASS",
+    "durationMs": 47
+  },
+  {
+    "id": "A06",
+    "label": "receipt draft/cancel/replay and role restrictions",
+    "result": "PASS",
+    "durationMs": 182
+  },
+  {
+    "id": "A07",
+    "label": "suppliers active-only lookup, history and receipt draft update",
+    "result": "PASS",
+    "durationMs": 74
+  },
+  {
+    "id": "A08",
+    "label": "insufficient stock and multi-product reservation rollback",
+    "result": "PASS",
+    "durationMs": 156
+  },
+  {
+    "id": "A09",
+    "label": "concurrent purchase of last unit, idempotent release and transition rules",
+    "result": "PASS",
+    "durationMs": 517
+  },
+  {
+    "id": "A10",
+    "label": "prepare/confirm replay, payload conflict, cash change and price snapshot",
+    "result": "PASS",
+    "durationMs": 632
+  },
+  {
+    "id": "A11",
+    "label": "invoice ownership across two cashiers",
+    "result": "PASS",
+    "durationMs": 486
+  },
+  {
+    "id": "A12",
+    "label": "confirm/cancel race cannot leave paid stock released",
+    "result": "PASS",
+    "durationMs": 167
+  },
+  {
+    "id": "A13",
+    "label": "stale stock adjustment and counted below reservation are rejected",
+    "result": "PASS",
+    "durationMs": 130
+  },
+  {
+    "id": "A14",
+    "label": "database constraints and five database credential isolation",
+    "result": "PASS",
+    "durationMs": 2127
+  },
+  {
+    "id": "A15",
+    "label": "Identity regression: CRUD/roles/password, refresh rotation/replay, logout, unique username",
+    "result": "PASS",
+    "durationMs": 2307
+  },
+  {
+    "id": "A16",
+    "label": "Supplier edit/search and catalog inactive product cannot sell",
+    "result": "PASS",
+    "durationMs": 81
+  },
+  {
+    "id": "A17",
+    "label": "Correlation and structured logging propagate through Gateway and business calls",
+    "result": "PASS",
+    "durationMs": 311
+  },
+  {
+    "id": "F01",
+    "label": "Report down does not block checkout and backlog catches up",
+    "result": "PASS",
+    "durationMs": 6524
+  },
+  {
+    "id": "F02",
+    "label": "broker outage preserves pending outbox and publisher reconnects",
+    "result": "PASS",
+    "durationMs": 5665
+  },
+  {
+    "id": "F03",
+    "label": "duplicate event/invoice remain idempotent through real RabbitMQ",
+    "result": "PASS",
+    "durationMs": 1723
+  },
+  {
+    "id": "F04",
+    "label": "poison event is dead-lettered without creating report facts",
+    "result": "PASS",
+    "durationMs": 708
+  },
+  {
+    "id": "F05",
+    "label": "transient DB failure retries; missing retry queue cannot lose a sale",
+    "result": "PASS",
+    "durationMs": 24572
+  },
+  {
+    "id": "F06",
+    "label": "retry budget sends failed delivery to DLQ, retained original later projects",
+    "result": "PASS",
+    "durationMs": 18373
+  },
+  {
+    "id": "F07",
+    "label": "timeout before-reserve reconciles reservation safely",
+    "result": "PASS",
+    "durationMs": 9788
+  },
+  {
+    "id": "F08",
+    "label": "timeout after-reserve reconciles reservation safely",
+    "result": "PASS",
+    "durationMs": 10241
+  },
+  {
+    "id": "F09",
+    "label": "Sales restart after remote commit completes once after reconciliation",
+    "result": "PASS",
+    "durationMs": 8492
+  },
+  {
+    "id": "F10",
+    "label": "failed local completion after remote commit preserves payment and recovers",
+    "result": "PASS",
+    "durationMs": 4874
+  },
+  {
+    "id": "F11",
+    "label": "exhausted recovery retains payment/reservation; same-key operator retry is safe",
+    "result": "PASS",
+    "durationMs": 5123
+  },
+  {
+    "id": "F12",
+    "label": "GMT+7 day boundaries reflect real checkout source transactions",
+    "result": "PASS",
+    "durationMs": 9799
+  },
+  {
+    "id": "P01",
+    "label": "representative protected CRUD reads, 20 concurrent clients, p95 <= 500ms",
+    "result": "PASS",
+    "durationMs": 0
+  },
+  {
+    "id": "U01",
+    "label": "Manager creates category, product, supplier through production UI",
+    "result": "PASS",
+    "durationMs": 5151
+  },
+  {
+    "id": "U02",
+    "label": "Warehouse drafts receipt; Manager confirms; real inventory increases",
+    "result": "PASS",
+    "durationMs": 3706
+  },
+  {
+    "id": "U03",
+    "label": "Cashier cart, READY refresh, cash/change, invoice print and stock decrease",
+    "result": "PASS",
+    "durationMs": 3986
+  },
+  {
+    "id": "U04",
+    "label": "Manual bank transfer, interrupted prepare reuses original key and cancels safely",
+    "result": "PASS",
+    "durationMs": 3284
+  },
+  {
+    "id": "U05",
+    "label": "Dashboard/report, role guards, empty/error/retry, mobile and session refresh",
+    "result": "PASS",
+    "durationMs": 10007
+  },
+  {
+    "id": "U06",
+    "label": "Admin user create/edit/lock/unlock/role via UI",
+    "result": "PASS",
+    "durationMs": 4880
+  },
+  {
+    "id": "U07",
+    "label": "Logout and second cashier cannot reuse previous actor cart/checkout",
+    "result": "PASS",
+    "durationMs": 3097
+  },
+  {
+    "id": "U08",
+    "label": "Interrupted payment preserves confirm key across refresh and retries once",
+    "result": "PASS",
+    "durationMs": 2138
+  },
+  {
+    "id": "D01",
+    "label": "SQL invariants: stock, payments, reservations, invoice totals and projection",
+    "result": "PASS",
+    "durationMs": 984
+  },
+  {
+    "id": "D02",
+    "label": "SQL reconciles report quantities/top/payment/low-stock; completed invoice cannot be deleted",
+    "result": "PASS",
+    "durationMs": 699
+  },
+  {
+    "id": "A18",
+    "label": "Direct service JWT/RBAC plus CORS custom headers and CSRF rejection",
+    "result": "PASS",
+    "durationMs": 230
+  }
+]

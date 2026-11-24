@@ -1,0 +1,115 @@
+PASS R01 nine healthy containers; only Web/Gateway host ports; internal health endpoints
+PASS R02 five migrations replay and Prisma schema diff; seed preserves edits and identities
+PASS R03 durable broker topology and Gateway OpenAPI public schemas
+PASS A01 wrong password and login for four roles
+PASS A02 locked account and revoked sessions rejected by business services
+PASS A03 backend role matrix and internal API isolation
+PASS A04 product/category unique constraints, nullable barcode and category state
+PASS A05 zero-stock catalog is included in stock listing and low-stock report
+PASS A06 receipt draft/cancel/replay and role restrictions
+PASS A07 suppliers active-only lookup, history and receipt draft update
+PASS A08 insufficient stock and multi-product reservation rollback
+PASS A09 concurrent purchase of last unit, idempotent release and transition rules
+PASS A10 prepare/confirm replay, payload conflict, cash change and price snapshot
+PASS A11 invoice ownership across two cashiers
+PASS A12 confirm/cancel race cannot leave paid stock released
+PASS A13 stale stock adjustment and counted below reservation are rejected
+PASS A14 database constraints and five database credential isolation
+PASS A15 Identity regression: CRUD/roles/password, refresh rotation/replay, logout, unique username
+PASS A16 Supplier edit/search and catalog inactive product cannot sell
+PASS F01 Report down does not block checkout and backlog catches up
+PASS F02 broker outage preserves pending outbox and publisher reconnects
+PASS F03 duplicate event/invoice remain idempotent through real RabbitMQ
+PASS F04 poison event is dead-lettered without creating report facts
+Operation failed: QueueDeclare; 404 (NOT-FOUND) with message "NOT_FOUND - no queue 'minimart.report.sale-completed.v1.retry' in vhost 'minimart'"
+Operation failed: QueueDeclare; 404 (NOT-FOUND) with message "NOT_FOUND - no queue 'minimart.report.sale-completed.v1.retry' in vhost 'minimart'"
+Operation failed: QueueDeclare; 404 (NOT-FOUND) with message "NOT_FOUND - no queue 'minimart.report.sale-completed.v1.retry' in vhost 'minimart'"
+Operation failed: QueueDeclare; 404 (NOT-FOUND) with message "NOT_FOUND - no queue 'minimart.report.sale-completed.v1.retry' in vhost 'minimart'"
+Operation failed: QueueDeclare; 404 (NOT-FOUND) with message "NOT_FOUND - no queue 'minimart.report.sale-completed.v1.retry' in vhost 'minimart'"
+Operation failed: QueueDeclare; 404 (NOT-FOUND) with message "NOT_FOUND - no queue 'minimart.report.sale-completed.v1.retry' in vhost 'minimart'"
+Operation failed: QueueDeclare; 404 (NOT-FOUND) with message "NOT_FOUND - no queue 'minimart.report.sale-completed.v1.retry' in vhost 'minimart'"
+PASS F05 transient DB failure retries; missing retry queue cannot lose a sale
+PASS F06 retry budget sends failed delivery to DLQ, retained original later projects
+PASS F07 timeout before-reserve reconciles reservation safely
+PASS F08 timeout after-reserve reconciles reservation safely
+PASS F09 Sales restart after remote commit completes once after reconciliation
+PASS F10 failed local completion after remote commit preserves payment and recovers
+PASS F11 exhausted recovery retains payment/reservation; same-key operator retry is safe
+PASS F12 GMT+7 day boundaries reflect real checkout source transactions
+PASS U01 Manager creates category, product, supplier through production UI
+FAIL U02 Warehouse drafts receipt; Manager confirms; real inventory increases: locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('.ant-select-dropdown:visible .ant-select-item-option-content').filter({ hasText: 'UI Product 84b84f0d' }).first()[22m
+
+M
+MiniMart
+QUẢN LÝ CỬA HÀNG
+Tra cứu sản phẩm
+Nhập hàng
+Tồn kho
+Lịch sử biến động
+Kiểm kê
+Thông tin cá nhân
+☰
+MiniMart
+/
+MiniMart
+N
+Nhân viên kho
+Nhân viên kho
+⌄
+Phiếu nhập hàng
++ Lập phiếu
+Trạng thái
+Mã phiếu	Nhà cung cấp	Ngày lập	Tổng tiền	Trạng thái	Thao tác
+
+Mã phiếu
+	
+Nhà cung cấp
+	
+Ngày lập
+	
+Tổng tiền
+	
+Trạng thái
+	
+Thao tác
+
+7b1cc8ce	Edited supplier 84b84f0d	22:09:42 24/11/2026	600 ₫	Đã hủy	
+Chi tiết
+
+0bdab3b0	Edited supplier 84b84f0d	22:09:42 24/11/2026	755.000 ₫	Đã xác nhận	
+Chi tiết
+
+5a006e6d	Edited supplier 84b84f0d	22:09:42 24/11/2026	400 ₫	Đã hủy	
+Chi tiết
+
+a13740b5	Verification supplier 00429743	22:08:55 24/11/2026	40.000 ₫	Đã xác nhận	
+Chi tiết
+1
+10 / trang
+MiniMart Management · Nhóm 06 PTIT
+Lập phiếu nhập
+Nhà cung cấp
+UI Supplier 84b84f0d
+Sản phẩm
+Xóa
++ Thêm dòng
+Hủy
+Lưu nháp
+c3a0eb22-53ed-4bf2-81f4-a8a89b94716d
+ab531809-d7fe-460f-b9c3-7e5274e26f51
+SNACK-001 – Bánh Oreo
+SNACK-002 – Bánh quy
+CLEAN-002 – Bột giặt
+DRINK-004 – Cà phê lon
+DRINK-001 – Coca-Cola 330ml
+FOOD-003 – Dầu ăn 1L
+FP-84b84f0d-last – Final last 84b84f0d
+FP-84b84f0d-main – Final main 84b84f0d
+FP-84b84f0d-second – Final second 84b84f0d
+FP-84b84f0d-zero – Final zero 84b84f0d
+FAIL locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('.ant-select-dropdown:visible .ant-select-item-option-content').filter({ hasText: 'UI Product 84b84f0d' }).first()[22m
+

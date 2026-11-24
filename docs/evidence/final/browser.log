@@ -1,0 +1,8 @@
+PASS U01 Manager creates category, product, supplier through production UI
+PASS U02 Warehouse drafts receipt; Manager confirms; real inventory increases
+PASS U03 Cashier cart, READY refresh, cash/change, invoice print and stock decrease
+PASS U04 Manual bank transfer, interrupted prepare reuses original key and cancels safely
+PASS U05 Dashboard/report, role guards, empty/error/retry, mobile and session refresh
+PASS U06 Admin user create/edit/lock/unlock/role via UI
+PASS U07 Logout and second cashier cannot reuse previous actor cart/checkout
+PASS U08 Interrupted payment preserves confirm key across refresh and retries once

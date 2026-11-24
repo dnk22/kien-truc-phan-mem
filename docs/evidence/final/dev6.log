@@ -1,0 +1,37 @@
+
+> @minimart/identity-service@0.0.0 db:seed /workspace/apps/identity-service
+> node --env-file-if-exists=../../.env --env-file-if-exists=.env prisma/seed.cjs
+
+../../.env not found. Continuing without it.
+.env not found. Continuing without it.
+identity: demo seed completed; existing accounts unchanged
+
+> @minimart/product-service@0.0.0 db:seed /workspace/apps/product-service
+> node --env-file-if-exists=../../.env --env-file-if-exists=.env prisma/seed.cjs
+
+../../.env not found. Continuing without it.
+.env not found. Continuing without it.
+product: catalog demo seed completed
+
+> @minimart/inventory-service@0.0.0 db:seed /workspace/apps/inventory-service
+> node --env-file-if-exists=../../.env --env-file-if-exists=.env prisma/seed.cjs
+
+../../.env not found. Continuing without it.
+.env not found. Continuing without it.
+Inventory demo suppliers seeded; create and confirm receipts for stock.
+PASS catalog uniqueness, RBAC and idempotent receipt
+PASS prepare/confirm replay, payment validation and immutable invoice price
+PASS concurrent last-stock reservation and cancel release
+ Container minimart-final-report-service-1 Stopping 
+ Container minimart-final-report-service-1 Stopped 
+ Container minimart-final-postgres-1 Waiting 
+ Container minimart-final-postgres-1 Healthy 
+ Container minimart-final-report-service-1 Starting 
+ Container minimart-final-report-service-1 Started 
+PASS Report offline sale and backlog catch-up
+ Container minimart-final-rabbitmq-1 Stopping 
+ Container minimart-final-rabbitmq-1 Stopped 
+ Container minimart-final-rabbitmq-1 Starting 
+ Container minimart-final-rabbitmq-1 Started 
+PASS RabbitMQ offline sale and outbox catch-up
+Completed requested DEV-6 checks.

@@ -1,0 +1,13 @@
+{
+  "inventories": 10,
+  "invoices": 55,
+  "completed": 34,
+  "reportFacts": 34,
+  "outbox": 34,
+  "allOutboxSent": true,
+  "nonnegative": true,
+  "reservationSumsMatch": true,
+  "stockMovementsReconcile": true,
+  "onePaymentAndOneSaleMovement": true,
+  "paymentAmountsAndSaleActorMatch": true
+}

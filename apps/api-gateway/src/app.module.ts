@@ -6,7 +6,13 @@ import { InventoryProxyModule } from './modules/inventory/inventory-proxy.module
 import { SalesProxyModule } from './modules/sales/sales-proxy.module';
 import { ReportProxyModule } from './modules/report/report-proxy.module';
 @Module({
-  imports: [IdentityProxyModule, CatalogProxyModule, InventoryProxyModule, SalesProxyModule, ReportProxyModule],
+  imports: [
+    IdentityProxyModule,
+    CatalogProxyModule,
+    InventoryProxyModule,
+    SalesProxyModule,
+    ReportProxyModule,
+  ],
   controllers: [HealthController],
   providers: [{ provide: HEALTH_PROBE, useClass: ProcessProbe }],
 })

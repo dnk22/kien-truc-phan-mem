@@ -7,3 +7,6 @@ coverage/
 apps/*/src/generated/
 *.log
 .DS_Store
+
+# Reviewed, sanitized acceptance logs are deliverable evidence.
+!docs/evidence/final/*.log

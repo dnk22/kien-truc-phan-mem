@@ -1,0 +1,695 @@
+
+$ pnpm install --frozen-lockfile
+Scope: all 12 workspace projects
+Lockfile is up to date, resolution step is skipped
+Already up to date
+
+╭ Warning ─────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│   Ignored build scripts: @scarf/scarf@1.4.0.                                 │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+│   to run scripts.                                                            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+Done in 571ms using pnpm v10.32.1
+
+$ pnpm db:generate
+
+> minimart-management@0.0.0 db:generate /Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL
+> pnpm --filter "./apps/*-service" -r db:generate
+
+Scope: 5 of 12 workspace projects
+apps/product-service db:generate$ prisma generate
+apps/identity-service db:generate$ prisma generate
+apps/inventory-service db:generate$ prisma generate
+apps/report-service db:generate$ prisma generate
+apps/product-service db:generate: Prisma schema loaded from prisma/schema.prisma
+apps/inventory-service db:generate: Prisma schema loaded from prisma/schema.prisma
+apps/product-service db:generate: ✔ Generated Prisma Client (v6.19.3) to ./src/generated/client in 60ms
+apps/product-service db:generate: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+apps/product-service db:generate: Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+apps/product-service db:generate: Done
+apps/sales-service db:generate$ prisma generate
+apps/report-service db:generate: Prisma schema loaded from prisma/schema.prisma
+apps/inventory-service db:generate: ✔ Generated Prisma Client (v6.19.3) to ./src/generated/client in 61ms
+apps/inventory-service db:generate: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+apps/inventory-service db:generate: Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
+apps/inventory-service db:generate: Done
+apps/report-service db:generate: ✔ Generated Prisma Client (v6.19.3) to ./src/generated/client in 47ms
+apps/report-service db:generate: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+apps/report-service db:generate: Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
+apps/report-service db:generate: Done
+apps/identity-service db:generate: Prisma schema loaded from prisma/schema.prisma
+apps/identity-service db:generate: ✔ Generated Prisma Client (v6.19.3) to ./src/generated/client in 48ms
+apps/identity-service db:generate: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+apps/identity-service db:generate: Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+apps/identity-service db:generate: Done
+apps/sales-service db:generate: Prisma schema loaded from prisma/schema.prisma
+apps/sales-service db:generate: ✔ Generated Prisma Client (v6.19.3) to ./src/generated/client in 51ms
+apps/sales-service db:generate: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+apps/sales-service db:generate: Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+apps/sales-service db:generate: Done
+
+$ pnpm format
+
+> minimart-management@0.0.0 format /Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL
+> prettier --write .
+
+.prettierrc.json 11ms (unchanged)
+apps/api-gateway/package.json 2ms (unchanged)
+apps/api-gateway/src/app.module.ts 24ms (unchanged)
+apps/api-gateway/src/health.spec.ts 12ms (unchanged)
+apps/api-gateway/src/main.ts 2ms (unchanged)
+apps/api-gateway/src/modules/catalog/catalog-proxy.module.ts 2ms (unchanged)
+apps/api-gateway/src/modules/catalog/catalog-proxy.service.ts 11ms (unchanged)
+apps/api-gateway/src/modules/catalog/categories-proxy.controller.ts 6ms (unchanged)
+apps/api-gateway/src/modules/catalog/products-proxy.controller.ts 5ms (unchanged)
+apps/api-gateway/src/modules/identity/auth-proxy.controller.ts 6ms (unchanged)
+apps/api-gateway/src/modules/identity/identity-proxy.module.ts 2ms (unchanged)
+apps/api-gateway/src/modules/identity/identity-proxy.service.ts 4ms (unchanged)
+apps/api-gateway/src/modules/identity/users-proxy.controller.ts 6ms (unchanged)
+apps/api-gateway/src/modules/inventory/inventory-proxy.module.ts 1ms (unchanged)
+apps/api-gateway/src/modules/inventory/inventory-proxy.service.ts 4ms (unchanged)
+apps/api-gateway/src/modules/inventory/receipt-proxy.controller.ts 3ms (unchanged)
+apps/api-gateway/src/modules/inventory/stock-proxy.controller.ts 3ms (unchanged)
+apps/api-gateway/src/modules/inventory/supplier-proxy.controller.ts 3ms (unchanged)
+apps/api-gateway/src/modules/report/report-proxy.controller.ts 2ms (unchanged)
+apps/api-gateway/src/modules/report/report-proxy.module.ts 1ms (unchanged)
+apps/api-gateway/src/modules/report/report-proxy.service.ts 3ms (unchanged)
+apps/api-gateway/src/modules/sales/checkout-proxy.controller.ts 2ms (unchanged)
+apps/api-gateway/src/modules/sales/invoice-proxy.controller.ts 1ms (unchanged)
+apps/api-gateway/src/modules/sales/sales-proxy.module.ts 1ms (unchanged)
+apps/api-gateway/src/modules/sales/sales-proxy.service.ts 3ms (unchanged)
+apps/api-gateway/src/openapi.ts 16ms (unchanged)
+apps/api-gateway/tsconfig.json 1ms (unchanged)
+apps/identity-service/package.json 1ms (unchanged)
+apps/identity-service/prisma/seed.cjs 7ms (unchanged)
+apps/identity-service/src/app.module.ts 1ms (unchanged)
+apps/identity-service/src/health.spec.ts 2ms (unchanged)
+apps/identity-service/src/infrastructure/database/database.module.ts 1ms (unchanged)
+apps/identity-service/src/infrastructure/database/database.probe.ts 2ms (unchanged)
+apps/identity-service/src/infrastructure/database/prisma.service.ts 1ms (unchanged)
+apps/identity-service/src/main.ts 1ms (unchanged)
+apps/identity-service/src/modules/auth/application/auth.service.spec.ts 5ms (unchanged)
+apps/identity-service/src/modules/auth/application/auth.service.ts 6ms (unchanged)
+apps/identity-service/src/modules/auth/auth.module.ts 1ms (unchanged)
+apps/identity-service/src/modules/auth/presentation/auth.controller.ts 6ms (unchanged)
+apps/identity-service/src/modules/auth/presentation/auth.dto.ts 2ms (unchanged)
+apps/identity-service/src/modules/auth/presentation/cookies.ts 2ms (unchanged)
+apps/identity-service/src/modules/auth/presentation/csrf.guard.spec.ts 3ms (unchanged)
+apps/identity-service/src/modules/auth/presentation/csrf.guard.ts 2ms (unchanged)
+apps/identity-service/src/modules/auth/presentation/identity.guard.ts 2ms (unchanged)
+apps/identity-service/src/modules/roles/role.module.ts 2ms (unchanged)
+apps/identity-service/src/modules/sessions/domain/session.repository.ts 2ms (unchanged)
+apps/identity-service/src/modules/sessions/infrastructure/prisma-session.repository.ts 6ms (unchanged)
+apps/identity-service/src/modules/sessions/session.module.ts 1ms (unchanged)
+apps/identity-service/src/modules/users/application/user.mapper.ts 1ms (unchanged)
+apps/identity-service/src/modules/users/application/user.service.ts 2ms (unchanged)
+apps/identity-service/src/modules/users/domain/user.repository.ts 2ms (unchanged)
+apps/identity-service/src/modules/users/infrastructure/prisma-user.repository.ts 5ms (unchanged)
+apps/identity-service/src/modules/users/infrastructure/user-persistence.module.ts 1ms (unchanged)
+apps/identity-service/src/modules/users/presentation/user.controller.ts 3ms (unchanged)
+apps/identity-service/src/modules/users/presentation/user.dto.ts 3ms (unchanged)
+apps/identity-service/src/modules/users/user.module.ts 1ms (unchanged)
+apps/identity-service/tsconfig.json 1ms (unchanged)
+apps/inventory-service/package.json 1ms (unchanged)
+apps/inventory-service/prisma/seed.cjs 2ms (unchanged)
+apps/inventory-service/src/app.module.ts 1ms (unchanged)
+apps/inventory-service/src/health.spec.ts 2ms (unchanged)
+apps/inventory-service/src/infrastructure/database/database.module.ts 1ms (unchanged)
+apps/inventory-service/src/infrastructure/database/database.probe.ts 1ms (unchanged)
+apps/inventory-service/src/infrastructure/database/prisma.service.ts 1ms (unchanged)
+apps/inventory-service/src/main.ts 1ms (unchanged)
+apps/inventory-service/src/modules/inventory/application/receipt.service.spec.ts 2ms (unchanged)
+apps/inventory-service/src/modules/inventory/application/receipt.service.ts 2ms (unchanged)
+apps/inventory-service/src/modules/inventory/application/reservation.service.ts 1ms (unchanged)
+apps/inventory-service/src/modules/inventory/application/stock.service.spec.ts 3ms (unchanged)
+apps/inventory-service/src/modules/inventory/application/stock.service.ts 6ms (unchanged)
+apps/inventory-service/src/modules/inventory/application/supplier.service.ts 1ms (unchanged)
+apps/inventory-service/src/modules/inventory/domain/inventory.errors.ts 1ms (unchanged)
+apps/inventory-service/src/modules/inventory/domain/inventory.repository.ts 4ms (unchanged)
+apps/inventory-service/src/modules/inventory/domain/inventory.types.ts 1ms (unchanged)
+apps/inventory-service/src/modules/inventory/domain/stock.rules.spec.ts 2ms (unchanged)
+apps/inventory-service/src/modules/inventory/domain/stock.rules.ts 3ms (unchanged)
+apps/inventory-service/src/modules/inventory/infrastructure/inventory-transaction.ts 2ms (unchanged)
+apps/inventory-service/src/modules/inventory/infrastructure/prisma-receipt.repository.ts 6ms (unchanged)
+apps/inventory-service/src/modules/inventory/infrastructure/prisma-reservation.repository.ts 5ms (unchanged)
+apps/inventory-service/src/modules/inventory/infrastructure/prisma-stock.repository.ts 12ms (unchanged)
+apps/inventory-service/src/modules/inventory/infrastructure/prisma-supplier.repository.ts 3ms (unchanged)
+apps/inventory-service/src/modules/inventory/infrastructure/product-directory.client.ts 3ms (unchanged)
+apps/inventory-service/src/modules/inventory/inventory.module.ts 2ms (unchanged)
+apps/inventory-service/src/modules/inventory/presentation/internal-stock.controller.ts 3ms (unchanged)
+apps/inventory-service/src/modules/inventory/presentation/inventory-http.ts 2ms (unchanged)
+apps/inventory-service/src/modules/inventory/presentation/inventory.validation.spec.ts 2ms (unchanged)
+apps/inventory-service/src/modules/inventory/presentation/inventory.validation.ts 7ms (unchanged)
+apps/inventory-service/src/modules/inventory/presentation/receipt.controller.ts 3ms (unchanged)
+apps/inventory-service/src/modules/inventory/presentation/stock.controller.ts 3ms (unchanged)
+apps/inventory-service/src/modules/inventory/presentation/supplier.controller.ts 2ms (unchanged)
+apps/inventory-service/tsconfig.json 1ms (unchanged)
+apps/product-service/package.json 1ms (unchanged)
+apps/product-service/prisma/seed.cjs 3ms (unchanged)
+apps/product-service/src/app.module.ts 1ms (unchanged)
+apps/product-service/src/health.spec.ts 2ms (unchanged)
+apps/product-service/src/infrastructure/database/database.module.ts 1ms (unchanged)
+apps/product-service/src/infrastructure/database/database.probe.ts 1ms (unchanged)
+apps/product-service/src/infrastructure/database/prisma.service.ts 1ms (unchanged)
+apps/product-service/src/main.ts 1ms (unchanged)
+apps/product-service/src/modules/catalog/application/category.service.ts 2ms (unchanged)
+apps/product-service/src/modules/catalog/application/product.service.spec.ts 1ms (unchanged)
+apps/product-service/src/modules/catalog/application/product.service.ts 2ms (unchanged)
+apps/product-service/src/modules/catalog/catalog.module.ts 1ms (unchanged)
+apps/product-service/src/modules/catalog/domain/catalog.errors.ts 1ms (unchanged)
+apps/product-service/src/modules/catalog/domain/catalog.repository.ts 2ms (unchanged)
+apps/product-service/src/modules/catalog/infrastructure/catalog-transaction.ts 2ms (unchanged)
+apps/product-service/src/modules/catalog/infrastructure/prisma-category.repository.ts 3ms (unchanged)
+apps/product-service/src/modules/catalog/infrastructure/prisma-product.repository.ts 4ms (unchanged)
+apps/product-service/src/modules/catalog/presentation/catalog-error.filter.ts 1ms (unchanged)
+apps/product-service/src/modules/catalog/presentation/catalog-session.guard.ts 1ms (unchanged)
+apps/product-service/src/modules/catalog/presentation/catalog.validation.spec.ts 2ms (unchanged)
+apps/product-service/src/modules/catalog/presentation/catalog.validation.ts 6ms (unchanged)
+apps/product-service/src/modules/catalog/presentation/category.controller.ts 3ms (unchanged)
+apps/product-service/src/modules/catalog/presentation/internal-product.controller.ts 3ms (unchanged)
+apps/product-service/src/modules/catalog/presentation/product.controller.ts 3ms (unchanged)
+apps/product-service/tsconfig.json 1ms (unchanged)
+apps/report-service/package.json 1ms (unchanged)
+apps/report-service/prisma/seed.cjs 2ms (unchanged)
+apps/report-service/src/app.module.ts 1ms (unchanged)
+apps/report-service/src/health.spec.ts 2ms (unchanged)
+apps/report-service/src/infrastructure/database/database.module.ts 1ms (unchanged)
+apps/report-service/src/infrastructure/database/database.probe.ts 1ms (unchanged)
+apps/report-service/src/infrastructure/database/prisma.service.ts 1ms (unchanged)
+apps/report-service/src/main.ts 1ms (unchanged)
+apps/report-service/src/modules/report/application/report.service.ts 1ms (unchanged)
+apps/report-service/src/modules/report/application/sale-projection.service.ts 1ms (unchanged)
+apps/report-service/src/modules/report/domain/report-period.spec.ts 1ms (unchanged)
+apps/report-service/src/modules/report/domain/report-period.ts 1ms (unchanged)
+apps/report-service/src/modules/report/domain/report.repository.ts 1ms (unchanged)
+apps/report-service/src/modules/report/domain/sale-event.spec.ts 1ms (unchanged)
+apps/report-service/src/modules/report/domain/sale-event.ts 3ms (unchanged)
+apps/report-service/src/modules/report/infrastructure/inventory-report.client.ts 2ms (unchanged)
+apps/report-service/src/modules/report/infrastructure/prisma-projection.repository.ts 2ms (unchanged)
+apps/report-service/src/modules/report/infrastructure/prisma-report.repository.ts 5ms (unchanged)
+apps/report-service/src/modules/report/infrastructure/rabbitmq.consumer.ts 5ms (unchanged)
+apps/report-service/src/modules/report/infrastructure/topology.ts 2ms (unchanged)
+apps/report-service/src/modules/report/presentation/report.controller.ts 2ms (unchanged)
+apps/report-service/src/modules/report/report.module.ts 1ms (unchanged)
+apps/report-service/tsconfig.json 1ms (unchanged)
+apps/sales-service/package.json 0ms (unchanged)
+apps/sales-service/prisma/seed.cjs 1ms (unchanged)
+apps/sales-service/src/app.module.ts 1ms (unchanged)
+apps/sales-service/src/health.spec.ts 2ms (unchanged)
+apps/sales-service/src/infrastructure/database/database.module.ts 1ms (unchanged)
+apps/sales-service/src/infrastructure/database/database.probe.ts 1ms (unchanged)
+apps/sales-service/src/infrastructure/database/prisma.service.ts 1ms (unchanged)
+apps/sales-service/src/main.ts 1ms (unchanged)
+apps/sales-service/src/modules/outbox/application/outbox.worker.spec.ts 2ms (unchanged)
+apps/sales-service/src/modules/outbox/application/outbox.worker.ts 2ms (unchanged)
+apps/sales-service/src/modules/outbox/domain/event-publisher.ts 1ms (unchanged)
+apps/sales-service/src/modules/outbox/domain/outbox.repository.ts 1ms (unchanged)
+apps/sales-service/src/modules/outbox/infrastructure/prisma-outbox.repository.ts 2ms (unchanged)
+apps/sales-service/src/modules/outbox/infrastructure/rabbitmq.publisher.ts 4ms (unchanged)
+apps/sales-service/src/modules/outbox/infrastructure/topology.ts 1ms (unchanged)
+apps/sales-service/src/modules/outbox/outbox.module.ts 1ms (unchanged)
+apps/sales-service/src/modules/sales/application/checkout-orchestrator.spec.ts 3ms (unchanged)
+apps/sales-service/src/modules/sales/application/checkout-orchestrator.ts 5ms (unchanged)
+apps/sales-service/src/modules/sales/application/checkout.facade.spec.ts 2ms (unchanged)
+apps/sales-service/src/modules/sales/application/checkout.facade.ts 2ms (unchanged)
+apps/sales-service/src/modules/sales/application/invoice.service.ts 3ms (unchanged)
+apps/sales-service/src/modules/sales/application/payment.service.ts 2ms (unchanged)
+apps/sales-service/src/modules/sales/application/recovery.worker.ts 1ms (unchanged)
+apps/sales-service/src/modules/sales/domain/invoice.builder.spec.ts 3ms (unchanged)
+apps/sales-service/src/modules/sales/domain/invoice.builder.ts 3ms (unchanged)
+apps/sales-service/src/modules/sales/domain/invoice.state.ts 1ms (unchanged)
+apps/sales-service/src/modules/sales/domain/payment/bank-transfer.strategy.ts 1ms (unchanged)
+apps/sales-service/src/modules/sales/domain/payment/cash-payment.strategy.ts 1ms (unchanged)
+apps/sales-service/src/modules/sales/domain/payment/payment.creator.ts 1ms (unchanged)
+apps/sales-service/src/modules/sales/domain/payment/payment.spec.ts 2ms (unchanged)
+apps/sales-service/src/modules/sales/domain/payment/payment.strategy.ts 1ms (unchanged)
+apps/sales-service/src/modules/sales/domain/sales.errors.ts 1ms (unchanged)
+apps/sales-service/src/modules/sales/domain/sales.repository.ts 2ms (unchanged)
+apps/sales-service/src/modules/sales/domain/sales.types.ts 2ms (unchanged)
+apps/sales-service/src/modules/sales/infrastructure/internal-http.client.ts 2ms (unchanged)
+apps/sales-service/src/modules/sales/infrastructure/invoice.mapper.ts 2ms (unchanged)
+apps/sales-service/src/modules/sales/infrastructure/prisma-invoice.repository.ts 10ms (unchanged)
+apps/sales-service/src/modules/sales/infrastructure/product-directory.client.ts 1ms (unchanged)
+apps/sales-service/src/modules/sales/infrastructure/sales-transaction.ts 1ms (unchanged)
+apps/sales-service/src/modules/sales/infrastructure/stock.client.ts 2ms (unchanged)
+apps/sales-service/src/modules/sales/presentation/checkout.controller.ts 2ms (unchanged)
+apps/sales-service/src/modules/sales/presentation/invoice.controller.ts 2ms (unchanged)
+apps/sales-service/src/modules/sales/presentation/sales-http.ts 2ms (unchanged)
+apps/sales-service/src/modules/sales/presentation/sales.validation.ts 4ms (unchanged)
+apps/sales-service/src/modules/sales/sales.module.ts 1ms (unchanged)
+apps/sales-service/tsconfig.json 0ms (unchanged)
+apps/web/index.html 17ms (unchanged)
+apps/web/package.json 1ms (unchanged)
+apps/web/src/app/App.tsx 10ms (unchanged)
+apps/web/src/app/config/navigation.ts 3ms (unchanged)
+apps/web/src/app/layout/AppHeader.tsx 4ms (unchanged)
+apps/web/src/app/layout/MainLayout.tsx 2ms (unchanged)
+apps/web/src/app/layout/SidebarNavigation.tsx 3ms (unchanged)
+apps/web/src/app/pages/NotFoundPage.tsx 1ms (unchanged)
+apps/web/src/app/pages/UnauthorizedPage.tsx 1ms (unchanged)
+apps/web/src/app/pages/UnavailablePage.tsx 2ms (unchanged)
+apps/web/src/features/auth/api/auth.api.ts 1ms (unchanged)
+apps/web/src/features/auth/components/ChangePasswordForm.tsx 3ms (unchanged)
+apps/web/src/features/auth/components/RouteGuards.tsx 2ms (unchanged)
+apps/web/src/features/auth/hooks/useAuth.ts 3ms (unchanged)
+apps/web/src/features/auth/pages/LoginPage.tsx 3ms (unchanged)
+apps/web/src/features/auth/pages/ProfilePage.tsx 3ms (unchanged)
+apps/web/src/features/auth/stores/auth.store.ts 2ms (unchanged)
+apps/web/src/features/auth/types/index.ts 1ms (unchanged)
+apps/web/src/features/auth/utils/roles.ts 1ms (unchanged)
+apps/web/src/features/catalog/api/catalog.api.ts 2ms (unchanged)
+apps/web/src/features/catalog/components/CatalogActions.tsx 1ms (unchanged)
+apps/web/src/features/catalog/components/CatalogToolbar.tsx 2ms (unchanged)
+apps/web/src/features/catalog/hooks/useCatalog.ts 2ms (unchanged)
+apps/web/src/features/catalog/types/index.ts 1ms (unchanged)
+apps/web/src/features/catalog/utils/currency.ts 1ms (unchanged)
+apps/web/src/features/categories/components/categoryColumns.tsx 1ms (unchanged)
+apps/web/src/features/categories/components/CategoryForm.tsx 2ms (unchanged)
+apps/web/src/features/categories/pages/CategoriesPage.tsx 3ms (unchanged)
+apps/web/src/features/foundation/api/health.ts 1ms (unchanged)
+apps/web/src/features/foundation/components/GatewayStatus.tsx 1ms (unchanged)
+apps/web/src/features/foundation/hooks/useGatewayHealth.ts 1ms (unchanged)
+apps/web/src/features/foundation/pages/FoundationPage.tsx 1ms (unchanged)
+apps/web/src/features/inventory/api/inventory.api.ts 3ms (unchanged)
+apps/web/src/features/inventory/components/adjustmentColumns.tsx 2ms (unchanged)
+apps/web/src/features/inventory/components/AdjustmentForm.tsx 4ms (unchanged)
+apps/web/src/features/inventory/components/DocumentActions.tsx 1ms (unchanged)
+apps/web/src/features/inventory/components/DocumentStatusTag.tsx 1ms (unchanged)
+apps/web/src/features/inventory/components/InventoryTable.tsx 1ms (unchanged)
+apps/web/src/features/inventory/components/movementColumns.tsx 1ms (unchanged)
+apps/web/src/features/inventory/components/stockColumns.tsx 2ms (unchanged)
+apps/web/src/features/inventory/hooks/useInventoryList.ts 2ms (unchanged)
+apps/web/src/features/inventory/hooks/useInventoryMutation.ts 1ms (unchanged)
+apps/web/src/features/inventory/hooks/useInventoryOptions.ts 2ms (unchanged)
+apps/web/src/features/inventory/pages/AdjustmentsPage.tsx 5ms (unchanged)
+apps/web/src/features/inventory/pages/InventoryPage.tsx 2ms (unchanged)
+apps/web/src/features/inventory/pages/MovementsPage.tsx 2ms (unchanged)
+apps/web/src/features/inventory/utils/format.ts 1ms (unchanged)
+apps/web/src/features/pos/components/CartPanel.tsx 3ms (unchanged)
+apps/web/src/features/pos/components/PaymentPanel.tsx 4ms (unchanged)
+apps/web/src/features/pos/components/ProductPicker.tsx 2ms (unchanged)
+apps/web/src/features/pos/hooks/useCheckout.ts 5ms (unchanged)
+apps/web/src/features/pos/hooks/useProductSearch.ts 1ms (unchanged)
+apps/web/src/features/pos/pages/PosPage.tsx 4ms (unchanged)
+apps/web/src/features/pos/stores/cart.store.ts 2ms (unchanged)
+apps/web/src/features/pos/utils/pending-prepare.ts 2ms (unchanged)
+apps/web/src/features/products/components/productColumns.tsx 2ms (unchanged)
+apps/web/src/features/products/components/ProductDetail.tsx 2ms (unchanged)
+apps/web/src/features/products/components/ProductForm.tsx 3ms (unchanged)
+apps/web/src/features/products/hooks/useCategories.ts 2ms (unchanged)
+apps/web/src/features/products/pages/ProductsPage.tsx 4ms (unchanged)
+apps/web/src/features/purchase-receipts/components/receiptColumns.tsx 2ms (unchanged)
+apps/web/src/features/purchase-receipts/components/ReceiptDetail.tsx 2ms (unchanged)
+apps/web/src/features/purchase-receipts/components/ReceiptForm.tsx 4ms (unchanged)
+apps/web/src/features/purchase-receipts/pages/ReceiptsPage.tsx 5ms (unchanged)
+apps/web/src/features/reports/api/report.api.ts 1ms (unchanged)
+apps/web/src/features/reports/components/ReportPeriodFilter.tsx 2ms (unchanged)
+apps/web/src/features/reports/components/ReportTables.tsx 2ms (unchanged)
+apps/web/src/features/reports/components/RevenueMetrics.tsx 1ms (unchanged)
+apps/web/src/features/reports/components/RevenueTrend.tsx 2ms (unchanged)
+apps/web/src/features/reports/components/StockMetrics.tsx 2ms (unchanged)
+apps/web/src/features/reports/hooks/useReports.ts 1ms (unchanged)
+apps/web/src/features/reports/pages/DashboardPage.tsx 0ms (unchanged)
+apps/web/src/features/reports/pages/ReportsPage.tsx 3ms (unchanged)
+apps/web/src/features/reports/utils/report-dates.ts 1ms (unchanged)
+apps/web/src/features/sales/api/sales.api.ts 2ms (unchanged)
+apps/web/src/features/sales/components/invoiceColumns.tsx 2ms (unchanged)
+apps/web/src/features/sales/components/InvoiceSummary.tsx 3ms (unchanged)
+apps/web/src/features/sales/components/SaleStatusTag.tsx 1ms (unchanged)
+apps/web/src/features/sales/hooks/useInvoices.ts 1ms (unchanged)
+apps/web/src/features/sales/pages/InvoiceDetailPage.tsx 2ms (unchanged)
+apps/web/src/features/sales/pages/InvoicesPage.tsx 2ms (unchanged)
+apps/web/src/features/sales/utils/sale-status.ts 1ms (unchanged)
+apps/web/src/features/suppliers/components/supplierColumns.tsx 1ms (unchanged)
+apps/web/src/features/suppliers/components/SupplierForm.tsx 2ms (unchanged)
+apps/web/src/features/suppliers/pages/SuppliersPage.tsx 3ms (unchanged)
+apps/web/src/features/users/api/users.api.ts 2ms (unchanged)
+apps/web/src/features/users/components/userColumns.tsx 3ms (unchanged)
+apps/web/src/features/users/components/UserFilters.tsx 1ms (unchanged)
+apps/web/src/features/users/components/UserForm.tsx 3ms (unchanged)
+apps/web/src/features/users/hooks/useUserMutations.ts 2ms (unchanged)
+apps/web/src/features/users/hooks/useUsers.ts 1ms (unchanged)
+apps/web/src/features/users/pages/UsersPage.tsx 5ms (unchanged)
+apps/web/src/features/users/types/index.ts 1ms (unchanged)
+apps/web/src/features/users/utils/mapping.ts 1ms (unchanged)
+apps/web/src/features/users/utils/validation.ts 1ms (unchanged)
+apps/web/src/main.tsx 1ms (unchanged)
+apps/web/src/shared/api/client.ts 3ms (unchanged)
+apps/web/src/shared/components/ConfirmDialog.tsx 1ms (unchanged)
+apps/web/src/shared/components/DataTable.tsx 1ms (unchanged)
+apps/web/src/shared/components/EmptyState.tsx 0ms (unchanged)
+apps/web/src/shared/components/ErrorState.tsx 1ms (unchanged)
+apps/web/src/shared/components/LoadingState.tsx 0ms (unchanged)
+apps/web/src/shared/components/PageHeader.tsx 1ms (unchanged)
+apps/web/src/shared/components/SearchInput.tsx 1ms (unchanged)
+apps/web/src/shared/components/StatusBadge.tsx 1ms (unchanged)
+apps/web/src/shared/components/TableToolbar.tsx 1ms (unchanged)
+apps/web/src/shared/hooks/useDebounce.ts 1ms (unchanged)
+apps/web/src/shared/utils/errorMessage.ts 1ms (unchanged)
+apps/web/src/styles.css 21ms (unchanged)
+apps/web/tsconfig.json 0ms (unchanged)
+apps/web/vite.config.ts 1ms (unchanged)
+compose.yaml 22ms (unchanged)
+docs/actor-permissions.md 16ms (unchanged)
+docs/api-contracts.md 17ms (unchanged)
+docs/api-index.md 5ms (unchanged)
+docs/architecture-current.md 4ms (unchanged)
+docs/architecture.md 12ms (unchanged)
+docs/changed-files.md 28ms
+docs/codex-final-review.md 3ms (unchanged)
+docs/demo.md 5ms (unchanged)
+docs/design-patterns.md 2ms (unchanged)
+docs/dev0-files.md 5ms (unchanged)
+docs/dev1-files.md 4ms (unchanged)
+docs/dev2-api.md 3ms (unchanged)
+docs/dev3-api.md 3ms (unchanged)
+docs/dev4-api.md 2ms (unchanged)
+docs/dev5-api.md 3ms (unchanged)
+docs/dev6-verification.md 4ms (unchanged)
+docs/final-review-progress.md 12ms (unchanged)
+docs/implementation-progress.md 8ms (unchanged)
+docs/release-checklist.md 2ms (unchanged)
+docs/release.md 7ms (unchanged)
+docs/report-evidence.md 20ms (unchanged)
+docs/testing-dev0.md 8ms (unchanged)
+docs/testing.md 14ms (unchanged)
+docs/uml/README.md 2ms (unchanged)
+eslint.config.mjs 2ms (unchanged)
+jest.config.cjs 1ms (unchanged)
+package.json 1ms (unchanged)
+packages/auth/package.json 0ms (unchanged)
+packages/auth/src/credential.spec.ts 1ms (unchanged)
+packages/auth/src/guards.ts 2ms (unchanged)
+packages/auth/src/index.ts 1ms (unchanged)
+packages/auth/src/jwt.spec.ts 3ms (unchanged)
+packages/auth/src/jwt.ts 3ms (unchanged)
+packages/auth/src/rate-limit.ts 2ms (unchanged)
+packages/auth/src/session.guard.ts 2ms (unchanged)
+packages/auth/tsconfig.json 0ms (unchanged)
+packages/config/package.json 0ms (unchanged)
+packages/config/src/bootstrap.ts 3ms (unchanged)
+packages/config/src/env.spec.ts 1ms (unchanged)
+packages/config/src/env.ts 2ms (unchanged)
+packages/config/src/health.ts 2ms (unchanged)
+packages/config/src/http.ts 2ms (unchanged)
+packages/config/src/index.ts 0ms (unchanged)
+packages/config/src/openapi.ts 1ms (unchanged)
+packages/config/src/response.ts 1ms (unchanged)
+packages/config/tsconfig.json 0ms (unchanged)
+packages/contracts/package.json 0ms (unchanged)
+packages/contracts/src/index.ts 4ms (unchanged)
+packages/contracts/tsconfig.esm.json 0ms (unchanged)
+packages/contracts/tsconfig.json 0ms (unchanged)
+packages/logger/package.json 0ms (unchanged)
+packages/logger/src/index.ts 1ms (unchanged)
+packages/logger/tsconfig.json 0ms (unchanged)
+pnpm-workspace.yaml 1ms (unchanged)
+README.md 13ms (unchanged)
+scripts/build-compose.mjs 3ms (unchanged)
+scripts/copy-client.mjs 1ms (unchanged)
+scripts/esm-marker.mjs 1ms (unchanged)
+scripts/smoke.mjs 2ms (unchanged)
+scripts/verification/api-cases.mjs 17ms (unchanged)
+scripts/verification/browser-cases.mjs 14ms (unchanged)
+scripts/verification/dev6/business.mjs 5ms (unchanged)
+scripts/verification/dev6/faults.mjs 3ms (unchanged)
+scripts/verification/dev6/http.mjs 3ms (unchanged)
+scripts/verification/final/browser.mjs 25ms (unchanged)
+scripts/verification/final/business.mjs 15ms (unchanged)
+scripts/verification/final/context.mjs 6ms (unchanged)
+scripts/verification/final/fault-proxy.cjs 2ms (unchanged)
+scripts/verification/final/faults.mjs 10ms (unchanged)
+scripts/verification/final/foundation.mjs 5ms (unchanged)
+scripts/verification/final/identity.mjs 5ms (unchanged)
+scripts/verification/final/invariants.mjs 4ms (unchanged)
+scripts/verification/final/reporting.mjs 2ms (unchanged)
+scripts/verification/runtime.mjs 4ms (unchanged)
+scripts/verify-dev1.mjs 2ms (unchanged)
+scripts/verify-dev6.mjs 1ms (unchanged)
+scripts/verify-final.mjs 1ms (unchanged)
+scripts/verify-native.mjs 7ms (unchanged)
+tsconfig.base.json 0ms (unchanged)
+
+$ pnpm build
+
+> minimart-management@0.0.0 build /Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL
+> pnpm -r --sort run build
+
+Scope: 11 of 12 workspace projects
+packages/contracts build$ tsc -p tsconfig.json && tsc -p tsconfig.esm.json && node ../../scripts/esm-marker.mjs
+packages/logger build$ tsc -p tsconfig.json
+packages/logger build: Done
+packages/contracts build: Done
+apps/web build$ tsc --noEmit && vite build
+packages/config build$ tsc -p tsconfig.json
+packages/auth build$ tsc -p tsconfig.json
+packages/auth build: Done
+packages/config build: Done
+apps/web build: vite v7.3.1 building client environment for production...
+apps/web build: transforming...
+apps/web build: ✓ 1676 modules transformed.
+apps/web build: rendering chunks...
+apps/web build: computing gzip size...
+apps/web build: dist/index.html                                 0.40 kB │ gzip:   0.28 kB
+apps/web build: dist/assets/index-fnuwagp5.css                  3.58 kB │ gzip:   1.28 kB
+apps/web build: dist/assets/format-spYpnhwg.js                  0.18 kB │ gzip:   0.17 kB
+apps/web build: dist/assets/useDebounce-UWJvn8kF.js             0.19 kB │ gzip:   0.17 kB
+apps/web build: dist/assets/useInventoryMutation-Bk_xIoBl.js    0.25 kB │ gzip:   0.23 kB
+apps/web build: dist/assets/NotFoundPage-DZO3YjC7.js            0.28 kB │ gzip:   0.24 kB
+apps/web build: dist/assets/PageHeader-DWnIZgKO.js              0.29 kB │ gzip:   0.22 kB
+apps/web build: dist/assets/SearchInput-CULmjroZ.js             0.30 kB │ gzip:   0.25 kB
+apps/web build: dist/assets/UnauthorizedPage-BUvW27Ts.js        0.37 kB │ gzip:   0.30 kB
+apps/web build: dist/assets/ErrorState-D3JSnyIM.js              0.37 kB │ gzip:   0.30 kB
+apps/web build: dist/assets/DashboardPage-BSBQ-NjM.js           0.45 kB │ gzip:   0.28 kB
+apps/web build: dist/assets/DataTable-YxtndOIM.js               0.45 kB │ gzip:   0.32 kB
+apps/web build: dist/assets/CatalogActions-lC28xxU_.js          0.56 kB │ gzip:   0.35 kB
+apps/web build: dist/assets/UnavailablePage-XIFPEyVS.js         0.60 kB │ gzip:   0.43 kB
+apps/web build: dist/assets/DocumentStatusTag-BL-ZBbVe.js       0.61 kB │ gzip:   0.38 kB
+apps/web build: dist/assets/InventoryTable-VIzNLjG8.js          0.73 kB │ gzip:   0.46 kB
+apps/web build: dist/assets/inventory.api-DPJBkMKx.js           0.92 kB │ gzip:   0.38 kB
+apps/web build: dist/assets/SaleStatusTag-EpUAAhoM.js           1.02 kB │ gzip:   0.57 kB
+apps/web build: dist/assets/InvoiceDetailPage-opEiehWY.js       1.21 kB │ gzip:   0.71 kB
+apps/web build: dist/assets/FoundationPage-klBF5fP3.js          1.25 kB │ gzip:   0.77 kB
+apps/web build: dist/assets/MovementsPage-Hteqfpn9.js           1.51 kB │ gzip:   0.90 kB
+apps/web build: dist/assets/InventoryPage-rbSSVQcx.js           1.63 kB │ gzip:   0.88 kB
+apps/web build: dist/assets/InvoiceSummary-BwcHIc9h.js          1.75 kB │ gzip:   0.96 kB
+apps/web build: dist/assets/LoginPage-SoDSkRTT.js               1.80 kB │ gzip:   0.93 kB
+apps/web build: dist/assets/InvoicesPage-oR5-JvCC.js            1.95 kB │ gzip:   1.03 kB
+apps/web build: dist/assets/CatalogToolbar-C3ucYTNd.js          2.15 kB │ gzip:   1.06 kB
+apps/web build: dist/assets/CategoriesPage-Uy1E4lo-.js          2.83 kB │ gzip:   1.39 kB
+apps/web build: dist/assets/ProfilePage-B5RJv_2a.js             2.84 kB │ gzip:   1.28 kB
+apps/web build: dist/assets/SuppliersPage-DGkDi4cx.js           3.16 kB │ gzip:   1.49 kB
+apps/web build: dist/assets/AdjustmentsPage-z5deD8m0.js         4.30 kB │ gzip:   2.12 kB
+apps/web build: dist/assets/ProductsPage-Dd2eOzM0.js            5.28 kB │ gzip:   2.28 kB
+apps/web build: dist/assets/row-D9H-2kcR.js                     5.42 kB │ gzip:   2.21 kB
+apps/web build: dist/assets/index-Ct9W-Boe.js                   5.91 kB │ gzip:   2.57 kB
+apps/web build: dist/assets/ReceiptsPage-Blug1wQY.js            6.17 kB │ gzip:   2.75 kB
+apps/web build: dist/assets/index-DNCvRAat.js                   6.34 kB │ gzip:   2.66 kB
+apps/web build: dist/assets/UsersPage-CRo7SHm3.js               7.41 kB │ gzip:   3.15 kB
+apps/web build: dist/assets/index-C5qGgpne.js                   9.55 kB │ gzip:   2.97 kB
+apps/web build: dist/assets/ReportsPage-C1zyBVKz.js            10.11 kB │ gzip:   4.10 kB
+apps/web build: dist/assets/index-zkmXEfcq.js                  11.38 kB │ gzip:   4.63 kB
+apps/web build: dist/assets/Input-DFaDhFO2.js                  12.64 kB │ gzip:   5.25 kB
+apps/web build: dist/assets/StatusBadge-B7fkZoQX.js            12.97 kB │ gzip:   4.41 kB
+apps/web build: dist/assets/PosPage-CYDnIBFM.js                19.68 kB │ gzip:   7.40 kB
+apps/web build: dist/assets/index-VTHT357w.js                  24.35 kB │ gzip:   8.73 kB
+apps/web build: dist/assets/index-xQFhP_J9.js                  24.47 kB │ gzip:   8.38 kB
+apps/web build: dist/assets/ConfirmDialog-BphiJF7Q.js          28.36 kB │ gzip:   9.56 kB
+apps/web build: dist/assets/index-Dp8aWa35.js                  33.79 kB │ gzip:  10.26 kB
+apps/web build: dist/assets/index-CqZpiMT8.js                  46.99 kB │ gzip:  14.52 kB
+apps/web build: dist/assets/Table-Ngggs-c3.js                 267.90 kB │ gzip:  84.43 kB
+apps/web build: dist/assets/index-D23Ubx0y.js                 781.09 kB │ gzip: 252.52 kB
+apps/web build: ✓ built in 2.56s
+apps/web build: (!) Some chunks are larger than 500 kB after minification. Consider:
+apps/web build: - Using dynamic import() to code-split the application
+apps/web build: - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+apps/web build: - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+apps/web build: Done
+apps/api-gateway build$ tsc -p tsconfig.json
+apps/identity-service build$ pnpm db:generate && tsc -p tsconfig.json && node ../../scripts/copy-client.mjs
+apps/product-service build$ pnpm db:generate && tsc -p tsconfig.json && node ../../scripts/copy-client.mjs
+apps/inventory-service build$ pnpm db:generate && tsc -p tsconfig.json && node ../../scripts/copy-client.mjs
+apps/identity-service build: > @minimart/identity-service@0.0.0 db:generate /Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/apps/identity-service
+apps/identity-service build: > prisma generate
+apps/inventory-service build: > @minimart/inventory-service@0.0.0 db:generate /Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/apps/inventory-service
+apps/inventory-service build: > prisma generate
+apps/product-service build: > @minimart/product-service@0.0.0 db:generate /Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/apps/product-service
+apps/product-service build: > prisma generate
+apps/identity-service build: Prisma schema loaded from prisma/schema.prisma
+apps/product-service build: Prisma schema loaded from prisma/schema.prisma
+apps/inventory-service build: Prisma schema loaded from prisma/schema.prisma
+apps/api-gateway build: Done
+apps/report-service build$ pnpm db:generate && tsc -p tsconfig.json && node ../../scripts/copy-client.mjs
+apps/product-service build: ✔ Generated Prisma Client (v6.19.3) to ./src/generated/client in 78ms
+apps/product-service build: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+apps/product-service build: Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+apps/identity-service build: ✔ Generated Prisma Client (v6.19.3) to ./src/generated/client in 77ms
+apps/identity-service build: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+apps/identity-service build: Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+apps/inventory-service build: ✔ Generated Prisma Client (v6.19.3) to ./src/generated/client in 77ms
+apps/inventory-service build: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+apps/inventory-service build: Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
+apps/report-service build: > @minimart/report-service@0.0.0 db:generate /Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/apps/report-service
+apps/report-service build: > prisma generate
+apps/report-service build: Prisma schema loaded from prisma/schema.prisma
+apps/report-service build: ✔ Generated Prisma Client (v6.19.3) to ./src/generated/client in 52ms
+apps/report-service build: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+apps/report-service build: Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+apps/product-service build: Done
+apps/sales-service build$ pnpm db:generate && tsc -p tsconfig.json && node ../../scripts/copy-client.mjs
+apps/identity-service build: Done
+apps/inventory-service build: Done
+apps/sales-service build: > @minimart/sales-service@0.0.0 db:generate /Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL/apps/sales-service
+apps/sales-service build: > prisma generate
+apps/report-service build: Done
+apps/sales-service build: Prisma schema loaded from prisma/schema.prisma
+apps/sales-service build: ✔ Generated Prisma Client (v6.19.3) to ./src/generated/client in 48ms
+apps/sales-service build: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+apps/sales-service build: Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+apps/sales-service build: Done
+
+$ pnpm lint
+
+> minimart-management@0.0.0 lint /Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL
+> eslint . --max-warnings=0
+
+
+$ pnpm typecheck
+
+> minimart-management@0.0.0 typecheck /Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL
+> pnpm -r --sort run typecheck
+
+Scope: 11 of 12 workspace projects
+packages/contracts typecheck$ tsc -p tsconfig.json --noEmit
+packages/logger typecheck$ tsc -p tsconfig.json --noEmit
+packages/contracts typecheck: Done
+packages/logger typecheck: Done
+apps/web typecheck$ tsc --noEmit
+packages/auth typecheck$ tsc -p tsconfig.json --noEmit
+packages/config typecheck$ tsc -p tsconfig.json --noEmit
+packages/auth typecheck: Done
+packages/config typecheck: Done
+apps/web typecheck: Done
+apps/api-gateway typecheck$ tsc -p tsconfig.json --noEmit
+apps/identity-service typecheck$ tsc -p tsconfig.json --noEmit
+apps/inventory-service typecheck$ tsc -p tsconfig.json --noEmit
+apps/product-service typecheck$ tsc -p tsconfig.json --noEmit
+apps/api-gateway typecheck: Done
+apps/report-service typecheck$ tsc -p tsconfig.json --noEmit
+apps/product-service typecheck: Done
+apps/sales-service typecheck$ tsc -p tsconfig.json --noEmit
+apps/identity-service typecheck: Done
+apps/inventory-service typecheck: Done
+apps/report-service typecheck: Done
+apps/sales-service typecheck: Done
+
+$ pnpm test
+
+> minimart-management@0.0.0 test /Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL
+> pnpm -r run test
+
+Scope: 11 of 12 workspace projects
+packages/contracts test$ jest --config ../../jest.config.cjs --runInBand --passWithNoTests
+packages/logger test$ jest --config ../../jest.config.cjs --runInBand --passWithNoTests
+packages/logger test: No tests found, exiting with code 0
+packages/contracts test: No tests found, exiting with code 0
+packages/contracts test: Done
+packages/logger test: Done
+apps/web test$ tsc --noEmit
+packages/config test$ jest --config ../../jest.config.cjs --runInBand --passWithNoTests
+packages/auth test$ jest --config ../../jest.config.cjs --runInBand --passWithNoTests
+packages/config test: PASS src/env.spec.ts
+packages/config test:   environment validation
+packages/config test:     ✓ rejects missing service credentials and wrong owning database (7 ms)
+packages/config test:     ✓ validates port without leaking input values (2 ms)
+packages/config test: Test Suites: 1 passed, 1 total
+packages/config test: Tests:       2 passed, 2 total
+packages/config test: Snapshots:   0 total
+packages/config test: Time:        0.932 s, estimated 1 s
+packages/config test: Ran all test suites.
+packages/config test: Done
+packages/auth test: PASS src/jwt.spec.ts
+packages/auth test: PASS src/credential.spec.ts
+packages/auth test: Test Suites: 2 passed, 2 total
+packages/auth test: Tests:       10 passed, 10 total
+packages/auth test: Snapshots:   0 total
+packages/auth test: Time:        1.246 s, estimated 2 s
+packages/auth test: Ran all test suites.
+packages/auth test: Done
+apps/web test: Done
+apps/product-service test$ jest --config ../../jest.config.cjs --runInBand
+apps/api-gateway test$ jest --config ../../jest.config.cjs --runInBand
+apps/inventory-service test$ jest --config ../../jest.config.cjs --runInBand
+apps/identity-service test$ jest --config ../../jest.config.cjs --runInBand
+apps/identity-service test: PASS src/modules/auth/presentation/csrf.guard.spec.ts
+apps/inventory-service test: PASS src/modules/inventory/application/stock.service.spec.ts
+apps/api-gateway test: PASS src/health.spec.ts
+apps/api-gateway test:   foundation HTTP contract
+apps/api-gateway test:     ✓ returns liveness, readiness errors and correlation ID (205 ms)
+apps/api-gateway test: Test Suites: 1 passed, 1 total
+apps/api-gateway test: Tests:       1 passed, 1 total
+apps/api-gateway test: Snapshots:   0 total
+apps/api-gateway test: Time:        1.685 s, estimated 2 s
+apps/api-gateway test: Ran all test suites.
+apps/api-gateway test: Done
+apps/report-service test$ jest --config ../../jest.config.cjs --runInBand
+apps/product-service test: PASS src/health.spec.ts
+apps/product-service test: PASS src/modules/catalog/presentation/catalog.validation.spec.ts
+apps/product-service test: PASS src/modules/catalog/application/product.service.spec.ts
+apps/product-service test: Test Suites: 3 passed, 3 total
+apps/product-service test: Tests:       11 passed, 11 total
+apps/product-service test: Snapshots:   0 total
+apps/product-service test: Time:        2.046 s
+apps/product-service test: Ran all test suites.
+apps/product-service test: Done
+apps/sales-service test$ jest --config ../../jest.config.cjs --runInBand
+apps/inventory-service test: PASS src/health.spec.ts
+apps/identity-service test: PASS src/health.spec.ts
+apps/inventory-service test: PASS src/modules/inventory/application/receipt.service.spec.ts
+apps/inventory-service test: PASS src/modules/inventory/presentation/inventory.validation.spec.ts
+apps/inventory-service test: PASS src/modules/inventory/domain/stock.rules.spec.ts
+apps/inventory-service test: Test Suites: 5 passed, 5 total
+apps/inventory-service test: Tests:       12 passed, 12 total
+apps/inventory-service test: Snapshots:   0 total
+apps/inventory-service test: Time:        2.464 s, estimated 3 s
+apps/inventory-service test: Ran all test suites.
+apps/inventory-service test: Done
+apps/report-service test: PASS src/modules/report/domain/sale-event.spec.ts
+apps/identity-service test: PASS src/modules/auth/application/auth.service.spec.ts
+apps/identity-service test: Test Suites: 3 passed, 3 total
+apps/identity-service test: Tests:       10 passed, 10 total
+apps/identity-service test: Snapshots:   0 total
+apps/identity-service test: Time:        2.994 s, estimated 3 s
+apps/identity-service test: Ran all test suites.
+apps/identity-service test: Done
+apps/sales-service test: PASS src/modules/sales/application/checkout-orchestrator.spec.ts
+apps/report-service test: PASS src/health.spec.ts
+apps/report-service test: PASS src/modules/report/domain/report-period.spec.ts
+apps/report-service test: Test Suites: 3 passed, 3 total
+apps/report-service test: Tests:       6 passed, 6 total
+apps/report-service test: Snapshots:   0 total
+apps/report-service test: Time:        1.722 s, estimated 2 s
+apps/report-service test: Ran all test suites.
+apps/report-service test: Done
+apps/sales-service test: PASS src/health.spec.ts
+apps/sales-service test: PASS src/modules/outbox/application/outbox.worker.spec.ts
+apps/sales-service test: PASS src/modules/sales/application/checkout.facade.spec.ts
+apps/sales-service test: PASS src/modules/sales/domain/invoice.builder.spec.ts
+apps/sales-service test: PASS src/modules/sales/domain/payment/payment.spec.ts
+apps/sales-service test: Test Suites: 6 passed, 6 total
+apps/sales-service test: Tests:       13 passed, 13 total
+apps/sales-service test: Snapshots:   0 total
+apps/sales-service test: Time:        1.889 s, estimated 2 s
+apps/sales-service test: Ran all test suites.
+apps/sales-service test: [Nest] 30135  - 11/24/2026, 10:26:18 PM    WARN [OutboxWorker] Outbox deferred: event
+apps/sales-service test: Done
+
+$ pnpm format:check
+
+> minimart-management@0.0.0 format:check /Users/duynk/Documents/FILE học tập PTIT/Kiến trúc phần mềm/Báo cáo BTL
+> prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!

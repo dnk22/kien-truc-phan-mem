@@ -1,0 +1,1130 @@
+[
+  {
+    "status": "M",
+    "path": ".env.example"
+  },
+  {
+    "status": "M",
+    "path": ".gitignore"
+  },
+  {
+    "status": "M",
+    "path": "README.md"
+  },
+  {
+    "status": "M",
+    "path": "apps/api-gateway/src/app.module.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/api-gateway/src/main.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/api-gateway/src/modules/catalog/catalog-proxy.module.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/api-gateway/src/modules/catalog/categories-proxy.controller.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/api-gateway/src/modules/catalog/products-proxy.controller.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/api-gateway/src/modules/inventory/inventory-proxy.module.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/api-gateway/src/modules/inventory/receipt-proxy.controller.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/api-gateway/src/modules/inventory/stock-proxy.controller.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/api-gateway/src/modules/inventory/supplier-proxy.controller.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/api-gateway/src/modules/report/report-proxy.controller.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/api-gateway/src/modules/report/report-proxy.module.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/api-gateway/src/modules/sales/checkout-proxy.controller.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/api-gateway/src/modules/sales/invoice-proxy.controller.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/api-gateway/src/modules/sales/sales-proxy.module.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/prisma/seed.cjs"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/health.spec.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/application/receipt.service.spec.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/application/receipt.service.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/application/reservation.service.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/application/stock.service.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/application/supplier.service.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/domain/inventory.errors.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/domain/inventory.repository.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/domain/inventory.types.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/domain/stock.rules.spec.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/domain/stock.rules.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/infrastructure/inventory-transaction.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/infrastructure/prisma-receipt.repository.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/infrastructure/prisma-reservation.repository.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/infrastructure/prisma-stock.repository.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/infrastructure/prisma-supplier.repository.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/infrastructure/product-directory.client.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/inventory.module.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/presentation/internal-stock.controller.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/presentation/inventory-http.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/presentation/inventory.validation.spec.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/presentation/inventory.validation.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/presentation/receipt.controller.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/presentation/stock.controller.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/inventory-service/src/modules/inventory/presentation/supplier.controller.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/product-service/prisma/seed.cjs"
+  },
+  {
+    "status": "M",
+    "path": "apps/product-service/src/health.spec.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/product-service/src/modules/catalog/application/category.service.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/product-service/src/modules/catalog/application/product.service.spec.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/product-service/src/modules/catalog/application/product.service.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/product-service/src/modules/catalog/catalog.module.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/product-service/src/modules/catalog/domain/catalog.errors.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/product-service/src/modules/catalog/domain/catalog.repository.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/product-service/src/modules/catalog/infrastructure/catalog-transaction.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/product-service/src/modules/catalog/infrastructure/prisma-category.repository.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/product-service/src/modules/catalog/infrastructure/prisma-product.repository.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/product-service/src/modules/catalog/presentation/catalog-error.filter.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/product-service/src/modules/catalog/presentation/catalog.validation.spec.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/product-service/src/modules/catalog/presentation/catalog.validation.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/product-service/src/modules/catalog/presentation/category.controller.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/product-service/src/modules/catalog/presentation/internal-product.controller.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/product-service/src/modules/catalog/presentation/product.controller.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/report-service/src/app.module.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/report-service/src/health.spec.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/report-service/src/modules/report/application/report.service.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/report-service/src/modules/report/application/sale-projection.service.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/report-service/src/modules/report/domain/report-period.spec.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/report-service/src/modules/report/domain/report-period.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/report-service/src/modules/report/domain/report.repository.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/report-service/src/modules/report/domain/sale-event.spec.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/report-service/src/modules/report/domain/sale-event.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/report-service/src/modules/report/infrastructure/inventory-report.client.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/report-service/src/modules/report/infrastructure/prisma-projection.repository.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/report-service/src/modules/report/infrastructure/prisma-report.repository.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/report-service/src/modules/report/infrastructure/rabbitmq.consumer.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/report-service/src/modules/report/infrastructure/topology.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/report-service/src/modules/report/presentation/report.controller.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/report-service/src/modules/report/report.module.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/health.spec.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/outbox/application/outbox.worker.spec.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/outbox/application/outbox.worker.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/outbox/domain/event-publisher.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/outbox/domain/outbox.repository.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/outbox/infrastructure/prisma-outbox.repository.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/outbox/infrastructure/rabbitmq.publisher.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/outbox/infrastructure/topology.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/outbox/outbox.module.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/application/checkout-orchestrator.spec.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/application/checkout-orchestrator.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/application/checkout.facade.spec.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/application/checkout.facade.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/application/invoice.service.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/application/payment.service.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/application/recovery.worker.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/domain/invoice.builder.spec.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/domain/invoice.builder.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/domain/invoice.state.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/domain/payment/bank-transfer.strategy.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/domain/payment/cash-payment.strategy.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/domain/payment/payment.creator.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/domain/payment/payment.spec.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/domain/sales.errors.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/domain/sales.repository.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/domain/sales.types.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/infrastructure/internal-http.client.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/infrastructure/invoice.mapper.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/infrastructure/prisma-invoice.repository.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/infrastructure/product-directory.client.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/infrastructure/sales-transaction.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/infrastructure/stock.client.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/presentation/checkout.controller.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/presentation/invoice.controller.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/presentation/sales-http.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/presentation/sales.validation.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/sales-service/src/modules/sales/sales.module.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/Dockerfile"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/app/App.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/catalog/api/catalog.api.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/catalog/components/CatalogActions.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/catalog/components/CatalogToolbar.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/catalog/hooks/useCatalog.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/catalog/types/index.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/catalog/utils/currency.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/categories/components/CategoryForm.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/categories/components/categoryColumns.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/categories/pages/CategoriesPage.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/inventory/api/inventory.api.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/inventory/components/AdjustmentForm.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/inventory/components/DocumentActions.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/inventory/components/DocumentStatusTag.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/inventory/components/InventoryTable.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/inventory/components/adjustmentColumns.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/inventory/components/movementColumns.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/inventory/components/stockColumns.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/inventory/hooks/useInventoryList.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/inventory/hooks/useInventoryMutation.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/inventory/hooks/useInventoryOptions.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/inventory/pages/AdjustmentsPage.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/inventory/pages/InventoryPage.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/inventory/pages/MovementsPage.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/inventory/utils/format.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/pos/components/CartPanel.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/pos/components/PaymentPanel.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/pos/components/ProductPicker.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/pos/hooks/useCheckout.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/pos/hooks/useProductSearch.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/pos/pages/PosPage.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/pos/stores/cart.store.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/pos/utils/pending-prepare.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/products/components/ProductDetail.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/products/components/ProductForm.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/products/components/productColumns.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/products/hooks/useCategories.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/products/pages/ProductsPage.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/purchase-receipts/components/ReceiptDetail.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/purchase-receipts/components/ReceiptForm.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/purchase-receipts/components/receiptColumns.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/purchase-receipts/pages/ReceiptsPage.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/reports/api/report.api.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/reports/components/ReportPeriodFilter.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/reports/components/ReportTables.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/reports/components/RevenueMetrics.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/reports/components/RevenueTrend.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/reports/components/StockMetrics.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/reports/hooks/useReports.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/reports/pages/DashboardPage.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/reports/pages/ReportsPage.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/reports/utils/report-dates.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/sales/api/sales.api.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/sales/components/InvoiceSummary.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/sales/components/SaleStatusTag.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/sales/components/invoiceColumns.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/sales/hooks/useInvoices.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/sales/pages/InvoiceDetailPage.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/sales/pages/InvoicesPage.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/sales/utils/sale-status.ts"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/suppliers/components/SupplierForm.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/suppliers/components/supplierColumns.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/features/suppliers/pages/SuppliersPage.tsx"
+  },
+  {
+    "status": "M",
+    "path": "apps/web/src/styles.css"
+  },
+  {
+    "status": "M",
+    "path": "compose.yaml"
+  },
+  {
+    "status": "M",
+    "path": "docs/actor-permissions.md"
+  },
+  {
+    "status": "M",
+    "path": "docs/api-index.md"
+  },
+  {
+    "status": "M",
+    "path": "docs/architecture-current.md"
+  },
+  {
+    "status": "M",
+    "path": "docs/architecture.md"
+  },
+  {
+    "status": "M",
+    "path": "docs/codex-final-review.md"
+  },
+  {
+    "status": "M",
+    "path": "docs/demo.md"
+  },
+  {
+    "status": "M",
+    "path": "docs/design-patterns.md"
+  },
+  {
+    "status": "M",
+    "path": "docs/dev2-api.md"
+  },
+  {
+    "status": "M",
+    "path": "docs/dev3-api.md"
+  },
+  {
+    "status": "M",
+    "path": "docs/dev4-api.md"
+  },
+  {
+    "status": "M",
+    "path": "docs/dev5-api.md"
+  },
+  {
+    "status": "M",
+    "path": "docs/dev6-verification.md"
+  },
+  {
+    "status": "M",
+    "path": "docs/evidence/final/manifest.md"
+  },
+  {
+    "status": "M",
+    "path": "docs/implementation-progress.md"
+  },
+  {
+    "status": "M",
+    "path": "docs/release-checklist.md"
+  },
+  {
+    "status": "M",
+    "path": "docs/release.md"
+  },
+  {
+    "status": "M",
+    "path": "docs/report-evidence.md"
+  },
+  {
+    "status": "M",
+    "path": "docs/testing.md"
+  },
+  {
+    "status": "M",
+    "path": "docs/uml/README.md"
+  },
+  {
+    "status": "M",
+    "path": "package.json"
+  },
+  {
+    "status": "M",
+    "path": "packages/auth/src/session.guard.ts"
+  },
+  {
+    "status": "M",
+    "path": "packages/config/src/bootstrap.ts"
+  },
+  {
+    "status": "M",
+    "path": "packages/contracts/src/index.ts"
+  },
+  {
+    "status": "M",
+    "path": "pnpm-lock.yaml"
+  },
+  {
+    "status": "M",
+    "path": "scripts/verification/dev6/business.mjs"
+  },
+  {
+    "status": "M",
+    "path": "scripts/verification/dev6/faults.mjs"
+  },
+  {
+    "status": "M",
+    "path": "scripts/verification/dev6/http.mjs"
+  },
+  {
+    "status": "M",
+    "path": "scripts/verify-dev6.mjs"
+  },
+  {
+    "status": "??",
+    "path": "apps/api-gateway/src/openapi.ts"
+  },
+  {
+    "status": "??",
+    "path": "apps/inventory-service/src/modules/inventory/application/stock.service.spec.ts"
+  },
+  {
+    "status": "??",
+    "path": "docs/changed-files.md"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/acceptance-browser.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/acceptance-initial.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/acceptance-initial.log"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/acceptance-runs.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/acceptance.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/acceptance.log"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/api-boundaries.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/boundaries.log"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/browser-dropdown-retry.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/browser-dropdown-retry.log"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/browser-failure.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/browser.log"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/changed-files.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/code-review.diffstat.txt"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/compose-ps.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/correlation.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/dashboard-desktop.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/data-checks.log"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/data-invariants.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/dev6.log"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/docker-build.log"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/docker-web-fixed.log"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/docker-web-rebuild.log"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/format-final.log"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/inventory-desktop.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/invoice-desktop.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/invoice-print.pdf"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/lint-final.log"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/login-desktop.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/migration-seed.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/migrations-identity.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/migrations-inventory.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/migrations-product.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/migrations-report.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/migrations-sales.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/native-build.log"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/native-tests.log"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/navigation-mobile.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/openapi.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/payment-retry-completed.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/performance.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/pos-bank-completed.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/pos-cash-completed.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/pos-mobile.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/pos-ready.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/products-desktop.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/products-empty.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/products-error.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/products-loading.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/quality-gates.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/quality-gates.log"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/reports-desktop.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/runtime-final.log"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/source-baseline.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/swagger-desktop.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/topology.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/traceability.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/users-desktop.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/evidence/final/warehouse-receipt.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/final-review-progress.md"
+  },
+  {
+    "status": "??",
+    "path": "scripts/build-compose.mjs"
+  },
+  {
+    "status": "??",
+    "path": "scripts/verification/final/boundaries.mjs"
+  },
+  {
+    "status": "??",
+    "path": "scripts/verification/final/browser.mjs"
+  },
+  {
+    "status": "??",
+    "path": "scripts/verification/final/business.mjs"
+  },
+  {
+    "status": "??",
+    "path": "scripts/verification/final/context.mjs"
+  },
+  {
+    "status": "??",
+    "path": "scripts/verification/final/fault-proxy.cjs"
+  },
+  {
+    "status": "??",
+    "path": "scripts/verification/final/faults.mjs"
+  },
+  {
+    "status": "??",
+    "path": "scripts/verification/final/foundation.mjs"
+  },
+  {
+    "status": "??",
+    "path": "scripts/verification/final/identity.mjs"
+  },
+  {
+    "status": "??",
+    "path": "scripts/verification/final/invariants.mjs"
+  },
+  {
+    "status": "??",
+    "path": "scripts/verification/final/reporting.mjs"
+  },
+  {
+    "status": "??",
+    "path": "scripts/verify-final.mjs"
+  }
+]

@@ -1,0 +1,40 @@
+{
+  "directServices": [
+    {
+      "url": "http://product-service:3002/api/v1/products",
+      "expected": 403,
+      "actual": 403
+    },
+    {
+      "url": "http://product-service:3002/api/v1/products",
+      "expected": 401,
+      "actual": 401
+    },
+    {
+      "url": "http://inventory-service:3003/api/v1/inventory",
+      "expected": 403,
+      "actual": 403
+    },
+    {
+      "url": "http://sales-service:3004/api/v1/invoices",
+      "expected": 403,
+      "actual": 403
+    },
+    {
+      "url": "http://report-service:3005/api/v1/reports/revenue?from=2026-01-01&to=2026-01-01",
+      "expected": 403,
+      "actual": 403
+    },
+    {
+      "url": "http://identity-service:3001/api/v1/users",
+      "expected": 403,
+      "actual": 403
+    }
+  ],
+  "cors": {
+    "status": 204,
+    "allowedHeaders": "content-type,authorization,idempotency-key,x-correlation-id,x-csrf-protection",
+    "origin": "http://localhost:3300"
+  },
+  "csrfUntrustedAndMissingHeader": 403
+}

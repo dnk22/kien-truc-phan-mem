@@ -13,17 +13,35 @@ import { LoadingState } from '../shared/components/LoadingState';
 const LoginPage = lazy(() => import('../features/auth/pages/LoginPage'));
 const ProfilePage = lazy(() => import('../features/auth/pages/ProfilePage'));
 const UsersPage = lazy(() => import('../features/users/pages/UsersPage'));
-const CategoriesPage = lazy(() => import('../features/categories/pages/CategoriesPage'));
-const ProductsPage = lazy(() => import('../features/products/pages/ProductsPage'));
-const SuppliersPage = lazy(() => import('../features/suppliers/pages/SuppliersPage'));
-const ReceiptsPage = lazy(() => import('../features/purchase-receipts/pages/ReceiptsPage'));
-const InventoryPage = lazy(() => import('../features/inventory/pages/InventoryPage'));
-const MovementsPage = lazy(() => import('../features/inventory/pages/MovementsPage'));
-const AdjustmentsPage = lazy(() => import('../features/inventory/pages/AdjustmentsPage'));
+const CategoriesPage = lazy(
+  () => import('../features/categories/pages/CategoriesPage'),
+);
+const ProductsPage = lazy(
+  () => import('../features/products/pages/ProductsPage'),
+);
+const SuppliersPage = lazy(
+  () => import('../features/suppliers/pages/SuppliersPage'),
+);
+const ReceiptsPage = lazy(
+  () => import('../features/purchase-receipts/pages/ReceiptsPage'),
+);
+const InventoryPage = lazy(
+  () => import('../features/inventory/pages/InventoryPage'),
+);
+const MovementsPage = lazy(
+  () => import('../features/inventory/pages/MovementsPage'),
+);
+const AdjustmentsPage = lazy(
+  () => import('../features/inventory/pages/AdjustmentsPage'),
+);
 const PosPage = lazy(() => import('../features/pos/pages/PosPage'));
 const InvoicesPage = lazy(() => import('../features/sales/pages/InvoicesPage'));
-const InvoiceDetailPage = lazy(() => import('../features/sales/pages/InvoiceDetailPage'));
-const DashboardPage = lazy(() => import('../features/reports/pages/DashboardPage'));
+const InvoiceDetailPage = lazy(
+  () => import('../features/sales/pages/InvoiceDetailPage'),
+);
+const DashboardPage = lazy(
+  () => import('../features/reports/pages/DashboardPage'),
+);
 const ReportsPage = lazy(() => import('../features/reports/pages/ReportsPage'));
 const UnavailablePage = lazy(() => import('./pages/UnavailablePage'));
 const UnauthorizedPage = lazy(() => import('./pages/UnauthorizedPage'));
@@ -52,25 +70,39 @@ export function App() {
             <Route element={<RoleGuard roles={['MANAGER']} />}>
               <Route path="/categories" element={<CategoriesPage />} />
             </Route>
-            <Route element={<RoleGuard roles={['MANAGER','CASHIER','WAREHOUSE']} />}>
+            <Route
+              element={
+                <RoleGuard roles={['MANAGER', 'CASHIER', 'WAREHOUSE']} />
+              }
+            >
               <Route path="/products" element={<ProductsPage />} />
             </Route>
             <Route element={<RoleGuard roles={['MANAGER']} />}>
               <Route path="/suppliers" element={<SuppliersPage />} />
             </Route>
-            <Route element={<RoleGuard roles={['MANAGER','WAREHOUSE']} />}>
+            <Route element={<RoleGuard roles={['MANAGER', 'WAREHOUSE']} />}>
               <Route path="/purchase-receipts" element={<ReceiptsPage />} />
-              <Route path="/purchase-receipts/create" element={<ReceiptsPage />} />
+              <Route
+                path="/purchase-receipts/create"
+                element={<ReceiptsPage />}
+              />
               <Route path="/inventory/movements" element={<MovementsPage />} />
-              <Route path="/inventory/adjustments" element={<AdjustmentsPage />} />
+              <Route
+                path="/inventory/adjustments"
+                element={<AdjustmentsPage />}
+              />
             </Route>
-            <Route element={<RoleGuard roles={['MANAGER','WAREHOUSE','CASHIER']} />}>
+            <Route
+              element={
+                <RoleGuard roles={['MANAGER', 'WAREHOUSE', 'CASHIER']} />
+              }
+            >
               <Route path="/inventory" element={<InventoryPage />} />
             </Route>
             <Route element={<RoleGuard roles={['CASHIER']} />}>
               <Route path="/pos" element={<PosPage />} />
             </Route>
-            <Route element={<RoleGuard roles={['MANAGER','CASHIER']} />}>
+            <Route element={<RoleGuard roles={['MANAGER', 'CASHIER']} />}>
               <Route path="/invoices" element={<InvoicesPage />} />
               <Route path="/invoices/:id" element={<InvoiceDetailPage />} />
             </Route>
