@@ -42,3 +42,34 @@ export interface AuthResult {
   expiresIn: number;
   user: UserProfile;
 }
+
+export type CatalogStatus = 'ACTIVE' | 'INACTIVE';
+export interface CategorySummary {
+  id: string;
+  code: string;
+  name: string;
+  description: string | null;
+  status: CatalogStatus;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface ProductReference {
+  id: string;
+  code: string;
+  name: string;
+  barcode: string | null;
+  categoryId: string;
+  unit: string;
+  sellingPrice: number;
+  status: CatalogStatus;
+}
+export interface ProductSummary extends ProductReference {
+  description: string | null;
+  imageUrl: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface ProductBatchResult {
+  items: ProductReference[];
+  missingIds: string[];
+}

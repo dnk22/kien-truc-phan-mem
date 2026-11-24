@@ -1,0 +1,20 @@
+@startuml
+actor Manager
+participant Gateway
+participant ProductController
+participant ProductService
+participant ProductRepository
+database product_db
+Manager -> Gateway : POST /api/v1/products
+Gateway -> ProductController : forward JWT + body
+ProductController -> ProductController : verify session + RBAC + validate
+ProductController -> ProductService : create(input)
+ProductService -> ProductRepository : create(input)
+ProductRepository -> product_db : transaction + advisory lock
+ProductRepository -> product_db : validate category, insert product
+product_db --> ProductRepository : product
+ProductRepository --> ProductService : product
+ProductService --> ProductController : product
+ProductController --> Gateway : 201 envelope
+Gateway --> Manager : 201 envelope
+@enduml

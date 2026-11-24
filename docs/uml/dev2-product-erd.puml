@@ -1,0 +1,24 @@
+@startuml
+entity categories {
+ * id : UUID <<PK>>
+ --
+ code : varchar <<UQ>>
+ name : varchar
+ status : enum
+ description : text
+}
+entity products {
+ * id : UUID <<PK>>
+ --
+ category_id : UUID <<FK>>
+ code : varchar <<UQ>>
+ barcode : varchar? <<UQ>>
+ name : varchar
+ unit : varchar
+ selling_price : int
+ status : enum
+ image_url : text?
+ description : text?
+}
+categories ||--o{ products
+@enduml

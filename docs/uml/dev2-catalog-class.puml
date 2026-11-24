@@ -1,0 +1,22 @@
+@startuml
+skinparam shadowing false
+class CategoryController
+class ProductController
+class InternalProductController
+class CategoryService
+class ProductService
+interface CategoryRepository
+interface ProductRepository
+class PrismaCategoryRepository
+class PrismaProductRepository
+class PrismaService
+CategoryController --> CategoryService
+ProductController --> ProductService
+InternalProductController --> ProductService
+CategoryService --> CategoryRepository
+ProductService --> ProductRepository
+PrismaCategoryRepository ..|> CategoryRepository
+PrismaProductRepository ..|> ProductRepository
+PrismaCategoryRepository --> PrismaService
+PrismaProductRepository --> PrismaService
+@enduml

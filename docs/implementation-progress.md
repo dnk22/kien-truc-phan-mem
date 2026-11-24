@@ -6,7 +6,7 @@ Master Specification: `Prompt_Codex_MiniMart.md`. Báo cáo DOCX là thiết k�
 | --------- | -------------------------------------------- | ---------------------------------------------------------------------------------- |
 | DEV-0     | Đã có foundation; Docker runtime vẫn BLOCKED | 7 apps, 4 shared packages, 5 DB, Docker/Compose, health/logging/env                |
 | DEV-1     | Hoàn thành native; chờ review                | Identity, sessions, JWT/RBAC, Gateway auth/users, application shell, auth/users UI |
-| DEV-2     | Chưa bắt đầu                                 | Product/category                                                                   |
+| DEV-2     | Code submitted; verification pending | Product/category                                                                   |
 | DEV-3     | Chưa bắt đầu                                 | Inventory/supplier/receipt/reservation/adjustment                                  |
 | DEV-4     | Chưa bắt đầu                                 | Checkout/POS/Saga/GoF                                                              |
 | DEV-5     | Chưa bắt đầu                                 | Outbox/RabbitMQ/Report                                                             |
@@ -31,3 +31,8 @@ Chỉ DEV-1 được triển khai trong phiên này; dừng trước DEV-2. Xem 
 ## Kết quả chốt DEV-1
 
 Install frozen lockfile, build, lint, typecheck, 27 Jest tests trong 11 suites và format check PASS. `verify-dev1.mjs` exit 0: upgrade/seed/production seed guard, auth/users/RBAC/last-admin concurrency, correlation/CORS, browser E2E, real Swagger-origin login, rate limit 429, timeout/unavailable 503. `verify-native.mjs` exit 0: 7 app startup, migration/seed 5 DB, 20 cross-DB CONNECT denials, health/OpenAPI và DB down live 200/ready 503. Logs và screenshots tại `evidence/dev1/`; regression log tại `evidence/native-verification.log`. Docker daemon/Compose runtime/RabbitMQ vẫn BLOCKED; production HTTPS và nghiệp vụ DEV-2+ NOT_RUN.
+
+
+## DEV-2 implementation candidate
+
+Catalog layered repositories and application services; categories/products migration, development seed, public and private batch API, JWT/live-session RBAC, Gateway routing, React catalog features, shared UI reuse, validation tests and UML. See dev2-api.md. Runtime and quality gates have not been executed on this branch. DEV-3 not started.

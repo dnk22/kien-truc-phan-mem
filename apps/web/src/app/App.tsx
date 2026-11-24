@@ -13,6 +13,8 @@ import { LoadingState } from '../shared/components/LoadingState';
 const LoginPage = lazy(() => import('../features/auth/pages/LoginPage'));
 const ProfilePage = lazy(() => import('../features/auth/pages/ProfilePage'));
 const UsersPage = lazy(() => import('../features/users/pages/UsersPage'));
+const CategoriesPage = lazy(() => import('../features/categories/pages/CategoriesPage'));
+const ProductsPage = lazy(() => import('../features/products/pages/ProductsPage'));
 const UnavailablePage = lazy(() => import('./pages/UnavailablePage'));
 const UnauthorizedPage = lazy(() => import('./pages/UnauthorizedPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
@@ -36,6 +38,12 @@ export function App() {
             <Route path="/profile" element={<ProfilePage />} />
             <Route element={<RoleGuard roles={['ADMIN']} />}>
               <Route path="/users" element={<UsersPage />} />
+            </Route>
+            <Route element={<RoleGuard roles={['MANAGER']} />}>
+              <Route path="/categories" element={<CategoriesPage />} />
+            </Route>
+            <Route element={<RoleGuard roles={['MANAGER','CASHIER','WAREHOUSE']} />}>
+              <Route path="/products" element={<ProductsPage />} />
             </Route>
             {navigation
               .filter((item) => !item.available)
