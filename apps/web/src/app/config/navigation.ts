@@ -18,7 +18,7 @@ export const navigation: NavItem[] = [
     path: '/dashboard',
     label: 'Tổng quan',
     roles: ['MANAGER'],
-    available: false,
+    available: true,
   },
   { path: '/pos', label: 'Bán hàng POS', roles: ['CASHIER'], available: true },
   {
@@ -72,7 +72,7 @@ export const navigation: NavItem[] = [
     roles: ['MANAGER', 'CASHIER'],
     available: true,
   },
-  { path: '/reports', label: 'Báo cáo', roles: ['MANAGER'], available: false },
+  { path: '/reports', label: 'Báo cáo', roles: ['MANAGER'], available: true },
   { path: '/profile', label: 'Thông tin cá nhân', roles: all, available: true },
 ];
 

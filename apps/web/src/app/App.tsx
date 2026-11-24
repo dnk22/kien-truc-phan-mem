@@ -23,6 +23,8 @@ const AdjustmentsPage = lazy(() => import('../features/inventory/pages/Adjustmen
 const PosPage = lazy(() => import('../features/pos/pages/PosPage'));
 const InvoicesPage = lazy(() => import('../features/sales/pages/InvoicesPage'));
 const InvoiceDetailPage = lazy(() => import('../features/sales/pages/InvoiceDetailPage'));
+const DashboardPage = lazy(() => import('../features/reports/pages/DashboardPage'));
+const ReportsPage = lazy(() => import('../features/reports/pages/ReportsPage'));
 const UnavailablePage = lazy(() => import('./pages/UnavailablePage'));
 const UnauthorizedPage = lazy(() => import('./pages/UnauthorizedPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
@@ -71,6 +73,10 @@ export function App() {
             <Route element={<RoleGuard roles={['MANAGER','CASHIER']} />}>
               <Route path="/invoices" element={<InvoicesPage />} />
               <Route path="/invoices/:id" element={<InvoiceDetailPage />} />
+            </Route>
+            <Route element={<RoleGuard roles={['MANAGER']} />}>
+              <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/reports" element={<ReportsPage />} />
             </Route>
             {navigation
               .filter((item) => !item.available)
