@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import type { StockPort } from '../domain/sales.repository';
 import type { CartItem, Reservation } from '../domain/sales.types';
-import { InternalHttpClient, RemoteError } from './internal-http.client';
+import { InternalHttpClient } from './internal-http.client';
+import { RemoteError } from '../domain/sales.errors';
 @Injectable()
 export class InventoryStockClient implements StockPort {
   constructor(private readonly http: InternalHttpClient) {}

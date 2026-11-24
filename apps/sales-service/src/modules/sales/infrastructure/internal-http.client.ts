@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import type { ApiSuccess, ApiFailure } from '@minimart/contracts';
-export class RemoteError extends Error {
-  constructor(public readonly status: number, public readonly code: string) { super(code); }
-}
+import { RemoteError } from '../domain/sales.errors';
 @Injectable()
 export class InternalHttpClient {
   async request<T>(base: string, path: string, method: 'GET' | 'POST', body?: unknown, correlationId?: string): Promise<T> {

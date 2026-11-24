@@ -164,3 +164,8 @@ See [catalog API contract](docs/dev2-api.md). Run product migrations and seed in
 ### DEV-3 inventory
 
 See [inventory API contract](docs/dev3-api.md). With DEMO_SEED_ENABLED=true in development, inventory seed adds three suppliers. Use Manager or Warehouse to create a receipt and Manager to confirm it to establish stock. The inventory service never reads product_db; it validates items through Product internal API. Runtime verification pending.
+
+
+### DEV-4 sales
+
+Create confirmed purchase receipts first, then log in as cashier, search products at /pos, prepare checkout to see official total, record cash or manually verified bank transfer, and view/print completed invoices. See [Sales API](docs/dev4-api.md) and [GoF patterns](docs/design-patterns.md). Recovery worker retries pending intents; no broker dependency in checkout. Runtime verification pending.

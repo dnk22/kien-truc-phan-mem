@@ -3,3 +3,7 @@ export class SalesError extends Error {
     super(message);
   }
 }
+
+export class RemoteError extends Error {
+  constructor(public readonly status: number, public readonly code: string) { super(code); }
+}

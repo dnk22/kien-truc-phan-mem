@@ -31,24 +31,24 @@ export class CheckoutOrchestrator {
             const remote = error as { status?: number; code?: string };
             if (remote.status === 409 && remote.code === 'INSUFFICIENT_STOCK') {
               const existing = await this.stock.lookup(id, correlationId);
-              if (!existing) return this.invoices.failedReserve(id, 'INSUFFICIENT_STOCK');
+              if (!existing) return await this.invoices.failedReserve(id, 'INSUFFICIENT_STOCK');
               reservation = existing;
             } else throw error;
           }
         }
         if (reservation.status !== 'RESERVED') throw new SalesError('RESERVATION_STATE_CONFLICT', 'Cần đối soát trạng thái giữ hàng.');
-        return this.invoices.ready(id, reservation.id);
+        return await this.invoices.ready(id, reservation.id);
       }
       if (!reservation || reservation.id !== invoice.reservationId)
         throw new SalesError('RESERVATION_MISSING', 'Cần đối soát giữ hàng.');
       if (intent === 'COMMIT') {
         if (reservation.status === 'RESERVED') reservation = await this.stock.commit(reservation.id, correlationId);
         this.expectState(reservation, 'COMMITTED');
-        return this.invoices.complete(id);
+        return await this.invoices.complete(id);
       }
       if (reservation.status === 'RESERVED') reservation = await this.stock.release(reservation.id, correlationId);
       this.expectState(reservation, 'RELEASED');
-      return this.invoices.cancelled(id);
+      return await this.invoices.cancelled(id);
     } catch (error) {
       const code = (error as { code?: string }).code ?? 'SAGA_OUTCOME_UNKNOWN';
       return this.invoices.defer(id, intent, code);

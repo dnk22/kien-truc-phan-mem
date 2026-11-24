@@ -1,0 +1,14 @@
+@startuml
+[*] --> PENDING
+PENDING --> READY : reserve success
+PENDING --> FAILED : definite insufficient stock
+PENDING --> RECOVERY : uncertain reserve
+READY --> PROCESSING : record payment
+READY --> RECOVERY : release intent
+PROCESSING --> COMPLETED : stock committed + outbox
+PROCESSING --> RECOVERY : uncertain commit
+RECOVERY --> READY : reconcile reserve
+RECOVERY --> FAILED : definite reserve failure
+RECOVERY --> COMPLETED : reconcile commit
+RECOVERY --> CANCELLED : reconcile release
+@enduml

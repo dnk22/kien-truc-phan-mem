@@ -1,0 +1,12 @@
+@startuml
+entity invoices
+entity invoice_items
+entity payments
+entity outbox_events
+invoices ||--|{ invoice_items
+invoices ||--o| payments
+note right of outbox_events
+sale.completed.v1
+saved in same transaction as completion
+end note
+@enduml
