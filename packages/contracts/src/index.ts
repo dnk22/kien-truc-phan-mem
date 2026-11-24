@@ -73,3 +73,13 @@ export interface ProductBatchResult {
   items: ProductReference[];
   missingIds: string[];
 }
+
+export type InventoryDocumentStatus = 'DRAFT' | 'CONFIRMED' | 'CANCELLED';
+export interface SupplierSummary { id:string;code:string;name:string;phone:string|null;address:string|null;status:CatalogStatus }
+export interface StockSummary { productId:string;productCode?:string;productName?:string;onHand:number;reserved:number;available:number;version:number;threshold:number }
+export interface PurchaseItem { productId:string;quantity:number;unitCost:number }
+export interface PurchaseReceiptSummary {id:string;supplierId:string;supplier:SupplierSummary;status:InventoryDocumentStatus;createdAt:string;items:(PurchaseItem&{productCode:string;productName:string})[]}
+export interface StockAdjustmentSummary {id:string;productId:string;expectedVersion:number;counted:number;reason:string;status:InventoryDocumentStatus;createdAt:string}
+export interface StockMovementSummary {id:string;productId:string;referenceId:string;type:'PURCHASE'|'SALE'|'ADJUSTMENT_IN'|'ADJUSTMENT_OUT';quantity:number;actorId:string|null;createdAt:string}
+export interface ReserveStockInput {invoiceId:string;items:{productId:string;quantity:number}[]}
+export interface StockReservationSummary extends ReserveStockInput {id:string;status:'RESERVED'|'COMMITTED'|'RELEASED'}
