@@ -51,3 +51,8 @@ Sales schema, two-stage POS, persistent checkout saga, recovery worker, payment 
 ## DEV-5 implementation candidate
 
 Report DB projection, RabbitMQ publisher/consumer, retries/DLQ, revenue and stock APIs, dashboard and report views, test sources and UML. New AMQP dependencies require lockfile regeneration before build; verification pending. DEV-6 not started.
+
+
+## DEV-6 implementation candidate
+
+Added disposable-stack HTTP acceptance harness and optional Compose outage checks, targeted source fixes and verification matrix. Runtime execution remains pending. DEV-7 not started.
