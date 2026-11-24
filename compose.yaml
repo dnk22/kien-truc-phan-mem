@@ -194,6 +194,11 @@ services:
     environment:
       NODE_ENV: production
       PORT: 3005
+      JWT_SECRET: ${JWT_SECRET:?required}
+      JWT_ISSUER: ${JWT_ISSUER:-minimart-identity}
+      JWT_AUDIENCE: ${JWT_AUDIENCE:-minimart-api}
+      JWT_ACCESS_TTL_SECONDS: ${JWT_ACCESS_TTL_SECONDS:-300}
+      IDENTITY_SERVICE_URL: http://identity-service:3001
       LOG_LEVEL: ${LOG_LEVEL:-info}
       SERVICE_CREDENTIAL: ${SERVICE_CREDENTIAL:?required}
       DATABASE_URL: postgresql://report_user:${REPORT_DB_PASSWORD:?required}@postgres:5432/report_db?schema=public&connect_timeout=3&pool_timeout=3

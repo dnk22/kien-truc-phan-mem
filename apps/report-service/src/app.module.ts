@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
 import { HealthController, HEALTH_PROBE } from '@minimart/config';
 import { DatabaseProbe } from './infrastructure/database/database.probe';
+import { ReportModule } from './modules/report/report.module';
 @Module({
+ imports:[ReportModule],
   controllers: [HealthController],
   providers: [{ provide: HEALTH_PROBE, useClass: DatabaseProbe }],
 })
