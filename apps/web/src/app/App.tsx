@@ -20,6 +20,9 @@ const ReceiptsPage = lazy(() => import('../features/purchase-receipts/pages/Rece
 const InventoryPage = lazy(() => import('../features/inventory/pages/InventoryPage'));
 const MovementsPage = lazy(() => import('../features/inventory/pages/MovementsPage'));
 const AdjustmentsPage = lazy(() => import('../features/inventory/pages/AdjustmentsPage'));
+const PosPage = lazy(() => import('../features/pos/pages/PosPage'));
+const InvoicesPage = lazy(() => import('../features/sales/pages/InvoicesPage'));
+const InvoiceDetailPage = lazy(() => import('../features/sales/pages/InvoiceDetailPage'));
 const UnavailablePage = lazy(() => import('./pages/UnavailablePage'));
 const UnauthorizedPage = lazy(() => import('./pages/UnauthorizedPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
@@ -61,6 +64,13 @@ export function App() {
             </Route>
             <Route element={<RoleGuard roles={['MANAGER','WAREHOUSE','CASHIER']} />}>
               <Route path="/inventory" element={<InventoryPage />} />
+            </Route>
+            <Route element={<RoleGuard roles={['CASHIER']} />}>
+              <Route path="/pos" element={<PosPage />} />
+            </Route>
+            <Route element={<RoleGuard roles={['MANAGER','CASHIER']} />}>
+              <Route path="/invoices" element={<InvoicesPage />} />
+              <Route path="/invoices/:id" element={<InvoiceDetailPage />} />
             </Route>
             {navigation
               .filter((item) => !item.available)

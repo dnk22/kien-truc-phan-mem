@@ -20,7 +20,7 @@ export const navigation: NavItem[] = [
     roles: ['MANAGER'],
     available: false,
   },
-  { path: '/pos', label: 'Bán hàng POS', roles: ['CASHIER'], available: false },
+  { path: '/pos', label: 'Bán hàng POS', roles: ['CASHIER'], available: true },
   {
     path: '/products',
     labels: { CASHIER: 'Tra cứu sản phẩm', WAREHOUSE: 'Tra cứu sản phẩm' },
@@ -70,7 +70,7 @@ export const navigation: NavItem[] = [
     labels: { CASHIER: 'Hóa đơn của tôi' },
     label: 'Hóa đơn',
     roles: ['MANAGER', 'CASHIER'],
-    available: false,
+    available: true,
   },
   { path: '/reports', label: 'Báo cáo', roles: ['MANAGER'], available: false },
   { path: '/profile', label: 'Thông tin cá nhân', roles: all, available: true },
