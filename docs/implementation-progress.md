@@ -8,7 +8,7 @@ Master Specification: `Prompt_Codex_MiniMart.md`. Báo cáo DOCX là thiết k�
 | DEV-1     | Hoàn thành native; chờ review                | Identity, sessions, JWT/RBAC, Gateway auth/users, application shell, auth/users UI |
 | DEV-2     | Code submitted; verification pending | Product/category                                                                   |
 | DEV-3     | Code submitted; verification pending | Inventory/supplier/receipt/reservation/adjustment                                  |
-| DEV-4     | Chưa bắt đầu                                 | Checkout/POS/Saga/GoF                                                              |
+| DEV-4     | Code submitted; verification pending | Checkout/POS/Saga/GoF                                                              |
 | DEV-5     | Chưa bắt đầu                                 | Outbox/RabbitMQ/Report                                                             |
 | DEV-6     | Chưa bắt đầu                                 | Nghiệm thu toàn bộ nghiệp vụ, fault/concurrency/performance                        |
 | DEV-7     | Chưa bắt đầu                                 | Demo/tài liệu/seed nghiệp vụ hoàn chỉnh                                            |
@@ -41,3 +41,8 @@ Catalog layered repositories and application services; categories/products migra
 ## DEV-3 implementation candidate
 
 Inventory schema, transactional repositories, supplier/receipt/stock/adjustment and reservation APIs, shared live session guard, Gateway, frontend screens, demo supplier seed, unit test sources and UML. See dev3-api.md. Runtime verification pending; DEV-4 not started.
+
+
+## DEV-4 implementation candidate
+
+Sales schema, two-stage POS, persistent checkout saga, recovery worker, payment strategies and creators, invoice builder and facade, public APIs, invoice history/detail/print, transactional outbox write, tests and UML. Publisher/consumer deferred to DEV-5. See dev4-api.md and design-patterns.md. Runtime verification pending.

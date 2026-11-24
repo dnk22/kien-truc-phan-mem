@@ -74,3 +74,8 @@ Local review: run root quality gate, check 30 demo products, category activation
 ## DEV-3 verification pending
 
 Added stock rule, input validation and receipt snapshot test sources. No build/lint/format/typecheck/Jest/DB/browser/Docker commands executed for this branch. Required local tests: repeat confirm, cancelled receipt rejection, atomic failure across multiple products, concurrent last-stock reservations, same invoice payload retry/conflict, repeat commit/release and opposite transition rejection, stale adjustment and reserved floor, supplier/receipt RBAC, internal credential and gateway route isolation. Test with real PostgreSQL; no runtime PASS claimed.
+
+
+## DEV-4 verification pending
+
+Added Builder, Factory Method, Strategy, Facade and saga reconciliation unit test sources. Build/lint/format/typecheck/Jest/PostgreSQL/browser/Docker NOT RUN. Required tests: prepare same key replay and payload conflict, competing checkout for last item, invalid price/qty/payment, confirm/cancel race, timeout after remote commit, restart recovery, duplicate payment/outbox prevention, invoice owner isolation, price snapshot, print and POS retry. Verify 20-attempt exhaustion and manual reconciliation procedure. No runtime PASS claimed.

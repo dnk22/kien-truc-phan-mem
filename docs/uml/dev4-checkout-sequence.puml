@@ -1,0 +1,28 @@
+@startuml
+actor Cashier
+participant Gateway
+participant CheckoutFacade
+participant InvoiceService
+participant PaymentService
+participant CheckoutOrchestrator
+participant Product
+participant Inventory
+database sales_db
+Cashier -> Gateway : prepare + key
+Gateway -> CheckoutFacade : prepare
+CheckoutFacade -> InvoiceService : snapshot cart
+InvoiceService -> Product : batch lookup
+InvoiceService -> sales_db : persist PENDING
+CheckoutFacade -> CheckoutOrchestrator : advance
+CheckoutOrchestrator -> Inventory : lookup then reserve
+CheckoutOrchestrator -> sales_db : READY + reservation
+CheckoutFacade --> Cashier : official total (via Gateway)
+Cashier -> Gateway : confirm + key
+Gateway -> CheckoutFacade : confirm
+CheckoutFacade -> PaymentService : validate and record
+PaymentService -> sales_db : payment + COMMIT intent
+CheckoutFacade -> CheckoutOrchestrator : advance
+CheckoutOrchestrator -> Inventory : lookup then commit
+CheckoutOrchestrator -> sales_db : COMPLETED + outbox (atomic)
+CheckoutFacade --> Cashier : invoice (via Gateway)
+@enduml

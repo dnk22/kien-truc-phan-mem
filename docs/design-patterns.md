@@ -1,14 +1,12 @@
-# Trạng thái design patterns
+# DEV-4 GoF design patterns
 
-DEV-0 chưa có nghiệp vụ Sales, vì vậy chưa hiện thực hoặc kiểm thử GoF Factory Method, Builder, Facade, Strategy. Không tạo class rỗng để đánh dấu hoàn thành.
+All paths relative to apps/sales-service/src/modules/sales.
 
-DEV-4 phải hiện thực đúng Master Specification:
+| Pattern | Real classes / files | Purpose and trade-off |
+| --- | --- | --- |
+| Factory Method | domain/payment/payment.creator.ts: PaymentCreator, CashPaymentCreator, BankTransferPaymentCreator | Abstract creator defines create(), subclasses override factory method; registry wired in sales.module.ts. New methods add creators rather than modify orchestration. Additional classes for two methods. |
+| Strategy | domain/payment/payment.strategy.ts, cash-payment.strategy.ts, bank-transfer.strategy.ts | Shared process(request,total) contract; independent cash validation/change and manual transfer confirmation. No external money transfer. |
+| Builder | domain/invoice.builder.ts: InvoiceBuilder | setCashier().setItems().build() validates quantity, duplicate product and safe integer total, builds independent snapshot. |
+| Facade | application/checkout.facade.ts: CheckoutFacade | Controller sees prepare/confirm/cancel; facade coordinates InvoiceService, PaymentService and CheckoutOrchestrator. Avoids embedding saga in controller. |
 
-| Pattern        | Thiết kế phải hiện thực                                                                                                          |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| Factory Method | abstract PaymentCreator.create; CashPaymentCreator và BankTransferPaymentCreator override; creator registry tại composition root |
-| Strategy       | PaymentStrategy.process với CashPaymentStrategy/BankTransferStrategy                                                             |
-| Builder        | InvoiceBuilder.setCashier().setItems().build tạo PENDING hợp lệ                                                                  |
-| Facade         | CheckoutFacade.prepare/confirm/cancel, controller mỏng, phối hợp Orchestrator/InvoiceService/PaymentService                      |
-
-DEV-0 chỉ có Nest DI qua `HEALTH_PROBE` và adapter `DatabaseProbe`, thuộc nền tảng kỹ thuật. Đây không phải minh chứng bốn GoF patterns. Khi DEV-4 hoàn thành, cập nhật tài liệu này bằng đường dẫn class thực tế, unit tests, ví dụ trước/sau và trade-off; không ghi tên thiết kế dự kiến như code đã có.
+Repository and dependency injection support DIP, but are not counted as the four GoF patterns. Saga and Transactional Outbox are architectural patterns. Tests for each GoF pattern are present; runtime/test execution pending.

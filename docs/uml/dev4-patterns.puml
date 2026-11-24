@@ -1,0 +1,28 @@
+@startuml
+interface PaymentStrategy
+abstract class PaymentCreator {
+ +create(): PaymentStrategy
+}
+class CashPaymentCreator
+class BankTransferPaymentCreator
+class CashPaymentStrategy
+class BankTransferStrategy
+PaymentCreator <|-- CashPaymentCreator
+PaymentCreator <|-- BankTransferPaymentCreator
+PaymentStrategy <|.. CashPaymentStrategy
+PaymentStrategy <|.. BankTransferStrategy
+CashPaymentCreator ..> CashPaymentStrategy : creates
+BankTransferPaymentCreator ..> BankTransferStrategy : creates
+class InvoiceBuilder
+class InvoiceService
+class PaymentService
+class CheckoutFacade
+class CheckoutOrchestrator
+class CheckoutController
+CheckoutController --> CheckoutFacade
+CheckoutFacade --> InvoiceService
+CheckoutFacade --> PaymentService
+CheckoutFacade --> CheckoutOrchestrator
+InvoiceService --> InvoiceBuilder
+PaymentService --> PaymentCreator
+@enduml

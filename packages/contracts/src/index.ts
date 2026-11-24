@@ -83,3 +83,19 @@ export interface StockAdjustmentSummary {id:string;productId:string;expectedVers
 export interface StockMovementSummary {id:string;productId:string;referenceId:string;type:'PURCHASE'|'SALE'|'ADJUSTMENT_IN'|'ADJUSTMENT_OUT';quantity:number;actorId:string|null;createdAt:string}
 export interface ReserveStockInput {invoiceId:string;items:{productId:string;quantity:number}[]}
 export interface StockReservationSummary extends ReserveStockInput {id:string;status:'RESERVED'|'COMMITTED'|'RELEASED'}
+
+export type SaleStatus = 'PENDING' | 'READY' | 'PROCESSING' | 'RECOVERY' | 'COMPLETED' | 'FAILED' | 'CANCELLED';
+export type SalePaymentMethod = 'CASH' | 'BANK_TRANSFER';
+export interface SaleCartItem { productId: string; quantity: number }
+export interface SaleInvoiceItem extends SaleCartItem {
+  productCode: string; productName: string; unit: string; unitPrice: number; subtotal: number;
+}
+export type SalePaymentInput = { method: 'CASH'; amountReceived: number } | { method: 'BANK_TRANSFER'; confirmed: true };
+export interface SalePayment { method: SalePaymentMethod; amountReceived: number; changeAmount: number }
+export interface SaleInvoice {
+  id: string; code: string; cashierId: string; status: SaleStatus;
+  sagaIntent: 'RESERVE' | 'COMMIT' | 'RELEASE' | 'NONE';
+  totalAmount: number; reservationId: string | null; items: SaleInvoiceItem[];
+  payment: SalePayment | null; attempts: number; lastError: string | null;
+  createdAt: string; updatedAt: string; completedAt: string | null;
+}
