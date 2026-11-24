@@ -154,3 +154,8 @@ docker compose down
 - Docker/RabbitMQ runtime chưa kiểm chứng vì thiếu daemon; native PASS không thay thế Docker PASS.
 - Refresh replay thu hồi family, có thể yêu cầu login lại khi nhiều tab refresh đồng thời hoặc mất response. Rate limit in-memory theo process; chưa distributed. Session history chưa có job dọn retention.
 - Web vẫn có warning chunk >500 kB dù đã lazy load các route; chưa tối ưu sâu UI bundle. Tooling cũ có deprecation; chưa có security audit toàn cây dependencies.
+
+
+### DEV-2 catalog
+
+See [catalog API contract](docs/dev2-api.md). Run product migrations and seed in the configured development environment; seed creates six categories and 30 example products, preserving existing records. Manager manages categories/products; cashier and warehouse can read products. No stock quantities are seeded here. DEV-2 verification is pending; see docs/testing.md.

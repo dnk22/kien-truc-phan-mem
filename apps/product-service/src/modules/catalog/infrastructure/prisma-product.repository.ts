@@ -9,7 +9,8 @@ export class PrismaProductRepository implements ProductRepository {
   constructor(private readonly db: PrismaService) {}
   async list(q: CatalogQuery) {
     const where: Prisma.ProductWhereInput = {status:q.status,categoryId:q.categoryId,OR:q.search?[{name:{contains:q.search,mode:'insensitive'}},{code:{contains:q.search,mode:'insensitive'}},{barcode:{contains:q.search,mode:'insensitive'}}]:undefined};
-    const [items,total] = await this.db.$transaction([this.db.product.findMany({where,skip:(q.page-1)*q.pageSize,take:q.pageSize,orderBy:[{[q.sortBy]:q.sortOrder},{id:'asc'}]}),this.db.product.count({where})]);
+    const orderBy: Prisma.ProductOrderByWithRelationInput = q.sortBy === 'sellingPrice' ? {sellingPrice:q.sortOrder} : q.sortBy === 'createdAt' ? {createdAt:q.sortOrder} : {name:q.sortOrder};
+    const [items,total] = await this.db.$transaction([this.db.product.findMany({where,skip:(q.page-1)*q.pageSize,take:q.pageSize,orderBy:[orderBy,{id:'asc'}]}),this.db.product.count({where})]);
     return {items,total};
   }
   get(id:string) { return this.db.product.findUnique({where:{id}}); }

@@ -6,7 +6,7 @@ export async function catalogWrite<T>(db: PrismaService, work: (tx: Prisma.Trans
   try {
     return await db.$transaction(async (tx) => {
       // Serialize catalog writes so category deactivation and product activation cannot race.
-      await tx.$queryRaw`SELECT 1 AS locked FROM pg_advisory_xact_lock(2026112402)`;
+      await tx.$queryRaw`SELECT 1 AS locked FROM (SELECT pg_advisory_xact_lock(2026112402)) AS lock_result`;
       return work(tx);
     });
   } catch (error) {

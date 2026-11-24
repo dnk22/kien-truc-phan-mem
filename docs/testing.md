@@ -62,3 +62,10 @@ Vite phải dùng NODE_ENV=development ngay cả khi backend kiểm thử dùng 
 Live revocation được kiểm tra tại Identity, không tuyên bố Gateway tự đọc trạng thái DB. Request in-flight có thể đã qua guard; admin mutation revalidate actor trong transaction. Rate limit là in-memory per process; restart/reset process mất bộ đếm. Refresh đa tab hoặc lost response có thể khiến replay family bị revoke và cần login lại; chưa có cross-tab coordination/absolute session retention cleanup.
 
 Docker/RabbitMQ/Nginx runtime và HTTPS deployment chưa chạy. Vite còn chunk >500 kB dù route-level lazy loading; chưa tối ưu sâu bundle hoặc audit toàn bộ transitive dependencies. P95 CRUD 20 concurrent chưa đo; request duration logs không được coi là benchmark.
+
+
+## DEV-2 – verification pending
+
+Added catalog validation and batch lookup unit tests. Build, lint, typecheck, formatting, Jest, migration/seed, PostgreSQL concurrency, Gateway/Identity integration, browser E2E and Docker runtime: **NOT RUN** for DEV-2. Prior DEV-1 evidence is historical, not evidence for this branch.
+
+Local review: run root quality gate, check 30 demo products, category activation/deactivation races, unique code/barcode constraints, all role permissions, internal credential rejection, session revocation, UI CRUD/filter/pagination and DEV-1 regressions. Run migration and seed against disposable product_db, not production data.
