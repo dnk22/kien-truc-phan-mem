@@ -169,3 +169,8 @@ See [inventory API contract](docs/dev3-api.md). With DEMO_SEED_ENABLED=true in d
 ### DEV-4 sales
 
 Create confirmed purchase receipts first, then log in as cashier, search products at /pos, prepare checkout to see official total, record cash or manually verified bank transfer, and view/print completed invoices. See [Sales API](docs/dev4-api.md) and [GoF patterns](docs/design-patterns.md). Recovery worker retries pending intents; no broker dependency in checkout. Runtime verification pending.
+
+
+### DEV-5 reporting
+
+Before building DEV-5, regenerate the lockfile locally with `pnpm install --no-frozen-lockfile`, then run `pnpm install --frozen-lockfile` and quality gates. Sales completion records outbox; publisher delivers to RabbitMQ and Report projects it. Manager dashboard and reports show real projected revenue and live stock summary. See [DEV-5 contract](docs/dev5-api.md). Runtime verification pending.

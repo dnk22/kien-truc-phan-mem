@@ -1,0 +1,17 @@
+@startuml
+participant Sales
+database sales_db
+participant Publisher
+queue RabbitMQ
+participant Consumer
+database report_db
+Sales -> sales_db : COMPLETED + outbox (one transaction)
+Publisher -> sales_db : poll PENDING
+Publisher -> RabbitMQ : persistent event
+RabbitMQ --> Publisher : publisher confirm
+Publisher -> sales_db : mark SENT
+RabbitMQ -> Consumer : deliver
+Consumer -> report_db : processed_events + facts (one transaction)
+report_db --> Consumer : commit
+Consumer -> RabbitMQ : ACK
+@enduml

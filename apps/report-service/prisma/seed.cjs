@@ -3,10 +3,10 @@ const prisma = new PrismaClient();
 async function seed() {
   await prisma.foundationMetadata.upsert({
     where: { key: 'milestone' },
-    create: { key: 'milestone', value: 'DEV-0' },
-    update: { value: 'DEV-0' },
+    create: { key: 'milestone', value: 'DEV-5' },
+    update: { value: 'DEV-5' },
   });
-  console.log('report: foundation seed completed (no business data)');
+  console.log('report: report schema seed completed (no mock facts)');
 }
 seed()
   .catch(() => {

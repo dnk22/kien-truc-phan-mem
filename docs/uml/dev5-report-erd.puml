@@ -1,0 +1,18 @@
+@startuml
+entity processed_events {
+ * event_id : UUID
+ processed_at : timestamp
+}
+entity sales_facts {
+ * invoice_id : UUID
+ total_amount : bigint
+ completed_at : timestamp
+}
+entity sales_item_facts {
+ * invoice_id : UUID
+ * product_id : UUID
+ quantity : integer
+ subtotal : bigint
+}
+sales_facts ||--o{ sales_item_facts
+@enduml
