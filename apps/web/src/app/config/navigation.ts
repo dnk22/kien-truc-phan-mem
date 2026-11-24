@@ -26,13 +26,13 @@ export const navigation: NavItem[] = [
     labels: { CASHIER: 'Tra cứu sản phẩm', WAREHOUSE: 'Tra cứu sản phẩm' },
     label: 'Sản phẩm',
     roles: ['MANAGER', 'CASHIER', 'WAREHOUSE'],
-    available: false,
+    available: true,
   },
   {
     path: '/categories',
     label: 'Danh mục',
     roles: ['MANAGER'],
-    available: false,
+    available: true,
   },
   {
     path: '/suppliers',
