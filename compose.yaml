@@ -1,0 +1,260 @@
+name: minimart
+services:
+  postgres:
+    image: postgres:17.7-bookworm
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:?copy .env.example to .env}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?required}
+      IDENTITY_DB_PASSWORD: ${IDENTITY_DB_PASSWORD:?required}
+      PRODUCT_DB_PASSWORD: ${PRODUCT_DB_PASSWORD:?required}
+      INVENTORY_DB_PASSWORD: ${INVENTORY_DB_PASSWORD:?required}
+      SALES_DB_PASSWORD: ${SALES_DB_PASSWORD:?required}
+      REPORT_DB_PASSWORD: ${REPORT_DB_PASSWORD:?required}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infrastructure/postgres/init-databases.sh:/docker-entrypoint-initdb.d/01-databases.sh:ro
+      - ./infrastructure/postgres/healthcheck.sh:/healthcheck.sh:ro
+    healthcheck:
+      test: [CMD, bash, /healthcheck.sh]
+      interval: 10s
+      timeout: 8s
+      retries: 12
+      start_period: 20s
+    networks: [private]
+    restart: unless-stopped
+  rabbitmq:
+    image: rabbitmq:4.2.1-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:?required}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:?required}
+      RABBITMQ_DEFAULT_VHOST: minimart
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+      - ./infrastructure/rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+    healthcheck:
+      test: [CMD, rabbitmq-diagnostics, -q, ping]
+      interval: 10s
+      timeout: 8s
+      retries: 12
+    networks: [private]
+    restart: unless-stopped
+  identity-service:
+    build:
+      context: .
+      dockerfile: apps/identity-service/Dockerfile
+    environment:
+      NODE_ENV: ${APP_NODE_ENV:-development}
+      PORT: 3001
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      SERVICE_CREDENTIAL: ${SERVICE_CREDENTIAL:?required}
+      JWT_SECRET: ${JWT_SECRET:?required}
+      JWT_ISSUER: ${JWT_ISSUER:-minimart-identity}
+      JWT_AUDIENCE: ${JWT_AUDIENCE:-minimart-api}
+      JWT_ACCESS_TTL_SECONDS: ${JWT_ACCESS_TTL_SECONDS:-300}
+      LOGIN_RATE_LIMIT_MAX: ${LOGIN_RATE_LIMIT_MAX:-10}
+      LOGIN_RATE_LIMIT_WINDOW_SECONDS: ${LOGIN_RATE_LIMIT_WINDOW_SECONDS:-60}
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3000}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      CSRF_ALLOWED_ORIGINS: ${CSRF_ALLOWED_ORIGINS:-http://localhost:3000,http://localhost:8080}
+      REFRESH_TTL_DAYS: ${REFRESH_TTL_DAYS:-7}
+      DEMO_SEED_ENABLED: 'false'
+      DEMO_PASSWORD: ${DEMO_PASSWORD:-}
+      DATABASE_URL: postgresql://identity_user:${IDENTITY_DB_PASSWORD:?required}@postgres:5432/identity_db?schema=public&connect_timeout=3&pool_timeout=3
+      RABBITMQ_URL: ${RABBITMQ_URL:?required}
+      PRODUCT_SERVICE_URL: http://product-service:3002
+      INVENTORY_SERVICE_URL: http://inventory-service:3003
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          CMD,
+          node,
+          -e,
+          "fetch('http://127.0.0.1:3001/health/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 8s
+      retries: 12
+      start_period: 60s
+    networks: [private]
+    restart: unless-stopped
+  product-service:
+    build:
+      context: .
+      dockerfile: apps/product-service/Dockerfile
+    environment:
+      NODE_ENV: production
+      PORT: 3002
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      SERVICE_CREDENTIAL: ${SERVICE_CREDENTIAL:?required}
+      DATABASE_URL: postgresql://product_user:${PRODUCT_DB_PASSWORD:?required}@postgres:5432/product_db?schema=public&connect_timeout=3&pool_timeout=3
+      RABBITMQ_URL: ${RABBITMQ_URL:?required}
+      PRODUCT_SERVICE_URL: http://product-service:3002
+      INVENTORY_SERVICE_URL: http://inventory-service:3003
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          CMD,
+          node,
+          -e,
+          "fetch('http://127.0.0.1:3002/health/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 8s
+      retries: 12
+      start_period: 60s
+    networks: [private]
+    restart: unless-stopped
+  inventory-service:
+    build:
+      context: .
+      dockerfile: apps/inventory-service/Dockerfile
+    environment:
+      NODE_ENV: production
+      PORT: 3003
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      SERVICE_CREDENTIAL: ${SERVICE_CREDENTIAL:?required}
+      DATABASE_URL: postgresql://inventory_user:${INVENTORY_DB_PASSWORD:?required}@postgres:5432/inventory_db?schema=public&connect_timeout=3&pool_timeout=3
+      RABBITMQ_URL: ${RABBITMQ_URL:?required}
+      PRODUCT_SERVICE_URL: http://product-service:3002
+      INVENTORY_SERVICE_URL: http://inventory-service:3003
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          CMD,
+          node,
+          -e,
+          "fetch('http://127.0.0.1:3003/health/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 8s
+      retries: 12
+      start_period: 60s
+    networks: [private]
+    restart: unless-stopped
+  sales-service:
+    build:
+      context: .
+      dockerfile: apps/sales-service/Dockerfile
+    environment:
+      NODE_ENV: production
+      PORT: 3004
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      SERVICE_CREDENTIAL: ${SERVICE_CREDENTIAL:?required}
+      DATABASE_URL: postgresql://sales_user:${SALES_DB_PASSWORD:?required}@postgres:5432/sales_db?schema=public&connect_timeout=3&pool_timeout=3
+      RABBITMQ_URL: ${RABBITMQ_URL:?required}
+      PRODUCT_SERVICE_URL: http://product-service:3002
+      INVENTORY_SERVICE_URL: http://inventory-service:3003
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          CMD,
+          node,
+          -e,
+          "fetch('http://127.0.0.1:3004/health/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 8s
+      retries: 12
+      start_period: 60s
+    networks: [private]
+    restart: unless-stopped
+  report-service:
+    build:
+      context: .
+      dockerfile: apps/report-service/Dockerfile
+    environment:
+      NODE_ENV: production
+      PORT: 3005
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      SERVICE_CREDENTIAL: ${SERVICE_CREDENTIAL:?required}
+      DATABASE_URL: postgresql://report_user:${REPORT_DB_PASSWORD:?required}@postgres:5432/report_db?schema=public&connect_timeout=3&pool_timeout=3
+      RABBITMQ_URL: ${RABBITMQ_URL:?required}
+      PRODUCT_SERVICE_URL: http://product-service:3002
+      INVENTORY_SERVICE_URL: http://inventory-service:3003
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          CMD,
+          node,
+          -e,
+          "fetch('http://127.0.0.1:3005/health/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 8s
+      retries: 12
+      start_period: 60s
+    networks: [private]
+    restart: unless-stopped
+  api-gateway:
+    build:
+      context: .
+      dockerfile: apps/api-gateway/Dockerfile
+    environment:
+      NODE_ENV: ${APP_NODE_ENV:-development}
+      PORT: 8080
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3000}
+      SERVICE_CREDENTIAL: ${SERVICE_CREDENTIAL:?required}
+      JWT_SECRET: ${JWT_SECRET:?required}
+      JWT_ISSUER: ${JWT_ISSUER:-minimart-identity}
+      JWT_AUDIENCE: ${JWT_AUDIENCE:-minimart-api}
+      JWT_ACCESS_TTL_SECONDS: ${JWT_ACCESS_TTL_SECONDS:-300}
+      LOGIN_RATE_LIMIT_MAX: ${LOGIN_RATE_LIMIT_MAX:-10}
+      LOGIN_RATE_LIMIT_WINDOW_SECONDS: ${LOGIN_RATE_LIMIT_WINDOW_SECONDS:-60}
+      GATEWAY_TIMEOUT_MS: ${GATEWAY_TIMEOUT_MS:-5000}
+      IDENTITY_SERVICE_URL: http://identity-service:3001
+      PRODUCT_SERVICE_URL: http://product-service:3002
+      INVENTORY_SERVICE_URL: http://inventory-service:3003
+      SALES_SERVICE_URL: http://sales-service:3004
+      REPORT_SERVICE_URL: http://report-service:3005
+    ports: ['8080:8080']
+    healthcheck:
+      test:
+        [
+          CMD,
+          node,
+          -e,
+          "fetch('http://127.0.0.1:8080/health/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    networks: [public, private]
+    restart: unless-stopped
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    ports: ['3000:3000']
+    depends_on:
+      api-gateway:
+        condition: service_healthy
+    healthcheck:
+      test: [CMD, wget, -q, --spider, http://127.0.0.1:3000/health/live]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    networks: [public]
+    restart: unless-stopped
+networks:
+  public:
+  private:
+    internal: true
+volumes:
+  postgres_data:
+  rabbitmq_data:

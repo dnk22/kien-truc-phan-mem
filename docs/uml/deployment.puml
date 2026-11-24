@@ -1,0 +1,35 @@
+@startuml
+node "Host (Compose target; container runtime pending)" {
+  cloud "public network" {
+    node "web :3000\nNginx + static React" as web
+    node "api-gateway :8080" as gateway
+  }
+  cloud "private network (internal=true)" {
+    node "identity-service :3001" as identity
+    node "product-service :3002" as product
+    node "inventory-service :3003" as inventory
+    node "sales-service :3004" as sales
+    node "report-service :3005" as report
+    node "postgres :5432\n5 databases / 5 owners" as postgres
+    node "rabbitmq :5672\nmanagement :15672 private" as rabbit
+  }
+  gateway -- identity : same private network
+  gateway -- product
+  gateway -- inventory
+  gateway -- sales
+  gateway -- report
+  identity --> postgres
+  product --> postgres
+  inventory --> postgres
+  sales --> postgres
+  report --> postgres
+}
+actor "Browser" as browser
+browser --> web : host :3000
+browser --> gateway : host :8080
+web --> gateway : /health proxy
+note bottom of rabbit
+No published host ports.
+AMQP business integration: DEV-5.
+end note
+@enduml

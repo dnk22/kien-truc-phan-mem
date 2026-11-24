@@ -1,0 +1,29 @@
+{
+  "name": "@minimart/web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "dev": "vite --host 0.0.0.0",
+    "start": "vite preview --host 0.0.0.0",
+    "test": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "antd": "5.29.1",
+    "react-router-dom": "7.9.6",
+    "@tanstack/react-query": "5.90.11",
+    "zustand": "5.0.8",
+    "axios": "1.13.2",
+    "@minimart/contracts": "workspace:*"
+  },
+  "devDependencies": {
+    "vite": "7.3.1",
+    "@vitejs/plugin-react": "5.1.1",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3"
+  }
+}

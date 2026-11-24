@@ -1,0 +1,54 @@
+@startuml
+class AuthController
+class AuthService {
+  login(username, password)
+  refresh(token)
+  logout(token)
+  changePassword(userId, currentPassword, newPassword)
+}
+class UserController
+class UserService {
+  list(query)
+  get(id)
+  create(actorId, input)
+  update(actorId, id, input)
+}
+interface UserRepository {
+  findByUsername(username)
+  findById(id)
+  list(query)
+  create(actorId, input)
+  update(actorId, id, input)
+}
+interface SessionRepository {
+  create(user, newSession)
+  rotate(tokenHash, newSession)
+  revoke(tokenHash)
+  authenticate(principal)
+  changePassword(userId, previousHash, passwordHash)
+}
+class PrismaUserRepository
+class PrismaSessionRepository
+class PrismaService
+class IdentityGuard
+class RolesGuard
+class CsrfGuard
+AuthController --> AuthService
+UserController --> UserService
+UserController --> IdentityGuard
+UserController --> RolesGuard
+AuthController --> CsrfGuard
+AuthService --> UserRepository
+AuthService --> SessionRepository
+UserService --> UserRepository
+IdentityGuard --> SessionRepository
+PrismaUserRepository ..|> UserRepository
+PrismaSessionRepository ..|> SessionRepository
+PrismaUserRepository --> PrismaService
+PrismaSessionRepository --> PrismaService
+note bottom of PrismaUserRepository
+Global advisory transaction lock:
+actor revalidation + last active admin.
+Per-user lock coordinates session/security updates.
+end note
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+actor Staff
+participant "LoginPage / useLogin" as UI
+participant "Gateway AuthProxyController" as Gateway
+participant "Identity AuthController / CsrfGuard" as Controller
+participant AuthService
+participant "UserRepository / Prisma adapter" as Users
+participant "SessionRepository / Prisma adapter" as Sessions
+database identity_db
+Staff -> UI : username + password
+UI -> Gateway : POST /api/v1/auth/login
+Gateway -> Gateway : rate limit peer IP / correlation
+Gateway -> Controller : forward allowlisted headers + body
+Controller -> Controller : validate Origin + CSRF header + DTO
+Controller -> AuthService : login(username,password)
+AuthService -> Users : findByUsername
+Users -> identity_db : read user
+identity_db --> Users : user / null
+Users --> AuthService : user
+AuthService -> AuthService : bcrypt compare (dummy hash if absent)
+alt valid password + ACTIVE
+  AuthService -> Sessions : create(user,newSession)
+  Sessions -> identity_db : BEGIN; per-user advisory lock
+  Sessions -> identity_db : recheck version/hash/status
+  Sessions -> identity_db : insert hashed refresh session; update lastLoginAt; COMMIT
+  Sessions --> AuthService : current user
+  AuthService -> AuthService : sign JWT sub/role/sid/version/iss/aud/exp
+  AuthService --> Controller : AuthResult + opaque refresh token
+  Controller --> Gateway : 200 envelope + HttpOnly Set-Cookie
+  Gateway --> UI : preserve cookie/status/correlation
+  UI -> UI : memory auth state; role default route
+else invalid credentials / LOCKED
+  AuthService --> Controller : generic 401
+  Controller --> UI : via Gateway standardized error
+end
+@enduml

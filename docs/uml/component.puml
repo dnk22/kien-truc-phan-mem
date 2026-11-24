@@ -1,0 +1,29 @@
+@startuml
+skinparam componentStyle rectangle
+note "DEV-0 implementation only.\nBusiness HTTP clients and AMQP consumers not implemented." as scope
+component "Web\nReact/Vite" as web
+component "API Gateway\nNestJS" as gateway
+component "Identity\nNestJS" as identity
+component "Product\nNestJS" as product
+component "Inventory\nNestJS" as inventory
+component "Sales\nNestJS" as sales
+component "Report\nNestJS" as report
+database identity_db
+database product_db
+database inventory_db
+database sales_db
+database report_db
+queue "RabbitMQ\nconfigured; runtime not verified" as rabbit
+web --> gateway : GET /health/ready
+identity --> identity_db : own Prisma Client
+product --> product_db : own Prisma Client
+inventory --> inventory_db : own Prisma Client
+sales --> sales_db : own Prisma Client
+report --> report_db : own Prisma Client
+package "Shared technical packages" {
+  component contracts
+  component auth
+  component logger
+  component config
+}
+@enduml

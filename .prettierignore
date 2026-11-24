@@ -1,0 +1,7 @@
+node_modules
+**/dist
+**/generated
+pnpm-lock.yaml
+Prompt_Codex_MiniMart.md
+Bao_cao_Nhom_06_Sieu_thi_mini.docx
+docs/evidence

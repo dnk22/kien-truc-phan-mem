@@ -1,0 +1,51 @@
+@startuml
+entity users {
+ * id : uuid <<PK>>
+ --
+ * username : varchar(40) <<UNIQUE>>
+ * password_hash : text
+ * full_name : varchar(120)
+ email : varchar(254)?
+ phone : varchar(20)?
+ * role : Role
+ * status : UserStatus
+ * token_version : integer
+ * created_at : timestamptz(3)
+ * updated_at : timestamptz(3)
+ last_login_at : timestamptz(3)?
+}
+entity refresh_sessions {
+ * id : uuid <<PK>>
+ --
+ * family_id : uuid <<INDEX>>
+ * user_id : uuid <<FK, INDEX>>
+ * token_hash : varchar(64) <<UNIQUE>>
+ * expires_at : timestamptz(3) <<INDEX>>
+ revoked_at : timestamptz(3)?
+ * created_at : timestamptz(3)
+}
+entity foundation_metadata {
+ * key : text <<PK>>
+ --
+ * value : text
+ * updated_at : timestamptz(3)
+}
+enum Role {
+ ADMIN
+ MANAGER
+ CASHIER
+ WAREHOUSE
+}
+enum UserStatus {
+ ACTIVE
+ LOCKED
+}
+users ||--o{ refresh_sessions
+users .. Role
+users .. UserStatus
+note bottom of refresh_sessions
+SHA-256 random token hash only; no plaintext token.
+Family retained to detect replay after rotation.
+All foreign keys remain inside identity_db.
+end note
+@enduml

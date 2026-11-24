@@ -1,0 +1,33 @@
+@startuml
+skinparam componentStyle rectangle
+component "Web\nAuth + Users + MainLayout" as Web
+component "Gateway\nJWT/RolesGuard + allowlist proxy" as Gateway
+package "Identity Service" {
+ component "AuthenticationModule\nAuthController, AuthService, IdentityGuard, CsrfGuard" as Auth
+ component "UserModule\nUserController, UserService" as Users
+ component "RoleModule\nRolesGuard / Role enum" as Roles
+ component "SessionModule\nSessionRepository + Prisma adapter" as Sessions
+ component "UserPersistenceModule\nUserRepository + Prisma adapter" as Repository
+ component "DatabaseModule\nPrismaService / DatabaseProbe" as Database
+}
+database identity_db
+component "Shared technical packages\ncontracts/auth/config/logger" as Shared
+Web --> Gateway : /api/v1/auth + users
+Gateway --> Auth : REST + bearer/cookie/correlation
+Gateway --> Users : REST + bearer/correlation
+Auth --> Sessions
+Auth --> Repository
+Users --> Auth : IdentityGuard
+Users --> Roles
+Users --> Repository
+Sessions --> Database
+Repository --> Database
+Database --> identity_db : no cross-service DB access
+Gateway ..> Shared
+Auth ..> Shared
+Web ..> Shared : contracts only
+note right of Gateway
+No DB client; no trusted client role headers.
+/internal/v1 is not proxied.
+end note
+@enduml

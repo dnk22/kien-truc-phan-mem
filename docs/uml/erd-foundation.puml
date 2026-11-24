@@ -1,0 +1,43 @@
+@startuml
+note "Actual DEV-0 tables. Prisma migration history omitted.\nNo cross-database foreign keys or business tables yet." as scope
+package identity_db {
+  entity "foundation_metadata" as i { 
+    * key : text <<PK>>
+    --
+    value : text
+    updated_at : timestamptz(3)
+  }
+}
+package product_db {
+  entity "foundation_metadata" as p {
+    * key : text <<PK>>
+    --
+    value : text
+    updated_at : timestamptz(3)
+  }
+}
+package inventory_db {
+  entity "foundation_metadata" as inv {
+    * key : text <<PK>>
+    --
+    value : text
+    updated_at : timestamptz(3)
+  }
+}
+package sales_db {
+  entity "foundation_metadata" as s {
+    * key : text <<PK>>
+    --
+    value : text
+    updated_at : timestamptz(3)
+  }
+}
+package report_db {
+  entity "foundation_metadata" as r {
+    * key : text <<PK>>
+    --
+    value : text
+    updated_at : timestamptz(3)
+  }
+}
+@enduml

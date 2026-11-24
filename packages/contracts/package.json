@@ -1,0 +1,20 @@
+{
+  "name": "@minimart/contracts",
+  "version": "0.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig.esm.json && node ../../scripts/esm-marker.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "jest --config ../../jest.config.cjs --runInBand --passWithNoTests"
+  },
+  "dependencies": {},
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/index.js"
+    }
+  }
+}

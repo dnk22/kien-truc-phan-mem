@@ -1,0 +1,31 @@
+{
+  "name": "@minimart/report-service",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "build": "pnpm db:generate && tsc -p tsconfig.json && node ../../scripts/copy-client.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "dev": "node --env-file=../../.env --env-file-if-exists=.env --watch dist/main.js",
+    "start": "node dist/main.js",
+    "test": "jest --config ../../jest.config.cjs --runInBand",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate deploy",
+    "db:seed": "node --env-file-if-exists=../../.env --env-file-if-exists=.env prisma/seed.cjs"
+  },
+  "dependencies": {
+    "@minimart/config": "workspace:*",
+    "@minimart/contracts": "workspace:*",
+    "@minimart/auth": "workspace:*",
+    "@minimart/logger": "workspace:*",
+    "@nestjs/common": "11.1.24",
+    "@nestjs/core": "11.1.24",
+    "@nestjs/platform-express": "11.1.24",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2",
+    "@prisma/client": "6.19.3"
+  },
+  "devDependencies": {
+    "prisma": "6.19.3",
+    "@nestjs/testing": "11.1.24"
+  }
+}

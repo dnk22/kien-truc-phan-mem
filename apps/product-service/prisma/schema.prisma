@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+  output = "../src/generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+
+// Technical marker only. Domain tables arrive in their respective milestones.
+model FoundationMetadata {
+  key String @id
+  value String
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+  @@map("foundation_metadata")
+}

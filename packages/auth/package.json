@@ -1,0 +1,21 @@
+{
+  "name": "@minimart/auth",
+  "version": "0.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "jest --config ../../jest.config.cjs --runInBand --passWithNoTests"
+  },
+  "dependencies": {
+    "@nestjs/common": "11.1.24",
+    "@nestjs/core": "11.1.24",
+    "@minimart/contracts": "workspace:*",
+    "jsonwebtoken": "9.0.3"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "9.0.10"
+  }
+}

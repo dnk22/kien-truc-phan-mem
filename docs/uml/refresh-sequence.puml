@@ -1,0 +1,34 @@
+@startuml
+participant "Axios / refreshFlight" as UI
+participant Gateway
+participant "AuthController / CsrfGuard" as Controller
+participant AuthService
+participant "PrismaSessionRepository" as Sessions
+database identity_db
+UI -> UI : concurrent 401 -> one refresh promise
+UI -> Gateway : POST /api/v1/auth/refresh + HttpOnly cookie
+Gateway -> Controller : forward cookie/Origin/CSRF/correlation
+Controller -> AuthService : refresh(opaqueToken)
+AuthService -> AuthService : SHA-256 + generate new random token
+AuthService -> Sessions : rotate(oldHash,newSession)
+Sessions -> identity_db : find old session
+Sessions -> identity_db : BEGIN; per-user advisory lock
+Sessions -> identity_db : reread session + user
+alt active unexpired session + ACTIVE user
+  Sessions -> identity_db : revoke old; insert new in same family; COMMIT
+  Sessions --> AuthService : user
+  AuthService --> Controller : new JWT/session + opaque token
+  Controller --> UI : through Gateway: 200 + rotated HttpOnly cookie
+  UI -> UI : retry original requests once with new access
+else replay/revoked/expired/locked
+  Sessions -> identity_db : revoke active family; COMMIT
+  Sessions --> AuthService : null
+  AuthService --> Controller : 401
+  Controller --> UI : clear cookie; 401 envelope
+  UI -> UI : clear memory auth; login required
+end
+note over Sessions,identity_db
+Revocation commits before reporting replay failure.
+Old access JWT fails Identity live-session validation.
+end note
+@enduml

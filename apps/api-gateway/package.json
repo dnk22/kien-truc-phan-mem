@@ -1,0 +1,28 @@
+{
+  "name": "@minimart/api-gateway",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "dev": "node --env-file=../../.env --watch dist/main.js",
+    "start": "node dist/main.js",
+    "test": "jest --config ../../jest.config.cjs --runInBand"
+  },
+  "dependencies": {
+    "@minimart/config": "workspace:*",
+    "@minimart/contracts": "workspace:*",
+    "@minimart/auth": "workspace:*",
+    "@minimart/logger": "workspace:*",
+    "@nestjs/common": "11.1.24",
+    "@nestjs/core": "11.1.24",
+    "@nestjs/platform-express": "11.1.24",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2",
+    "@nestjs/swagger": "11.2.3"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "11.1.24",
+    "@types/express": "5.0.5"
+  }
+}
