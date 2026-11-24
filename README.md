@@ -2,9 +2,8 @@
 
 Nguồn chuẩn: [Prompt_Codex_MiniMart.md](Prompt_Codex_MiniMart.md), đối chiếu `Bao_cao_Nhom_06_Sieu_thi_mini.docx`. Hai tài liệu nguồn được giữ nguyên.
 
-**Milestone: DEV-1 — Identity & Application Shell.** Đã có Identity, JWT/RBAC, refresh/logout/password, quản lý nhân viên và web quản trị nối API thật. Product, Inventory, POS, Invoice, Report mới có route shell với nhãn Chưa khả dụng; không có dữ liệu nghiệp vụ giả. Dừng trước DEV-2.
+**Milestone: DEV-7 — release candidate (source only).** All five business services have implementation candidates; DEV-2–7 runtime acceptance remains pending. See [release runbook](docs/release.md).
 
-Đầu phiên chưa có `.git`; kiểm tra cuối phiên thấy repository trên `main`, chưa có commit và toàn bộ source đang untracked. Agent không chạy git init, tạo branch, commit hoặc PR. Giữ nguyên monorepo DEV-0.
 
 ## Khởi động bằng Docker Compose
 
@@ -19,7 +18,7 @@ docker compose ps
 docker compose exec -e DEMO_SEED_ENABLED=true identity-service pnpm db:seed
 ```
 
-Compose mặc định `APP_NODE_ENV=development` cho Identity/Gateway để demo HTTP localhost và cookie Secure=false. Các service khác vẫn giữ foundation production mode. Startup luôn chạy migration và foundation seed; **demo user seed tắt mặc định trong container**, phải chạy lệnh explicit trên. Password lấy từ DEMO_PASSWORD trong `.env`. Seed chỉ thêm username chưa có, không ghi đè mật khẩu, role, status hoặc profile đã sửa.
+Compose mặc định `APP_NODE_ENV=development` cho Identity/Gateway để demo HTTP localhost và cookie Secure=false. Các business service dùng APP_NODE_ENV để phù hợp JWT demo. Startup luôn chạy migration và foundation seed; **demo user seed tắt mặc định trong container**, phải chạy lệnh explicit trên. Password lấy từ DEMO_PASSWORD trong `.env`. Seed chỉ thêm username chưa có, không ghi đè mật khẩu, role, status hoặc profile đã sửa.
 
 | URL                                | Nội dung                                                |
 | ---------------------------------- | ------------------------------------------------------- |
@@ -66,7 +65,7 @@ Node **22.22.2**, pnpm **10.32.1**, TypeScript **5.9.3**. Giữ nguyên dependen
 | Jest / ts-jest / Supertest            | 29.7.0 / 29.4.5 / 7.1.4                 |
 | ESLint / typescript-eslint / Prettier | 9.39.1 / 8.48.1 / 3.7.4                 |
 
-Shared contracts có CJS + ESM output để dùng runtime role constants ở Nest và Vite. Không thay toàn bộ build config để né bundle warning. AMQP client/Outbox thuộc DEV-5.
+Shared contracts có CJS + ESM output để dùng runtime role constants ở Nest và Vite. Không thay toàn bộ build config để né bundle warning. AMQP client/Outbox đã được thêm ở DEV-5; lockfile cần đồng bộ trước build.
 
 ## Phát triển native
 
@@ -179,3 +178,8 @@ Before building DEV-5, regenerate the lockfile locally with `pnpm install --no-f
 ### DEV-6 verification
 
 After synchronizing the lockfile and building a disposable local demo stack, run `VERIFY_DISPOSABLE=true pnpm verify:dev6` and optionally `VERIFY_DISPOSABLE=true VERIFY_FAULTS=true pnpm verify:dev6`. The latter stops and restarts Report and RabbitMQ; never run against a shared or production environment. See [verification runbook](docs/dev6-verification.md).
+
+
+## DEV-7 release candidate
+
+Read [release runbook](docs/release.md), [demo script](docs/demo.md), [architecture](docs/architecture-current.md), [API index](docs/api-index.md), [evidence matrix](docs/report-evidence.md) and [Codex handoff](docs/codex-final-review.md). No release tag or runtime PASS is claimed. Historical DEV-0/1 evidence is not DEV-7 evidence.

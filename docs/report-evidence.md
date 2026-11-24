@@ -1,33 +1,29 @@
-# Minh chứng báo cáo — DEV-1
+# Report evidence and traceability – candidate
 
-Ngày 24/11/2026 GMT+7. Git commit/tag: N/A. Đầu phiên chưa có Git; cuối phiên repository ở main nhưng chưa có commit, source untracked. Agent không tạo hoặc sửa Git metadata. Node 22.22.2, pnpm 10.32.1, PostgreSQL thật 17.7, Chrome/macOS arm64. Các phiên bản sản phẩm và dependencies mới trong README/pnpm-lock.yaml.
+No new runtime evidence captured. All rows below refer to implementation candidates; mark PASS only after execution on the final commit.
 
-| Yêu cầu                 | Implementation                                                                                           | Kiểm chứng                                                                                                                |
-| ----------------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| FR01–09, BR01–03        | Identity modules + auth/users controllers/services/repositories; JWT/session/Role guards; admin users UI | Unit, HTTP/DB integration và browser E2E thực tế; xem testing.md                                                          |
-| NFR02                   | bcrypt, JWT validation, live DB session/version, RBAC, CSRF, rate limit, safe profiles/logging           | 4 role login; role denial trực tiếp Identity/Gateway; lock/role/password/logout revocation; replay và refresh concurrency |
-| NFR03–04                | Independent apps, layers, DI repository interfaces                                                       | Build mỗi app/package; no shared domain behavior; UML Identity class/component                                            |
-| NFR08                   | Jest/Supertest + native scripts/API/browser fixtures                                                     | 27 Jest tests và assertions tích hợp; logs lưu evidence/dev1                                                              |
-| NFR09–10                | Compose, health, structured logs/correlation, timeout/error mapping                                      | Config CLI và native startup/health; Docker runtime BLOCKED                                                               |
-| Last Admin invariant    | Advisory locks + DB transaction + actor revalidation                                                     | Competing lock/demotion requests; DB còn ít nhất 1 ACTIVE ADMIN                                                           |
-| Migration/seed          | New migration, old foundation unchanged; env-gated upsert demo users                                     | Upgrade foundation, deploy lặp lại, seed không overwrite, production seed refusal                                         |
-| FR10–57 / BR04–21       | Chưa triển khai                                                                                          | NOT_RUN, shell placeholders chỉ báo Chưa khả dụng                                                                         |
-| NFR01 P95/20 concurrent | Chưa đo                                                                                                  | NOT_MEASURED                                                                                                              |
+| Requirement group | Source | Verification |
+|---|---|---|
+| FR01–09 identity/users | identity-service modules, web auth/users | verify:dev1 regression, role UI |
+| FR10–19 catalog | product-service catalog, web categories/products | verify:dev6, search/filter/status/price |
+| FR20–25 suppliers | inventory supplier repository/controller, web suppliers | verify:dev6 + history/disable |
+| FR26–36 inventory | receipt/stock/reservation repositories, web inventory | confirm replay, stock invariant, adjustment version |
+| FR37–49 sales | sales module, web pos/sales | prepare/confirm replay, concurrent reserve, payment/print |
+| FR50–57 reporting | outbox/report modules, web reports | outage/catch-up, duplicate event, GMT+7 |
+| BR01–03 | Identity unique/lock/RBAC | auth regression |
+| BR04–06,11,20 | Catalog constraints/status | duplicate, inactive product, historical reference |
+| BR07–10,12,17–18 | Inventory constraints/transactions | positive qty, receipt confirm, insufficient stock, movement/threshold |
+| BR13–16,21 | Sales builder/payment/state/idempotency | total/change/snapshot/replay |
+| BR19 | report projection completed event | revenue reconciliation |
+| NFR01 | CRUD latency | 20 concurrent users, p95 measured; target 500ms |
+| NFR02–04 | auth, service separation, layered DI | RBAC, DB isolation, source review |
+| NFR05–06 | reservation, saga, outbox | retry/race/fault injection |
+| NFR07–08 | shared UI and test suites | desktop/mobile, unit/API/E2E |
+| NFR09–10 | Compose, health, correlation/logger | compose ps, health, trace |
 
-## Evidence thật
+Evidence collection after local verification (suggested filenames under docs/evidence/final/):
+- 01-login, 02-users-role, 03-products, 04-receipt, 05-stock, 06-pos-ready, 07-payment, 08-invoice-print, 09-dashboard, 10-reports (actual screenshots).
+- 11-compose-ps.txt, 12-swagger.png, 13-quality-gates.log, 14-integration.log, 15-outage-recovery.log, 16-db-invariants.log, 17-performance.log.
+- manifest.md: exact git commit, date/time/timezone, Node/pnpm/Docker versions, command, result PASS/FAIL/NOT RUN/BLOCKED, evidence path. Redact JWT, cookies, DB credentials, personal data. No generated placeholder screenshot should be represented as actual UI.
 
-`docs/evidence/dev1/verification.log` ghi API/database/browser checks từ script chạy thật. `checks.log` ghi quality gate và exit codes. `compose-validation.log` ghi CLI config và lỗi daemon; không có ảnh Docker chạy giả.
-
-Screenshots: login-desktop, users-desktop, users-empty, users-loading, users-error, manager-desktop, cashier-desktop, warehouse-desktop, navigation-mobile, profile-mobile, swagger-desktop. Tất cả được chụp từ Chrome; loading/error dùng lỗi transport có chủ đích trên luồng thật, không mock dữ liệu thành công. Process logs identity/gateway có correlation IDs và HTTP status, không chứa password/token/cookie.
-
-UML source thực tế: `identity-class.puml`, `login-sequence.puml`, `refresh-sequence.puml`, `auth-component.puml`, `identity-erd.puml`; chưa render ảnh UML. Diagram nghiệp vụ Sales/Inventory chưa thay thiết kế dự kiến bằng implementation giả.
-
-## Phần báo cáo cần cập nhật sau review
-
-- Chương 2/3: đối chiếu Identity/session family/tokenVersion và live revocation; role enum, không Role table thứ hai.
-- Chương 5.1–5.3: phiên bản, cấu trúc, lệnh chạy/seed và ảnh login/users/profile thật. Đánh dấu native verification và Docker BLOCKED riêng.
-- Chương 5.4: có thể cập nhật TC01 sai password và TC02 Cashier bị 403 bằng evidence DEV-1. TC03–TC15 nghiệp vụ chưa chạy.
-- Chương 5.6: chỉ nghiệm thu Identity/Application Shell hiện có; không khẳng định P95, checkout/Saga/Outbox hoặc production deployment đạt.
-- Chương 4 GoF vẫn chờ DEV-4; không tính JWT guards hoặc repository DI là bốn GoF patterns.
-
-Không sửa DOCX nguồn ở phase này. Dừng DEV-1 trước khi chuyển DEV-2.
+Update DOCX chapters 2–5 with actual architecture, UML, class/file references, screenshots and test results only after Codex review. Keep original cover and source report unchanged until explicitly editing.
