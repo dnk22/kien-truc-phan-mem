@@ -15,3 +15,115 @@ model FoundationMetadata {
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
   @@map("foundation_metadata")
 }
+
+enum SupplierStatus {
+  ACTIVE
+  INACTIVE
+}
+enum DocumentStatus {
+  DRAFT
+  CONFIRMED
+  CANCELLED
+}
+enum ReservationStatus {
+  RESERVED
+  COMMITTED
+  RELEASED
+}
+enum MovementType {
+  PURCHASE
+  SALE
+  ADJUSTMENT_IN
+  ADJUSTMENT_OUT
+}
+model Supplier {
+  id String @id @default(uuid()) @db.Uuid
+  code String @unique @db.VarChar(64)
+  name String @db.VarChar(200)
+  phone String?
+  address String?
+  status SupplierStatus @default(ACTIVE)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+  receipts PurchaseReceipt[]
+  @@map("suppliers")
+}
+model PurchaseReceipt {
+  id String @id @default(uuid()) @db.Uuid
+  supplierId String @map("supplier_id") @db.Uuid
+  supplier Supplier @relation(fields:[supplierId], references:[id], onDelete:Restrict)
+  status DocumentStatus @default(DRAFT)
+  createdBy String @map("created_by") @db.Uuid
+  confirmedBy String? @map("confirmed_by") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  confirmedAt DateTime? @map("confirmed_at") @db.Timestamptz(3)
+  items PurchaseReceiptItem[]
+  @@index([supplierId, status])
+  @@map("purchase_receipts")
+}
+model PurchaseReceiptItem {
+  id String @id @default(uuid()) @db.Uuid
+  receiptId String @map("receipt_id") @db.Uuid
+  receipt PurchaseReceipt @relation(fields:[receiptId], references:[id], onDelete:Restrict)
+  productId String @map("product_id") @db.Uuid
+  productCode String @map("product_code")
+  productName String @map("product_name")
+  quantity Int
+  unitCost Int @map("unit_cost")
+  @@unique([receiptId,productId])
+  @@map("purchase_receipt_items")
+}
+model Inventory {
+  productId String @id @map("product_id") @db.Uuid
+  productCode String @map("product_code")
+  productName String @map("product_name")
+  onHand Int @default(0) @map("on_hand")
+  reserved Int @default(0)
+  version Int @default(0)
+  threshold Int @default(5)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+  @@map("inventories")
+}
+model StockMovement {
+  id String @id @default(uuid()) @db.Uuid
+  productId String @map("product_id") @db.Uuid
+  referenceId String @map("reference_id") @db.Uuid
+  type MovementType
+  quantity Int
+  actorId String? @map("actor_id") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  @@unique([referenceId,productId,type])
+  @@index([productId,createdAt])
+  @@map("stock_movements")
+}
+model StockAdjustment {
+  id String @id @default(uuid()) @db.Uuid
+  productId String @map("product_id") @db.Uuid
+  expectedVersion Int @map("expected_version")
+  counted Int
+  reason String
+  status DocumentStatus @default(DRAFT)
+  createdBy String @map("created_by") @db.Uuid
+  confirmedBy String? @map("confirmed_by") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  confirmedAt DateTime? @map("confirmed_at") @db.Timestamptz(3)
+  @@map("stock_adjustments")
+}
+model StockReservation {
+  id String @id @default(uuid()) @db.Uuid
+  invoiceId String @unique @map("invoice_id") @db.Uuid
+  status ReservationStatus @default(RESERVED)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+  items StockReservationItem[]
+  @@map("stock_reservations")
+}
+model StockReservationItem {
+  id String @id @default(uuid()) @db.Uuid
+  reservationId String @map("reservation_id") @db.Uuid
+  reservation StockReservation @relation(fields:[reservationId], references:[id], onDelete:Restrict)
+  productId String @map("product_id") @db.Uuid
+  quantity Int
+  @@unique([reservationId,productId])
+  @@map("stock_reservation_items")
+}
