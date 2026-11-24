@@ -15,3 +15,36 @@ model FoundationMetadata {
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
   @@map("foundation_metadata")
 }
+
+enum ReportPaymentMethod {
+  CASH
+  BANK_TRANSFER
+}
+model ProcessedEvent {
+  eventId String @id @map("event_id") @db.Uuid
+  processedAt DateTime @default(now()) @map("processed_at") @db.Timestamptz(3)
+  @@map("processed_events")
+}
+model SalesFact {
+  invoiceId String @id @map("invoice_id") @db.Uuid
+  invoiceCode String @map("invoice_code")
+  cashierId String @map("cashier_id") @db.Uuid
+  totalAmount BigInt @map("total_amount")
+  paymentMethod ReportPaymentMethod @map("payment_method")
+  completedAt DateTime @map("completed_at") @db.Timestamptz(3)
+  items SalesItemFact[]
+  @@index([completedAt])
+  @@map("sales_facts")
+}
+model SalesItemFact {
+  invoiceId String @map("invoice_id") @db.Uuid
+  productId String @map("product_id") @db.Uuid
+  productName String @map("product_name")
+  quantity Int
+  unitPrice BigInt @map("unit_price")
+  subtotal BigInt
+  invoice SalesFact @relation(fields:[invoiceId],references:[invoiceId],onDelete:Restrict)
+  @@id([invoiceId,productId])
+  @@index([productId])
+  @@map("sales_item_facts")
+}

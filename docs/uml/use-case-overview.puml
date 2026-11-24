@@ -1,0 +1,49 @@
+@startuml
+left to right direction
+actor "Authenticated user" as U
+actor ADMIN as A
+actor MANAGER as M
+actor CASHIER as C
+actor WAREHOUSE as W
+A --|> U
+M --|> U
+C --|> U
+W --|> U
+rectangle MiniMart {
+ usecase "Login / logout / profile" as Auth
+ usecase "Manage users and roles" as Users
+ usecase "Manage catalog" as Catalog
+ usecase "Lookup products / stock" as Lookup
+ usecase "Manage suppliers" as Suppliers
+ usecase "Read active suppliers via API" as SupplierRead
+ usecase "Create / edit / cancel receipt draft" as Receipt
+ usecase "Confirm receipt" as Confirm
+ usecase "View stock movements" as Movements
+ usecase "Create / cancel stock count" as Count
+ usecase "Confirm adjustment" as Adjust
+ usecase "POS checkout" as POS
+ usecase "View / print own invoices" as Own
+ usecase "View all invoices" as All
+ usecase "Dashboard / reports" as Reports
+}
+U --> Auth
+A --> Users
+M --> Catalog
+M --> Suppliers
+W --> SupplierRead
+M --> Lookup
+C --> Lookup
+W --> Lookup
+M --> Receipt
+W --> Receipt
+M --> Confirm
+M --> Movements
+W --> Movements
+M --> Count
+W --> Count
+M --> Adjust
+C --> POS
+C --> Own
+M --> All
+M --> Reports
+@enduml

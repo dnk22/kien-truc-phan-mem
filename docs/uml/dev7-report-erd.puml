@@ -1,0 +1,34 @@
+@startuml
+hide circle
+skinparam linetype ortho
+entity "foundation_metadata" as FoundationMetadata {
+ * key : String <<PK>>
+ * value : String
+ * updated_at : DateTime
+}
+entity "processed_events" as ProcessedEvent {
+ * event_id : UUID <<PK>>
+ * processed_at : DateTime
+}
+entity "sales_facts" as SalesFact {
+ * invoice_id : UUID <<PK>>
+ * invoice_code : String
+ * cashier_id : UUID
+ * total_amount : BigInt
+ * payment_method : ReportPaymentMethod
+ * completed_at : DateTime
+}
+entity "sales_item_facts" as SalesItemFact {
+ * invoice_id : UUID <<FK>>
+ * product_id : UUID
+ * product_name : String
+ * quantity : Int
+ * unit_price : BigInt
+ * subtotal : BigInt
+ id([invoiceId,productId])
+}
+SalesFact ||--o{ SalesItemFact
+note bottom of SalesItemFact
+report_db: external UUID references are not cross-database foreign keys.
+end note
+@enduml

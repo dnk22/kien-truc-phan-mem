@@ -46,3 +46,18 @@ Inventory schema, transactional repositories, supplier/receipt/stock/adjustment 
 ## DEV-4 implementation candidate
 
 Sales schema, two-stage POS, persistent checkout saga, recovery worker, payment strategies and creators, invoice builder and facade, public APIs, invoice history/detail/print, transactional outbox write, tests and UML. Publisher/consumer deferred to DEV-5. See dev4-api.md and design-patterns.md. Runtime verification pending.
+
+
+## DEV-5 implementation candidate
+
+Report DB projection, RabbitMQ publisher/consumer, retries/DLQ, revenue and stock APIs, dashboard and report views, test sources and UML. New AMQP dependencies require lockfile regeneration before build; verification pending. DEV-6 not started.
+
+
+## DEV-6 implementation candidate
+
+Added disposable-stack HTTP acceptance harness and optional Compose outage checks, targeted source fixes and verification matrix. Runtime execution remains pending. DEV-7 not started.
+
+
+## DEV-7 source handoff
+
+Release/demo runbooks, current architecture/API/RBAC documentation, grouped requirement traceability, UML overview and five schema-derived ERDs, release checklist and final evidence template added. Rendering and all runtime acceptance gates remain pending. No release tag; no source DOCX changes.

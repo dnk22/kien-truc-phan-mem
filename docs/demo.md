@@ -1,12 +1,23 @@
-# Demo DEV-1
+# Kịch bản bảo vệ – nhóm 06
 
-1. Khởi động theo README, migrate và chạy explicit demo seed; mở `/login`.
-2. Đăng nhập admin với DEMO_PASSWORD đã cấu hình. `/users` hiển thị dữ liệu thật: tạo user, tìm kiếm/lọc/phân trang, sửa thông tin với confirm, đổi role và khóa/mở khóa với confirm. Username trùng trả 409, sai input trả 400.
-3. Thử khóa/hạ quyền Admin ACTIVE cuối cùng để thấy 409. Không thực hiện trên môi trường production hoặc tài khoản đang được người khác dùng.
-4. Mở profile, đổi mật khẩu bằng mật khẩu hiện tại: session bị thu hồi và trở về login; dùng password mới để vào lại. Seed không tự reset password.
-5. Reload trang để chứng minh session restoration qua HttpOnly refresh cookie; logout rồi reload vẫn ở login. Access token không lưu localStorage.
-6. Đăng nhập manager/cashier/warehouse: default routes dashboard/pos/inventory và menu riêng. Vào trực tiếp `/users` bị chặn. Những trang nghiệp vụ này còn Chưa khả dụng, không có dữ liệu giả.
-7. Mobile: mở drawer, chọn menu profile; xem layout không tràn viewport. Desktop có sidebar có thể thu gọn.
-8. Swagger tại Gateway `/docs`. API cookie actions cần Origin phù hợp và X-CSRF-Protection: 1; GET me/users cần bearer. Xem `api-contracts.md`.
+Thời lượng gợi ý 10–12 phút; điều chỉnh theo giảng viên. Chỉ thực hiện sau khi quality gate và demo rehearsal đạt.
 
-Ảnh thật và log ở `docs/evidence/dev1`; các trạng thái loading/error trong browser test được gây ra bằng trì hoãn hoặc chặn transport, không fake thành công API. Chưa có ảnh `docker compose ps` vì daemon chưa chạy. Kịch bản nhập hàng/POS/checkout/Outbox vẫn chưa được hiện thực, dừng tại DEV-1.
+| Thời gian | Người phụ trách đề xuất | Nội dung |
+|---|---|---|
+| 0–2 phút | Duy | Bài toán, phạm vi một siêu thị, component/deployment, 5 DB |
+| 2–3 phút | Nguyên | Login 4 role, Admin quản lý người dùng, chặn route/API trái quyền |
+| 3–4 phút | Hoàn | Manager tạo danh mục/sản phẩm, mã unique, giá, tìm kiếm |
+| 4–6 phút | Thủy | Warehouse lập phiếu nhập, Manager xác nhận, tồn tăng một lần, biến động và kiểm kê |
+| 6–9 phút | Duy | Cashier POS, prepare/confirm, tiền thừa, in hóa đơn, 4 GoF trong source |
+| 9–11 phút | Duy | Manager báo cáo; minh họa Report/broker offline và backlog catch-up bằng bằng chứng thực tế |
+| 11–12 phút | Cả nhóm | Trade-off, hạn chế, kết luận |
+
+## Happy path (expected, not measured)
+Create product 12,000 VND, receipt 10 units. Confirm as Manager; onHand=10. Cashier prepares 2 units: onHand=10, reserved=2, available=8, total=24,000. Receive 30,000 cash, change=6,000. Confirm: onHand=8, reserved=0, invoice COMPLETED. Report eventually adds one invoice, 2 units and 24,000 revenue. Use delta from baseline, not absolute totals. Change current price to 13,000; old invoice remains 24,000. Print via browser.
+Demonstrate bank transfer separately: cashier manually confirms received funds, no real bank integration.
+
+## Fault demonstration
+Use isolated local stack only. Stop Report, complete a sale, restart and show revenue catch-up. Stop RabbitMQ, complete sale, show outbox pending, restart and show SENT/projected. Use logs recorded by verify:dev6 or run live after rehearsal. If fault demo fails, disclose actual result; do not display fabricated evidence.
+
+## Questions to prepare
+Why microservices rather than monolith? Course learning objective and independent ownership; overhead for one store. Why separate databases? Data ownership; consistency via Saga/events. Why at-least-once? Confirm/ack ambiguity; idempotent projection. Why not rollback payment? Physical cash/manual transfer cannot be undone by database transaction. Distinguish GoF from architectural patterns. Advisory lock trades throughput for simpler single-store correctness.

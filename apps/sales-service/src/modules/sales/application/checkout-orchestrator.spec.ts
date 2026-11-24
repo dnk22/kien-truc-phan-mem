@@ -20,3 +20,18 @@ describe('CheckoutOrchestrator recovery',()=>{
   expect(defer).toHaveBeenCalledWith('i','COMMIT','SAGA_OUTCOME_UNKNOWN');
  });
 });
+
+it('reconciles a remote commit after a local completion failure on retry', async () => {
+  const invoice = { id: 'i', sagaIntent: 'COMMIT', reservationId: 'r', payment: { method: 'CASH', amountReceived: 100, changeAmount: 0 } } as InvoiceRecord;
+  const complete = jest.fn().mockRejectedValueOnce(new Error('DB unavailable')).mockResolvedValueOnce({ ...invoice, status: 'COMPLETED', sagaIntent: 'NONE' });
+  const defer = jest.fn().mockResolvedValue({ ...invoice, status: 'RECOVERY' });
+  const repository = { get: jest.fn().mockResolvedValue(invoice), complete, defer } as unknown as InvoiceRepository;
+  const commit = jest.fn();
+  const stock = { lookup: jest.fn().mockResolvedValue({ id: 'r', status: 'COMMITTED' }), commit } as unknown as StockPort;
+  const orchestrator = new CheckoutOrchestrator(repository, stock);
+  await orchestrator.advance('i');
+  await orchestrator.advance('i');
+  expect(complete).toHaveBeenCalledTimes(2);
+  expect(defer).toHaveBeenCalledTimes(1);
+  expect(commit).not.toHaveBeenCalled();
+});

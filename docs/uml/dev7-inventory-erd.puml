@@ -1,0 +1,90 @@
+@startuml
+hide circle
+skinparam linetype ortho
+entity "foundation_metadata" as FoundationMetadata {
+ * key : String <<PK>>
+ * value : String
+ * updated_at : DateTime
+}
+entity "suppliers" as Supplier {
+ * id : UUID <<PK>>
+ * code : String <<UQ>>
+ * name : String
+ phone : String?
+ address : String?
+ * status : SupplierStatus
+ * created_at : DateTime
+ * updated_at : DateTime
+}
+entity "purchase_receipts" as PurchaseReceipt {
+ * id : UUID <<PK>>
+ * supplier_id : UUID <<FK>>
+ * status : DocumentStatus
+ * created_by : UUID
+ confirmed_by : UUID?
+ * created_at : DateTime
+ confirmed_at : DateTime?
+}
+entity "purchase_receipt_items" as PurchaseReceiptItem {
+ * id : UUID <<PK>>
+ * receipt_id : UUID <<FK>>
+ * product_id : UUID
+ * product_code : String
+ * product_name : String
+ * quantity : Int
+ * unit_cost : Int
+ unique([receiptId,productId])
+}
+entity "inventories" as Inventory {
+ * product_id : UUID <<PK>>
+ * product_code : String
+ * product_name : String
+ * on_hand : Int
+ * reserved : Int
+ * version : Int
+ * threshold : Int
+ * updated_at : DateTime
+}
+entity "stock_movements" as StockMovement {
+ * id : UUID <<PK>>
+ * product_id : UUID
+ * reference_id : UUID
+ * type : MovementType
+ * quantity : Int
+ actor_id : UUID?
+ * created_at : DateTime
+ unique([referenceId,productId,type])
+}
+entity "stock_adjustments" as StockAdjustment {
+ * id : UUID <<PK>>
+ * product_id : UUID
+ * expected_version : Int
+ * counted : Int
+ * reason : String
+ * status : DocumentStatus
+ * created_by : UUID
+ confirmed_by : UUID?
+ * created_at : DateTime
+ confirmed_at : DateTime?
+}
+entity "stock_reservations" as StockReservation {
+ * id : UUID <<PK>>
+ * invoice_id : UUID <<UQ>>
+ * status : ReservationStatus
+ * created_at : DateTime
+ * updated_at : DateTime
+}
+entity "stock_reservation_items" as StockReservationItem {
+ * id : UUID <<PK>>
+ * reservation_id : UUID <<FK>>
+ * product_id : UUID
+ * quantity : Int
+ unique([reservationId,productId])
+}
+Supplier ||--o{ PurchaseReceipt
+PurchaseReceipt ||--o{ PurchaseReceiptItem
+StockReservation ||--o{ StockReservationItem
+note bottom of StockReservationItem
+inventory_db: external UUID references are not cross-database foreign keys.
+end note
+@enduml

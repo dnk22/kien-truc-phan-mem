@@ -99,3 +99,25 @@ export interface SaleInvoice {
   payment: SalePayment | null; attempts: number; lastError: string | null;
   createdAt: string; updatedAt: string; completedAt: string | null;
 }
+
+export interface SaleCompletedEvent {
+  eventId: string;
+  eventType: 'sale.completed.v1';
+  occurredAt: string;
+  payload: {
+    invoiceId: string; invoiceCode: string; cashierId: string; totalAmount: number;
+    paymentMethod: SalePaymentMethod; completedAt: string;
+    items: { productId: string; productName: string; quantity: number; unitPrice: number; subtotal: number }[];
+  };
+}
+export interface RevenueReport {
+  from: string; to: string;
+  revenue: number; invoiceCount: number; quantitySold: number;
+  days: { date: string; revenue: number; invoiceCount: number }[];
+  paymentMethods: { method: SalePaymentMethod; revenue: number; invoiceCount: number }[];
+  topProducts: { productId: string; productName: string; quantity: number; revenue: number }[];
+  updatedAt: string | null;
+}
+export interface InventoryReportSummary {
+  productCount: number; onHand: number; reserved: number; available: number; lowStockCount: number;
+}
