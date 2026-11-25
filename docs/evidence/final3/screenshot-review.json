@@ -1,0 +1,359 @@
+{
+  "review": "Manual visual review; actual browser/PDF pixels, original screenshots retained. New login creates session records only, no domain mutation.",
+  "pdf": "invoice-print.pdf: one A4 page, total15000 received20000 change5000; no physical printer tested.",
+  "missing": [
+    "Live RECOVERY screenshot NOT_AVAILABLE: no current RECOVERY; use historical fault logs and diagram, no new fault solely for photo."
+  ],
+  "records": [
+    {
+      "path": "docs/evidence/final/browser-failure.png",
+      "status": "FAILURE_FIXTURE",
+      "notes": "Do not use as happy-path evidence.",
+      "sha256": "b9a15f73274fdb87d7f9e8c764c07c6dcb6a2af5b926acc12bf0983f2e23cbd9",
+      "dimensions": [
+        1365,
+        965
+      ]
+    },
+    {
+      "path": "docs/evidence/final/dashboard-desktop.png",
+      "status": "LOADING_ONLY",
+      "notes": "Loading placeholder; use FINAL-3 settled replacement for completed-page illustration.",
+      "sha256": "cbcd53779ff5ee9119b5e7a42991a25aa3c5839c1c6e1b9ee8dba602c881e3ae",
+      "dimensions": [
+        1365,
+        900
+      ]
+    },
+    {
+      "path": "docs/evidence/final/inventory-desktop.png",
+      "status": "LOADING_ONLY",
+      "notes": "Loading placeholder; use FINAL-3 settled replacement for completed-page illustration.",
+      "sha256": "14a007d881abfcef5b32ccdf37e6cbd933df015086cd6e46ce8e6f3205e9eb0c",
+      "dimensions": [
+        1365,
+        900
+      ]
+    },
+    {
+      "path": "docs/evidence/final/invoice-desktop.png",
+      "status": "SELECTABLE",
+      "notes": "Actual demo/test fixtures. No credential/token visible; retain role/time/viewport context.",
+      "sha256": "0e71ccfb23c667b21c235bf470afb4a1bd301434bc96bd15f115251a9ac510ca",
+      "dimensions": [
+        1365,
+        900
+      ]
+    },
+    {
+      "path": "docs/evidence/final/login-desktop.png",
+      "status": "LOADING_ONLY",
+      "notes": "Loading placeholder; use FINAL-3 settled replacement for completed-page illustration.",
+      "sha256": "ada02f2b1efcd6b8aa7cd3308531e4d6d3940cca90aaa33b5ac334fae1253d03",
+      "dimensions": [
+        1365,
+        900
+      ]
+    },
+    {
+      "path": "docs/evidence/final/navigation-mobile.png",
+      "status": "SUPERSEDED",
+      "notes": "Drawer not visible; use FINAL-3 navigation-mobile-ready.",
+      "sha256": "88123fc5ee1fdd22ed9682f85590baaeba497e538ed23f57d46171cf42e8b8d4",
+      "dimensions": [
+        390,
+        3044
+      ]
+    },
+    {
+      "path": "docs/evidence/final/payment-retry-completed.png",
+      "status": "APPENDIX_OR_CROP",
+      "notes": "Full-height page unreadable if shrunk to A4; use retained original with crop or PDF.",
+      "sha256": "4f397cd661a4c731e09affbee6d21baf131d06dea700116884433d9e8191fb20",
+      "dimensions": [
+        1365,
+        2439
+      ]
+    },
+    {
+      "path": "docs/evidence/final/pos-bank-completed.png",
+      "status": "SELECTABLE",
+      "notes": "Actual demo/test fixtures. No credential/token visible; retain role/time/viewport context.",
+      "sha256": "590feaa38c39ad458c84a7e5c427fb4f6b14392d777caac6628838bfb0096d5b",
+      "dimensions": [
+        1365,
+        900
+      ]
+    },
+    {
+      "path": "docs/evidence/final/pos-cash-completed.png",
+      "status": "APPENDIX_OR_CROP",
+      "notes": "Full-height page unreadable if shrunk to A4; use retained original with crop or PDF.",
+      "sha256": "986e905de2d85a7a230701561e7297c683ec8ade514e0089b3e4e8dc6596d199",
+      "dimensions": [
+        1365,
+        2439
+      ]
+    },
+    {
+      "path": "docs/evidence/final/pos-mobile.png",
+      "status": "APPENDIX_OR_CROP",
+      "notes": "Full-height page unreadable if shrunk to A4; use retained original with crop or PDF.",
+      "sha256": "1ff67b05163209f94265a45f51a7f2590b840166c377a9813a0fc4e35d96f6b4",
+      "dimensions": [
+        390,
+        3044
+      ]
+    },
+    {
+      "path": "docs/evidence/final/pos-ready.png",
+      "status": "SELECTABLE",
+      "notes": "Actual demo/test fixtures. No credential/token visible; retain role/time/viewport context.",
+      "sha256": "7e217f3de377144741219180f3d00e0b4b0b611c9d56d8ab7fdfd753eca7ba0e",
+      "dimensions": [
+        1365,
+        1109
+      ]
+    },
+    {
+      "path": "docs/evidence/final/products-desktop.png",
+      "status": "SELECTABLE",
+      "notes": "Actual demo/test fixtures. No credential/token visible; retain role/time/viewport context.",
+      "sha256": "01b97b5b939349c5537338d6bd67c096d5efc9d8086ee7dbffb1772bd8e716df",
+      "dimensions": [
+        1365,
+        1208
+      ]
+    },
+    {
+      "path": "docs/evidence/final/products-empty.png",
+      "status": "SELECTABLE",
+      "notes": "Actual demo/test fixtures. No credential/token visible; retain role/time/viewport context.",
+      "sha256": "afc04a35c272724eedd0117fa9812e056a682270b10da3dd1b854024ff305a31",
+      "dimensions": [
+        1365,
+        900
+      ]
+    },
+    {
+      "path": "docs/evidence/final/products-error.png",
+      "status": "SELECTABLE",
+      "notes": "Actual demo/test fixtures. No credential/token visible; retain role/time/viewport context.",
+      "sha256": "9f63b2a4f8272c0fe38ccadb55a01d2bf577915a5feecb714129b1474d1ee82a",
+      "dimensions": [
+        1365,
+        900
+      ]
+    },
+    {
+      "path": "docs/evidence/final/products-loading.png",
+      "status": "INTENTIONAL_LOADING",
+      "notes": "Only illustrates loading state.",
+      "sha256": "1f9516cf7ed896e9a024a865514c8720c9c4eb52d2cec2601420c4ae62ed0487",
+      "dimensions": [
+        1365,
+        900
+      ]
+    },
+    {
+      "path": "docs/evidence/final/reports-desktop.png",
+      "status": "HISTORICAL_SNAPSHOT",
+      "notes": "Earlier snapshot25 completed, not final34. Prefer FINAL-3 year report.",
+      "sha256": "b2363fd7ff2620ffebfc6f6318e61a7f543f70aaca3f6eb54e28277ad6f25737",
+      "dimensions": [
+        1365,
+        1626
+      ]
+    },
+    {
+      "path": "docs/evidence/final/swagger-desktop.png",
+      "status": "APPENDIX_OR_CROP",
+      "notes": "Full-height page unreadable if shrunk to A4; use retained original with crop or PDF.",
+      "sha256": "48d78810ac4166d8584451754734933b800ac3df36ce5926b712a2dfb94a58a7",
+      "dimensions": [
+        1365,
+        3674
+      ]
+    },
+    {
+      "path": "docs/evidence/final/users-desktop.png",
+      "status": "TRANSITION",
+      "notes": "Role confirmation transition; prefer users-ready.",
+      "sha256": "f77ee3979fe3ffbe7832804e4eb964d2f1eb7541b5d6af79d42a11fb2939f7c6",
+      "dimensions": [
+        1365,
+        900
+      ]
+    },
+    {
+      "path": "docs/evidence/final/warehouse-receipt.png",
+      "status": "SELECTABLE",
+      "notes": "Actual demo/test fixtures. No credential/token visible; retain role/time/viewport context.",
+      "sha256": "075a6fe91bd8378872997375ac926149b704e52fc46085e48af15aedc2ce6cfe",
+      "dimensions": [
+        1365,
+        1022
+      ]
+    },
+    {
+      "path": "docs/evidence/final3/adjustments-desktop.png",
+      "status": "SELECTABLE",
+      "notes": "Actual demo/test fixtures. No credential/token visible; retain role/time/viewport context.",
+      "sha256": "472ce3133121c6c3c41816190785bb82418697ed4dbefb004c2758103b032136",
+      "dimensions": [
+        1365,
+        900
+      ]
+    },
+    {
+      "path": "docs/evidence/final3/categories-desktop.png",
+      "status": "SELECTABLE",
+      "notes": "Actual demo/test fixtures. No credential/token visible; retain role/time/viewport context.",
+      "sha256": "efaae21fbcaedd66cdbe1dc7fcfab1bbccf649347cab015a559f212cba654351",
+      "dimensions": [
+        1365,
+        900
+      ]
+    },
+    {
+      "path": "docs/evidence/final3/dashboard-ready.png",
+      "status": "SELECTABLE",
+      "notes": "Actual demo/test fixtures. No credential/token visible; retain role/time/viewport context.",
+      "sha256": "037d9bf6e3b8a651d309f52fd2499c87ffaf9e37a638415db725e2e1e790dd47",
+      "dimensions": [
+        1365,
+        900
+      ]
+    },
+    {
+      "path": "docs/evidence/final3/inventory-ready.png",
+      "status": "SELECTABLE",
+      "notes": "Actual demo/test fixtures. No credential/token visible; retain role/time/viewport context.",
+      "sha256": "d2bf51e6ffd8d776e60cc57012d4575558cf17ae001be07cfacf639cbf5eece6",
+      "dimensions": [
+        1365,
+        900
+      ]
+    },
+    {
+      "path": "docs/evidence/final3/invoice-print-page-1.png",
+      "status": "SELECTABLE",
+      "notes": "Actual demo/test fixtures. No credential/token visible; retain role/time/viewport context.",
+      "sha256": "a3363d6efaba4b68eb3f21472d44964d32a966dfe8c9f5ff06739f294a1f38fd",
+      "dimensions": [
+        894,
+        1265
+      ]
+    },
+    {
+      "path": "docs/evidence/final3/login-ready.png",
+      "status": "SELECTABLE",
+      "notes": "Actual demo/test fixtures. No credential/token visible; retain role/time/viewport context.",
+      "sha256": "4083596a6b17001f633e15e33bd0e97c75b5cd59f22d24c43240cb9f79e50345",
+      "dimensions": [
+        1365,
+        900
+      ]
+    },
+    {
+      "path": "docs/evidence/final3/manager-approval-dialog.png",
+      "status": "SELECTABLE",
+      "notes": "Actual demo/test fixtures. No credential/token visible; retain role/time/viewport context.",
+      "sha256": "0db80edd7402ec314ed0fb37464a9cae9f57eeb5867ad2ec6b7827284366626f",
+      "dimensions": [
+        1365,
+        900
+      ]
+    },
+    {
+      "path": "docs/evidence/final3/movements-desktop.png",
+      "status": "SELECTABLE",
+      "notes": "Actual demo/test fixtures. No credential/token visible; retain role/time/viewport context.",
+      "sha256": "9b39039db00729c872e2ef1f2d96df26e39da808be481baa459c23a368838a54",
+      "dimensions": [
+        1365,
+        900
+      ]
+    },
+    {
+      "path": "docs/evidence/final3/navigation-mobile-ready.png",
+      "status": "SELECTABLE",
+      "notes": "Actual demo/test fixtures. No credential/token visible; retain role/time/viewport context.",
+      "sha256": "88623a07e82ce17cdbcb5f19ed8dcbbf454ef45820dfdedcf38400480498aa44",
+      "dimensions": [
+        390,
+        844
+      ]
+    },
+    {
+      "path": "docs/evidence/final3/payment-retry-focus.png",
+      "status": "SELECTABLE",
+      "notes": "Crop shows completed payment state; rightmost table edge was clipped in browser original. Use PDF for full invoice table.",
+      "sha256": "4881d0ed2292da31f4bfa41ab928c9589e81e13b956a48f19a749235bb544f64",
+      "dimensions": [
+        540,
+        680
+      ]
+    },
+    {
+      "path": "docs/evidence/final3/pos-cash-focus.png",
+      "status": "SELECTABLE",
+      "notes": "Crop shows completed payment state; rightmost table edge was clipped in browser original. Use PDF for full invoice table.",
+      "sha256": "05fc67323f307555d7e0c56ef69ca5d7dca0c66b268463ad336332515a52c595",
+      "dimensions": [
+        540,
+        680
+      ]
+    },
+    {
+      "path": "docs/evidence/final3/reports-revenue-only.png",
+      "status": "SELECTABLE",
+      "notes": "Year2026 includes timezone fixtures; first viewport of daily chart. Pixel crop retains original reports-year.",
+      "sha256": "92fb54e3e41ea2d1d0bb647d028a41a22a3ed153d1f0a3088d870187d30b8e2c",
+      "dimensions": [
+        1365,
+        1320
+      ]
+    },
+    {
+      "path": "docs/evidence/final3/reports-year.png",
+      "status": "SELECTABLE",
+      "notes": "Revenue34 completed/465000; first viewport of daily chart only. Stock label below stale:48 catalog products, not inventory-row count10.",
+      "sha256": "e358f621603a985b5dabc544bc8b231a2cca2e7d31fa69ba16519d54d21c1490",
+      "dimensions": [
+        1365,
+        1626
+      ]
+    },
+    {
+      "path": "docs/evidence/final3/role-denied.png",
+      "status": "SELECTABLE",
+      "notes": "Actual demo/test fixtures. No credential/token visible; retain role/time/viewport context.",
+      "sha256": "d419a74da5ac5d69c95aada0824220ffb03afc326c10faf79040372716a56bc0",
+      "dimensions": [
+        1365,
+        900
+      ]
+    },
+    {
+      "path": "docs/evidence/final3/suppliers-desktop.png",
+      "status": "SELECTABLE",
+      "notes": "Actual demo/test fixtures. No credential/token visible; retain role/time/viewport context.",
+      "sha256": "0a5d5f490adec6c6fecf476f2030a0c6a75f9de0d2fd05a7514b28a9f8c03413",
+      "dimensions": [
+        1365,
+        900
+      ]
+    },
+    {
+      "path": "docs/evidence/final3/users-ready.png",
+      "status": "SELECTABLE",
+      "notes": "Actual demo/test fixtures. No credential/token visible; retain role/time/viewport context.",
+      "sha256": "6d7a719f8b4e03cef02cb04cec0a3b19c114d665ce9a7ba5e5f17901bb62739b",
+      "dimensions": [
+        1365,
+        900
+      ]
+    }
+  ]
+}

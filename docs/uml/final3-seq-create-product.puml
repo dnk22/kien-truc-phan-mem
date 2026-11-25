@@ -1,0 +1,38 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+skinparam maxMessageSize 220
+skinparam ParticipantPadding 6
+hide footbox
+title Thêm sản phẩm — validation và unique
+actor MANAGER as M
+participant "Gateway + ProductController" as C
+participant ProductService as S
+participant PrismaProductRepository as R
+database product_db as DB
+M -> C : POST /api/v1/products
+C -> C : JWT/live session/RBAC; productInput()
+C -> S : create(input)
+S -> R : create(input)
+group local catalogWrite transaction + advisory lock
+ R -> DB : kiểm tra category tồn tại và ACTIVE
+ R -> DB : insert product
+ alt unique code/barcode vi phạm
+  DB --> R : unique violation; rollback → 409
+ else hợp lệ
+  DB --> R : product; COMMIT
+ end
+end
+R --> C : product / mapped error
+C --> M : 201 hoặc 400/409
+@enduml

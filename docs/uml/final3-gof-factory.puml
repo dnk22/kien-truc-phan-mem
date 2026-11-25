@@ -1,0 +1,44 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+title Factory Method — tạo PaymentStrategy
+abstract class PaymentCreator {
+ {abstract} +create(): PaymentStrategy
+}
+class CashPaymentCreator {
+ +create(): PaymentStrategy
+}
+class BankTransferPaymentCreator {
+ +create(): PaymentStrategy
+}
+interface PaymentStrategy {
+ +process(request,totalAmount): PaymentResult
+}
+class CashPaymentStrategy
+class BankTransferStrategy
+class SalesModule <<composition root>>
+class PaymentService <<client>>
+PaymentCreator <|-- CashPaymentCreator
+PaymentCreator <|-- BankTransferPaymentCreator
+PaymentStrategy <|.. CashPaymentStrategy
+PaymentStrategy <|.. BankTransferStrategy
+CashPaymentCreator ..> CashPaymentStrategy : new
+BankTransferPaymentCreator ..> BankTransferStrategy : new
+SalesModule ..> CashPaymentCreator : PAYMENT_CREATORS.CASH
+SalesModule ..> BankTransferPaymentCreator : PAYMENT_CREATORS.BANK_TRANSFER
+PaymentService --> PaymentCreator : registry[request.method].create()
+note bottom of PaymentCreator
+Concrete Creator override create(); không phải switch Simple Factory.
+Registry chọn creator; Concrete Creator quyết định concrete product.
+end note
+@enduml

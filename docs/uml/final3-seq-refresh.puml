@@ -1,0 +1,46 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+skinparam maxMessageSize 220
+hide footbox
+title Refresh — rotation và replay
+participant "Axios refreshFlight" as UI
+participant AuthService as A
+participant PrismaSessionRepository as S
+database identity_db as DB
+UI -> A : refresh(cookie) qua Gateway/Controller
+A -> A : hash token; new random session
+A -> S : rotate(oldHash,newSession)
+group local TX / per-user advisory lock
+ S -> DB : re-read session + user
+ alt valid + ACTIVE
+  S -> DB : revoke old; insert new same family
+ else replay/expired/locked
+  S -> DB : revoke active family
+ end
+ S -> DB : COMMIT
+end
+alt valid
+ S --> A : user
+ A --> UI : JWT mới + rotated HttpOnly cookie
+ UI -> UI : retry requests một lần
+else rejected
+ S --> A : null
+ A --> UI : 401; clear cookie
+ UI -> UI : clear auth; login lại
+end
+note over UI,DB
+Revoke được commit trước khi trả lỗi.
+Single-flight trong một tab; không cross-tab coordination.
+end note
+@enduml

@@ -1,0 +1,45 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+title Invoice — status và sagaIntent
+state "PENDING / RESERVE" as P
+state "READY / NONE" as R
+state "PROCESSING / COMMIT" as Processing
+state "RECOVERY / RESERVE" as RR
+state "RECOVERY / COMMIT" as RC
+state "RECOVERY / RELEASE" as RL
+state "COMPLETED / NONE" as Done
+state "FAILED / NONE" as Failed
+state "CANCELLED / NONE" as Cancelled
+[*] --> P
+P --> R : ready(): RESERVED
+P --> RR : defer(RESERVE)
+P --> Failed : failedReserve()\nkhông có reservation
+RR --> R : reconcile RESERVED
+RR --> Failed : definite failure
+R --> Processing : startPayment()\none payment
+R --> RL : startCancel(): no payment
+Processing --> Done : COMMITTED\ncomplete()+outbox
+Processing --> RC : defer(COMMIT)
+RC --> Done : COMMITTED\ncomplete()
+RL --> Cancelled : remote RELEASED; cancelled()
+Done --> [*]
+Failed --> [*]
+Cancelled --> [*]
+note right of RC
+RECOVERY giữ nguyên intent khi retry.
+attempts>=20: dừng worker, không thêm status mới.
+Manual same-key confirm có thể gọi advance lại.
+Không transition từ payment sang cancel.
+end note
+@enduml

@@ -1,0 +1,107 @@
+{
+  "scope": "FINAL-3 documentation only; historical application tests not rerun",
+  "records": [
+    {
+      "command": [
+        "pnpm",
+        "exec",
+        "prettier",
+        "--write",
+        "--embedded-language-formatting",
+        "off",
+        "README.md",
+        "docs/api-contracts.md",
+        "docs/architecture-current.md",
+        "docs/design-patterns.md",
+        "docs/evidence/final/manifest.md",
+        "docs/final-review-progress.md",
+        "docs/final3-progress.md",
+        "docs/implementation-progress.md",
+        "docs/release-checklist.md",
+        "docs/report-assets/README.md",
+        "docs/report-assets/architecture-summary.md",
+        "docs/report-assets/assets-manifest.json",
+        "docs/report-assets/code-excerpts.json",
+        "docs/report-assets/code-excerpts.md",
+        "docs/report-assets/figure-catalog.md",
+        "docs/report-assets/known-limitations.md",
+        "docs/report-assets/report-update-plan.md",
+        "docs/report-assets/requirement-summary.md",
+        "docs/report-assets/table-catalog.md",
+        "docs/report-assets/test-summary.md",
+        "docs/report-evidence.md",
+        "docs/requirement-id-reconciliation.md",
+        "docs/uml/README.md",
+        "docs/uml/manifest.json",
+        "scripts/documentation/capture-final3.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 0.65
+    },
+    {
+      "command": [
+        "pnpm",
+        "exec",
+        "prettier",
+        "--check",
+        "--embedded-language-formatting",
+        "off",
+        "README.md",
+        "docs/api-contracts.md",
+        "docs/architecture-current.md",
+        "docs/design-patterns.md",
+        "docs/evidence/final/manifest.md",
+        "docs/final-review-progress.md",
+        "docs/final3-progress.md",
+        "docs/implementation-progress.md",
+        "docs/release-checklist.md",
+        "docs/report-assets/README.md",
+        "docs/report-assets/architecture-summary.md",
+        "docs/report-assets/assets-manifest.json",
+        "docs/report-assets/code-excerpts.json",
+        "docs/report-assets/code-excerpts.md",
+        "docs/report-assets/figure-catalog.md",
+        "docs/report-assets/known-limitations.md",
+        "docs/report-assets/report-update-plan.md",
+        "docs/report-assets/requirement-summary.md",
+        "docs/report-assets/table-catalog.md",
+        "docs/report-assets/test-summary.md",
+        "docs/report-evidence.md",
+        "docs/requirement-id-reconciliation.md",
+        "docs/uml/README.md",
+        "docs/uml/manifest.json",
+        "scripts/documentation/capture-final3.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 0.65
+    },
+    {
+      "command": [
+        "pnpm",
+        "exec",
+        "eslint",
+        "scripts/documentation/capture-final3.mjs",
+        "--max-warnings=0"
+      ],
+      "exitCode": 0,
+      "seconds": 0.66
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/documentation/check-report-assets.py"
+      ],
+      "exitCode": 0,
+      "seconds": 0.27
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0,
+      "seconds": 0.02
+    }
+  ]
+}

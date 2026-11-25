@@ -1,6 +1,6 @@
-# API Contract — DEV-1
+# API Contract — current index và chi tiết Identity
 
-Base public: `http://localhost:8080/api/v1`. Gateway chỉ forward allowlist auth/users tới Identity; không wildcard proxy và không mở `/internal/v1/*`. Identity tự xác thực JWT, kiểm tra session/user và RBAC, không tin `X-Role`/`X-User-Role`.
+Base public: `http://localhost:8080/api/v1`. Gateway forward allowlist auth/users, categories/products, suppliers/purchase-receipts/inventory/stock-adjustments/stock-movements, checkout/invoices và reports tới service sở hữu; không wildcard proxy và không mở `/internal/v1/*`. Identity tự xác thực JWT, kiểm tra session/user và RBAC, không tin `X-Role`/`X-User-Role`.
 
 Swagger Gateway: `/docs`, JSON `/docs-json`. Swagger Identity nội bộ ở cổng 3001 với DTO validation chi tiết. HTTP status được giữ nguyên khi forward. Các endpoint health `/health/live`, `/health/ready` và Swagger không yêu cầu đăng nhập.
 
@@ -47,13 +47,13 @@ Logout không yêu cầu access token còn hạn: cookie xác định family c�
 ## User Management — chỉ ADMIN
 
 | Method/path             | Input                                                 | Thành công                  |
-| ----------------------- | ----------------------------------------------------- | --------------------------- | --------------- | ----------- | --------------- |
+| ----------------------- | ----------------------------------------------------- | --------------------------- |
 | GET /users              | page=1, pageSize=10 (1–100), search, role, status     | 200 array + pagination meta |
 | GET /users/:id          | UUID                                                  | 200 UserProfile             |
 | POST /users             | username,password,fullName,role; optional email,phone | 201 UserProfile             |
 | PATCH /users/:id        | fullName,email,phone                                  | 200 UserProfile             |
-| PATCH /users/:id/status | `{status: ACTIVE                                      | LOCKED}`                    | 200 UserProfile |
-| PATCH /users/:id/role   | `{role: ADMIN                                         | MANAGER                     | CASHIER         | WAREHOUSE}` | 200 UserProfile |
+| PATCH /users/:id/status | `status`: ACTIVE hoặc LOCKED                          | 200 UserProfile             |
+| PATCH /users/:id/role   | `role`: ADMIN, MANAGER, CASHIER hoặc WAREHOUSE        | 200 UserProfile             |
 
 Username: 3–40 lowercase ASCII letters/digits/dot/underscore/hyphen, ký tự đầu là chữ/số; không cho đổi username. Password mới: 10–64 printable ASCII để không vượt giới hạn byte của bcrypt. FullName 2–120 ký tự, có ký tự khác khoảng trắng. Email đúng định dạng ≤254; phone 6–20 ký tự từ tập `+0-9 ()-`. PATCH email/phone nhận null để xóa giá trị. DTO whitelist và forbid unknown properties; không đổi role qua PATCH profile. Không có DELETE.
 
@@ -73,4 +73,4 @@ Tìm username/fullName không phân biệt hoa thường; list có thứ tự �
 
 Rate limiting in-memory fixed window: Gateway theo peer IP, Identity theo peer IP + username. Không tin X-Forwarded-For từ client. Giá trị mặc định 10 lần/60s mỗi process; restart làm mất bộ đếm; chưa hỗ trợ distributed rate limit. Gateway timeout mặc định 5000ms cho fetch/đọc response, lỗi kết nối/timeout trả 503 và giữ correlation ID.
 
-Các API Product, Inventory, Sales, Report và internal business API chưa hiện thực ở DEV-1; không có response mock thành công.
+Các phần trên mô tả chi tiết Identity. Contract nghiệp vụ hiện tại nằm ở [Product](dev2-api.md), [Inventory](dev3-api.md), [Sales](dev4-api.md), [Report](dev5-api.md) và [OpenAPI đã thu thập](evidence/final/openapi.json). Đối chiếu route chính xác với Gateway controller; không coi danh sách nhóm tài nguyên là wildcard proxy.

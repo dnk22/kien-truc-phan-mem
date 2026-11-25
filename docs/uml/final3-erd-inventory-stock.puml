@@ -1,0 +1,65 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+hide circle
+skinparam linetype polyline
+title ERD inventory_db (nhóm tồn/giữ hàng)
+entity "inventories" as Inventory {
+ * product_id : uuid <<PK>>
+ * product_code : text
+ * product_name : text
+ * on_hand : integer
+ * reserved : integer
+ * version : integer
+ * threshold : integer
+ * updated_at : timestamptz(3)
+}
+entity "stock_movements" as StockMovement {
+ * id : uuid <<PK>>
+ * product_id : uuid
+ * reference_id : uuid
+ * type : MovementType
+ * quantity : integer
+  actor_id : uuid?
+ * created_at : timestamptz(3)
+ UQ(reference_id,product_id,type)
+}
+entity "stock_adjustments" as StockAdjustment {
+ * id : uuid <<PK>>
+ * product_id : uuid
+ * expected_version : integer
+ * counted : integer
+ * reason : text
+ * status : DocumentStatus
+ * created_by : uuid
+  confirmed_by : uuid?
+ * created_at : timestamptz(3)
+  confirmed_at : timestamptz(3)?
+}
+entity "stock_reservations" as StockReservation {
+ * id : uuid <<PK>>
+ * invoice_id : uuid <<UQ>>
+ * status : ReservationStatus
+ * created_at : timestamptz(3)
+ * updated_at : timestamptz(3)
+}
+entity "stock_reservation_items" as StockReservationItem {
+ * id : uuid <<PK>>
+ * reservation_id : uuid <<FK>>
+ * product_id : uuid
+ * quantity : integer
+ UQ(reservation_id,product_id)
+}
+StockReservation ||--o{ StockReservationItem : FK
+note "CHECK: 0 <= reserved <= on_hand; version/threshold >=0.\nquantity/unit_cost >0; counted/expected_version >=0.\nKhông FK từ movement/adjustment/reservation_items.product_id sang inventories.\nproduct_id/actor_id/invoice_id là external UUID." as Rules
+legend bottom
+SupplierStatus: ACTIVE, INACTIVE
+DocumentStatus: DRAFT, CONFIRMED, CANCELLED
+ReservationStatus: RESERVED, COMMITTED, RELEASED
+MovementType: PURCHASE, SALE, ADJUSTMENT_IN, ADJUSTMENT_OUT
+endlegend
+footer inventory_db — foundation_metadata / _prisma_migrations omitted; no cross-DB FK
+@enduml

@@ -1,0 +1,44 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+skinparam maxMessageSize 220
+skinparam ParticipantPadding 5
+hide footbox
+title Prepare (2) — giữ hàng và READY
+participant CheckoutFacade as F
+participant CheckoutOrchestrator as O
+participant InventoryStockClient as I
+participant PrismaInvoiceRepository as R
+F -> O : advance(invoiceId,cid)
+O -> I : lookup(invoiceId,cid)
+opt chưa có reservation
+ O -> I : reserve(invoiceId,items,cid)
+end
+alt remote RESERVED
+ O -> R : ready(id,reservationId) local TX
+ R --> F : READY / NONE + official total
+else definite INSUFFICIENT_STOCK
+ O -> I : lookup lần nữa
+ opt vẫn không reservation
+  O -> R : failedReserve() local TX
+ end
+ R --> F : FAILED; facade trả409
+else outcome không rõ
+ O -> R : defer(RESERVE,code) local TX
+ R --> F : RECOVERY; facade trả200
+end
+note over O,I
+Inventory reserve: local TX all-or-nothing;
+unique invoiceId, version/stock constraints.
+end note
+@enduml

@@ -1,0 +1,45 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+skinparam maxMessageSize 220
+skinparam ParticipantPadding 5
+hide footbox
+title Outbox (1) — publisher confirms
+participant OutboxWorker as W
+participant PrismaOutboxRepository as R
+database sales_db as DB
+participant RabbitMqPublisher as P
+queue RabbitMQ as Q
+loop mỗi2s (single replica)
+ W -> R : due()
+ R -> DB : PENDING + due time, max20
+ R --> W : events
+ W -> P : publish(event)
+ P -> Q : durable topology;
+ P -> Q : persistent + mandatory + messageId
+ alt confirm và không basic.return
+  Q --> P : confirm
+  P --> W : success
+  W -> R : sent(id)
+  R -> DB : SENT + sentAt
+ else unroutable / timeout / connection error
+  P --> W : failure
+  W -> R : defer(id,attempts)
+  R -> DB : vẫn PENDING + backoff <=60s
+ end
+end
+note over W,Q
+Crash sau confirm trước SENT có thể gửi trùng.
+Không exactly-once delivery.
+end note
+@enduml

@@ -1,0 +1,51 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+skinparam maxMessageSize 220
+skinparam ParticipantPadding 6
+hide footbox
+title Saga recovery — outcome bất định
+participant RecoveryWorker as W
+participant PrismaInvoiceRepository as R
+participant CheckoutOrchestrator as O
+participant InventoryStockClient as I
+W -> R : due(): intent != NONE, attempts<20, due time
+loop mỗi5s, tối đa20 invoice mỗi scan
+ W -> O : advance(id) (single-flight trong process)
+ O -> I : lookup by invoiceId
+ alt RESERVE intent
+  opt remote chưa tồn tại
+   O -> I : reserve cùng invoiceId/payload
+  end
+  O -> R : ready nếu RESERVED; failedReserve nếu chắc chắn thiếu tồn
+ else COMMIT intent
+  alt remote RESERVED
+   O -> I : commit cùng reservationId + cashierId
+  else remote đã COMMITTED
+   I --> O : dùng kết quả bền vững cũ
+  end
+  O -> R : complete() TX: COMPLETED + Outbox
+ else RELEASE intent
+  O -> I : release nếu RESERVED; chấp nhận RELEASED
+  O -> R : cancelled() TX
+ end
+ alt HTTP bất định / state conflict / local completion lỗi
+  O -> R : defer(): RECOVERY; attempts+1; exponential backoff <=60s
+ end
+end
+note over W,R
+attempts>=20: worker không chọn nữa, giữ payment/reservation.
+UI cảnh báo đối soát; same-key operator retry đã kiểm thử.
+Không có endpoint admin recovery riêng; không rollback tiền mặt.
+end note
+@enduml

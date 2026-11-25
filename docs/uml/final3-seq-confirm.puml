@@ -1,0 +1,63 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+skinparam maxMessageSize 220
+skinparam ParticipantPadding 6
+hide footbox
+title Checkout confirm — payment, commit và Outbox
+actor CASHIER as C
+participant CheckoutFacade as F
+participant PaymentService as Pay
+participant PaymentCreator as Creator
+participant PaymentStrategy as Strategy
+participant PrismaInvoiceRepository as R
+database sales_db as SDB
+participant CheckoutOrchestrator as O
+participant "Inventory API / Repository" as I
+database inventory_db as IDB
+C -> F : confirm(id,actor,key,request,cid)
+F -> Pay : confirm(...)
+Pay -> R : get via InvoiceService; ownership/key/hash
+alt key mới
+ Pay -> Creator : registry[method].create()
+ Creator --> Pay : strategy
+ Pay -> Strategy : process(request,totalAmount)
+ Strategy --> Pay : PaymentResult hoặc lỗi tiền thiếu/chưa xác nhận
+ Pay -> R : startPayment(id,actor,key,hash,payment)
+ group local salesWrite transaction
+  R -> SDB : unique payment/invoice + PROCESSING/COMMIT intent
+ end
+else key/hash đã có và trùng
+ Pay --> F : invoice cũ; không tạo payment
+end
+F -> O : advance(id,cid)
+O -> I : lookup(invoiceId,cid)
+opt reservation RESERVED
+ O -> I : commit(reservationId,cid,cashierId)
+ group local inventoryWrite transaction
+  I -> IDB : decrement onHand/reserved + version
+  I -> IDB : SALE(reference=invoiceId, actor=cashierId)
+  I -> IDB : COMMITTED; COMMIT
+ end
+end
+I --> O : COMMITTED
+O -> R : complete(id)
+group local salesWrite transaction
+ R -> SDB : COMPLETED/NONE + outbox_events(PENDING) atomic
+end
+F --> C : invoice (không chờ RabbitMQ/Report)
+note over O,I
+Timeout / local completion failure → defer COMMIT/RECOVERY.
+Không tự hoàn tiền hoặc release sau nhận tiền.
+end note
+@enduml

@@ -1,37 +1,61 @@
 @startuml
-actor Browser
-node "Docker Compose host" {
- cloud "public network" {
- node "web :3000" as web
- }
- node "api-gateway :8080\npublic + private networks" as gw
- cloud "private network (internal=true)" {
- node "identity :3001" as i
- node "product :3002" as p
- node "inventory :3003" as v
- node "sales :3004" as s
- node "report :3005" as r
- database "PostgreSQL :5432\n5 databases / 5 users" as db
- queue "RabbitMQ :5672\nmanagement :15672" as mq
- }
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+title Triển khai Docker Compose — 9 container
+actor "Browser ngoài Docker" as browser
+node "Docker host" {
+ frame "public network" {
+  node "1. Web\nNginx :3000" as web
+
 }
-Browser --> web : published 3000
-Browser --> gw : published 8080
-web --> gw : health proxy
+ node "2. API Gateway :8080\npublic + private" as gw
+ frame "private network (internal=true)" {
+  node "3. Identity :3001" as i
+  node "4. Product :3002" as p
+  node "5. Inventory :3003" as inv
+  node "6. Sales :3004" as s
+  node "7. Report :3005" as r
+  node "8. PostgreSQL :5432" as pg {
+   database "identity_db / identity_user\nproduct_db / product_user\ninventory_db / inventory_user\nsales_db / sales_user\nreport_db / report_user" as db
+
+}
+  node "9. RabbitMQ\nAMQP :5672 / Management :15672" as mq
+
+}
+ storage "postgres_data\nnamed volume" as pv
+ storage "rabbitmq_data\nnamed volume" as rv
+}
+browser --> web : host WEB_PORT (default 3000; FINAL-2 3300)
+browser --> gw : host GATEWAY_PORT (default / FINAL-2 8080)
+web --> gw : Nginx proxy /api + /health
 gw --> i
 gw --> p
-gw --> v
+gw --> inv
 gw --> s
 gw --> r
 i --> db
 p --> db
-v --> db
+inv --> db
 s --> db
 r --> db
 s --> mq
 mq --> r
-note bottom of db
-No published DB or broker ports.
-Compose target; runtime not verified for DEV-7.
+pg --> pv
+mq --> rv
+note bottom of gw
+Gateway là cầu nối hai network.
+Service-to-service HTTP nằm trong private network.
+Không publish DB, broker hoặc 5 business services.
+Mỗi DB có user/migration riêng; PUBLIC CONNECT bị revoke.
 end note
 @enduml

@@ -1,0 +1,36 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+title Sales — Outbox publisher
+class OutboxWorker {
+ +tick(...)
+}
+interface OutboxRepository {
+ +due(...)
++sent(...)
++defer(...)
+}
+interface EventPublisher {
+ +publish(...)
+}
+class PrismaOutboxRepository
+class RabbitMqPublisher
+OutboxWorker --> OutboxRepository
+OutboxWorker --> EventPublisher
+PrismaOutboxRepository ..|> OutboxRepository
+RabbitMqPublisher ..|> EventPublisher
+note bottom of OutboxWorker
+Poll mỗi2s; single replica, không lease nhiều replica.
+due()/sent()/defer() theo OutboxRepository thực tế.
+end note
+@enduml

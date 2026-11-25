@@ -1,0 +1,32 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+left to right direction
+title Dashboard và báo cáo
+actor MANAGER as M
+rectangle Report {
+ usecase "Dashboard" as Dashboard
+ usecase "Doanh thu theo kỳ GMT+7" as Revenue
+ usecase "Số hóa đơn / lượng bán / top / phương thức" as Metrics
+ usecase "Tổng hợp tồn / tồn thấp" as Stock
+}
+M --> Dashboard
+M --> Revenue
+M --> Metrics
+M --> Stock
+note bottom of Revenue
+Revenue chỉ từ projection COMPLETED; eventual consistency.
+updatedAt là lần xử lý gần nhất, không chứng minh backlog rỗng.
+Stock qua Inventory REST, không đọc Sales/Product DB.
+end note
+@enduml

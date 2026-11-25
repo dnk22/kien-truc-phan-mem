@@ -1,0 +1,50 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+title Builder — InvoiceDraft hợp lệ
+class InvoiceService <<client>>
+class InvoiceBuilder {
+ -cashierId?: string
+-items: InvoiceLine[]
++setCashier(id): this
++setItems(items): this
++build(): InvoiceDraft
+}
+class InvoiceDraft <<type>> {
+ id
+code
+cashierId
+items
+totalAmount
+}
+class InvoiceLine <<type>> {
+ productId
+productCode
+productName
+unit
+quantity
+unitPrice
+subtotal
+}
+InvoiceService ..> InvoiceBuilder : fluent construction
+InvoiceBuilder ..> InvoiceDraft : build()
+InvoiceDraft *-- "1..100" InvoiceLine
+note bottom of InvoiceBuilder
+Không Director / ConcreteBuilder giả.
+Kiểm tra snapshot không rỗng; quantity Int32 dương;
+ID dòng không trùng; subtotal và tổng safe integer.
+Sao chép items khi nhận và khi build.
+Draft chưa có status; repository persist default PENDING.
+Không có domain entity transition methods trong V1.
+end note
+@enduml

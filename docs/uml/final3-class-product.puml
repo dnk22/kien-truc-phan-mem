@@ -1,0 +1,51 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+title Product — catalog public và internal
+class CategoryController
+class ProductController
+class InternalProductController {
+ +list(...)
++get(...)
++batch(...)
+}
+class CategoryService {
+ +list(...)
++get(...)
++create(...)
++update(...)
+}
+class ProductService {
+ +list(...)
++get(...)
++batch(...)
++create(...)
++update(...)
+}
+interface CategoryRepository
+interface ProductRepository
+class PrismaCategoryRepository
+class PrismaProductRepository
+CategoryController --> CategoryService
+ProductController --> ProductService
+InternalProductController --> ProductService
+CategoryService --> CategoryRepository
+ProductService --> ProductRepository
+PrismaCategoryRepository ..|> CategoryRepository
+PrismaProductRepository ..|> ProductRepository
+note bottom of InternalProductController
+list: GET /internal/v1/products (page/pageSize/search).
+get + batch cung cấp snapshot; credential bắt buộc.
+Chỉ Prisma adapters đọc product_db.
+end note
+@enduml

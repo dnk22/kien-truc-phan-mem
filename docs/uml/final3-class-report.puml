@@ -1,0 +1,53 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+title Report — projection và báo cáo
+class RabbitMqConsumer {
+ -handle(channel,msg)
+-ensureConnected()
+-disconnect()
+}
+class SaleProjectionService {
+ +consume(...)
+}
+interface ProjectionRepository {
+ +apply(...)
+}
+class PrismaProjectionRepository
+class ReportController
+class ReportService {
+ +revenue(...)
++stock(...)
+}
+interface ReportRepository {
+ +revenue(...)
+}
+interface InventoryReportPort {
+ +summary(...)
+}
+class PrismaReportRepository
+class InventoryReportClient
+RabbitMqConsumer --> SaleProjectionService
+SaleProjectionService --> ProjectionRepository
+PrismaProjectionRepository ..|> ProjectionRepository
+ReportController --> ReportService
+ReportService --> ReportRepository
+ReportService --> InventoryReportPort
+PrismaReportRepository ..|> ReportRepository
+InventoryReportClient ..|> InventoryReportPort
+note bottom of PrismaProjectionRepository
+processed_events + sales_facts + sales_item_facts
+trong report_db transaction; ACK sau commit.
+InventoryReportClient gọi REST, không cross-DB.
+end note
+@enduml

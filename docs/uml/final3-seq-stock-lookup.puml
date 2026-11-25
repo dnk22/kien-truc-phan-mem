@@ -1,0 +1,48 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+skinparam maxMessageSize 220
+skinparam ParticipantPadding 6
+hide footbox
+title Tra cứu tồn theo toàn catalog
+actor "Manager / Warehouse / Cashier" as U
+participant StockController as C
+participant StockService as S
+participant ProductDirectoryClient as P
+participant "Product internal API" as API
+participant PrismaStockRepository as R
+database inventory_db as DB
+U -> C : GET /api/v1/inventory hoặc summary nội bộ
+C -> S : list(q,cid) / summary(cid)
+alt list thông thường
+ S -> P : list(page,pageSize,search,cid)
+ P -> API : credential + correlation; GET catalog
+ API --> S : catalog page + total (qua client)
+else low-stock / summary
+ loop pageSize=100 đến hết catalog
+  S -> P : list(page,100,search,cid)
+  P -> API : GET /internal/v1/products
+  API --> S : catalog page (qua client)
+ end
+end
+S -> R : byProducts(ids)
+R -> DB : SELECT inventories WHERE product_id IN ids
+DB --> S : rows (qua repository)
+S -> S : combine()/merge(); thiếu row → 0/0/version0/threshold5
+S -> S : available=onHand-reserved; low-stock <= threshold
+S --> U : envelope/pagination (qua Controller/Gateway)
+note over P,DB
+Không có Product DB query tại Inventory.
+Catalog và stock không phải distributed snapshot transaction.
+end note
+@enduml

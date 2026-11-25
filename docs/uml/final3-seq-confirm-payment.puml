@@ -1,0 +1,43 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+skinparam maxMessageSize 220
+skinparam ParticipantPadding 5
+hide footbox
+title Confirm (1) — ghi nhận payment một lần
+participant CheckoutFacade as F
+participant PaymentService as P
+participant PaymentStrategy as Strategy
+participant PrismaInvoiceRepository as R
+database sales_db as DB
+F -> P : confirm(id,actor,key,request)
+P -> R : get qua InvoiceService; owner/key/hash
+alt key/hash cũ trùng
+ P --> F : invoice; không ghi payment mới
+else key mới
+ P -> P : creators[method].create()
+ P -> Strategy : process(request,total)
+ Strategy --> P : PaymentResult / lỗi validation
+ P -> R : startPayment(...)
+ group local salesWrite TX + advisory lock
+  R -> DB : recheck owner/READY/key/hash
+  R -> DB : unique payment(invoice_id)
+  R -> DB : PROCESSING / COMMIT; commit
+ end
+end
+F -> F : orchestrator.advance() tiếp hình2
+note over P,DB
+Cash: nhận đủ tiền; transfer: xác nhận thủ công.
+Payload conflict trả409; chưa gọi Inventory trong TX.
+end note
+@enduml

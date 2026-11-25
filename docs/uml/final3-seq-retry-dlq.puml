@@ -1,0 +1,53 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+skinparam maxMessageSize 220
+skinparam ParticipantPadding 6
+hide footbox
+title Report retry — routing, confirm và DLQ
+queue "Main queue" as Main
+participant RabbitMqConsumer as C
+participant SaleProjectionService as P
+queue "Retry queue (durable)" as Retry
+queue "Dead queue (durable)" as Dead
+Main -> C : message; noAck=false
+C -> P : consume(value)
+alt hợp lệ / projection thành công hoặc duplicate
+ P --> C : committed
+ C -> Main : ACK
+else invalid event / malformed retry counter / retries>=5
+ C -> Main : nack(requeue=false)
+ Main -> Dead : dead-letter exchange + routing key
+else transient projection failure
+ C -> Retry : sendToQueue(persistent, mandatory, retries+1)
+ alt confirm và không basic.return
+  Retry --> C : publisher confirm
+  C -> Main : ACK original
+  Retry -> Retry : TTL10000ms
+  Retry -> Main : dead-letter về sales exchange/routing key
+ else unroutable (basic.return), timeout hoặc publish error
+  Retry --> C : return/error (confirm đơn lẻ chưa đủ)
+  C -> C : disconnect(); không ACK original
+  Main -> Main : original unacked được requeue
+  loop ensureConnected mỗi5s
+   C -> Main : reconnect + assertTopology + consume
+  end
+  Main -> C : redelivery
+ end
+end
+note over Main,Dead
+At-least-once; queue/publisher confirm không phải consumer commit.
+Không tự replay DLQ; retry budget5, lỗi invalid đi thẳng DLQ.
+Classic-queue DLX không được mô tả là cơ chế HA không mất dữ liệu.
+end note
+@enduml

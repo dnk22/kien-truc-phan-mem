@@ -1,0 +1,62 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+skinparam maxMessageSize 220
+skinparam ParticipantPadding 6
+hide footbox
+title Outbox và projection — at-least-once
+participant PrismaInvoiceRepository as S
+database sales_db as SD
+participant OutboxWorker as W
+participant RabbitMqPublisher as P
+queue RabbitMQ as Q
+participant RabbitMqConsumer as C
+participant SaleProjectionService as V
+participant PrismaProjectionRepository as R
+database report_db as RD
+group local Sales transaction
+ S -> SD : outbox PENDING + invoice COMPLETED
+end
+loop worker poll mỗi2s
+ W -> SD : pending events (qua OutboxRepository)
+ W -> P : publish(event)
+ P -> Q : durable topology; persistent mandatory message
+ alt confirm + không basic.return
+  Q --> P : publisher confirm
+  P --> W : success
+  W -> SD : sent(id) → SENT
+ else unroutable / timeout / connection failure
+  P --> W : failure
+  W -> SD : defer; vẫn PENDING + backoff
+ end
+end
+Q -> C : delivery (prefetch1, manual ACK)
+C -> V : consume(value): validateSaleEvent
+V -> R : apply(event)
+group local Report transaction
+ R -> RD : processed_events insert skipDuplicates
+ alt eventId mới
+  R -> RD : sales_facts insert skipDuplicates(invoiceId)
+  opt invoiceId mới
+   R -> RD : sales_item_facts insert
+  end
+ end
+ R -> RD : COMMIT
+end
+C -> Q : ACK sau apply thành công
+note over SD,RD
+Crash giữa publish-confirm/SENT hoặc report-commit/ACK → có thể lặp.
+Unique eventId và invoiceId chống nhân đôi projection.
+Không exactly-once delivery; không truy vấn Sales DB từ Report.
+end note
+@enduml

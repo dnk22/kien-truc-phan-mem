@@ -1,0 +1,49 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+hide circle
+skinparam linetype polyline
+title ERD inventory_db (nhóm phiếu nhập)
+entity "suppliers" as Supplier {
+ * id : uuid <<PK>>
+ * code : varchar(64) <<UQ>>
+ * name : varchar(200)
+  phone : text?
+  address : text?
+ * status : SupplierStatus
+ * created_at : timestamptz(3)
+ * updated_at : timestamptz(3)
+}
+entity "purchase_receipts" as PurchaseReceipt {
+ * id : uuid <<PK>>
+ * supplier_id : uuid <<FK>>
+ * status : DocumentStatus
+ * created_by : uuid
+  confirmed_by : uuid?
+ * created_at : timestamptz(3)
+  confirmed_at : timestamptz(3)?
+}
+entity "purchase_receipt_items" as PurchaseReceiptItem {
+ * id : uuid <<PK>>
+ * receipt_id : uuid <<FK>>
+ * product_id : uuid
+ * product_code : text
+ * product_name : text
+ * quantity : integer
+ * unit_cost : integer
+ UQ(receipt_id,product_id)
+}
+Supplier ||--o{ PurchaseReceipt : FK
+PurchaseReceipt ||--o{ PurchaseReceiptItem : FK
+note "CHECK: 0 <= reserved <= on_hand; version/threshold >=0.\nquantity/unit_cost >0; counted/expected_version >=0.\nKhông FK từ movement/adjustment/reservation_items.product_id sang inventories.\nproduct_id/actor_id/invoice_id là external UUID." as Rules
+legend bottom
+SupplierStatus: ACTIVE, INACTIVE
+DocumentStatus: DRAFT, CONFIRMED, CANCELLED
+ReservationStatus: RESERVED, COMMITTED, RELEASED
+MovementType: PURCHASE, SALE, ADJUSTMENT_IN, ADJUSTMENT_OUT
+endlegend
+footer inventory_db — foundation_metadata / _prisma_migrations omitted; no cross-DB FK
+@enduml

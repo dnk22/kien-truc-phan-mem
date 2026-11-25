@@ -1,0 +1,51 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+title Inventory — NCC và phiếu nhập
+class SupplierController
+class ReceiptController
+class SupplierService {
+ +list(...)
++get(...)
++create(...)
++update(...)
+}
+class ReceiptService {
+ +create(...)
++update(...)
++confirm(...)
++cancel(...)
+}
+interface SupplierRepository
+interface ReceiptRepository
+interface ProductDirectory {
+ +batch(...)
++list(...)
+}
+class PrismaSupplierRepository
+class PrismaReceiptRepository
+class ProductDirectoryClient
+SupplierController --> SupplierService
+ReceiptController --> ReceiptService
+SupplierService --> SupplierRepository
+ReceiptService --> ReceiptRepository
+ReceiptService --> ProductDirectory
+PrismaSupplierRepository ..|> SupplierRepository
+PrismaReceiptRepository ..|> ReceiptRepository
+ProductDirectoryClient ..|> ProductDirectory
+note bottom of PrismaReceiptRepository
+inventoryWrite transaction/advisory lock;
+confirm: upsert inventories + PURCHASE + status.
+Product HTTP snapshot trước transaction.
+end note
+@enduml

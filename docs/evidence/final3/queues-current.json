@@ -1,0 +1,37 @@
+[
+  {
+    "name": "minimart.report.sale-completed.v1",
+    "durable": true,
+    "messages": 0,
+    "messages_ready": 0,
+    "messages_unacknowledged": 0,
+    "arguments": {
+      "x-dead-letter-exchange": "minimart.sales.dead",
+      "x-dead-letter-routing-key": "sale.completed.v1",
+      "x-queue-type": "classic"
+    }
+  },
+  {
+    "name": "minimart.report.sale-completed.v1.dead",
+    "durable": true,
+    "messages": 4,
+    "messages_ready": 4,
+    "messages_unacknowledged": 0,
+    "arguments": {
+      "x-queue-type": "classic"
+    }
+  },
+  {
+    "name": "minimart.report.sale-completed.v1.retry",
+    "durable": true,
+    "messages": 0,
+    "messages_ready": 0,
+    "messages_unacknowledged": 0,
+    "arguments": {
+      "x-dead-letter-exchange": "minimart.sales",
+      "x-dead-letter-routing-key": "sale.completed.v1",
+      "x-message-ttl": 10000,
+      "x-queue-type": "classic"
+    }
+  }
+]

@@ -1,21 +1,37 @@
 @startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
 skinparam componentStyle rectangle
-actor User
-component "Web / React" as web
+hide empty members
+title Kiến trúc thành phần MiniMart
+actor "Nhân viên" as u
+component "React Web" as web
 component "API Gateway" as gw
-component Identity as identity
-component Product as product
-component Inventory as inventory
-component Sales as sales
-component Report as report
-queue RabbitMQ as mq
-database identity_db as di
-database product_db as dp
-database inventory_db as dv
-database sales_db as ds
-database report_db as dr
-User --> web
-web --> gw : public REST
+package "Business services" {
+ component "Identity" as identity
+ component "Product" as product
+ component "Inventory" as inventory
+ component "Sales\nSaga + Outbox Publisher" as sales
+ component "Report\nConsumer + Projection" as report
+}
+node "PostgreSQL (một instance)" {
+ database identity_db as di
+ database product_db as dp
+ database inventory_db as dv
+ database sales_db as ds
+ database report_db as dr
+}
+queue "RabbitMQ" as mq
+u --> web
+web --> gw : /api/v1 REST
 gw --> identity
 gw --> product
 gw --> inventory
@@ -25,15 +41,24 @@ product ..> identity : live session
 inventory ..> identity : live session
 sales ..> identity : live session
 report ..> identity : live session
-inventory --> product : internal batch
-sales --> product : internal batch
-sales --> inventory : reserve / commit / release
-report --> inventory : stock summary
-sales --> mq : outbox publish
-mq --> report : sale.completed.v1
+inventory --> product : private batch + catalog pages
+sales --> product : private batch
+sales --> inventory : lookup / reserve / commit / release
+report --> inventory : summary (catalog-wide)
+sales --> mq : persistent + mandatory + confirm
+mq --> report : manual ACK; retry / DLQ
 identity --> di
 product --> dp
 inventory --> dv
 sales --> ds
 report --> dr
+note bottom of inventory
+Catalog + stock merge: bản ghi kho thiếu → tồn 0.
+HTTP nội bộ: service credential + correlation ID.
+Commit truyền cashierId → SALE.actorId.
+end note
+note bottom of ds
+Mỗi service chỉ đọc/ghi DB sở hữu.
+Không có cross-database query/FK.
+end note
 @enduml

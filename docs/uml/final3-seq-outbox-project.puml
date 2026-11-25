@@ -1,0 +1,44 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+skinparam maxMessageSize 220
+skinparam ParticipantPadding 5
+hide footbox
+title Outbox (2) — consumer idempotent
+queue RabbitMQ as Q
+participant RabbitMqConsumer as C
+participant SaleProjectionService as S
+participant PrismaProjectionRepository as R
+database report_db as DB
+Q -> C : event, prefetch1/noAck=false
+C -> S : consume(value)
+S -> S : validateSaleEvent(value)
+S -> R : apply(event)
+group local Report TX
+ R -> DB : insert processed_events skipDuplicates
+ alt eventId mới
+  R -> DB : insert sales_facts skipDuplicates
+  opt invoiceId mới
+   R -> DB : insert sales_item_facts
+  end
+ end
+ R -> DB : COMMIT
+end
+R --> C : thành công (qua service)
+C -> Q : ACK
+note over Q,DB
+Crash giữa commit/ACK có thể redeliver;
+unique eventId/invoiceId không nhân đôi facts.
+Lỗi transient/invalid: xem retry/DLQ sequence.
+end note
+@enduml

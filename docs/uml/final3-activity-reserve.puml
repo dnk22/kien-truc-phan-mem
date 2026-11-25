@@ -1,0 +1,38 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+title Giữ hàng — toàn bộ hoặc rollback
+start
+:Nhận invoiceId và items đã validate;
+:BEGIN inventoryWrite; advisory lock;
+if (Reservation theo invoiceId tồn tại?) then (có)
+ if (Cùng items?) then (có)
+  :Trả reservation/trạng thái cũ;
+ else (không)
+  :409 PAYLOAD_CONFLICT;
+ endif
+else (không)
+ :Sắp xếp theo productId;
+ while (Còn item?) is (có)
+  if (Stock đủ available?) then (có)
+   :Tăng reserved và version;
+  else (không)
+   :ROLLBACK tất cả; 409 INSUFFICIENT_STOCK;
+   stop
+  endif
+ endwhile (không)
+ :Insert reservation + items;
+endif
+:COMMIT hoặc transaction rollback nếu lỗi;
+stop
+@enduml

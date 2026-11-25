@@ -1,5 +1,7 @@
 # FINAL-1 / FINAL-2 — kết quả triển khai và nghiệm thu
 
+> FINAL-3 bổ sung: [progress](final3-progress.md), [UML manifest](uml/manifest.json), [report package](report-assets/README.md). Các kết quả FINAL-2 bên dưới giữ provenance lịch sử;71 ID cần duyệt nghĩa riêng, không88 runtime PASS. DOCX chưa chỉnh.
+
 Ngày 24/11/2026 GMT+7. Branch **main**, start/end HEAD **5274c90**; working tree ban đầu sạch. DEV-0–7 đã có trong lịch sử merge (DEV-6/7 qua merge lồng). Không tạo branch, PR, commit, merge, tag hoặc deploy. Master Markdown và source DOCX giữ nguyên, SHA256 đã kiểm tra lại.
 
 ## Trạng thái phase

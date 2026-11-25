@@ -1,0 +1,51 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+skinparam maxMessageSize 220
+skinparam ParticipantPadding 6
+hide footbox
+title Kiểm kê — version và reserved floor
+actor "Warehouse / Manager" as U
+actor MANAGER as M
+participant StockService as S
+participant ProductDirectoryClient as P
+participant PrismaStockRepository as R
+database inventory_db as DB
+U -> S : get(productId,cid) qua HTTP
+S --> U : stock/version
+U -> S : createAdjustment(expectedVersion,counted,reason)
+S -> P : batch(productId,cid) trước transaction
+P --> S : product
+S -> R : createAdjustment(input,actor,product)
+group local inventoryWrite + advisory lock
+ R -> DB : khởi tạo zero row nếu cần
+ R -> DB : assertAdjustment(version,counted >= reserved)
+ R -> DB : lưu DRAFT
+end
+M -> S : confirmAdjustment(id,actor)
+S -> R : confirmAdjustment(id,actor)
+group local inventoryWrite + advisory lock
+ R -> DB : read document + stock
+ alt CONFIRMED
+  R --> S : trả lại kết quả cũ
+ else DRAFT + version đúng + counted >= reserved
+  R -> DB : set onHand/count; increment version
+  opt delta khác 0
+   R -> DB : movement ADJUSTMENT_IN/OUT + actor
+  end
+  R -> DB : document CONFIRMED; COMMIT
+ else stale / reserved floor / CANCELLED
+  R -> DB : rollback; 409
+ end
+end
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+title Reservation — chuyển trạng thái bất biến
+[*] --> RESERVED : reserve() all-or-nothing
+RESERVED --> COMMITTED : commit / onHand-=q; reserved-=q; SALE
+RESERVED --> RELEASED : release / reserved-=q
+COMMITTED --> [*]
+RELEASED --> [*]
+note right of COMMITTED
+Repeated commit trả trạng thái cũ.
+release sau COMMITTED: 409.
+end note
+note right of RELEASED
+Repeated release trả trạng thái cũ.
+commit sau RELEASED: 409.
+Không auto-expire.
+end note
+@enduml

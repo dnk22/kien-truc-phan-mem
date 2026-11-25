@@ -1,0 +1,43 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+skinparam maxMessageSize 220
+hide footbox
+title Đăng nhập — bcrypt/JWT/session
+actor "Web nhân viên" as UI
+participant AuthService as A
+participant UserRepository as U
+participant SessionRepository as S
+database identity_db as DB
+UI -> A : login(username,password) qua Gateway/Controller
+A -> U : findByUsername(username)
+U -> DB : read user
+U --> A : user/null
+A -> A : bcrypt compare; ACTIVE
+alt hợp lệ
+ A -> S : create(user,newSession)
+ group local TX / per-user advisory lock
+  S -> DB : recheck version/hash/status
+  S -> DB : insert token hash; lastLoginAt; COMMIT
+ end
+ S --> A : current user
+ A -> A : sign JWT (sid/version/role/iss/aud/exp)
+ A --> UI : 200 + access token; HttpOnly refresh cookie
+else sai/locked
+ A --> UI : generic401
+end
+note over UI,A
+Gateway/Controller kiểm tra rate limit, Origin/CSRF/DTO.
+Chi tiết đầy đủ ở login-sequence.puml (historical source).
+end note
+@enduml

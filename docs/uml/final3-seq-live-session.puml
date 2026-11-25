@@ -1,0 +1,44 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+skinparam maxMessageSize 220
+skinparam ParticipantPadding 6
+hide footbox
+title Kiểm tra live session tại business service
+participant "Business JWT/Roles guards" as G
+participant LiveSessionGuard as L
+participant "Identity /auth/me" as ID
+participant IdentityGuard as Guard
+participant PrismaSessionRepository as Repo
+database identity_db as DB
+G -> G : verify JWT signature/claims
+G -> L : authenticated request
+L -> ID : GET /api/v1/auth/me\nBearer + X-Correlation-Id
+ID -> Guard : authenticate principal
+Guard -> Repo : authenticate(principal)
+Repo -> DB : session + user status/role/version/expiry
+alt hợp lệ
+ DB --> Repo : active session/user
+ Repo --> ID : user
+ ID --> L : 200 safe profile
+ L --> G : session hợp lệ
+ G -> G : RolesGuard kiểm tra role; allow/403
+else revoked/locked/expired/mismatch
+ ID --> L : 401 SESSION_REVOKED
+ L --> G : deny
+end
+note over L,DB
+Service credential dùng cho business internal APIs;
+live-session call này forward Bearer, không đọc DB chéo.
+end note
+@enduml

@@ -1,0 +1,58 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+skinparam maxMessageSize 220
+skinparam ParticipantPadding 6
+hide footbox
+title Checkout prepare — giá chính thức và giữ hàng
+actor CASHIER as C
+participant CheckoutFacade as F
+participant InvoiceService as S
+participant ProductDirectory as P
+participant InvoiceBuilder as B
+participant PrismaInvoiceRepository as R
+participant CheckoutOrchestrator as O
+participant InventoryStockClient as I
+database sales_db as DB
+C -> F : prepare(actor,key,items,cid) qua Controller/Gateway
+F -> S : prepare(...)
+S -> R : findPrepare(actor,key)
+alt đã có key
+ R --> S : prior + prepareHash
+ S -> S : hash khác → 409; giống → dùng invoice cũ
+else key mới
+ S -> P : batch(ids,cid); ACTIVE + authoritative price
+ P --> S : product snapshots
+ S -> B : setCashier().setItems().build()
+ B --> S : InvoiceDraft (chưa có status)
+ S -> R : create(draft,key,hash)
+ group salesWrite transaction; không HTTP
+  R -> DB : unique(actor,prepareKey); persist PENDING/RESERVE
+ end
+end
+F -> O : advance(invoiceId,cid)
+O -> I : lookup(invoiceId) trước side effect
+opt chưa có reservation
+ O -> I : reserve(invoiceId,items,cid)
+end
+alt RESERVED
+ O -> R : ready(id,reservationId) trong local TX
+ F --> C : HTTP200 READY + official total
+else chắc chắn thiếu tồn và lookup không có reservation
+ O -> R : failedReserve(id,INSUFFICIENT_STOCK)
+ F --> C : HTTP409
+else outcome chưa rõ
+ O -> R : defer(id,RESERVE,code) → RECOVERY
+ F --> C : HTTP200 RECOVERY; polling
+end
+@enduml

@@ -52,3 +52,11 @@ acceptance-initial.log/json retain the first failed virtual-dropdown test; brows
 At-least-once events with idempotent processing; single store/replica; manual bank confirmation; no external deployment, production HTTPS/HA/backup-restore/security audit or physical-printer test. Multi-tab refresh and operator/DLQ tooling remain limited. Requirement matrix has57 FR +21 BR +10 NFR; source groups are explicitly decomposed, BR07 verified by unit and NFR04 by source review, NFR01 only two representative READ benchmarks. See report-evidence.md; do not describe all88 as exhaustive runtime proof.
 
 Before DOCX: confirm per-ID interpretation, reconcile/render/inspect UML class/sequence changes, choose final screenshots, annotate controlled timezone and retry-limit fixtures, and obtain separate authorization for report edits. Source DOCX remains unchanged.
+
+## FINAL-3 provenance bổ sung (25/11/2026)
+
+Giữ nguyên snapshot/logs FINAL-2 phía trên. Bản manifest nguyên gốc được bảo toàn ở [manifest-final2-original](../final3/manifest-final2-original.md). HEAD hiện tại fe96c3e, parent5274c90, local origin/main cùng HEAD (không fetch/push). Commit chứa đúng282 changed paths đã ghi nhận; không có historical working-tree per-file hash manifest để chứng minh byte identity. Không gán lần test cũ cho commit mới. Chi tiết [provenance.json](provenance.json).
+
+FINAL-3 không đổi apps/packages/schema/lockfile. Khôi phục9 container hiện có, không reset volume; chụp bổ sung read-only (login tạo sessions), không chạy lại full acceptance. [Runtime snapshot](../final3/runtime-current.json), [queue snapshot](../final3/queues-current.json), [capture](../final3/capture.json).
+
+Ảnh login/dashboard/inventory gốc là loading; ảnh report cũ có25 invoice ở thời điểm sớm hơn. Dùng ảnh thay thế đã settled và xem [screenshot review](../final3/screenshot-review.json). Pixel crops giữ bản gốc và tọa độ [crops](../final3/crops.json). PDF gốc giữ nguyên, không physical printer claim. [Current traceability audit](../../requirement-id-reconciliation.md) phân biệt79 runtime-supported,7 partial,1 unit,1 source; không sửa traceability.json lịch sử.

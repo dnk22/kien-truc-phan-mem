@@ -12,6 +12,6 @@ See [patterns](design-patterns.md) and [API index](api-index.md).
 - Snapshot product data at receipt draft, cross-service validation not transactional.
 - No external bank gateway, no automatic reservation expiration, no DLQ replay UI. Dashboard updatedAt is latest processed event, not proof backlog empty.
 - Runtime performance results are recorded in evidence/final/performance.json when executed. Gateway OpenAPI now includes body/query/idempotency/envelope documentation; runtime schemas remain governed by service validators.
-- AMQP lockfile synchronized; current acceptance results in final-review-progress.md. Preserve source DOCX until FINAL-3.
+- AMQP lockfile synchronized; current acceptance results in final-review-progress.md. Preserve source DOCX until FINAL-4. Current diagrams/package: [FINAL-3](final3-progress.md), [UML](uml/README.md), [architecture summary](report-assets/architecture-summary.md).
 
 Report retry publishes with mandatory routing and publisher confirm before acknowledging the source. If retry routing fails, close the consumer connection and redeliver the unacknowledged original; delivery remains at-least-once with idempotent projection. SALE movement records the cashier actor; correlation ID is forwarded through live-session, product and inventory HTTP calls.

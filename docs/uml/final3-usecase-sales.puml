@@ -1,0 +1,44 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+left to right direction
+title POS, thanh toán và hóa đơn
+actor CASHIER as C
+actor MANAGER as M
+rectangle Sales {
+ usecase "Chuẩn bị giao dịch" as Prepare
+ usecase "Chốt giá và giữ hàng" as Reserve
+ usecase "Xác nhận đã nhận tiền" as Pay
+ usecase "Kiểm tra phương thức / số tiền" as Validate
+ usecase "Hủy trước thanh toán" as Cancel
+ usecase "Tra cứu hóa đơn của mình" as Own
+ usecase "Tra cứu toàn bộ hóa đơn" as All
+ usecase "In hóa đơn COMPLETED" as Print
+}
+C --> Prepare
+Prepare ..> Reserve : <<include>>
+C --> Pay
+Pay ..> Validate : <<include>>
+C --> Cancel
+C -right-> Own
+M --> All
+Print ..> Own : <<extend>>\n[COMPLETED và chọn in]
+C --> Print
+M --> Print
+Print ..> All : <<extend>>\n[COMPLETED và chọn in]
+note bottom of Sales
+Cash/transfer là lựa chọn thay thế.
+Transfer xác nhận thủ công, không kết nối ngân hàng.
+Prepare/confirm là hai request; include không biểu diễn thứ tự.
+end note
+@enduml

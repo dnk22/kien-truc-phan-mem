@@ -1,0 +1,33 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+left to right direction
+title Xác thực và tài khoản
+actor "Nhân viên (4 vai trò)" as U
+actor ADMIN as A
+A --|> U
+rectangle "Identity" {
+ usecase "Đăng nhập / đăng xuất" as Login
+ usecase "Hồ sơ / đổi mật khẩu" as Profile
+ usecase "Danh sách / thêm / sửa tài khoản" as Manage
+ usecase "Khóa/mở khóa / gán role" as Role
+}
+U --> Login
+U --> Profile
+A --> Manage
+A --> Role
+note bottom of Role
+Lock/role/password làm tăng tokenVersion và revoke session.
+Bảo vệ ADMIN ACTIVE cuối cùng trong transaction.
+end note
+@enduml

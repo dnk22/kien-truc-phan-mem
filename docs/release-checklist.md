@@ -15,7 +15,8 @@
 - [x] Interrupted prepare and payment preserve original keys across refresh; actor cart isolation
 - [x] 20-client representative READ benchmark with actual timings
 - [x] 88 requirement rows, docs and actual evidence manifest
-- [ ] FINAL-3: synchronize/render/inspect UML and approve requirement numbering
-- [ ] FINAL-3: update DOCX only after review/authorization
+- [x] FINAL-3: synchronize/render/inspect UML; [report package](report-assets/README.md) prepared
+- [ ] FINAL-4: approve71 grouped requirement IDs before making individual definitions official
+- [ ] FINAL-4: update DOCX after FINAL-3 review
 
 Local demo acceptance passes with scope limits: one store/replica, no external banking, at-least-once delivery, no production HTTPS/HA/backup-restore/physical printer test. No tag/deploy/PR/commit created. Results and rerun provenance: evidence/final/manifest.md. Historical failed harness attempts remain in logs; latest results are 44 unique acceptance cases PASS plus 24 Jest suites / 65 tests PASS.

@@ -1,0 +1,49 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+skinparam maxMessageSize 220
+skinparam ParticipantPadding 6
+hide footbox
+title Phiếu nhập — nháp và xác nhận idempotent
+actor "Warehouse / Manager" as U
+actor MANAGER as M
+participant ReceiptController as C
+participant ReceiptService as S
+participant ProductDirectoryClient as P
+participant PrismaReceiptRepository as R
+database inventory_db as DB
+U -> C : create/update draft
+C -> S : create(input,actor,cid) / update(id,input,cid)
+S -> P : batch(products,cid) trước DB transaction
+P --> S : ACTIVE product snapshots
+S -> R : create/update(snapshot)
+group local inventoryWrite transaction + advisory lock
+ R -> DB : kiểm tra NCC ACTIVE; persist DRAFT/items
+end
+S --> U : DRAFT; tồn chưa đổi
+M -> C : POST /purchase-receipts/:id/confirm
+C -> S : confirm(id,actor)
+S -> R : confirm(id,actor)
+group local inventoryWrite transaction + advisory lock
+ R -> DB : read receipt + items
+ alt DRAFT
+  R -> DB : NCC ACTIVE; upsert stock/version; PURCHASE(actor)
+  R -> DB : CONFIRMED; COMMIT tất cả
+ else CONFIRMED
+  R -> DB : trả kết quả cũ, không tăng lần hai
+ else CANCELLED
+  R -> DB : rollback; 409
+ end
+end
+R --> M : result (qua Service/Controller/Gateway)
+@enduml

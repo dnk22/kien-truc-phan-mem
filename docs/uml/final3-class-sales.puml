@@ -1,0 +1,77 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+title Sales — Facade, Saga và ports
+class CheckoutController
+class CheckoutFacade {
+ +prepare(...)
++confirm(...)
++cancel(...)
+}
+class InvoiceService {
+ +prepare(...)
++get(...)
++cancel(...)
+}
+class PaymentService {
+ +confirm(...)
+}
+class CheckoutOrchestrator {
+ +advance(...)
+-run(id,correlationId)
+}
+class RecoveryWorker {
+ +tick(...)
+}
+interface InvoiceRepository {
+ +create(...)
++startPayment(...)
++startCancel(...)
++ready(...)
++complete(...)
++defer(...)
++due(...)
+}
+interface ProductDirectory {
+ +batch(...)
+}
+interface StockPort {
+ +lookup(...)
++reserve(...)
++commit(...)
++release(...)
+}
+class PrismaInvoiceRepository
+class SalesProductDirectory
+class InventoryStockClient
+CheckoutController --> CheckoutFacade
+CheckoutFacade --> InvoiceService
+CheckoutFacade --> PaymentService
+CheckoutFacade --> CheckoutOrchestrator
+InvoiceService --> InvoiceRepository
+InvoiceService --> ProductDirectory
+PaymentService --> InvoiceRepository
+PaymentService --> InvoiceService
+RecoveryWorker --> InvoiceRepository
+RecoveryWorker --> CheckoutOrchestrator
+CheckoutOrchestrator --> InvoiceRepository
+CheckoutOrchestrator --> StockPort
+PrismaInvoiceRepository ..|> InvoiceRepository
+SalesProductDirectory ..|> ProductDirectory
+InventoryStockClient ..|> StockPort
+note bottom of CheckoutOrchestrator
+InvoiceBuilder/PaymentCreator/Strategy ở bốn hình riêng.
+In-process single-flight; worker scan5s, attempts<20.
+InvoiceDraft là data object, không có Invoice entity class.
+end note
+@enduml

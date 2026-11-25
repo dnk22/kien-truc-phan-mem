@@ -1,0 +1,71 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+hide circle
+skinparam linetype polyline
+title ERD sales_db
+entity "invoices" as Invoice {
+ * id : uuid <<PK>>
+ * code : text <<UQ>>
+ * cashier_id : uuid
+ * status : InvoiceStatus
+ * saga_intent : SagaIntent
+ * total_amount : bigint
+  reservation_id : uuid? <<UQ>>
+ * prepare_key : varchar(128)
+ * prepare_hash : text
+  confirm_key : varchar(128)?
+  confirm_hash : text?
+ * attempts : integer
+ * next_attempt_at : timestamptz(3)
+  last_error : text?
+ * created_at : timestamptz(3)
+ * updated_at : timestamptz(3)
+  completed_at : timestamptz(3)?
+ UQ(cashier_id,prepare_key)
+ UQ(cashier_id,confirm_key)
+}
+entity "invoice_items" as InvoiceItem {
+ * id : uuid <<PK>>
+ * invoice_id : uuid <<FK>>
+ * product_id : uuid
+ * product_code : text
+ * product_name : text
+ * unit : text
+ * quantity : integer
+ * unit_price : bigint
+ * subtotal : bigint
+ UQ(invoice_id,product_id)
+}
+entity "payments" as Payment {
+ * id : uuid <<PK>>
+ * invoice_id : uuid <<UQ,FK>>
+ * method : PaymentMethod
+ * amount_received : bigint
+ * change_amount : bigint
+ * created_at : timestamptz(3)
+}
+entity "outbox_events" as OutboxEvent {
+ * id : uuid <<PK>>
+ * event_type : text
+ * payload : jsonb
+ * status : OutboxStatus
+ * attempts : integer
+ * next_attempt_at : timestamptz(3)
+ * created_at : timestamptz(3)
+  sent_at : timestamptz(3)?
+}
+Invoice ||--o{ InvoiceItem : FK
+Invoice ||--o| Payment : FK
+note "SQL CHECK: money positive/safe range; subtotal=quantity*unit_price.\nreservation_id/cashier_id/product_id là logical external references.\noutbox_events.payload chứa invoiceId nhưng không có FK invoice." as Rules
+legend bottom
+InvoiceStatus: PENDING, READY, PROCESSING, RECOVERY, COMPLETED, FAILED, CANCELLED
+SagaIntent: RESERVE, COMMIT, RELEASE, NONE
+PaymentMethod: CASH, BANK_TRANSFER
+OutboxStatus: PENDING, SENT
+endlegend
+footer sales_db — foundation_metadata / _prisma_migrations omitted; no cross-DB FK
+@enduml

@@ -10,3 +10,5 @@ apps/*/src/generated/
 
 # Reviewed, sanitized acceptance logs are deliverable evidence.
 !docs/evidence/final/*.log
+
+!docs/evidence/final3/*.log

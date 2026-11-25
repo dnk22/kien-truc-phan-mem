@@ -1,0 +1,1472 @@
+[
+  {
+    "index": 0,
+    "kind": "p",
+    "style": null,
+    "text": "HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG"
+  },
+  {
+    "index": 1,
+    "kind": "p",
+    "style": null,
+    "text": "________________________"
+  },
+  {
+    "index": 2,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 3,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 4,
+    "kind": "p",
+    "style": null,
+    "text": "BÁO CÁO BÀI TẬP LỚN"
+  },
+  {
+    "index": 5,
+    "kind": "p",
+    "style": null,
+    "text": "KIẾN TRÚC VÀ THIẾT KẾ PHẦN MỀM"
+  },
+  {
+    "index": 6,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 7,
+    "kind": "p",
+    "style": null,
+    "text": "ĐỀ TÀI"
+  },
+  {
+    "index": 8,
+    "kind": "p",
+    "style": null,
+    "text": "HỆ THỐNG QUẢN LÝ SIÊU THỊ MINI"
+  },
+  {
+    "index": 9,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 10,
+    "kind": "p",
+    "style": null,
+    "text": "Giảng viên: ThS. Lâm Duy Quý"
+  },
+  {
+    "index": 11,
+    "kind": "p",
+    "style": null,
+    "text": "Nhóm 06"
+  },
+  {
+    "index": 12,
+    "kind": "tbl",
+    "style": null,
+    "text": "Họ và tên Mã sinh viên Lê Thanh Nguyên K24DTCN379 Nguyễn Huy Hoàn K24DTCN369 Trịnh Thị Thủy K24DTCN390 Nguyễn Khánh Duy K24DTCN362"
+  },
+  {
+    "index": 13,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 14,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 15,
+    "kind": "p",
+    "style": null,
+    "text": "2026"
+  },
+  {
+    "index": 16,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 17,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "MỤC LỤC"
+  },
+  {
+    "index": 18,
+    "kind": "p",
+    "style": null,
+    "text": "Mở đầu 3 Chương 1. Đặc tả bài toán và yêu cầu hệ thống 4 Chương 2. Thiết kế kiến trúc phần mềm 8 Chương 3. Thiết kế hệ thống bằng UML 14 Chương 4. Áp dụng mẫu thiết kế 23 Chương 5. Cài đặt, kiểm thử và demo 27 Kết luận 30 Tài liệu tham khảo và phụ lục 31"
+  },
+  {
+    "index": 19,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "Danh mục từ viết tắt"
+  },
+  {
+    "index": 20,
+    "kind": "tbl",
+    "style": null,
+    "text": "Thuật ngữ Ý nghĩa API Application Programming Interface UML Unified Modeling Language POS Point of Sale – bán hàng tại quầy RBAC Role-Based Access Control JWT JSON Web Token ORM Object-Relational Mapping ERD Entity Relationship Diagram FR / NFR / BR Yêu cầu chức năng / phi chức năng / quy tắc nghiệp vụ"
+  },
+  {
+    "index": 21,
+    "kind": "p",
+    "style": null,
+    "text": "Trạng thái tài liệu: bản thiết kế trước triển khai. Các kết quả thực nghiệm ở Chương 5 cần được cập nhật sau khi có sản phẩm chạy được."
+  },
+  {
+    "index": 22,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 23,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "MỞ ĐẦU"
+  },
+  {
+    "index": 24,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "1. Lý do chọn đề tài"
+  },
+  {
+    "index": 25,
+    "kind": "p",
+    "style": null,
+    "text": "Hoạt động của siêu thị mini bao gồm quản lý danh mục hàng hóa, nhập hàng, theo dõi tồn kho và bán hàng tại quầy. Quản lý thủ công dễ gây sai lệch số lượng, khó tra cứu hóa đơn và tốn thời gian tổng hợp doanh thu. Nhóm lựa chọn đề tài nhằm xây dựng một ứng dụng quản lý nội bộ, đồng thời vận dụng kiến thức kiến trúc và thiết kế phần mềm vào một bài toán có giao dịch liên thành phần."
+  },
+  {
+    "index": 26,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "2. Mục tiêu và phạm vi"
+  },
+  {
+    "index": 27,
+    "kind": "p",
+    "style": null,
+    "text": "Hệ thống phục vụ một siêu thị, một kho, bốn vai trò nhân viên. Phiên bản V1 hỗ trợ tiền mặt và chuyển khoản xác nhận thủ công; không tích hợp ngân hàng, bán trực tuyến hay quản lý chuỗi chi nhánh. Mục tiêu kỹ thuật là phân tách năm dịch vụ nghiệp vụ, giao tiếp REST và RabbitMQ, vận dụng SOLID và bốn mẫu GoF, có thể chạy bằng Docker Compose."
+  },
+  {
+    "index": 28,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "3. Phân công công việc"
+  },
+  {
+    "index": 29,
+    "kind": "tbl",
+    "style": null,
+    "text": "Thành viên Nhiệm vụ Lê Thanh Nguyên Identity, API Gateway, bảo mật; tổng hợp Chương 1 Nguyễn Huy Hoàn Product, nền tảng Frontend; tổng hợp Chương 4 Trịnh Thị Thủy Inventory, dữ liệu kho; tổng hợp Chương 3 Nguyễn Khánh Duy Sales, Report, tích hợp, Docker; tổng hợp Chương 2 và 5"
+  },
+  {
+    "index": 30,
+    "kind": "p",
+    "style": null,
+    "text": "Mỗi thành viên chịu trách nhiệm thiết kế, lập trình, kiểm thử và minh chứng phần việc của mình. Nhóm thực hiện báo cáo song song với sản phẩm, cập nhật thiết kế khi mã nguồn thay đổi."
+  },
+  {
+    "index": 31,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 32,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "CHƯƠNG 1. ĐẶC TẢ BÀI TOÁN VÀ YÊU CẦU HỆ THỐNG"
+  },
+  {
+    "index": 33,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "1.1. Bài toán và tác nhân"
+  },
+  {
+    "index": 34,
+    "kind": "p",
+    "style": null,
+    "text": "Hệ thống tập trung dữ liệu hàng hóa, kiểm soát nghiệp vụ nhập và xuất kho, ghi nhận giao dịch bán hàng, cung cấp báo cáo cho người quản lý. Khách hàng không trực tiếp sử dụng phần mềm. Các quyền truy cập phải được kiểm tra tại backend, không chỉ ẩn menu tại giao diện."
+  },
+  {
+    "index": 35,
+    "kind": "tbl",
+    "style": null,
+    "text": "Vai trò Quyền nghiệp vụ chính ADMIN Quản lý tài khoản, gán vai trò, khóa/mở khóa MANAGER Danh mục, sản phẩm, nhà cung cấp; lập và xác nhận phiếu nhập, kiểm kê; xem toàn bộ hóa đơn và báo cáo CASHIER Tra cứu sản phẩm/tồn kho, POS, thanh toán, hóa đơn của mình WAREHOUSE Tra cứu sản phẩm/tồn kho, lập và sửa/hủy phiếu nháp, lập kiểm kê, xem biến động kho"
+  },
+  {
+    "index": 36,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "1.2. Phạm vi ưu tiên"
+  },
+  {
+    "index": 37,
+    "kind": "tbl",
+    "style": null,
+    "text": "Mức độ Chức năng Must Xác thực, nhân viên, sản phẩm, nhà cung cấp, nhập hàng, tồn kho, POS, hóa đơn, doanh thu Should Cảnh báo tồn thấp, tìm theo mã vạch, in hóa đơn, kiểm kê Could Xuất Excel, lô hàng và hạn sử dụng Won’t Bán trực tuyến, nhiều chi nhánh, tích điểm, tích hợp ngân hàng"
+  },
+  {
+    "index": 38,
+    "kind": "p",
+    "style": null,
+    "text": "Mọi vai trò được đăng nhập, đăng xuất, xem hồ sơ và đổi mật khẩu. Nhân viên kho chỉ được tra cứu nhà cung cấp đang hoạt động để lập phiếu."
+  },
+  {
+    "index": 39,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 40,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "1.3. Yêu cầu chức năng"
+  },
+  {
+    "index": 41,
+    "kind": "tbl",
+    "style": null,
+    "text": "Mã Nhóm yêu cầu và nội dung FR01–09 Đăng nhập, đăng xuất, hồ sơ, đổi mật khẩu, danh sách/thêm/sửa tài khoản, khóa/mở khóa, gán vai trò. FR10–19 Danh mục; danh sách, thêm, sửa, ngừng bán sản phẩm; tìm kiếm, lọc; giá bán; chi tiết. FR20–25 Danh sách, thêm, sửa, ngừng hợp tác, tìm kiếm nhà cung cấp và lịch sử nhập. FR26–32 Xem tồn; lập, thêm dòng hàng, sửa, xác nhận, hủy phiếu nhập; tăng tồn khi xác nhận. FR33–36 Giảm tồn khi bán, lịch sử biến động, cảnh báo tồn thấp, kiểm kê/điều chỉnh. FR37–43 Tạo giao dịch, tìm hàng, thêm/sửa/xóa dòng giỏ, tính tổng, kiểm tra tồn khả dụng. FR44–49 Chọn phương thức, xác nhận thanh toán, tính tiền thừa, tạo hóa đơn, tra cứu, in. FR50–57 Dashboard, doanh thu theo kỳ, số hóa đơn, số sản phẩm bán, sản phẩm bán chạy, tồn kho, tồn thấp, phương thức thanh toán."
+  },
+  {
+    "index": 42,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "1.4. Yêu cầu phi chức năng"
+  },
+  {
+    "index": 43,
+    "kind": "tbl",
+    "style": null,
+    "text": "Mã Mục tiêu thiết kế NFR01 P95 CRUD ≤ 500 ms với 20 người dùng đồng thời trong môi trường thử nghiệm. NFR02 JWT, hash mật khẩu, kiểm tra RBAC tại backend. NFR03–04 Dịch vụ triển khai riêng; mã nguồn phân lớp, SOLID. NFR05–06 Không trùng hóa đơn, không âm kho; giao dịch hoàn tất nhất quán. NFR07–08 Tìm kiếm, lọc, phân trang; kiểm thử độc lập và tích hợp. NFR09–10 Docker Compose, health check, logging và correlation ID."
+  },
+  {
+    "index": 44,
+    "kind": "p",
+    "style": null,
+    "text": "Các mục tiêu trên là tiêu chí nghiệm thu đề xuất, không phải kết quả đo đã đạt."
+  },
+  {
+    "index": 45,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 46,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "1.5. Quy trình nghiệp vụ"
+  },
+  {
+    "index": 47,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "1.5.1. Nhập hàng"
+  },
+  {
+    "index": 48,
+    "kind": "p",
+    "style": null,
+    "text": "Nhân viên kho hoặc Manager lập phiếu nháp gồm nhà cung cấp, sản phẩm, số lượng và giá nhập. Manager xác nhận sau khi kiểm tra. Inventory Service cập nhật tồn kho, ghi biến động và đổi trạng thái phiếu trong cùng một giao dịch cơ sở dữ liệu. Phiếu nháp chưa làm thay đổi tồn."
+  },
+  {
+    "index": 49,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 50,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 1.1. Quy trình nhập hàng"
+  },
+  {
+    "index": 51,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "1.5.2. Bán hàng và thanh toán"
+  },
+  {
+    "index": 52,
+    "kind": "p",
+    "style": null,
+    "text": "Cashier chọn sản phẩm vào giỏ, yêu cầu chuẩn bị giao dịch. Backend kiểm tra giá và giữ hàng; nhân viên xác nhận giá trước khi nhận tiền. Sau khi xác nhận thanh toán, Sales điều phối xuất kho và hoàn tất hóa đơn. Báo cáo cập nhật bất đồng bộ. Nếu không đủ hàng hoặc khách hủy trước thanh toán, giao dịch không hoàn tất và hàng giữ được giải phóng."
+  },
+  {
+    "index": 53,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "1.5.3. Kiểm kê và thống kê"
+  },
+  {
+    "index": 54,
+    "kind": "p",
+    "style": null,
+    "text": "Phiếu kiểm kê lưu tồn tại thời điểm lập và số lượng thực tế. Manager chỉ xác nhận khi dữ liệu chưa thay đổi và tồn mới không thấp hơn lượng đang giữ. Báo cáo doanh thu chỉ tính hóa đơn COMPLETED; dữ liệu có thể chậm hơn giao dịch do xử lý sự kiện."
+  },
+  {
+    "index": 55,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 56,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "1.6. Quy tắc nghiệp vụ"
+  },
+  {
+    "index": 57,
+    "kind": "tbl",
+    "style": null,
+    "text": "Mã Quy tắc BR01–03 Tên đăng nhập duy nhất; khóa tài khoản; kiểm tra quyền. BR04–05 Mã sản phẩm và mã vạch (nếu có) duy nhất. BR06–08 Giá > 0, số lượng nguyên dương, tồn kho không âm. BR09–10 Phiếu nháp không tăng tồn; xác nhận tối đa một lần. BR11–12 Không bán sản phẩm ngừng kinh doanh; không bán vượt tồn khả dụng. BR13–14 Tổng tiền bằng tổng thành tiền; tiền khách đưa phải đủ. BR15–16 Lưu giá tại thời điểm bán; không xóa cứng hóa đơn hoàn tất. BR17–18 Mọi biến động kho có lịch sử; cảnh báo khi tồn ≤ ngưỡng. BR19–20 Chỉ hóa đơn hoàn tất tính doanh thu; bảo toàn dữ liệu lịch sử. BR21 Request gửi lại không tạo hóa đơn hoặc trừ kho hai lần."
+  },
+  {
+    "index": 58,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "1.7. Quyết định nghiệp vụ bổ sung"
+  },
+  {
+    "index": 59,
+    "kind": "p",
+    "style": null,
+    "text": "Giỏ hàng lưu phía frontend cho đến khi chuẩn bị checkout. Sản phẩm mới có tồn mặc định 0 cho đến khi nhập lần đầu. Giá được chốt tại bước chuẩn bị và hiển thị lại cho Cashier. Cashier chỉ xem hóa đơn của mình. Không hủy tự động giao dịch đã nhận tiền; phải phục hồi hoặc đối soát."
+  },
+  {
+    "index": 60,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "1.8. Kết luận chương"
+  },
+  {
+    "index": 61,
+    "kind": "p",
+    "style": null,
+    "text": "Các yêu cầu trên xác định ranh giới nghiệp vụ và những ràng buộc quan trọng cho kiến trúc, nhất là tính nhất quán giữa tồn kho và hóa đơn. Chương 2 trình bày phương án thiết kế để đáp ứng các yêu cầu này."
+  },
+  {
+    "index": 62,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 63,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "CHƯƠNG 2. THIẾT KẾ KIẾN TRÚC PHẦN MỀM"
+  },
+  {
+    "index": 64,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "2.1. Lựa chọn kiến trúc"
+  },
+  {
+    "index": 65,
+    "kind": "p",
+    "style": null,
+    "text": "Theo Bài 1 và Bài 2 [1, 2], kiến trúc mô tả cấu trúc tổng thể và tương tác giữa các thành phần; thiết kế chi tiết hóa lớp, giao diện và hành vi. Nhóm cân nhắc các mô hình sau:"
+  },
+  {
+    "index": 66,
+    "kind": "tbl",
+    "style": null,
+    "text": "Tiêu chí Monolithic / Modular Monolith Microservices Triển khai Một đơn vị triển khai Từng dịch vụ độc lập Dữ liệu Transaction tập trung Dữ liệu sở hữu riêng; cần điều phối Vận hành Đơn giản hơn Nhiều tiến trình, lỗi mạng Mở rộng Thường theo toàn ứng dụng Có thể theo từng dịch vụ Phù hợp Siêu thị nhỏ, ít tải Mục tiêu học tập và mở rộng"
+  },
+  {
+    "index": 67,
+    "kind": "p",
+    "style": null,
+    "text": "Modular Monolith có thể kinh tế hơn cho một cửa hàng nhỏ. Nhóm chọn Microservices theo định hướng học phần để thực hành phân rã dịch vụ, hợp đồng giao tiếp và giao dịch phân tán. Đây là lựa chọn có đánh đổi, không khẳng định Microservices luôn tối ưu."
+  },
+  {
+    "index": 68,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "2.2. Các phong cách kết hợp"
+  },
+  {
+    "index": 69,
+    "kind": "p",
+    "style": null,
+    "text": "Client–Server tổ chức giao tiếp web; Microservices phân tách backend; kiến trúc phân lớp tổ chức mã nguồn từng dịch vụ; Event-Driven phục vụ đồng bộ báo cáo. Các thành phần được thiết kế với trách nhiệm rõ ràng, cohesion cao và coupling thấp."
+  },
+  {
+    "index": 70,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 71,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "2.3. Kiến trúc tổng thể và thành phần"
+  },
+  {
+    "index": 72,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 73,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 2.1. Kiến trúc thành phần tổng quan"
+  },
+  {
+    "index": 74,
+    "kind": "tbl",
+    "style": null,
+    "text": "Thành phần Trách nhiệm Identity Tài khoản, xác thực, vai trò Product Danh mục, mã vạch, giá và trạng thái Inventory Nhà cung cấp, nhập hàng, tồn kho, giữ hàng Sales Checkout, thanh toán, hóa đơn, Outbox Report Tiêu thụ sự kiện, thống kê doanh thu và tồn kho Gateway Xác thực, định tuyến, CORS, log; không xử lý nghiệp vụ"
+  },
+  {
+    "index": 75,
+    "kind": "p",
+    "style": null,
+    "text": "Các service cung cấp REST interface có contract riêng; Sales yêu cầu Product API và Inventory API; Report yêu cầu Inventory API và tiêu thụ sự kiện bán hàng. Các thành phần nội bộ không phải actor của hệ thống."
+  },
+  {
+    "index": 76,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 77,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "2.4. Kiến trúc phân lớp và công nghệ"
+  },
+  {
+    "index": 78,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 79,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 2.2. Phân lớp và hướng phụ thuộc"
+  },
+  {
+    "index": 80,
+    "kind": "p",
+    "style": null,
+    "text": "Controller xử lý HTTP và validation. Application điều phối use case. Domain chứa quy tắc và abstraction. Infrastructure hiện thực repository và adapter kỹ thuật; Domain không phụ thuộc Prisma hoặc HTTP. Dependency Injection nối implementation tại module composition root."
+  },
+  {
+    "index": 81,
+    "kind": "tbl",
+    "style": null,
+    "text": "Thành phần Công nghệ đề xuất Web React, Vite, TypeScript, Ant Design, React Router Quản lý state TanStack Query, Zustand, Axios Backend NestJS, TypeScript, Swagger/OpenAPI Dữ liệu PostgreSQL, Prisma Messaging RabbitMQ Triển khai / kiểm thử Docker Compose, pnpm workspace, Jest, Supertest"
+  },
+  {
+    "index": 82,
+    "kind": "p",
+    "style": null,
+    "text": "Các phiên bản thư viện cụ thể được ghi nhận sau khi khởi tạo repository. Không yêu cầu Kubernetes, Kafka hoặc Redis trong V1."
+  },
+  {
+    "index": 83,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 84,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "2.5. Kiến trúc dữ liệu và giao tiếp"
+  },
+  {
+    "index": 85,
+    "kind": "p",
+    "style": null,
+    "text": "Một PostgreSQL instance chứa năm database độc lập với tài khoản và migration riêng. Không truy vấn chéo database, không tạo khóa ngoại xuyên dịch vụ. Các ID tham chiếu bên ngoài dùng UUID. Giá tiền VND lưu số nguyên, thời gian UTC và hiển thị theo GMT+7. Hóa đơn lưu snapshot tên, mã, đơn vị tính và giá sản phẩm."
+  },
+  {
+    "index": 86,
+    "kind": "tbl",
+    "style": null,
+    "text": "Nguồn Đích Contract Gateway 5 service Public REST /api/v1/* Sales Product Tra cứu hàng hóa và giá theo danh sách ID Sales Inventory Reserve, commit, release, tra cứu reservation Inventory Product Xác thực sản phẩm nhập Report Inventory Thống kê tồn hiện tại Sales Report sale.completed.v1 qua RabbitMQ"
+  },
+  {
+    "index": 87,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "2.5.1. Sự kiện và Outbox"
+  },
+  {
+    "index": 88,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 89,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 2.3. Phát hành sự kiện bán hàng"
+  },
+  {
+    "index": 90,
+    "kind": "p",
+    "style": null,
+    "text": "Sales lưu trạng thái COMPLETED và Outbox trong cùng local transaction. Publisher gửi message bền vững, chờ xác nhận broker rồi đánh dấu đã gửi. Consumer ghi dữ liệu thống kê và eventId trong cùng transaction, ACK sau commit. Khi gửi trùng, eventId duy nhất ngăn cộng doanh thu hai lần. Event gồm eventId, eventType, occurredAt, invoiceId, cashierId, tổng tiền, phương thức, completedAt và snapshot các dòng hàng."
+  },
+  {
+    "index": 91,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 92,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "2.6. Điều phối giao dịch bán hàng"
+  },
+  {
+    "index": 93,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "2.6.1. Saga Orchestration"
+  },
+  {
+    "index": 94,
+    "kind": "p",
+    "style": null,
+    "text": "Sales Service điều phối giao dịch phân tán. Vì tồn kho và hóa đơn thuộc hai database khác nhau, không thể dùng một local transaction để bao phủ cả hai. Checkout tách hai bước: prepare (chốt giá, tạo giao dịch, giữ hàng) và confirm (ghi nhận thanh toán, commit hàng, hoàn tất hóa đơn)."
+  },
+  {
+    "index": 95,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 96,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 2.4. Điều phối Saga và phục hồi"
+  },
+  {
+    "index": 97,
+    "kind": "p",
+    "style": null,
+    "text": "Mỗi giao dịch lưu bước đã thực hiện và reservationId. Khi timeout, Sales truy vấn trạng thái reservation trước khi thử lại. Giao dịch đã nhận tiền không tự động hủy; cần retry hoặc đối soát thủ công nếu không thể phục hồi. Reservation không tự hết hạn khi giao dịch đã bước vào xác nhận thanh toán; giao dịch READY bị bỏ dở chỉ được giải phóng sau khi kiểm tra trạng thái và không có thanh toán."
+  },
+  {
+    "index": 98,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 99,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "2.7. Tính toàn vẹn, bảo mật và triển khai"
+  },
+  {
+    "index": 100,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "2.7.1. Stock Reservation và Idempotency"
+  },
+  {
+    "index": 101,
+    "kind": "p",
+    "style": null,
+    "text": "Inventory duy trì onHand và reserved, với available = onHand − reserved. Khi giữ hàng, cập nhật reserved bằng transaction và khóa hàng hoặc cập nhật có điều kiện; commit giảm đồng thời onHand và reserved; release chỉ giảm reserved. Các dòng hàng được xử lý theo thứ tự ID nhất quán để giảm deadlock. Mọi thao tác sử dụng invoiceId/reservationId duy nhất."
+  },
+  {
+    "index": 102,
+    "kind": "tbl",
+    "style": null,
+    "text": "Tình huống Cách xử lý Hai giao dịch mua hàng cuối Chỉ một reservation được chấp nhận Request gửi lại Cùng key và payload trả trạng thái cũ; payload khác trả 409 Lỗi sau khi nhận tiền Giữ PROCESSING/RECOVERY; truy vấn và retry Broker hoặc Report ngừng Outbox giữ sự kiện, bán hàng tiếp tục"
+  },
+  {
+    "index": 103,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "2.7.2. Bảo mật"
+  },
+  {
+    "index": 104,
+    "kind": "p",
+    "style": null,
+    "text": "Identity hash mật khẩu bằng bcrypt, phát JWT có sub, role, issuer, audience, exp. Gateway và service kiểm tra chữ ký, thời hạn và quyền. API nội bộ dùng credential dịch vụ và private network; không public /internal/v1. Token ngắn hạn, kiểm tra trạng thái tài khoản cho nghiệp vụ nhạy cảm. Không ghi mật khẩu hoặc token vào log."
+  },
+  {
+    "index": 105,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "2.7.3. Quyết định kiến trúc"
+  },
+  {
+    "index": 106,
+    "kind": "p",
+    "style": null,
+    "text": "Các đánh đổi chính: năm service thay vì tách Payment riêng; dùng một PostgreSQL instance để tiết kiệm tài nguyên; REST cho giao dịch cần phản hồi, RabbitMQ cho báo cáo; Monorepo để quản lý contract chung nhưng không chia sẻ domain logic. Một máy demo là điểm lỗi chung, chưa có high availability."
+  },
+  {
+    "index": 107,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 108,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "CHƯƠNG 3. THIẾT KẾ HỆ THỐNG BẰNG UML"
+  },
+  {
+    "index": 109,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "3.1. Use Case tổng quan"
+  },
+  {
+    "index": 110,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 111,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 3.1. Use Case tổng quan"
+  },
+  {
+    "index": 112,
+    "kind": "p",
+    "style": null,
+    "text": "Biểu đồ thể hiện các mục tiêu nghiệp vụ cấp cao. Quyền chi tiết được quy định tại Chương 1. Đăng nhập là tiền điều kiện của nghiệp vụ cần xác thực, không phải include bắt buộc trong mỗi lần gọi API."
+  },
+  {
+    "index": 113,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "3.2. Danh mục Use Case"
+  },
+  {
+    "index": 114,
+    "kind": "tbl",
+    "style": null,
+    "text": "Nhóm Use Case tiêu biểu UC-A01–A07 Đăng nhập, hồ sơ, tài khoản và vai trò UC-P01–P08 Danh mục, sản phẩm, giá, tìm kiếm UC-S01–S03 / UC-I01–I09 Nhà cung cấp, nhập hàng, tồn kho, kiểm kê UC-B01–B09 / UC-R01–R05 Bán hàng, thanh toán, hóa đơn, báo cáo"
+  },
+  {
+    "index": 115,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 116,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "3.3. Đặc tả Use Case tiêu biểu"
+  },
+  {
+    "index": 117,
+    "kind": "tbl",
+    "style": null,
+    "text": "Use Case Tiền điều kiện / Luồng chính / Ngoại lệ UC-A01 Đăng nhập Có tài khoản; nhập thông tin → xác thực → cấp token. Sai mật khẩu hoặc bị khóa: từ chối. UC-A05 Quản lý tài khoản Admin; tạo/sửa tài khoản, hash mật khẩu, gán role. Trùng username: từ chối. UC-P03 Thêm sản phẩm Manager; nhập mã, tên, danh mục, giá → kiểm tra → lưu ACTIVE. Trùng mã hoặc giá sai: từ chối. UC-I02 Lập phiếu nhập Manager/Kho; chọn nhà cung cấp, hàng, số lượng, giá nhập → lưu DRAFT. Không đổi tồn. UC-I04 Xác nhận nhập Manager; khóa phiếu DRAFT, tăng tồn, ghi biến động, CONFIRMED trong transaction. Lỗi: rollback. UC-I08/I09 Kiểm kê Kho/Manager lập phiếu, Manager xác nhận. Từ chối nếu version tồn thay đổi hoặc tồn mới < reserved. UC-B01 Bán hàng Cashier; chuẩn bị, giữ hàng, xác nhận tiền, xuất kho, hoàn tất. Thiếu hàng: từ chối; lỗi sau trả tiền: phục hồi. UC-B04 Thanh toán Giao dịch READY; tiền mặt đủ hoặc xác nhận đã chuyển khoản. Ghi nhận tiền; không tự động hoàn tiền. UC-B08 Tra cứu hóa đơn Manager xem tất cả; Cashier chỉ xem giao dịch mình tạo. Kiểm tra quyền từng bản ghi. UC-R02 Doanh thu Manager chọn khoảng ngày; đọc Report DB, trả tổng tiền, số hóa đơn, số lượng bán; hiện thời điểm cập nhật."
+  },
+  {
+    "index": 118,
+    "kind": "p",
+    "style": null,
+    "text": "Các Use Case ánh xạ tới nhóm FR tương ứng ở Chương 1. Use Case bán hàng bao gồm kiểm tra tồn, thanh toán và lập hóa đơn; in hóa đơn là hành vi tùy chọn. Tiền mặt và chuyển khoản là hai biến thể của thanh toán, không phải hai bước bắt buộc đồng thời."
+  },
+  {
+    "index": 119,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 120,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "3.4. Thiết kế lớp nghiệp vụ"
+  },
+  {
+    "index": 121,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 122,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 3.2. Class Diagram thiết kế Sales Service"
+  },
+  {
+    "index": 123,
+    "kind": "p",
+    "style": null,
+    "text": "CheckoutController chỉ nhận yêu cầu và chuyển đến Facade. Orchestrator điều phối các bước Saga, sử dụng abstraction StockClient và InvoiceRepository. Invoice lưu trạng thái và các dòng hàng; PaymentService chọn chiến lược thanh toán. Các class là thiết kế dự kiến, cần đối chiếu tên thực tế sau khi lập trình."
+  },
+  {
+    "index": 124,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "3.4.1. Các nhóm lớp còn lại"
+  },
+  {
+    "index": 125,
+    "kind": "tbl",
+    "style": null,
+    "text": "Service Lớp / interface chính Identity AuthService, UserService, UserRepository, JwtGuard Product ProductService, CategoryService, ProductRepository Inventory ReceiptService, ReserveStockUseCase, InventoryRepository, StockAdjustmentService Report SaleCompletedConsumer, RevenueService, ReportRepository"
+  },
+  {
+    "index": 126,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 127,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "3.5. Biểu đồ tuần tự bán hàng"
+  },
+  {
+    "index": 128,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 129,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 3.3. Sequence Diagram luồng bán hàng thành công"
+  },
+  {
+    "index": 130,
+    "kind": "p",
+    "style": null,
+    "text": "Hai HTTP request prepare và confirm độc lập. Sales lưu thanh toán trước khi yêu cầu commit kho; sau phản hồi thành công, hóa đơn và Outbox được lưu nguyên tử. Outbox publisher hoạt động bất đồng bộ, không phải điều kiện để trả kết quả checkout. Nếu commit timeout, Sales tra cứu trạng thái rồi retry với cùng reservationId; không ghi nhận thanh toán lần nữa."
+  },
+  {
+    "index": 131,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 132,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "3.6. Biểu đồ trạng thái và hoạt động"
+  },
+  {
+    "index": 133,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 134,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 3.4. State Machine Diagram giao dịch bán hàng"
+  },
+  {
+    "index": 135,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 136,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 3.5. Activity Diagram giữ hàng"
+  },
+  {
+    "index": 137,
+    "kind": "p",
+    "style": null,
+    "text": "Trạng thái READY là bổ sung cần thiết cho quy trình checkout hai bước. FAILED chỉ dùng khi chắc chắn chưa ghi nhận thanh toán và không còn giữ hàng. Phiếu nhập có ba trạng thái DRAFT, CONFIRMED, CANCELLED; chỉ DRAFT được chỉnh sửa hoặc hủy."
+  },
+  {
+    "index": 138,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 139,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "3.7. Thiết kế cơ sở dữ liệu – Identity, Product"
+  },
+  {
+    "index": 140,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 141,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 3.6. ERD Identity Database"
+  },
+  {
+    "index": 142,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 143,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 3.7. ERD Product Database"
+  },
+  {
+    "index": 144,
+    "kind": "p",
+    "style": null,
+    "text": "Các ID sử dụng UUID. Username, code và barcode không trùng; barcode có thể null. Giá là số nguyên VND dương, dùng kiểu đủ lớn cho tổng hóa đơn. Category không được ngừng hoạt động nếu còn sản phẩm đang kinh doanh, hoặc phải xử lý trạng thái sản phẩm trước. Tài khoản bị khóa không được đăng nhập; không lưu mật khẩu dạng rõ."
+  },
+  {
+    "index": 145,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 146,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "3.8. Thiết kế cơ sở dữ liệu – Inventory"
+  },
+  {
+    "index": 147,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 148,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 3.8. ERD Inventory Database"
+  },
+  {
+    "index": 149,
+    "kind": "p",
+    "style": null,
+    "text": "product_id là tham chiếu ngoài service, không tạo FK sang Product DB. Trong Inventory DB, các bảng biến động và reservation_items có thể tham chiếu inventories. Ràng buộc 0 ≤ reserved ≤ on_hand. Xác nhận phiếu nhập khóa trạng thái DRAFT và cập nhật tất cả dòng trong một transaction. Kiểm kê sử dụng version để phát hiện thay đổi kể từ lúc lập phiếu. Reservation có trạng thái RESERVED, COMMITTED, RELEASED và transition bất biến, không commit sau release."
+  },
+  {
+    "index": 150,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 151,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "3.9. Thiết kế cơ sở dữ liệu – Sales, Report"
+  },
+  {
+    "index": 152,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 153,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 3.9. ERD Sales Database"
+  },
+  {
+    "index": 154,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 155,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 3.10. ERD Report Database"
+  },
+  {
+    "index": 156,
+    "kind": "p",
+    "style": null,
+    "text": "Sales lưu snapshot và tiến trình Saga. Mỗi hóa đơn chỉ có một payment V1. Idempotency key được giới hạn theo actor và thao tác, kèm hash payload. Report lưu dữ liệu projection độc lập và khóa eventId để chống xử lý trùng. Các FK chỉ nằm trong cùng database."
+  },
+  {
+    "index": 157,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 158,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "3.10. Hợp đồng API và triển khai"
+  },
+  {
+    "index": 159,
+    "kind": "tbl",
+    "style": null,
+    "text": "Endpoint (rút gọn) Chức năng POST /auth/login; GET /users Xác thực và quản lý nhân viên /categories; /products CRUD, lọc, phân trang /suppliers; /purchase-receipts Quản lý NCC, phiếu nhập POST /purchase-receipts/:id/confirm Xác nhận nhập kho /inventory; /inventory/adjustments Tồn kho, kiểm kê POST /sales/checkout/prepare items: productId, quantity; Idempotency-Key POST /sales/checkout/:id/confirm method, amountReceived / confirmed; Idempotency-Key POST /sales/checkout/:id/cancel Hủy giao dịch chưa trả tiền GET /invoices/:id; GET /reports/revenue Tra cứu, báo cáo theo khoảng ngày"
+  },
+  {
+    "index": 160,
+    "kind": "p",
+    "style": null,
+    "text": "Public API đặt dưới /api/v1. Internal API đặt dưới /internal/v1: products/lookup, stock/reservations (POST), reservations/:id (GET), commit và release (POST). Trả HTTP 400/401/403/404/409/503 phù hợp; body success/data/meta hoặc success/error/meta, error có code và message."
+  },
+  {
+    "index": 161,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 162,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 3.11. Deployment Diagram (9 container)"
+  },
+  {
+    "index": 163,
+    "kind": "p",
+    "style": null,
+    "text": "Chỉ web và gateway công khai cổng. Các dịch vụ gọi nhau qua tên container, dùng credential riêng. Hình 3.11 minh họa môi trường demo một máy."
+  },
+  {
+    "index": 164,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 165,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "CHƯƠNG 4. ÁP DỤNG MẪU THIẾT KẾ"
+  },
+  {
+    "index": 166,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "4.1. Factory Method"
+  },
+  {
+    "index": 167,
+    "kind": "p",
+    "style": null,
+    "text": "Theo Bài 3 [3], Factory Method cung cấp phương thức tạo đối tượng và để lớp con quyết định lớp cụ thể. Trong Sales, nếu Checkout tự khởi tạo CashPaymentStrategy hoặc BankTransferStrategy bằng nhiều nhánh điều kiện, logic điều phối bị phụ thuộc vào cách khởi tạo. Nhóm đề xuất PaymentCreator trừu tượng và hai Concrete Creator. Việc lựa chọn creator được đặt tại registry hoặc composition root, không đặt trong Checkout."
+  },
+  {
+    "index": 168,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 169,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 4.1. Factory Method trong thanh toán"
+  },
+  {
+    "index": 170,
+    "kind": "p",
+    "style": null,
+    "text": "Lợi ích: cô lập logic tạo đối tượng, dễ bổ sung creator mới. Hạn chế: tăng số lớp; registry vẫn cần đăng ký phương thức mới. Không đồng nhất một hàm switch trả đối tượng với Factory Method GoF."
+  },
+  {
+    "index": 171,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "Minh họa contract dự kiến"
+  },
+  {
+    "index": 172,
+    "kind": "p",
+    "style": null,
+    "text": "abstract class PaymentCreator { abstract create(): PaymentStrategy; } class CashPaymentCreator extends PaymentCreator { create() { return new CashPaymentStrategy(); } }"
+  },
+  {
+    "index": 173,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 174,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "4.2. Builder Pattern"
+  },
+  {
+    "index": 175,
+    "kind": "p",
+    "style": null,
+    "text": "Hóa đơn có nhiều thuộc tính và danh sách dòng hàng, constructor dài dễ nhầm lẫn. Builder tách quá trình khởi tạo và kiểm tra điều kiện cần thiết khỏi client. Giá và tên sản phẩm lấy từ Product Service, không lấy giá do client gửi làm nguồn chính thức."
+  },
+  {
+    "index": 176,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 177,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 4.2. Builder cho hóa đơn"
+  },
+  {
+    "index": 178,
+    "kind": "p",
+    "style": null,
+    "text": "Builder kiểm tra danh sách không rỗng, số lượng dương và tổng tiền nhất quán. Đối tượng được tạo ở trạng thái PENDING, sau đó thay đổi trạng thái qua domain methods; Builder không đồng nghĩa với việc mọi đối tượng bắt buộc bất biến."
+  },
+  {
+    "index": 179,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "Minh họa contract dự kiến"
+  },
+  {
+    "index": 180,
+    "kind": "p",
+    "style": null,
+    "text": "const invoice = new InvoiceBuilder()     .setCashier(cashierId)     .setItems(validatedItems)     .build();"
+  },
+  {
+    "index": 181,
+    "kind": "p",
+    "style": null,
+    "text": "Ưu điểm: dễ đọc, kiểm soát khởi tạo. Hạn chế: thêm lớp hỗ trợ; không cần dùng Builder cho mọi DTO đơn giản."
+  },
+  {
+    "index": 182,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 183,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "4.3. Facade và Strategy"
+  },
+  {
+    "index": 184,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "4.3.1. Facade Pattern"
+  },
+  {
+    "index": 185,
+    "kind": "p",
+    "style": null,
+    "text": "Checkout có nhiều bước và phụ thuộc nhiều service. CheckoutFacade cung cấp giao diện prepare, confirm, cancel cho Controller; việc điều phối chi tiết giao cho Orchestrator và các service nghiệp vụ. Facade không chứa toàn bộ quy tắc nghiệp vụ để tránh God Object."
+  },
+  {
+    "index": 186,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 187,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 4.3. Facade trong Checkout"
+  },
+  {
+    "index": 188,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "4.3.2. Strategy Pattern"
+  },
+  {
+    "index": 189,
+    "kind": "p",
+    "style": null,
+    "text": "Hai phương thức thanh toán có hành vi khác nhau: tiền mặt kiểm tra số tiền và tính tiền thừa, chuyển khoản yêu cầu xác nhận đã nhận đủ tiền. Cả hai triển khai cùng PaymentStrategy contract, trả kết quả chuẩn hóa."
+  },
+  {
+    "index": 190,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 191,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 4.4. Strategy trong thanh toán"
+  },
+  {
+    "index": 192,
+    "kind": "p",
+    "style": null,
+    "text": "Strategy thay đổi hành vi, Factory Method thay đổi cách tạo đối tượng. Cả hai hỗ trợ mở rộng nhưng làm tăng abstraction. V1 không thực hiện chuyển tiền thật."
+  },
+  {
+    "index": 193,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 194,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "4.4. SOLID và các mẫu bổ trợ"
+  },
+  {
+    "index": 195,
+    "kind": "tbl",
+    "style": null,
+    "text": "Nguyên tắc Vận dụng SRP Controller tiếp nhận request; Orchestrator điều phối; Repository truy cập dữ liệu. OCP Thêm Payment Strategy/Creator mới không sửa thuật toán checkout. LSP Các strategy tuân thủ contract kết quả và quy tắc lỗi thống nhất. ISP Tách StockClient, ProductLookup và InvoiceRepository; không buộc client phụ thuộc phương thức thừa. DIP Application phụ thuộc interface; Prisma repository hiện thực interface qua DI."
+  },
+  {
+    "index": 196,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "4.4.1. Repository và Dependency Injection"
+  },
+  {
+    "index": 197,
+    "kind": "p",
+    "style": null,
+    "text": "Repository tách nghiệp vụ khỏi ORM, hỗ trợ fake repository khi unit test. NestJS dùng injection token cho interface TypeScript vì interface không tồn tại ở runtime. Shared package chỉ chứa contract kỹ thuật, không chứa domain logic của các service."
+  },
+  {
+    "index": 198,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "4.4.2. Đánh giá"
+  },
+  {
+    "index": 199,
+    "kind": "tbl",
+    "style": null,
+    "text": "Mẫu Lợi ích và đánh đổi Factory Method Cô lập khởi tạo; tăng số class Builder Khởi tạo rõ ràng; cần thêm lớp Facade Giao diện checkout đơn giản; tránh ôm đồm Strategy Thay thế thuật toán; cần contract chung Repository / DI Dễ kiểm thử; thêm tầng trừu tượng"
+  },
+  {
+    "index": 200,
+    "kind": "p",
+    "style": null,
+    "text": "Saga, Outbox, Database per Service và API Gateway là mẫu kiến trúc/tích hợp, không tính là GoF. Những đoạn mã và biểu đồ tại chương này là bản thiết kế, sẽ được cập nhật bằng trích đoạn triển khai thực tế."
+  },
+  {
+    "index": 201,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 202,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "CHƯƠNG 5. CÀI ĐẶT, KIỂM THỬ VÀ DEMO"
+  },
+  {
+    "index": 203,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "5.1. Kế hoạch cài đặt"
+  },
+  {
+    "index": 204,
+    "kind": "p",
+    "style": null,
+    "text": "Repository dự kiến là minimart-management, sử dụng pnpm workspace. apps/ chứa web, api-gateway, identity-service, product-service, inventory-service, sales-service và report-service. packages/ chứa contracts, auth, logger, config; infrastructure/ chứa cấu hình PostgreSQL và RabbitMQ; docs/ chứa UML, API và kiểm thử."
+  },
+  {
+    "index": 205,
+    "kind": "tbl",
+    "style": null,
+    "text": "Giai đoạn Đầu ra DEV-0 Monorepo, Docker, 5 DB, health checks DEV-1/2 Identity, gateway, app shell, sản phẩm DEV-3 Nhà cung cấp, phiếu nhập, tồn kho và reservation DEV-4 POS, checkout hai bước, Saga, hóa đơn DEV-5 Outbox, RabbitMQ, Report, dashboard DEV-6/7 Kiểm thử, seed, README, demo và minh chứng"
+  },
+  {
+    "index": 206,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "5.2. Hướng dẫn triển khai dự kiến"
+  },
+  {
+    "index": 207,
+    "kind": "p",
+    "style": null,
+    "text": "git clone <repository-url> cd minimart-management cp .env.example .env docker compose up --build -d"
+  },
+  {
+    "index": 208,
+    "kind": "p",
+    "style": null,
+    "text": "Sau khi migration/seed hoàn tất, truy cập http://localhost:3000; API Gateway tại http://localhost:8080. Các lệnh này là mục tiêu triển khai và cần kiểm chứng trên repository thực tế."
+  },
+  {
+    "index": 209,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "5.3. Minh chứng cài đặt"
+  },
+  {
+    "index": 210,
+    "kind": "p",
+    "style": null,
+    "text": "[BỔ SUNG: URL repository, commit/tag demo, phiên bản công nghệ, ảnh docker compose ps và health check.]"
+  },
+  {
+    "index": 211,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 212,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "5.4. Kế hoạch kiểm thử"
+  },
+  {
+    "index": 213,
+    "kind": "tbl",
+    "style": null,
+    "text": "Mã Tình huống / kết quả mong đợi Thực tế TC01 Sai mật khẩu → từ chối Chưa chạy TC02 Cashier truy cập users → 403 Chưa chạy TC03 Trùng mã sản phẩm → 409 Chưa chạy TC04 Xác nhận phiếu → tăng tồn đúng Chưa chạy TC05 Xác nhận lại → không tăng lần hai Chưa chạy TC06 Không đủ tồn → từ chối Chưa chạy TC07 Hai reservation tranh hàng cuối → không âm kho Chưa chạy TC08 Checkout cùng key → không trùng Chưa chạy TC09 Tiền mặt thiếu → từ chối Chưa chạy TC10 Report tắt → bán vẫn hoàn tất Chưa chạy TC11 Report bật → tiêu thụ sự kiện chờ Chưa chạy TC12 RabbitMQ tắt → lưu Outbox Chưa chạy TC13 RabbitMQ bật → phát lại sự kiện Chưa chạy TC14 Consumer nhận trùng → không cộng hai lần Chưa chạy TC15 Đổi giá → hóa đơn cũ không đổi Chưa chạy"
+  },
+  {
+    "index": 214,
+    "kind": "p",
+    "style": null,
+    "text": "Kiểm thử gồm unit test các pattern và quy tắc, integration test database/API, E2E luồng nhập–bán–báo cáo, kiểm thử concurrency và fault injection. Đo P95 CRUD trong môi trường xác định, không suy diễn từ một lần request. Kết quả Pass/Fail, log và số đo sẽ bổ sung sau khi chạy."
+  },
+  {
+    "index": 215,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 216,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "5.5. Kịch bản demo và minh chứng giao diện"
+  },
+  {
+    "index": 217,
+    "kind": "p",
+    "style": null,
+    "text": "Kịch bản đề xuất: đăng nhập Manager, tạo sản phẩm và nhà cung cấp, nhập hàng, xác nhận tăng tồn; đăng nhập Cashier, thêm hàng vào giỏ, prepare, xác nhận thanh toán, kiểm tra hóa đơn và tồn giảm; Manager mở dashboard. Sau đó trình diễn request gửi lại, tranh chấp tồn và tạm dừng Report/RabbitMQ."
+  },
+  {
+    "index": 218,
+    "kind": "tbl",
+    "style": null,
+    "text": "[Chèn ảnh chụp sản phẩm thực tế sau khi hoàn thành demo]"
+  },
+  {
+    "index": 219,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 5.1. Giao diện đăng nhập và phân quyền"
+  },
+  {
+    "index": 220,
+    "kind": "tbl",
+    "style": null,
+    "text": "[Chèn ảnh chụp sản phẩm thực tế sau khi hoàn thành demo]"
+  },
+  {
+    "index": 221,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 5.2. Quản lý sản phẩm và nhập hàng"
+  },
+  {
+    "index": 222,
+    "kind": "tbl",
+    "style": null,
+    "text": "[Chèn ảnh chụp sản phẩm thực tế sau khi hoàn thành demo]"
+  },
+  {
+    "index": 223,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 5.3. POS và hóa đơn"
+  },
+  {
+    "index": 224,
+    "kind": "tbl",
+    "style": null,
+    "text": "[Chèn ảnh chụp sản phẩm thực tế sau khi hoàn thành demo]"
+  },
+  {
+    "index": 225,
+    "kind": "p",
+    "style": "Caption",
+    "text": "Hình 5.4. Dashboard, kết quả đồng bộ báo cáo"
+  },
+  {
+    "index": 226,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "5.6. Đánh giá nghiệm thu"
+  },
+  {
+    "index": 227,
+    "kind": "p",
+    "style": null,
+    "text": "[BỔ SUNG: chức năng đã hoàn thành, kết quả kiểm thử, vấn đề còn tồn tại và bằng chứng triển khai độc lập. Không ghi nhận đạt yêu cầu khi chưa có kết quả thực tế.]"
+  },
+  {
+    "index": 228,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 229,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "KẾT LUẬN"
+  },
+  {
+    "index": 230,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "1. Kết quả thiết kế"
+  },
+  {
+    "index": 231,
+    "kind": "p",
+    "style": null,
+    "text": "Nhóm đã xác định phạm vi hệ thống quản lý siêu thị mini, các tác nhân, yêu cầu và quy tắc nghiệp vụ; đề xuất kiến trúc Microservices gồm năm dịch vụ, API Gateway, năm database và RabbitMQ; thiết kế mô hình dữ liệu, hợp đồng API, quy trình checkout hai bước và các mẫu thiết kế Factory Method, Builder, Facade, Strategy. Thiết kế chú trọng tính nhất quán dữ liệu giữa bán hàng và tồn kho, khả năng phục hồi và truy vết."
+  },
+  {
+    "index": 232,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "2. Hạn chế"
+  },
+  {
+    "index": 233,
+    "kind": "p",
+    "style": null,
+    "text": "Kiến trúc có chi phí vận hành cao hơn Monolithic, phụ thuộc vào giao tiếp mạng và cần cơ chế xử lý lỗi phân tán. Phiên bản V1 chỉ phục vụ một siêu thị, chưa quản lý đầy đủ lô hàng, hạn sử dụng hoặc tích hợp thanh toán ngân hàng. Môi trường demo một máy chưa đảm bảo tính sẵn sàng cao. Các chỉ tiêu hiệu năng và độ tin cậy chưa được xác nhận bằng thử nghiệm tại thời điểm lập tài liệu này."
+  },
+  {
+    "index": 234,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "3. Hướng phát triển"
+  },
+  {
+    "index": 235,
+    "kind": "p",
+    "style": null,
+    "text": "Hoàn thiện sản phẩm demo, bổ sung kiểm thử tự động và đối soát giao dịch; sau đó cân nhắc hỗ trợ nhiều chi nhánh, quản lý lô và hạn dùng, tích hợp thanh toán, nâng cao quan sát hệ thống và triển khai độc lập trên môi trường cloud."
+  },
+  {
+    "index": 236,
+    "kind": "p",
+    "style": null,
+    "text": "[CẬP NHẬT SAU DEMO: kết quả thực tế, mức đáp ứng yêu cầu và đóng góp của từng thành viên.]"
+  },
+  {
+    "index": 237,
+    "kind": "p",
+    "style": null,
+    "text": ""
+  },
+  {
+    "index": 238,
+    "kind": "p",
+    "style": "Heading1",
+    "text": "TÀI LIỆU THAM KHẢO VÀ PHỤ LỤC"
+  },
+  {
+    "index": 239,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "Tài liệu tham khảo"
+  },
+  {
+    "index": 240,
+    "kind": "p",
+    "style": null,
+    "text": "[1] Lâm Duy Quý (2026), Kiến trúc và Thiết kế Phần mềm – Bài 01: Khái niệm cơ bản kiến trúc phần mềm, PTIT. [2] Lâm Duy Quý (2026), Bài 02: Mô hình kiến trúc và thiết kế thành phần, PTIT. [3] Lâm Duy Quý (2026), Bài 03: Nhóm mẫu thiết kế khởi tạo (tài liệu B3.1, gồm nội dung mẫu cấu trúc), PTIT. [4] Khung báo cáo học phần Kiến trúc và Thiết kế Phần mềm, tài liệu giảng viên cung cấp."
+  },
+  {
+    "index": 241,
+    "kind": "p",
+    "style": "Heading2",
+    "text": "Phụ lục – Ma trận truy vết mẫu"
+  },
+  {
+    "index": 242,
+    "kind": "tbl",
+    "style": null,
+    "text": "Yêu cầu Thiết kế Kiểm thử FR01, BR02 Identity / AuthService TC01 FR09, BR03 RBAC / Guards TC02 FR13, BR04 Product / Repository TC03 FR30, BR10 Inventory / local transaction TC04–05 FR43, BR08, BR12 Stock Reservation TC06–07 FR45–47, BR21 Saga / Idempotency TC08–09 FR51, BR19 Outbox / Report Consumer TC10–14 FR48, BR15 Invoice snapshot TC15"
+  },
+  {
+    "index": 243,
+    "kind": "p",
+    "style": null,
+    "text": "Phụ lục bổ sung khi có mã nguồn: API OpenAPI đầy đủ, mã PlantUML, Prisma schema, kết quả kiểm thử, link GitHub và minh chứng đóng góp thành viên."
+  },
+  {
+    "index": 244,
+    "kind": "sectPr",
+    "style": null,
+    "text": ""
+  }
+]

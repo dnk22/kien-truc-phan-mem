@@ -1,0 +1,44 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+title Facade — checkout hai bước
+class CheckoutController {
+ +prepare()
++confirm()
++cancel()
+}
+class CheckoutFacade {
+ +prepare(actor,key,items,correlationId)
++confirm(id,actor,key,request,correlationId)
++cancel(id,actor,correlationId)
+}
+class InvoiceService {
+ +prepare(...)
++cancel(...)
+}
+class PaymentService {
+ +confirm(...)
+}
+class CheckoutOrchestrator {
+ +advance(id,correlationId)
+}
+CheckoutController --> CheckoutFacade
+CheckoutFacade --> InvoiceService
+CheckoutFacade --> PaymentService
+CheckoutFacade --> CheckoutOrchestrator
+note bottom of CheckoutFacade
+Facade cung cấp API gọn cho Controller.
+Domain rules ở Builder/Strategy; persistence ở repository;
+Saga chi tiết trong CheckoutOrchestrator.
+end note
+@enduml

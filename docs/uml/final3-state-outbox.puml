@@ -1,0 +1,24 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+title Outbox — chỉ PENDING và SENT
+[*] --> PENDING : complete() transaction ghi event
+PENDING --> PENDING : defer / attempts+1 / backoff <=60s
+PENDING --> SENT : publish confirm + không returned; sent(id)
+SENT --> [*]
+note bottom of PENDING
+Không có FAILED status trong schema.
+Broker down: checkout vẫn hoàn tất, event tiếp tục PENDING.
+Crash trước mark SENT có thể publish trùng.
+end note
+@enduml

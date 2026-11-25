@@ -1,0 +1,44 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+left to right direction
+title Nhà cung cấp, nhập hàng và tồn kho
+actor MANAGER as M
+actor WAREHOUSE as W
+actor CASHIER as C
+rectangle Inventory {
+ usecase "Quản lý NCC" as Supplier
+ usecase "Đọc NCC ACTIVE (API)" as Active
+ usecase "Lập/sửa/hủy phiếu nhập DRAFT" as Draft
+ usecase "Xác nhận phiếu nhập" as Receipt
+ usecase "Tra cứu tồn / tồn thấp" as Stock
+ usecase "Xem biến động / lập/hủy kiểm kê" as Count
+ usecase "Xác nhận kiểm kê" as Approve
+}
+M --> Supplier
+W --> Active
+M --> Draft
+W --> Draft
+M --> Receipt
+M --> Stock
+W --> Stock
+C --> Stock
+M --> Count
+W --> Count
+M --> Approve
+note bottom of Active
+Màn hình NCC riêng chỉ Manager;
+Warehouse dùng API ACTIVE trong ReceiptForm.
+Không cấp Warehouse quyền confirm.
+end note
+@enduml

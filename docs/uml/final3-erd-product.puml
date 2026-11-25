@@ -1,0 +1,38 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+hide circle
+skinparam linetype polyline
+title ERD product_db
+entity "categories" as Category {
+ * id : uuid <<PK>>
+ * code : varchar(64) <<UQ>>
+ * name : varchar(200)
+  description : text?
+ * status : CatalogStatus
+ * created_at : timestamptz(3)
+ * updated_at : timestamptz(3)
+}
+entity "products" as Product {
+ * id : uuid <<PK>>
+ * category_id : uuid <<FK>>
+ * code : varchar(64) <<UQ>>
+  barcode : varchar(64)? <<UQ>>
+ * name : varchar(200)
+ * unit : varchar(50)
+ * selling_price : integer
+  image_url : text?
+  description : text?
+ * status : CatalogStatus
+ * created_at : timestamptz(3)
+ * updated_at : timestamptz(3)
+}
+Category ||--o{ Product : FK
+legend bottom
+CatalogStatus: ACTIVE, INACTIVE
+endlegend
+footer product_db — foundation_metadata / _prisma_migrations omitted; no cross-DB FK
+@enduml

@@ -1,0 +1,86 @@
+{
+  "records": [
+    {
+      "id": "login-ready",
+      "path": "docs/evidence/final3/login-ready.png",
+      "method": "Actual settled login form before credentials"
+    },
+    {
+      "id": "dashboard-ready",
+      "path": "docs/evidence/final3/dashboard-ready.png",
+      "method": "Actual current-day dashboard; 25 Nov has no new sales, historical sales on 24 Nov"
+    },
+    {
+      "id": "inventory-ready",
+      "route": "/inventory",
+      "role": "MANAGER",
+      "path": "docs/evidence/final3/inventory-ready.png",
+      "capturedAt": "2026-11-25T14:24:14.822Z",
+      "method": "Actual browser viewport, no mocked responses, read existing records"
+    },
+    {
+      "id": "reports-year",
+      "path": "docs/evidence/final3/reports-year.png",
+      "method": "Actual 2026 whole-year filter includes controlled January and real November sales"
+    },
+    {
+      "id": "categories-desktop",
+      "route": "/categories",
+      "role": "MANAGER",
+      "path": "docs/evidence/final3/categories-desktop.png",
+      "capturedAt": "2026-11-25T14:24:16.693Z",
+      "method": "Actual browser viewport, no mocked responses, read existing records"
+    },
+    {
+      "id": "suppliers-desktop",
+      "route": "/suppliers",
+      "role": "MANAGER",
+      "path": "docs/evidence/final3/suppliers-desktop.png",
+      "capturedAt": "2026-11-25T14:24:17.594Z",
+      "method": "Actual browser viewport, no mocked responses, read existing records"
+    },
+    {
+      "id": "movements-desktop",
+      "route": "/inventory/movements",
+      "role": "MANAGER",
+      "path": "docs/evidence/final3/movements-desktop.png",
+      "capturedAt": "2026-11-25T14:24:18.499Z",
+      "method": "Actual browser viewport, no mocked responses, read existing records"
+    },
+    {
+      "id": "adjustments-desktop",
+      "route": "/inventory/adjustments",
+      "role": "MANAGER",
+      "path": "docs/evidence/final3/adjustments-desktop.png",
+      "capturedAt": "2026-11-25T14:24:19.391Z",
+      "method": "Actual browser viewport, no mocked responses, read existing records"
+    },
+    {
+      "id": "manager-approval-dialog",
+      "path": "docs/evidence/final3/manager-approval-dialog.png",
+      "role": "MANAGER",
+      "capturedAt": "2026-11-25T14:24:19.995Z",
+      "method": "Opened existing draft confirmation; did NOT submit mutation"
+    },
+    {
+      "id": "role-denied",
+      "path": "docs/evidence/final3/role-denied.png",
+      "role": "WAREHOUSE",
+      "route": "/users → /unauthorized",
+      "capturedAt": "2026-11-25T14:24:21.515Z",
+      "method": "Actual route guard; backend enforcement historical A18"
+    },
+    {
+      "id": "navigation-mobile-ready",
+      "path": "docs/evidence/final3/navigation-mobile-ready.png",
+      "method": "Actual settled mobile drawer, Warehouse role"
+    },
+    {
+      "id": "users-ready",
+      "path": "docs/evidence/final3/users-ready.png",
+      "method": "Actual ADMIN read-only list; no account mutation"
+    }
+  ],
+  "errors": [],
+  "businessMutation": "None. Auth login creates refresh session metadata only; no invoice/receipt/stock mutation."
+}

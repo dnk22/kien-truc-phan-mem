@@ -1,0 +1,82 @@
+[
+  {
+    "id": "factory",
+    "title": "Factory Method",
+    "source": "apps/sales-service/src/modules/sales/domain/payment/payment.creator.ts",
+    "startLine": 1,
+    "endLine": 17,
+    "sha256": "d6488d197d1dabbbc9ccad354843dc1504e22737f0cf35aff33a6050f0936b81",
+    "excerptSha256": "3122c668efb9edad39af6f9bcdf8c61610f44a51dbcbabd7e9f4f0ebd57da37c",
+    "code": "import type { PaymentStrategy } from './payment.strategy';\nimport { CashPaymentStrategy } from './cash-payment.strategy';\nimport { BankTransferStrategy } from './bank-transfer.strategy';\n\nexport abstract class PaymentCreator {\n  abstract create(): PaymentStrategy;\n}\nexport class CashPaymentCreator extends PaymentCreator {\n  create(): PaymentStrategy {\n    return new CashPaymentStrategy();\n  }\n}\nexport class BankTransferPaymentCreator extends PaymentCreator {\n  create(): PaymentStrategy {\n    return new BankTransferStrategy();\n  }\n}"
+  },
+  {
+    "id": "strategy",
+    "title": "Strategy — cash",
+    "source": "apps/sales-service/src/modules/sales/domain/payment/cash-payment.strategy.ts",
+    "startLine": 5,
+    "endLine": 19,
+    "sha256": "af7c5b24448c2f462620b7d095d57fa1b288f8b6cd5be984974e2eaa340797b0",
+    "excerptSha256": "9eb2b472a4b4611309f8ee433fa25c48e8aa7fbd916d0e406de7d658428e7ddb",
+    "code": "  process(request: PaymentRequest, totalAmount: number): PaymentResult {\n    const received = request.amountReceived;\n    if (\n      !Number.isSafeInteger(received) ||\n      received === undefined ||\n      received < totalAmount\n    )\n      throw new SalesError('INSUFFICIENT_CASH', 'Tiền khách đưa chưa đủ.', 400);\n    return {\n      method: 'CASH',\n      amountReceived: received,\n      changeAmount: received - totalAmount,\n    };\n  }\n}"
+  },
+  {
+    "id": "builder",
+    "title": "Builder — validation snapshot",
+    "source": "apps/sales-service/src/modules/sales/domain/invoice.builder.ts",
+    "startLine": 16,
+    "endLine": 40,
+    "sha256": "6faa43582e0a7522cefbcf9b8431cce4d5a6d7ea80e1428d9e530335fb0dfccd",
+    "excerptSha256": "5470d2975c2b174a5dc46159cbb116310672bf7cf5308077a30bea4b43d48168",
+    "code": "  build(): InvoiceDraft {\n    if (!this.cashierId || !this.items.length || this.items.length > 100)\n      throw new SalesError('INVALID_INVOICE', 'Hóa đơn không hợp lệ.', 400);\n    const ids = new Set<string>();\n    let totalAmount = 0;\n    for (const item of this.items) {\n      if (\n        ids.has(item.productId) ||\n        !Number.isInteger(item.quantity) ||\n        item.quantity < 1 ||\n        item.quantity > 2147483647 ||\n        ![item.productId, item.productCode, item.productName, item.unit].every(\n          (value) => typeof value === 'string' && value.trim().length > 0,\n        ) ||\n        !Number.isSafeInteger(item.unitPrice) ||\n        item.unitPrice < 1 ||\n        !Number.isSafeInteger(item.subtotal) ||\n        item.subtotal !== item.unitPrice * item.quantity\n      )\n        throw new SalesError(\n          'INVALID_INVOICE_ITEM',\n          'Dòng hóa đơn không hợp lệ.',\n          400,\n        );\n      ids.add(item.productId);"
+  },
+  {
+    "id": "facade",
+    "title": "Facade — confirm/cancel",
+    "source": "apps/sales-service/src/modules/sales/application/checkout.facade.ts",
+    "startLine": 34,
+    "endLine": 47,
+    "sha256": "239c52fd9d788e7eac71bdd5e7c5afa946b47a8b45dab86bd5b7c6351fcf6f12",
+    "excerptSha256": "f18b9936535ea4093b9955f7ab3927f9a86d2b759d3341f8056e98ff921afc42",
+    "code": "  async confirm(\n    id: string,\n    actor: string,\n    key: string,\n    request: PaymentRequest,\n    correlationId?: string,\n  ) {\n    await this.payments.confirm(id, actor, key, request);\n    return this.orchestrator.advance(id, correlationId);\n  }\n  async cancel(id: string, actor: string, correlationId?: string) {\n    await this.invoices.cancel(id, actor);\n    return this.orchestrator.advance(id, correlationId);\n  }"
+  },
+  {
+    "id": "saga",
+    "title": "Saga — reconcile COMMIT",
+    "source": "apps/sales-service/src/modules/sales/application/checkout-orchestrator.ts",
+    "startLine": 82,
+    "endLine": 100,
+    "sha256": "a039d042e61055221dc4927ceb3b090085165df4efea0b6a0c1a825e69fdf7a3",
+    "excerptSha256": "ab16c7bfb9b41e594e91d9b49b6316446f550462e5c05123e62128c225d2b4e1",
+    "code": "      if (!reservation || reservation.id !== invoice.reservationId)\n        throw new SalesError('RESERVATION_MISSING', 'Cần đối soát giữ hàng.');\n      if (intent === 'COMMIT') {\n        if (reservation.status === 'RESERVED')\n          reservation = await this.stock.commit(\n            reservation.id,\n            correlationId,\n            invoice.cashierId,\n          );\n        this.expectState(reservation, 'COMMITTED');\n        return await this.invoices.complete(id);\n      }\n      if (reservation.status === 'RESERVED')\n        reservation = await this.stock.release(reservation.id, correlationId);\n      this.expectState(reservation, 'RELEASED');\n      return await this.invoices.cancelled(id);\n    } catch (error) {\n      const code = (error as { code?: string }).code ?? 'SAGA_OUTCOME_UNKNOWN';\n      return this.invoices.defer(id, intent, code);"
+  },
+  {
+    "id": "outbox",
+    "title": "COMPLETED + Outbox atomic",
+    "source": "apps/sales-service/src/modules/sales/infrastructure/prisma-invoice.repository.ts",
+    "startLine": 221,
+    "endLine": 230,
+    "sha256": "93f7ac36e5afd33090558221faa7dc11e246c56d453383d4cd03562f5e7b8526",
+    "excerptSha256": "685048e42e523aeed8f3fb02f994fec7e8dfb765e4845d52b83fe67c20c324a8",
+    "code": "      await tx.outboxEvent.create({\n        data: { id: eventId, eventType: 'sale.completed.v1', payload },\n      });\n      return this.patch(tx, id, {\n        status: 'COMPLETED',\n        sagaIntent: 'NONE',\n        completedAt,\n        lastError: null,\n      });\n    });"
+  },
+  {
+    "id": "consumer",
+    "title": "Idempotent projection",
+    "source": "apps/report-service/src/modules/report/infrastructure/prisma-projection.repository.ts",
+    "startLine": 11,
+    "endLine": 35,
+    "sha256": "6e8804487419cd0d096c7c33be8761caf92b7cb8409ef9462e1bed93f582aa92",
+    "excerptSha256": "d1e56c97b8c7e2f810c55afc87826736fe692803f30b745dc1b2ea0281457ea5",
+    "code": "      const processed = await tx.processedEvent.createMany({\n        data: [{ eventId: event.eventId }],\n        skipDuplicates: true,\n      });\n      if (!processed.count) return;\n      const p = event.payload;\n      const fact = await tx.salesFact.createMany({\n        data: [\n          {\n            invoiceId: p.invoiceId,\n            invoiceCode: p.invoiceCode,\n            cashierId: p.cashierId,\n            totalAmount: BigInt(p.totalAmount),\n            paymentMethod: p.paymentMethod,\n            completedAt: new Date(p.completedAt),\n          },\n        ],\n        skipDuplicates: true,\n      });\n      if (!fact.count) return;\n      await tx.salesItemFact.createMany({\n        data: p.items.map((i) => ({\n          invoiceId: p.invoiceId,\n          productId: i.productId,\n          productName: i.productName,"
+  },
+  {
+    "id": "concurrency",
+    "title": "Inventory advisory lock",
+    "source": "apps/inventory-service/src/modules/inventory/infrastructure/inventory-transaction.ts",
+    "startLine": 4,
+    "endLine": 16,
+    "sha256": "8b79916ceb5cf271ea4ad9affe4394aa3d4908a7710f3f7af5ba01c106696a54",
+    "excerptSha256": "c3ef6d73e69a3917c13181070c2e8a2f8810c9144f61e180c4afd31206eec3f9",
+    "code": "export async function inventoryWrite<T>(\n  db: PrismaService,\n  work: (tx: Prisma.TransactionClient) => Promise<T>,\n): Promise<T> {\n  try {\n    return await db.$transaction(\n      async (tx) => {\n        // One inventory writer at a time in V1 (single store). No HTTP inside this transaction.\n        await tx.$executeRaw`SELECT pg_advisory_xact_lock(2026112403)`;\n        return work(tx);\n      },\n      { maxWait: 5000, timeout: 10000 },\n    );"
+  }
+]

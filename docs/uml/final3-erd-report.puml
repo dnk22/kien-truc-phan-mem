@@ -1,0 +1,35 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+hide circle
+skinparam linetype polyline
+title ERD report_db
+entity "processed_events" as ProcessedEvent {
+ * event_id : uuid <<PK>>
+ * processed_at : timestamptz(3)
+}
+entity "sales_facts" as SalesFact {
+ * invoice_id : uuid <<PK>>
+ * invoice_code : text
+ * cashier_id : uuid
+ * total_amount : bigint
+ * payment_method : ReportPaymentMethod
+ * completed_at : timestamptz(3)
+}
+entity "sales_item_facts" as SalesItemFact {
+ * invoice_id : uuid <<PK(part),FK>>
+ * product_id : uuid <<PK(part)>>
+ * product_name : text
+ * quantity : integer
+ * unit_price : bigint
+ * subtotal : bigint
+}
+SalesFact ||--o{ SalesItemFact : FK
+legend bottom
+ReportPaymentMethod: CASH, BANK_TRANSFER
+endlegend
+footer report_db — foundation_metadata / _prisma_migrations omitted; no cross-DB FK
+@enduml

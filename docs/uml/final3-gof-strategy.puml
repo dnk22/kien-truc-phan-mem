@@ -1,0 +1,45 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+title Strategy — ghi nhận thanh toán
+class PaymentService <<context>> {
+ +confirm(id,actor,key,request)
+}
+interface PaymentStrategy {
+ +process(request: PaymentRequest,totalAmount: number): PaymentResult
+}
+class CashPaymentStrategy {
+ +process(request,totalAmount)
+}
+class BankTransferStrategy {
+ +process(request,totalAmount)
+}
+class PaymentRequest <<type>>
+class PaymentResult <<type>> {
+ method
+amountReceived
+changeAmount
+}
+PaymentStrategy <|.. CashPaymentStrategy
+PaymentStrategy <|.. BankTransferStrategy
+PaymentService ..> PaymentStrategy : creators[method].create().process(...)
+PaymentStrategy ..> PaymentRequest
+PaymentStrategy ..> PaymentResult
+note bottom of CashPaymentStrategy
+Tiền mặt: đủ tiền, change = received - total.
+end note
+note bottom of BankTransferStrategy
+confirmed=true; ghi nhận tổng tiền, change=0.
+Không giao dịch với ngân hàng thật.
+end note
+@enduml

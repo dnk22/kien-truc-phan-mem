@@ -1,49 +1,54 @@
 @startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+title Use Case tổng quan — bốn vai trò
 left to right direction
-actor "Authenticated user" as U
+actor "Nhân viên" as Staff
 actor ADMIN as A
 actor MANAGER as M
 actor CASHIER as C
 actor WAREHOUSE as W
-A --|> U
-M --|> U
-C --|> U
-W --|> U
+A --|> Staff
+M --|> Staff
+C --|> Staff
+W --|> Staff
 rectangle MiniMart {
- usecase "Login / logout / profile" as Auth
- usecase "Manage users and roles" as Users
- usecase "Manage catalog" as Catalog
- usecase "Lookup products / stock" as Lookup
- usecase "Manage suppliers" as Suppliers
- usecase "Read active suppliers via API" as SupplierRead
- usecase "Create / edit / cancel receipt draft" as Receipt
- usecase "Confirm receipt" as Confirm
- usecase "View stock movements" as Movements
- usecase "Create / cancel stock count" as Count
- usecase "Confirm adjustment" as Adjust
- usecase "POS checkout" as POS
- usecase "View / print own invoices" as Own
- usecase "View all invoices" as All
- usecase "Dashboard / reports" as Reports
+ usecase "Xác thực / hồ sơ" as Auth
+ usecase "Quản lý tài khoản / vai trò" as Users
+ usecase "Quản lý catalog / NCC" as Catalog
+ usecase "Tra cứu sản phẩm / tồn" as Lookup
+ usecase "Lập/sửa/hủy phiếu nháp" as Draft
+ usecase "Xác nhận nhập / kiểm kê" as Approve
+ usecase "Biến động / lập kiểm kê" as Count
+ usecase "POS / hóa đơn của mình" as POS
+ usecase "Toàn bộ hóa đơn / báo cáo" as Reports
 }
-U --> Auth
+Staff --> Auth
 A --> Users
 M --> Catalog
-M --> Suppliers
-W --> SupplierRead
 M --> Lookup
 C --> Lookup
 W --> Lookup
-M --> Receipt
-W --> Receipt
-M --> Confirm
-M --> Movements
-W --> Movements
+M --> Draft
+W --> Draft
+M --> Approve
 M --> Count
 W --> Count
-M --> Adjust
 C --> POS
-C --> Own
-M --> All
 M --> Reports
+note bottom of MiniMart
+ADMIN không kế thừa quyền nghiệp vụ MANAGER.
+Khách hàng không dùng trực tiếp hệ thống.
+Đăng nhập là tiền điều kiện, không include lặp lại.
+end note
 @enduml

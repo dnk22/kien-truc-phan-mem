@@ -1,0 +1,24 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+title Phiếu kiểm kê — vòng đời
+[*] --> DRAFT : create
+DRAFT --> CONFIRMED : Manager confirm / version khớp; counted >= reserved; delta movement nếu khác0
+DRAFT --> CANCELLED : cancel trước confirm
+CONFIRMED --> [*]
+CANCELLED --> [*]
+note bottom of CONFIRMED
+Retry confirm đã CONFIRMED trả cùng kết quả.
+Confirm sau CANCELLED hoặc cancel sau CONFIRMED: 409.
+end note
+@enduml

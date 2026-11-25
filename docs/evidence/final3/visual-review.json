@@ -1,0 +1,392 @@
+{
+  "method": "Manual inspection of actual PNG contact sheets 01-13 plus individual revised Sales usecase/cancel and mobile screenshots; A4 previews are layout aids, final Word page placement remains FINAL-4.",
+  "currentReviewed": 52,
+  "historicalNotSelected": 25,
+  "diagrams": [
+    {
+      "id": "component",
+      "status": "PASS",
+      "sha256": "976cace7a06d27efedffb4c57d6c33f134a47c1bec1ba32e71fcc485c2d855b9"
+    },
+    {
+      "id": "deployment",
+      "status": "PASS",
+      "sha256": "e9de7e9cb18f4c98feddcb1ebb33ccc3951b1c2b2da77401368030de80b55633"
+    },
+    {
+      "id": "final3-layered-sales",
+      "status": "PASS",
+      "sha256": "88d3cd8b9bc87b8d9e1b72a736bff36d51ceecbae5507b3f927f3b85c19f127b"
+    },
+    {
+      "id": "use-case-overview",
+      "status": "PASS",
+      "sha256": "703fac486a28deec417519da09a718b25dda94e0802e0ee6372dd3f437854966"
+    },
+    {
+      "id": "final3-usecase-auth",
+      "status": "PASS",
+      "sha256": "1abdf92b4b0fbb648a6fd54757d0452fd39b3bcdce29197d4397fdbf33505fdc"
+    },
+    {
+      "id": "final3-usecase-catalog",
+      "status": "PASS",
+      "sha256": "ba25a3f7579056ebbedba7b07462239f5f2cb8fa1794d2b92039492afbacc46d"
+    },
+    {
+      "id": "final3-usecase-inventory",
+      "status": "PASS",
+      "sha256": "49d5f65b47837685ecb5c637c00b48e49205fb792f6a126d7b0b1660ae0ab550"
+    },
+    {
+      "id": "final3-usecase-sales",
+      "status": "PASS",
+      "sha256": "9cb6fd5e42400c1e49e7c1d5d82f30305bdfd0cc2f042ce6931bfb570a5c6bc0"
+    },
+    {
+      "id": "final3-usecase-reports",
+      "status": "PASS",
+      "sha256": "5f7fb608b7a5347b1247551de683ce64feac5c6760f61fd84c6e63511be1f5e6"
+    },
+    {
+      "id": "final3-class-identity",
+      "status": "PASS",
+      "sha256": "6b6b81b449b3f546427de05a538ab7490db4b5a14cfd680ec8739fc4bab33aab"
+    },
+    {
+      "id": "final3-class-product",
+      "status": "PASS",
+      "sha256": "bafa91b512147b1d3d83d4d6df79faf7c2213ec9d36378b9b3fb08bc6bb28a60"
+    },
+    {
+      "id": "final3-class-inventory-documents",
+      "status": "PASS",
+      "sha256": "0af8417c77a5bfe000b7f6ccbe0811aaa79648023d8412b9c937c2839d5d310d"
+    },
+    {
+      "id": "final3-class-inventory-stock",
+      "status": "PASS",
+      "sha256": "57c2b5689b1248f8e2e4956df0cff7094ed1a16f03c4c54ef3a740051e3b7ec2"
+    },
+    {
+      "id": "final3-class-sales",
+      "status": "PASS",
+      "sha256": "4361b650c9f78231aff34f1bca5969e4eee994dcd198bd0d675c22703dd62516"
+    },
+    {
+      "id": "final3-class-outbox",
+      "status": "PASS",
+      "sha256": "3cfc6d9d9e86325efb797dc98d228e5b63a4aedca2c40879600786ac3cebc84a"
+    },
+    {
+      "id": "final3-class-report",
+      "status": "PASS",
+      "sha256": "3519a68b28b741c91688858bc80ef95abd4a54410aabee0bfaea1ddd3b7706d3"
+    },
+    {
+      "id": "final3-gof-factory",
+      "status": "PASS",
+      "sha256": "d571c899eeb0afb813c9e659eecb81e3b28799afcfe449db4d3566149794de9e"
+    },
+    {
+      "id": "final3-gof-strategy",
+      "status": "PASS",
+      "sha256": "6f1fbe5a0bf7b8004122964f928e3fe40ff3ba4488e1ab13ebf7a0799eb80cd6"
+    },
+    {
+      "id": "final3-gof-builder",
+      "status": "PASS",
+      "sha256": "22fe8de0edfc919a14d841c604e5aada8128d401e0a0b7720f614f9d7daf65f9"
+    },
+    {
+      "id": "final3-gof-facade",
+      "status": "PASS",
+      "sha256": "92a54649d12bc4971e7b46d8540c162135bedc4074fd1c68e7238635f83889f2"
+    },
+    {
+      "id": "final3-seq-login",
+      "status": "PASS",
+      "sha256": "84b1fd82914178494ffcb058b20f831b8f5f2d611315213b324c97edcaa6af15"
+    },
+    {
+      "id": "final3-seq-refresh",
+      "status": "PASS",
+      "sha256": "3366d44bcb993d844c35c660e37815bf934704bc9d00716b99b57a6f72c30296"
+    },
+    {
+      "id": "final3-seq-live-session",
+      "status": "PASS",
+      "sha256": "60f95255111e9861e5d1989e6e9ec6d7215c4886108e67857467d1e443d6261d"
+    },
+    {
+      "id": "final3-seq-create-product",
+      "status": "PASS",
+      "sha256": "9d5fff957bb5860abeee0b63c679f389c6ee9149c3e8dddf78aa7cba5d24ec2d"
+    },
+    {
+      "id": "final3-seq-stock-lookup",
+      "status": "PASS",
+      "sha256": "04e765234236eb28f66c6fe801966cdcc78827d20fa8f489cce424fa9032972a"
+    },
+    {
+      "id": "final3-seq-receipt",
+      "status": "PASS",
+      "sha256": "aeb31ed2dc3299b4eb9e46338d297d870f93c458941d85ac47b18fe6bc90e8b3"
+    },
+    {
+      "id": "final3-seq-adjustment",
+      "status": "PASS",
+      "sha256": "c502ef2de1320e3a31d6d6b4e5949c98cc0e6e2b46f5c4520a8700df221eb9b5"
+    },
+    {
+      "id": "final3-seq-prepare",
+      "status": "PASS",
+      "sha256": "c9c7d85ad8e846fcb51a2a7cd3a64bd01dd524f846d0c5ed577ea58b73117ed3"
+    },
+    {
+      "id": "final3-seq-confirm",
+      "status": "PASS",
+      "sha256": "f86bb29b70a3ace99595527641abe697d5f11c760d8e483c6bd3ff6b94410d65"
+    },
+    {
+      "id": "final3-seq-cancel",
+      "status": "PASS",
+      "sha256": "1b49b416065e8c524a0ed2568ae329643384f2b19368f6cf1d3ff828120dce61"
+    },
+    {
+      "id": "final3-seq-recovery",
+      "status": "PASS",
+      "sha256": "d58b70228c3b526cf5337d00479a9407be0399d3109be1be4af05064263e6f54"
+    },
+    {
+      "id": "final3-seq-outbox",
+      "status": "PASS",
+      "sha256": "4b3f61ee8e45091853f37b7733720c5322628a963191bb91bde4219ab5a55c64"
+    },
+    {
+      "id": "final3-seq-retry-dlq",
+      "status": "PASS",
+      "sha256": "70fc8264d552426ae5b935a6e25f6632fc8a67d97651cf374606f6ef423a65bf"
+    },
+    {
+      "id": "final3-state-invoice",
+      "status": "PASS",
+      "sha256": "431aeff35aad77c0d19d45904ee2bec9079b244fdc29878aaa298fa460b5e20d"
+    },
+    {
+      "id": "final3-state-reservation",
+      "status": "PASS",
+      "sha256": "a2a1f4dd485d1676a45d9784b19b7b60510d5def48c932fa320eaf03a3975cb8"
+    },
+    {
+      "id": "final3-state-receipt",
+      "status": "PASS",
+      "sha256": "dc1698caa707983c6adbd5101f03d8cae987281c7ee43d03a2e8f56a28447cec"
+    },
+    {
+      "id": "final3-state-adjustment",
+      "status": "PASS",
+      "sha256": "4e740495bc92e97bfbfa4cbb28d766fd7db9fd520655e94b4c45a73682082b07"
+    },
+    {
+      "id": "final3-state-outbox",
+      "status": "PASS",
+      "sha256": "2407361ff0dc0a1c431bfe274041f62207c6e0c6a4267841aa1257dd424511a9"
+    },
+    {
+      "id": "final3-activity-reserve",
+      "status": "PASS",
+      "sha256": "125c5fe97efefb3f623a8e53b2b8a8bff471696b900a095650a08962f8b6d9d3"
+    },
+    {
+      "id": "final3-erd-identity",
+      "status": "PASS",
+      "sha256": "858c425e32f7ab1df2b6375e7b408da383b4b7e4a73b51471f8188fb94c30c6e"
+    },
+    {
+      "id": "final3-erd-product",
+      "status": "PASS",
+      "sha256": "ef96873d60d7325ce30133b1f9409871a0f9d2074e51b58c331ad0fd433e8166"
+    },
+    {
+      "id": "final3-erd-inventory",
+      "status": "PASS",
+      "sha256": "a065984daf5b5a5c3f4beb808fc3c65037c957b7a029dcf009c26d23923ccd8e"
+    },
+    {
+      "id": "final3-erd-inventory-receipts",
+      "status": "PASS",
+      "sha256": "d3ef1a2f2f5b4e4b62f1d2e4826333811650cfd8a673b2554447743fdc0ff61d"
+    },
+    {
+      "id": "final3-erd-inventory-stock",
+      "status": "PASS",
+      "sha256": "51895603b8ddf8f73f602653f9552183112d8fdf5b5720755bc2f6ff2718f13a"
+    },
+    {
+      "id": "final3-erd-sales",
+      "status": "PASS",
+      "sha256": "f007ca489308e5bc75bd08091a0d17a2b1d2bbfca4b355656fd2d248c5b5efbb"
+    },
+    {
+      "id": "final3-erd-report",
+      "status": "PASS",
+      "sha256": "746fcf7ef29f762c794b3f853eb6b5bd86a43c793f81b3b143a3e30067b4629e"
+    },
+    {
+      "id": "final3-seq-prepare-snapshot",
+      "status": "PASS",
+      "sha256": "9778189384db3502e8a1fa1afbcb1bdd59ab30b464fedb641d12d5283cf2f51c"
+    },
+    {
+      "id": "final3-seq-prepare-reserve",
+      "status": "PASS",
+      "sha256": "8652e0aa02acd5a5e548561368a5497d5c22b4ad638706ae1025f23db7649d86"
+    },
+    {
+      "id": "final3-seq-confirm-payment",
+      "status": "PASS",
+      "sha256": "d5d2d4fd015d3753cbf005a1479f249c98ad13c70ca62550fb0d6ce6107e928c"
+    },
+    {
+      "id": "final3-seq-confirm-commit",
+      "status": "PASS",
+      "sha256": "8cec3e4337ce22610ad8b5d6cc40eebad5459de42dc9493c722d32c8178382f7"
+    },
+    {
+      "id": "final3-seq-outbox-publish",
+      "status": "PASS",
+      "sha256": "2973e311662f85ab0f2be79d8453ff437688a50c48a8ebaf24c7171887c5d8aa"
+    },
+    {
+      "id": "final3-seq-outbox-project",
+      "status": "PASS",
+      "sha256": "9d8a522908cada41f6c4a266316f89fd841434c70c87cac0a4930deff9e42b72"
+    },
+    {
+      "id": "auth-component",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "8269a2731325609e508754bb7df6bc9aac7b4f81103a277cd9002aaacb036e55"
+    },
+    {
+      "id": "dev2-catalog-class",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "7fda46cc8e51164c03fca695d2b616bf70882a4c34eac8dbecb84d35fc8bca0c"
+    },
+    {
+      "id": "dev2-create-product",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "156a311e57d3b25aacc9b94e5689614a06b3760f2bbe3d0b511c30a532ff4a29"
+    },
+    {
+      "id": "dev2-product-erd",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "02f307565508af6b30f78bcbb3070020cf57093f4ca80ff37d71a19922e43cd5"
+    },
+    {
+      "id": "dev3-inventory-erd",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "34cc459ce9c567c7ef95345fac6d1d78fe4596f0b408cad9e498669e0b0fdf7b"
+    },
+    {
+      "id": "dev3-receipt-sequence",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "44f13a5187c5f226e05f4437c9055b872f5e9b29e94888c3d5ca34c9c7147fd7"
+    },
+    {
+      "id": "dev3-stock-reservation",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "38bad5a5d7c45f85c278cb6e1d6459a05d3b2445cbf518e2140069d30e7331f1"
+    },
+    {
+      "id": "dev4-checkout-sequence",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "b2f1397025c4849b0f13c4c7b7a5e3ea273e61acd6b6a7877904e6c663ed73c2"
+    },
+    {
+      "id": "dev4-invoice-state",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "059987e02a8f8e247600d06bb3ed175fb6d7616767f2fb7d3d7e1a31538e1b09"
+    },
+    {
+      "id": "dev4-patterns",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "6d9378274af8a507e20f2db6cf569f4f96e96f9b777781bf1f2242093a9e2b6e"
+    },
+    {
+      "id": "dev4-sales-erd",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "cace05885537a068fbc2ad4053b7d7b2e41a8516a7d1b6ce561ef483f3bb96ed"
+    },
+    {
+      "id": "dev5-events",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "81816e4fccad9260cbf10e9ae17180eda290984cb1e480004cce186e0a935bec"
+    },
+    {
+      "id": "dev5-report-erd",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "639657ba27180ec734cef011a9322bba6357ede44b4daeedb5b5a2ce19aa2977"
+    },
+    {
+      "id": "dev7-identity-erd",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "21fbfbaa92ea1d3565bf3e6dcb14bc0a9a6f65f2186c844d2ef2431666e99fb6"
+    },
+    {
+      "id": "dev7-inventory-class",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "44c01629b18852e593874c397b84823cb9febd77a3268ac12499f949d8cc3d35"
+    },
+    {
+      "id": "dev7-inventory-erd",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "6c1119616ba7038ae61081afea9607e27f24a6ab4e3e2a374e9ff4cc865ee9e5"
+    },
+    {
+      "id": "dev7-product-erd",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "6dc18027077ee20f49a2bc487ffb48e25b35b638d67d45cafe56b15a6f2a8b49"
+    },
+    {
+      "id": "dev7-report-erd",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "6ba5ed75c3750d42586671f6b9b87fb1e1ddb37202710f61ed55533ab519acc2"
+    },
+    {
+      "id": "dev7-sales-erd",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "a1359b2c42a54036ab76aba0632de012b6f1829d30d7a7c5d176677c7f23dc46"
+    },
+    {
+      "id": "dev7-sales-recovery",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "a5205875c1dbc092122e2215d246def7d8c5332e649b26f45491a54b777cbb85"
+    },
+    {
+      "id": "erd-foundation",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "55a62f59f9d78471ff8e9122efeeed128230a613cf168fbfc195a0e5abb4469e"
+    },
+    {
+      "id": "identity-class",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "448a7585e178cc1627934ea089c9184e621eb2d9415f92cec41bbcd0fcc4735b"
+    },
+    {
+      "id": "identity-erd",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "93d73243d5c9d1256daa70aeaec483ab0fdccc506b0f9a1216b803af677358dd"
+    },
+    {
+      "id": "login-sequence",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "607a4bcd15fe477fba103915c124726d569c9c0b6e00c606e85dc13c8eca3c47"
+    },
+    {
+      "id": "refresh-sequence",
+      "status": "NOT_SELECTED_HISTORICAL",
+      "sha256": "020c5fcbf746eea9fb6685112d659fe719d68002849a27d0ebaca9e942523d63"
+    }
+  ]
+}

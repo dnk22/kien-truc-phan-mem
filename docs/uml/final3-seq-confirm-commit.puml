@@ -1,0 +1,41 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+skinparam maxMessageSize 220
+skinparam ParticipantPadding 5
+hide footbox
+title Confirm (2) — commit kho và hoàn tất
+participant CheckoutOrchestrator as O
+participant "Inventory API / Repo" as I
+database inventory_db as IDB
+participant PrismaInvoiceRepository as R
+database sales_db as SDB
+O -> I : lookup(invoiceId,cid)
+opt RESERVED
+ O -> I : commit(reservationId,cid,cashierId)
+ group local inventoryWrite TX
+  I -> IDB : onHand-=q; reserved-=q; version++
+  I -> IDB : SALE(actor=cashierId); COMMITTED
+ end
+end
+I --> O : COMMITTED (kể cả retry)
+O -> R : complete(id)
+group local salesWrite TX
+ R -> SDB : outbox PENDING + COMPLETED/NONE
+end
+note over O,SDB
+Remote timeout hoặc local completion lỗi:
+RECOVERY/COMMIT; giữ payment, lookup trước retry.
+Không rollback tiền; checkout không chờ RabbitMQ.
+end note
+@enduml

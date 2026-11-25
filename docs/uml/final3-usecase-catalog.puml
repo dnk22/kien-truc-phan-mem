@@ -1,0 +1,33 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+left to right direction
+title Danh mục và sản phẩm
+actor MANAGER as M
+actor CASHIER as C
+actor WAREHOUSE as W
+rectangle Product {
+ usecase "Danh mục: thêm/sửa/trạng thái" as Cat
+ usecase "Sản phẩm: thêm/sửa/giá/ngừng bán" as Edit
+ usecase "Tra cứu / tìm barcode / phân trang" as Read
+}
+M --> Cat
+M --> Edit
+M --> Read
+C --> Read
+W --> Read
+note bottom of Read
+API categories đọc: M/C/W; màn hình categories: M.
+Products screen: M/C/W, quyền ghi chỉ M.
+end note
+@enduml

@@ -1,0 +1,69 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+title Identity — xác thực và persistence
+class AuthController {
+ +login(...)
++refresh(...)
++logout(...)
++changePassword(...)
+}
+class AuthService {
+ +login(...)
++refresh(...)
++logout(...)
++changePassword(...)
+}
+class UserController
+class UserService {
+ +list(...)
++get(...)
++create(...)
++update(...)
+}
+interface UserRepository {
+ +findByUsername(...)
++findById(...)
++create(...)
++update(...)
+}
+interface SessionRepository {
+ +create(...)
++rotate(...)
++revoke(...)
++authenticate(...)
++changePassword(...)
+}
+class PrismaUserRepository
+class PrismaSessionRepository
+class IdentityGuard
+class CsrfGuard
+class RolesGuard
+AuthController --> AuthService
+AuthController ..> IdentityGuard
+AuthController ..> CsrfGuard
+UserController --> UserService
+UserController ..> IdentityGuard
+UserController ..> RolesGuard
+AuthService --> UserRepository
+AuthService --> SessionRepository
+UserService --> UserRepository
+IdentityGuard --> SessionRepository
+PrismaUserRepository ..|> UserRepository
+PrismaSessionRepository ..|> SessionRepository
+note bottom of PrismaUserRepository
+PrismaService → identity_db.
+Advisory locks: global admin + per-user.
+Không HTTP trong transaction.
+end note
+@enduml

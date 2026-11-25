@@ -1,0 +1,42 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+skinparam maxMessageSize 220
+skinparam ParticipantPadding 5
+hide footbox
+title Prepare (1) — snapshot trước side effect
+participant InvoiceService as S
+participant ProductDirectory as P
+participant InvoiceBuilder as B
+participant PrismaInvoiceRepository as R
+database sales_db as DB
+S -> R : findPrepare(actor,key)
+alt key đã có
+ R --> S : invoice + hash
+ S -> S : payload khác →409; cùng →reuse
+else key mới
+ S -> P : batch(ids,cid)
+ P --> S : ACTIVE + giá chính thức
+ S -> B : setCashier().setItems().build()
+ B --> S : InvoiceDraft
+ S -> R : create(draft,key,hash)
+ group local salesWrite TX / advisory lock
+  R -> DB : recheck key/hash;
+  R -> DB : insert PENDING/RESERVE + items
+ end
+end
+note over S,DB
+Product HTTP nằm trước local TX.
+Không payment tại prepare; tiếp hình giữ hàng.
+end note
+@enduml

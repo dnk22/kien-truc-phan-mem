@@ -1,0 +1,53 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+title Sales — phân lớp và DIP
+package "Presentation" {
+ component "CheckoutController\nDTO/validation/guards" as c
+}
+package "Application" {
+ component "CheckoutFacade" as f
+ component "InvoiceService\nPaymentService" as services
+ component "CheckoutOrchestrator\nRecoveryWorker" as saga
+}
+package "Domain" {
+ rectangle "InvoiceRepository\n<<domain interface>>" as repo
+ rectangle "ProductDirectory / StockPort\n<<domain interfaces>>" as ports
+ component "InvoiceBuilder\nPaymentCreator / PaymentStrategy" as rules
+}
+package "Infrastructure" {
+ component "PrismaInvoiceRepository" as adapter
+ component "SalesProductDirectory\nInventoryStockClient" as http
+ component "PrismaService" as prisma
+}
+component "SalesModule\ncomposition root" as di
+c --> f
+f --> services
+f --> saga
+services --> repo
+services --> rules
+services --> ports
+saga --> repo
+saga --> ports
+adapter ..|> repo
+http ..|> ports
+adapter --> prisma
+di ..> adapter : useClass INVOICES
+di ..> http : useClass ports
+di ..> rules : useFactory PAYMENT_CREATORS
+note bottom of rules
+Domain dùng kiểu dữ liệu và validation, không import Prisma/HTTP.
+Application phụ thuộc port; infrastructure hiện thực port.
+DI là cấu hình khởi tạo, không phải quan hệ kế thừa.
+end note
+@enduml

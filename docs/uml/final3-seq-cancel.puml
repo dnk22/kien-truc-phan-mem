@@ -1,0 +1,51 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+skinparam maxMessageSize 220
+skinparam ParticipantPadding 6
+hide footbox
+title Hủy checkout trước thanh toán
+actor CASHIER as C
+participant CheckoutFacade as F
+participant InvoiceService as S
+participant PrismaInvoiceRepository as R
+database sales_db as DB
+participant CheckoutOrchestrator as O
+participant InventoryStockClient as I
+C -> F : cancel(id,actor,cid)
+F -> S : cancel(id,actor)
+S -> R : startCancel(id,actor)
+group local salesWrite transaction
+ R -> DB : recheck owner + assertCanCancel
+ alt READY và chưa payment
+  R -> DB : RECOVERY / RELEASE intent; COMMIT
+ else đã RELEASE intent hoặc CANCELLED
+  R --> S : state-idempotent
+ else có payment / chưa READY
+  break không gọi orchestrator
+   R --> C : 409 qua HTTP
+  end
+ end
+end
+F -> O : advance(id,cid)
+O -> I : lookup(invoiceId,cid)
+opt RESERVED
+ O -> I : release(reservationId,cid) idempotent
+end
+I --> O : RELEASED
+O -> R : cancelled(id) local TX → CANCELLED/NONE
+alt lỗi/timeout
+ O -> R : defer(id,RELEASE,code) → RECOVERY/backoff
+end
+F --> C : invoice state
+@enduml

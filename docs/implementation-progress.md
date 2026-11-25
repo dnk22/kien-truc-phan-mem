@@ -1,5 +1,7 @@
 # Tiến độ hiện hành — FINAL-1 / FINAL-2
 
+> FINAL-3 bổ sung: [progress](final3-progress.md), [UML manifest](uml/manifest.json), [report package](report-assets/README.md). Các kết quả FINAL-2 bên dưới giữ provenance lịch sử;71 ID cần duyệt nghĩa riêng, không88 runtime PASS. DOCX chưa chỉnh.
+
 Cập nhật 24/11/2026 GMT+7. `main`, start 5274c90, DEV-0–7 đã tích hợp qua các merge trước phiên. Working tree ban đầu sạch; không tạo branch/PR/commit/tag/deploy trong FINAL. Master Markdown và source DOCX giữ nguyên.
 
 | Phần                              | Trạng thái                                                                                                                        |

@@ -1,0 +1,39 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+hide circle
+skinparam linetype polyline
+title ERD identity_db
+entity "users" as User {
+ * id : uuid <<PK>>
+ * username : varchar(40) <<UQ>>
+ * password_hash : text
+ * full_name : varchar(120)
+  email : varchar(254)?
+  phone : varchar(20)?
+ * role : Role
+ * status : UserStatus
+ * token_version : integer
+ * created_at : timestamptz(3)
+ * updated_at : timestamptz(3)
+  last_login_at : timestamptz(3)?
+}
+entity "refresh_sessions" as RefreshSession {
+ * id : uuid <<PK>>
+ * family_id : uuid
+ * user_id : uuid <<FK>>
+ * token_hash : varchar(64) <<UQ>>
+ * expires_at : timestamptz(3)
+  revoked_at : timestamptz(3)?
+ * created_at : timestamptz(3)
+}
+User ||--o{ RefreshSession : FK
+legend bottom
+Role: ADMIN, MANAGER, CASHIER, WAREHOUSE
+UserStatus: ACTIVE, LOCKED
+endlegend
+footer identity_db — foundation_metadata / _prisma_migrations omitted; no cross-DB FK
+@enduml

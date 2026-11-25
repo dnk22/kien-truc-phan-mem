@@ -2,7 +2,7 @@
 
 Nguồn chuẩn: [Prompt_Codex_MiniMart.md](Prompt_Codex_MiniMart.md), đối chiếu `Bao_cao_Nhom_06_Sieu_thi_mini.docx`. Hai tài liệu nguồn được giữ nguyên.
 
-**Milestone: FINAL-1 / FINAL-2 đã nghiệm thu local trên `main`, HEAD `5274c90` giữ nguyên. 9 container healthy, 44 ca acceptance PASS và 65 Jest tests PASS.** Trạng thái và giới hạn hiện hành ở [final-review-progress](docs/final-review-progress.md); kết quả lịch sử DEV-0/1 không thay thế lần nghiệm thu này.
+**FINAL-3: UML và gói chuẩn bị báo cáo đã đồng bộ trên main, HEAD `fe96c3e`.** Kết quả FINAL-2 (65 Jest tests,44 acceptance IDs,9 healthy containers) là lịch sử từ working tree tại `5274c90`; không phải chạy lại trên HEAD hiện tại. Xem [FINAL-3 progress](docs/final3-progress.md), [report-assets](docs/report-assets/README.md), [provenance](docs/evidence/final/provenance.json) và [reconciliation](docs/requirement-id-reconciliation.md). DOCX gốc giữ nguyên để review trước FINAL-4.
 
 ## Khởi động bằng Docker Compose
 

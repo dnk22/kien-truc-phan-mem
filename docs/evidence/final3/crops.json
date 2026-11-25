@@ -1,0 +1,35 @@
+[
+  {
+    "source": "docs/evidence/final/pos-cash-completed.png",
+    "derived": "docs/evidence/final3/pos-cash-focus.png",
+    "cropPixels": [
+      800,
+      170,
+      1340,
+      850
+    ],
+    "method": "Pixel crop only, no data/labels altered; original retained"
+  },
+  {
+    "source": "docs/evidence/final/payment-retry-completed.png",
+    "derived": "docs/evidence/final3/payment-retry-focus.png",
+    "cropPixels": [
+      800,
+      170,
+      1340,
+      850
+    ],
+    "method": "Pixel crop only, no data/labels altered; original retained"
+  },
+  {
+    "source": "docs/evidence/final3/reports-year.png",
+    "derived": "docs/evidence/final3/reports-revenue-only.png",
+    "cropPixels": [
+      0,
+      0,
+      1365,
+      1320
+    ],
+    "method": "Pixel crop only, no data/labels altered; original retained"
+  }
+]

@@ -1,0 +1,66 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 18
+skinparam roundcorner 5
+skinparam ArrowColor #37474F
+skinparam classBackgroundColor #F7FAFC
+skinparam classBorderColor #456575
+skinparam packageBackgroundColor white
+skinparam componentStyle rectangle
+hide empty members
+title Inventory — tồn kho và reservation
+class StockController
+class InternalStockController
+class StockService {
+ +list(...)
++get(...)
++summary(...)
++createAdjustment(...)
++confirmAdjustment(...)
++cancelAdjustment(...)
+-combine(products)
+-merge(product,stock)
+}
+class ReservationService {
+ +reserve(...)
++get(...)
++byInvoice(...)
++commit(...)
++release(...)
+}
+interface ProductDirectory {
+ +batch(...)
++list(...)
+}
+interface StockRepository {
+ +get(...)
++byProducts(...)
++createAdjustment(...)
++confirmAdjustment(...)
+}
+interface ReservationRepository {
+ +reserve(...)
++byInvoice(...)
++transition(...)
+}
+class ProductDirectoryClient
+class PrismaStockRepository
+class PrismaReservationRepository
+StockController --> StockService
+InternalStockController --> StockService
+InternalStockController --> ReservationService
+StockService --> ProductDirectory
+StockService --> StockRepository
+ReservationService --> ReservationRepository
+ProductDirectoryClient ..|> ProductDirectory
+PrismaStockRepository ..|> StockRepository
+PrismaReservationRepository ..|> ReservationRepository
+note bottom of StockService
+Missing row → onHand/reserved/version=0, threshold=5.
+Catalog-wide low-stock: available <= threshold.
+Không dùng repository.summary() cũ cho public summary.
+end note
+@enduml
